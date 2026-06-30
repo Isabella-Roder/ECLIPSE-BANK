@@ -45,9 +45,10 @@ sistema bancario {
         fatura
         pagamento fatura
     }
-    fatura]
+    fatura
     deposito/saque
     validacao saldo
+    Investimentos
 }
 
 metas financeiras {

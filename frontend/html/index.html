@@ -31,27 +31,41 @@
         <section class="cards">
             <div class="card">
                 <span>Saldo atual</span>
-                <strong>R$ 2.500,00</strong>
+                <strong id="saldo-atual">R$ 0,00</strong>
             </div>
 
             <div class="card">
                 <span>Entradas do mês</span>
-                <strong>R$ 3.200,00</strong>
+                <strong id="entradas-mes">R$ 0,00</strong>
             </div>
 
             <div class="card">
                 <span>Saídas do mês</span>
-                <strong>R$ 700,00</strong>
+                <strong id="saidas-mes">R$ 0,00</strong>
             </div>
 
             <div class="card">
                 <span>Economia</span>
-                <strong>R$ 1.000,00</strong>
+                <strong id="economia">R$ 0,00</strong>
             </div>
         </section>
 
         <section class="painel">
             <h3>Últimas transações</h3>
+
+            <div>
+                <label for="filtro-tipo">Filtrar por tipo</label>
+
+                <select id="filtro-tipo">
+                    <option value="TODOS">Todos</option>
+                    <option value="RECEITA">Receita</option>
+                    <option value="DESPESA">Despesa</option>
+                    <option value="DEPOSITO">Deposito</option>
+                    <option value="SAQUE">Saque</option>
+                    <option value="PAGAMENTO">Pagamento</option>
+                    <option value="TRANSFERENCIA">Transferência</option>
+                </select>
+            </div>
 
             <table>
                 <thead>
@@ -62,21 +76,39 @@
                         <th>Valor</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Salário</td>
-                        <td>Trabalho</td>
-                        <td>Receita</td>
-                        <td>R$ 3.200,00</td>
-                    </tr>
-                    <tr>
-                        <td>Mercado</td>
-                        <td>Alimentação</td>
-                        <td>Despesa</td>
-                        <td>R$ 180,50</td>
-                    </tr>
+                <tbody id="tabela-transacoes">
+                    
                 </tbody>
             </table>
+        </section>
+
+        <section class="painel">
+            <h3>Nova transação</h3>
+
+            <form id="form-transacao">
+                <input type="text" name="" id="descricao" placeholder="Descrição" required>
+                <input type="number" id="valor" placeholder="Valor" step="0.01" required>
+
+                <select id="tipo" required>
+                    <option value="RECEITA">Receita</option>
+                    <option value="DESPESA">Despesa</option>
+                    <option value="DEPOSITO">Depósito</option>
+                    <option value="SAQUE">Saque</option>
+                    <option value="PAGAMENTO">Pagamento</option>
+                    <option value="TRANSFERENCIA">Transferência</option>
+                </select>
+
+                
+                <select id="categoria" required>
+                    <option value="">Selecione uma categoria</option>
+                </select>
+
+                <input type="date" id="data" required>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+
+            <p id="mensagem"></p>
         </section>
     </main>
 
