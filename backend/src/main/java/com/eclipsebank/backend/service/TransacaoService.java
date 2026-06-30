@@ -24,6 +24,14 @@ public class TransacaoService {
         return transacoes;
     }
 
+    public List<Transacao> listarPorTipo(TipoTransacao tipo) {
+        return transacoes.stream().filter(transacao -> transacao.getTipo() == tipo).toList();
+    }
+
+    public List<Transacao> listarPorCategoria(String categoria) {
+        return transacoes.stream().filter(transacao -> transacao.getCategoria().equalsIgnoreCase(categoria)).toList();
+    }
+
     public Transacao cadastrar(Transacao transacao) {
         if (transacao.getValor() <= 0) {
             //para a operação
