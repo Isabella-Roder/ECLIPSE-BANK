@@ -12,7 +12,7 @@ public class ErroController {
     
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, String> tratarErroDeRegra(IllegalAccessException erro) {
+    public Map<String, String> tratarErroDeRegra(IllegalArgumentException erro) {
         return Map.of("erro", erro.getMessage());
     }
 

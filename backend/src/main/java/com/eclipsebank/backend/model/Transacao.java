@@ -2,11 +2,27 @@ package com.eclipsebank.backend.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+// classe vira uma tabela do banco
+@Entity
 public class Transacao {
+    
+    @Id//chave principal
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//gera o id
+    private Long id;
     
     //variaveis
     private String descricao;
     private double valor;
+
+    //salva enum como texto
+    @Enumerated(EnumType.STRING)
     private TipoTransacao tipo; //tipoTransacao, vem da classe do arquivo TipoTransacao
     private String categoria;
     private LocalDate data;
@@ -21,6 +37,10 @@ public class Transacao {
         this.tipo = tipo;
         this.categoria = categoria;
         this.data = data;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getDescricao() {
