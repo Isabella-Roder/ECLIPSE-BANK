@@ -9,6 +9,7 @@ const formTransacao = document.getElementById("form-transacao");
 const mensagem = document.getElementById("mensagem");
 const categoriaSelect = document.getElementById("categoria");
 const filtroTipo = document.getElementById("filtro-tipo");
+const filtroCategoria = document.getElementById("filtro-categoria");
 
 function formatarMoeda(valor) {
     return valor.toLocaleString("pt-BR", {
@@ -29,10 +30,13 @@ async function carregarDashboard() {
 
 async function carregarTransacoes() {
     const tipoSelecionado = filtroTipo.value
+    const categoriaSelecionada = filtroCategoria.value
 
     let url = `${API_URL}/transacoes`;
 
-    if (tipoSelecionado !== "TODOS") {
+    if (categoriaSelecionada !== "TODAS") {
+        url = `${API_URL}/transacoes/categoria/${categoriaSelecionada}`;
+    } else if (tipoSelecionado !== "TODOS") {
         url = `${API_URL}/transacoes/tipo/${tipoSelecionado}`;
     }
 
@@ -67,8 +71,12 @@ async function carregarCategorias() {
         const option = document.createElement("option");
         option.value = categoria;
         option.textContent = categoria;
-
         categoriaSelect.appendChild(option);
+        
+        const optionFiltro = document.createElement("option");
+        optionFiltro.value = categoria;
+        optionFiltro.textContent = categoria;
+        filtroCategoria.appendChild(optionFiltro);
     });
 }
 
@@ -105,6 +113,7 @@ formTransacao.addEventListener("submit", async (evento) => {
 });
 
 filtroTipo.addEventListener("change", carregarTransacoes);
+filtroCategoria.addEventListener("change", carregarTransacoes);
 
 carregarDashboard();
 carregarTransacoes();
