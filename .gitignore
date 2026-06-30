@@ -1,0 +1,5 @@
+backend/target/
+.vscode/
+*.class
+*.log
+.DS_Store

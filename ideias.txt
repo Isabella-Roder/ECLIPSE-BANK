@@ -1,0 +1,68 @@
+um sistema bancario chamado Eclipse Bank, com sistema de
+controle financeiro com dashboard
+
+
+conta do usuario
+dashboard {
+    saldo atual
+    entradas do mês
+    saidas dos mês
+    economia
+    maior gasto
+    categorias mais usadas
+}
+
+lançamentos {
+    cadastro de receitas
+    despesas
+    transferencias
+    pagamento
+    deposito
+}
+
+categorias {
+    alimentação
+    transporte
+    lazer
+    salário
+    estudos
+    saúde
+}
+
+sistema bancario {
+    conta corrente
+    chave pix ficticia
+    transferência entre usuarios
+    extrato {
+        cadastrar transação
+        listar
+        filtrar por tipo/mes/categoria
+    }
+    limite
+    catões {
+        crédito
+        compras
+        fatura
+        pagamento fatura
+    }
+    fatura]
+    deposito/saque
+    validacao saldo
+}
+
+metas financeiras {
+    guardar R$ 1.000
+    viajar
+    comprar notebook
+    reserva de emergencia
+}
+
+relatórios {
+    gastos por categorias
+    evolução do saldo
+    receita vs despesas
+    fatura do cartão
+    graficos
+    metas,
+    resumo mensal
+}
