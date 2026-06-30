@@ -15,7 +15,7 @@ public class Usuario {
     private Long id;
 
     private String nome;
-    private Integer cpf;
+    private String cpf;
     private String email;
     private String senha;
     private LocalDate dataNascimento;
@@ -24,7 +24,7 @@ public class Usuario {
 
     }
 
-    public Usuario(String nome, Integer cpf, String email, String senha, LocalDate dataNascimento) {
+    public Usuario(String nome, String cpf, String email, String senha, LocalDate dataNascimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -40,7 +40,7 @@ public class Usuario {
         return nome;
     }
 
-    public Integer getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
@@ -60,7 +60,7 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

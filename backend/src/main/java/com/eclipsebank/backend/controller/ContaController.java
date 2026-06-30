@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.eclipsebank.backend.model.Conta;
 import com.eclipsebank.backend.service.ContaService;
@@ -27,5 +29,20 @@ public class ContaController {
     @PostMapping("/contas")
     public Conta cadastrar(@RequestBody Conta conta) {
         return contaService.cadastrar(conta);
+    }
+
+    @PostMapping("/contas/usuario/{usuarioId}")
+    public Conta cadastrarParaUsuario(@PathVariable Long usuarioId, @RequestBody Conta conta) {
+        return contaService.cadastrarParaUsuario(usuarioId, conta);
+    }
+
+    @PostMapping("/contas/{contaId}/depositar")
+    public Conta depositar(@PathVariable Long contaId, @RequestParam Double valor) {
+        return contaService.depositar(contaId, valor);
+    }
+
+    @PostMapping("/contas/{contaId}/sacar")
+    public Conta sacar(@PathVariable Long contaId, @RequestParam Double valor) {
+        return contaService.sacar(contaId, valor);
     }
 }
