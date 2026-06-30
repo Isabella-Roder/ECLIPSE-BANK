@@ -7,19 +7,6 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <aside class="sidebar">
-        <h1>Eclipse Bank</h1>
-
-        <nav>
-            <a href="#">Dashboard</a>
-            <a href="#">Extrato</a>
-            <a href="#">Categorias</a>
-            <a href="#">Metas</a>
-            <a href="#">Cartões</a>
-            <a href="#">Relatórios</a>
-        </nav>
-    </aside>
-
     <main class="conteudo">
         <header class="topo">
             <div>
@@ -35,12 +22,12 @@
             </div>
 
             <div class="card">
-                <span>Entradas do mês</span>
+                <span>Entradas do mes</span>
                 <strong id="entradas-mes">R$ 0,00</strong>
             </div>
 
             <div class="card">
-                <span>Saídas do mês</span>
+                <span>Saidas do mes</span>
                 <strong id="saidas-mes">R$ 0,00</strong>
             </div>
 
@@ -51,7 +38,7 @@
         </section>
 
         <section class="painel">
-            <h3>Últimas transações</h3>
+            <h3>Ultimas transacoes</h3>
 
             <div>
                 <label for="filtro-tipo">Filtrar por tipo</label>
@@ -63,7 +50,7 @@
                     <option value="DEPOSITO">Deposito</option>
                     <option value="SAQUE">Saque</option>
                     <option value="PAGAMENTO">Pagamento</option>
-                    <option value="TRANSFERENCIA">Transferência</option>
+                    <option value="TRANSFERENCIA">Transferencia</option>
                 </select>
             </div>
 
@@ -78,35 +65,32 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Descrição</th>
+                        <th>Descricao</th>
                         <th>Categoria</th>
                         <th>Tipo</th>
                         <th>Valor</th>
                     </tr>
                 </thead>
-                <tbody id="tabela-transacoes">
-                    
-                </tbody>
+                <tbody id="tabela-transacoes"></tbody>
             </table>
         </section>
 
         <section class="painel">
-            <h3>Nova transação</h3>
+            <h3>Nova transacao</h3>
 
             <form id="form-transacao">
-                <input type="text" name="" id="descricao" placeholder="Descrição" required>
+                <input type="text" id="descricao" placeholder="Descricao" required>
                 <input type="number" id="valor" placeholder="Valor" step="0.01" required>
 
                 <select id="tipo" required>
                     <option value="RECEITA">Receita</option>
                     <option value="DESPESA">Despesa</option>
-                    <option value="DEPOSITO">Depósito</option>
+                    <option value="DEPOSITO">Deposito</option>
                     <option value="SAQUE">Saque</option>
                     <option value="PAGAMENTO">Pagamento</option>
-                    <option value="TRANSFERENCIA">Transferência</option>
+                    <option value="TRANSFERENCIA">Transferencia</option>
                 </select>
 
-                
                 <select id="categoria" required>
                     <option value="">Selecione uma categoria</option>
                 </select>
@@ -120,6 +104,7 @@
         </section>
     </main>
 
+    <script src="../script/layout.js"></script>
     <script src="../script/script.js"></script>
 </body>
 </html>

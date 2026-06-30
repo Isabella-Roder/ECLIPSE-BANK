@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contas - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Gerenciamento</p>
+                <h2>Contas bancarias</h2>
+            </div>
+        </header>
+
+        <section class="painel">
+            <h3>Nova conta</h3>
+
+            <form id="form-conta">
+                <input type="number" id="usuarioId" placeholder="ID do usuario" required>
+                <input type="text" id="titular" placeholder="Titular" required>
+                <input type="number" id="numero" placeholder="Numero da conta" required>
+                <input type="text" id="chavePix" placeholder="Chave Pix" required>
+                <input type="number" id="limite" placeholder="Limite" step="0.01" required>
+
+                <button type="submit">Criar conta</button>
+            </form>
+
+            <p id="mensagem-conta"></p>
+        </section>
+
+        <section class="painel">
+            <h3>Operacoes</h3>
+
+            <form id="form-operacao">
+                <input type="number" id="contaIdOperacao" placeholder="ID da conta" required>
+                <input type="number" id="valorOperacao" placeholder="Valor" step="0.01" required>
+
+                <button type="button" id="botao-depositar">Depositar</button>
+                <button type="button" id="botao-sacar">Sacar</button>
+            </form>
+
+            <p id="mensagem-operacao"></p>
+        </section>
+
+        <section class="painel">
+            <h3>Contas cadastradas</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titular</th>
+                        <th>Numero</th>
+                        <th>Chave Pix</th>
+                        <th>Saldo</th>
+                        <th>Limite</th>
+                        <th>Usuario</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-contas"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/contas.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Gerenciamento</p>
+                <h2>Usuarios</h2>
+            </div>
+        </header>
+
+        <section class="painel">
+            <h3>Novo usuario</h3>
+
+            <form id="form-usuario">
+                <input type="text" id="nome" placeholder="Nome" required>
+                <input type="text" id="cpf" placeholder="CPF" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="senha" placeholder="Senha" required>
+                <input type="date" id="dataNascimento" required>
+
+                <button type="submit">Cadastrar usuario</button>
+            </form>
+
+            <p id="mensagem-usuario"></p>
+        </section>
+
+        <section class="painel">
+            <h3>Usuarios cadastrados</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Email</th>
+                        <th>Data nascimento</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-usuarios"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/usuarios.js"></script>
+</body>
+</html>
