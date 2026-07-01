@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.eclipsebank.backend.dto.TransferenciaRequest;
 import com.eclipsebank.backend.model.Conta;
 import com.eclipsebank.backend.model.TipoTransacao;
 import com.eclipsebank.backend.model.Transacao;
@@ -12,7 +13,6 @@ import com.eclipsebank.backend.model.Usuario;
 import com.eclipsebank.backend.repository.ContaRepository;
 import com.eclipsebank.backend.repository.TransacaoRepository;
 import com.eclipsebank.backend.repository.UsuarioRepository;
-import com.eclipsebank.backend.dto.TransferenciaRequest;
 
 @Service
 public class ContaService {
@@ -25,6 +25,10 @@ public class ContaService {
         this.contaRepository = contaRepository;
         this.usuarioRepository = usuarioRepository;
         this.transacaoRepository = transacaoRepository;
+    }
+
+    public Conta buscarPorId(Long contaId) {
+        return contaRepository.findById(contaId).orElseThrow(() -> new IllegalArgumentException("Conta nao encontrada."));
     }
 
     private void validarConta(Conta conta) {

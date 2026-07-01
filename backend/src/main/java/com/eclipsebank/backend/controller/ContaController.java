@@ -32,6 +32,11 @@ public class ContaController {
         return contaService.cadastrar(conta);
     }
 
+    @GetMapping("/contas/{contaId}")
+    public Conta buscarPorId(@PathVariable Long contaId) {
+        return contaService.buscarPorId(contaId);
+    }
+
     @PostMapping("/contas/usuario/{usuarioId}")
     public Conta cadastrarParaUsuario(@PathVariable Long usuarioId, @RequestBody Conta conta) {
         return contaService.cadastrarParaUsuario(usuarioId, conta);
