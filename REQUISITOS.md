@@ -26,6 +26,18 @@ O projeto será desenvolvido usando duas linguagens:
 
 O sistema deve permitir que o usuário tenha uma conta própria no Eclipse Bank.
 
+Status atual:
+
+- [x] Cadastro de usuário implementado.
+- [x] Listagem de usuários implementada.
+- [x] Busca de usuário por ID implementada.
+- [x] Nome social implementado.
+- [x] CPF como texto implementado.
+- [x] Validação de CPF único implementada.
+- [x] Validação de email único implementada.
+- [x] Validação de campos obrigatórios do usuário implementada.
+- [ ] Login ainda não implementado.
+
 Requisitos:
 
 - Cadastrar usuário.
@@ -38,6 +50,17 @@ Requisitos:
 ### 3.2 Dashboard Financeiro
 
 O dashboard deve apresentar um resumo da vida financeira do usuário.
+
+Status atual:
+
+- [x] Dashboard principal criado no frontend.
+- [x] Endpoint `/dashboard` implementado.
+- [x] Saldo total calculado com base nas contas.
+- [x] Total de contas cadastrado exibido.
+- [x] Total de usuários cadastrado exibido.
+- [~] Resumo financeiro implementado parcialmente.
+- [ ] Maior gasto ainda não implementado.
+- [ ] Categorias mais usadas ainda não implementadas.
 
 Informações exibidas:
 
@@ -54,6 +77,17 @@ Informações exibidas:
 ### 3.3 Lançamentos
 
 O sistema deve permitir o cadastro e controle de movimentações financeiras.
+
+Status atual:
+
+- [x] Cadastro de transações implementado.
+- [x] Listagem de transações implementada.
+- [x] Depósito registrado como transação.
+- [x] Saque registrado como transação.
+- [x] Transferência registrada no extrato da origem e do destino.
+- [x] Transação vinculada a uma conta.
+- [ ] Edição de lançamento ainda não implementada.
+- [ ] Exclusão de lançamento ainda não implementada.
 
 Tipos de lançamentos:
 
@@ -98,6 +132,22 @@ Requisitos:
 
 O sistema deve simular funcionalidades básicas de um banco digital.
 
+Status atual:
+
+- [x] Conta corrente implementada.
+- [x] Conta vinculada a usuário implementada.
+- [x] Chave Pix fictícia implementada como campo da conta.
+- [x] Validação de chave Pix única implementada.
+- [x] Número de conta único implementado.
+- [x] Depósito implementado.
+- [x] Saque implementado.
+- [x] Transferência entre contas implementada.
+- [x] Validação de saldo em saque implementada.
+- [x] Validação de saldo em transferência implementada.
+- [x] Validação para impedir transferência para a mesma conta implementada.
+- [~] Limite da conta implementado parcialmente.
+- [ ] Busca por chave Pix ainda não implementada.
+
 Funcionalidades:
 
 - Conta corrente.
@@ -119,6 +169,18 @@ Requisitos:
 ### 3.6 Extrato
 
 O extrato deve listar todas as movimentações da conta.
+
+Status atual:
+
+- [x] Registro automático de depósito no extrato.
+- [x] Registro automático de saque no extrato.
+- [x] Registro automático de transferência enviada.
+- [x] Registro automático de transferência recebida.
+- [x] Consulta de extrato por conta implementada.
+- [x] Tela `extrato.html` implementada.
+- [ ] Filtro por data ainda não implementado.
+- [ ] Filtro por mês ainda não implementado.
+- [ ] Filtro avançado por categoria no extrato da conta ainda não implementado.
 
 Requisitos:
 
@@ -258,6 +320,21 @@ Essa opção é mais simples para começar.
 
 Para começar o projeto, a primeira versão deve conter:
 
+Status atual do MVP:
+
+- [x] Cadastro de usuário.
+- [ ] Login.
+- [x] Conta corrente com saldo.
+- [x] Cadastro de receitas/transações.
+- [x] Cadastro de despesas/transações.
+- [x] Depósito.
+- [x] Saque.
+- [x] Transferência entre contas.
+- [x] Extrato.
+- [~] Categorias fixas.
+- [x] Dashboard com saldo e dados gerais.
+- [~] Dashboard ainda pode evoluir para entradas, saídas, economia, maior gasto e categorias mais usadas.
+
 - Cadastro de usuário.
 - Login.
 - Conta corrente com saldo.
@@ -313,3 +390,258 @@ Entidades sugeridas para o sistema:
 - Modo administrador.
 - Simulador de investimentos.
 - Recomendação automática de economia usando Python.
+
+## 10. Perfis do Sistema
+
+O sistema deve considerar dois tipos principais de uso: cliente e administracao.
+
+Status atual:
+
+- [~] Telas de cliente começaram a ser separadas.
+- [x] Tela `dados.html` criada para dados pessoais.
+- [x] Tela `minha-conta.html` criada para dados da conta.
+- [x] Tela `transferencias.html` criada para transferência entre contas.
+- [~] Telas administrativas existem, mas ainda sem controle de permissão.
+- [ ] Login ainda não implementado.
+- [ ] Separação real entre cliente e administração ainda não implementada.
+
+### 10.1 Cliente
+
+O cliente deve conseguir acessar e acompanhar suas proprias informacoes bancarias.
+
+Requisitos:
+
+- Visualizar seus dados pessoais.
+- Visualizar nome social, quando informado.
+- Consultar sua conta bancaria.
+- Consultar saldo, limite, numero da conta e chave Pix.
+- Realizar transferencias.
+- Consultar extrato da propria conta.
+- Acompanhar metas financeiras.
+- Acompanhar investimentos.
+
+### 10.2 Administracao
+
+A administracao deve conseguir acompanhar e gerenciar dados gerais do sistema.
+
+Requisitos:
+
+- Cadastrar usuarios.
+- Cadastrar contas para usuarios.
+- Listar todos os usuarios.
+- Listar todas as contas.
+- Visualizar total de usuarios cadastrados.
+- Visualizar total de contas cadastradas.
+- Visualizar saldo total do sistema.
+- Acompanhar transacoes.
+- Gerar relatorios administrativos.
+
+## 11. Organizacao de Telas
+
+O frontend deve ser dividido em telas especificas para evitar paginas muito grandes e facilitar a separacao entre visao do cliente e visao administrativa.
+
+Status atual:
+
+- [x] `index.html` implementado.
+- [x] `usuarios.html` implementado.
+- [x] `contas.html` implementado.
+- [x] `transferencias.html` implementado.
+- [x] `extrato.html` implementado.
+- [x] `dados.html` implementado.
+- [x] `minha-conta.html` implementado.
+- [x] `layout.js` implementado para sidebar reutilizável.
+- [ ] Tela de relatórios ainda não implementada.
+- [ ] Tela de investimentos ainda não implementada.
+
+Telas sugeridas:
+
+- `index.html`: dashboard geral do sistema.
+- `usuarios.html`: cadastro e listagem de usuarios.
+- `contas.html`: cadastro, listagem, deposito e saque de contas.
+- `transferencias.html`: transferencia entre contas.
+- `extrato.html`: consulta de extrato por conta.
+- `dados.html`: dados pessoais do cliente.
+- `minha-conta.html`: informacoes da conta do cliente.
+
+### 11.1 Dashboard
+
+Requisitos:
+
+- Exibir saldo total.
+- Exibir total de contas cadastradas.
+- Exibir total de usuarios cadastrados.
+- Exibir ultimas transacoes.
+- Exibir resumo financeiro.
+
+### 11.2 Dados do Cliente
+
+Requisitos:
+
+- Consultar dados pessoais.
+- Exibir nome, nome social, CPF, email e data de nascimento.
+- Permitir futura edicao de dados cadastrais.
+
+### 11.3 Minha Conta
+
+Requisitos:
+
+- Consultar saldo.
+- Consultar numero da conta.
+- Consultar chave Pix.
+- Consultar limite.
+- Acessar atalhos para transferencia e extrato.
+
+### 11.4 Transferencias
+
+Requisitos:
+
+- Informar conta de origem.
+- Informar conta de destino.
+- Informar valor.
+- Validar saldo da conta de origem.
+- Nao permitir transferencia para a mesma conta.
+- Registrar a saida no extrato da conta origem.
+- Registrar a entrada no extrato da conta destino.
+
+## 12. Investimentos
+
+O sistema deve possuir uma area de investimentos ficticios para complementar o controle financeiro do Eclipse Bank.
+
+Status atual:
+
+- [ ] Módulo de investimentos ainda não implementado.
+- [ ] Tela de investimentos ainda não implementada.
+- [ ] Simulador de investimentos ainda não implementado.
+- [ ] Integração com API da B3 ainda não implementada.
+- [ ] Relatórios de investimentos com Python ainda não implementados.
+
+### 12.1 Perfil do Investidor
+
+Perfis sugeridos:
+
+- Conservador.
+- Moderado.
+- Arrojado.
+
+Requisitos:
+
+- Permitir que o cliente escolha ou simule seu perfil de investidor.
+- Usar o perfil para sugerir produtos ficticios no futuro.
+
+### 12.2 Produtos de Investimento Ficticios
+
+Produtos sugeridos:
+
+- Renda fixa.
+- Tesouro Eclipse.
+- Carteira automatica.
+- Cripto ficticia.
+- Fundo Eclipse.
+
+### 12.3 Funcionalidades de Investimento
+
+Requisitos:
+
+- Simular investimento.
+- Aplicar valor ficticio.
+- Resgatar valor ficticio.
+- Acompanhar rendimento.
+- Listar historico de aplicacoes.
+- Exibir grafico de evolucao.
+- Integrar futuramente com API da B3 para consultar dados de mercado, quando a etapa de investimentos for iniciada.
+- Usar dados da B3 apenas como referencia informativa, mantendo as operacoes do Eclipse Bank como ficticias/simuladas.
+
+### 12.4 Dashboard de Investimentos
+
+Requisitos:
+
+- Exibir total investido.
+- Exibir rendimento total.
+- Exibir rendimento do mes.
+- Exibir investimentos por tipo.
+- Exibir cotacoes ou indicadores obtidos via API da B3 futuramente.
+- Integrar dados com relatorios em Python futuramente.
+
+## 13. Status Atual do Projeto
+
+Legenda:
+
+- `[x]` Implementado.
+- `[~]` Implementado parcialmente.
+- `[ ]` Ainda nao implementado.
+
+### 13.1 Backend Java Spring Boot
+
+- [x] Projeto Spring Boot criado.
+- [x] API REST funcionando.
+- [x] Banco H2 configurado.
+- [x] Persistencia com JPA.
+- [x] Cadastro de usuarios.
+- [x] Listagem de usuarios.
+- [x] Campo nome social no usuario.
+- [x] CPF como texto.
+- [x] Validacao de CPF unico.
+- [x] Validacao de email unico.
+- [x] Validacao de campos obrigatorios do usuario.
+- [x] Cadastro de contas para usuarios.
+- [x] Listagem de contas.
+- [x] Saldo, limite, numero e chave Pix na conta.
+- [x] Validacao de usuario com apenas uma conta.
+- [x] Validacao de numero de conta unico.
+- [x] Validacao de chave Pix unica.
+- [x] Validacao de campos obrigatorios da conta.
+- [x] Deposito em conta.
+- [x] Saque em conta.
+- [x] Validacao de saldo para saque.
+- [x] Transferencia entre contas.
+- [x] Validacao para nao transferir para a mesma conta.
+- [x] Validacao de saldo para transferencia.
+- [x] Registro de deposito no extrato.
+- [x] Registro de saque no extrato.
+- [x] Registro de transferencia no extrato da origem e do destino.
+- [x] Transacao vinculada a conta.
+- [x] Extrato por conta.
+- [x] Busca de conta por ID.
+- [x] Busca de usuario por ID.
+- [x] Dashboard com saldo total, total de contas e total de usuarios.
+- [x] Tratamento de erro com `ErroController`.
+- [~] Categorias fixas.
+
+### 13.2 Frontend HTML, CSS e JavaScript
+
+- [x] Layout visual escuro inspirado no Eclipse Bank.
+- [x] Sidebar reutilizavel com `layout.js`.
+- [x] Dashboard principal.
+- [x] Tela de usuarios.
+- [x] Cadastro de usuarios pelo HTML.
+- [x] Listagem de usuarios pelo HTML.
+- [x] Campo nome social na tela de usuarios.
+- [x] Tela de contas.
+- [x] Cadastro de conta pelo HTML.
+- [x] Listagem de contas pelo HTML.
+- [x] Deposito pelo HTML.
+- [x] Saque pelo HTML.
+- [x] Tela de extrato.
+- [x] Consulta de extrato por conta pelo HTML.
+- [x] Tela de transferencias.
+- [x] Transferencia entre contas pelo HTML.
+- [x] Tela minha conta.
+- [x] Consulta de dados da conta pelo HTML.
+- [x] Tela de dados do cliente.
+- [x] Consulta de dados do usuario pelo HTML.
+- [~] Dashboard conectado aos dados principais.
+- [ ] Tela de investimentos.
+
+### 13.3 Funcionalidades Pendentes
+
+- [ ] Login.
+- [ ] Separacao real entre cliente e administracao.
+- [ ] Cartoes.
+- [ ] Fatura.
+- [ ] Metas financeiras.
+- [ ] Relatorios com Python.
+- [ ] Graficos.
+- [ ] Investimentos ficticios.
+- [ ] Integracao futura com API da B3 para modulo de investimentos.
+- [ ] Exportacao de relatorios.
+- [ ] Filtros avancados no extrato por data, tipo e categoria.

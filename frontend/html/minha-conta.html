@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Area do cliente</p>
+                <h2>Minha conta</h2>
+            </div>
+        </header>
+
+        <section class="painel">
+            <h3>Buscar conta</h3>
+
+            <form id="form-minha-conta">
+                <input type="number" id="contaId" placeholder="ID da conta" required>
+                <button type="submit">Buscar conta</button>
+            </form>
+
+            <p id="mensagem-minha-conta"></p>
+        </section>
+
+        <section class="cards">
+            <div class="card">
+                <span>Titular</span>
+                <strong id="titular-conta">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Saldo</span>
+                <strong id="saldo-conta">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Limite</span>
+                <strong id="limite-conta">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Numero</span>
+                <strong id="numero-conta">-</strong>
+            </div>
+        </section>
+
+        <section class="painel">
+            <h3>Dados bancarios</h3>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Chave Pix</th>
+                        <td id="chave-pix">-</td>
+                    </tr>
+                    <tr>
+                        <th>Usuario</th>
+                        <td id="usuario-conta">-</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td id="email-conta">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/minha-conta.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Dados - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Area do cliente</p>
+                <h2>Meus dados</h2>
+            </div>
+        </header>
+
+        <section class="painel">
+            <h3>Buscar usuario</h3>
+
+            <form id="form-dados">
+                <input type="number" id="usuarioId" placeholder="ID do usuario" required>
+                <button type="submit">Buscar dados</button>
+            </form>
+
+            <p id="mensagem-dados"></p>
+        </section>
+
+        <section class="cards">
+            <div class="card">
+                <span>Nome</span>
+                <strong id="nome-usuario">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Nome social</span>
+                <strong id="nome-social">-</strong>
+            </div>
+
+            <div class="card">
+                <span>CPF</span>
+                <strong id="cpf-usuario">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Nascimento</span>
+                <strong id="data-nascimento">-</strong>
+            </div>
+        </section>
+
+        <section class="painel">
+            <h3>Contato</h3>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Email</th>
+                        <td id="email-usuario">-</td>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <td id="id-usuario">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/dados.js"></script>
+</body>
+</html>

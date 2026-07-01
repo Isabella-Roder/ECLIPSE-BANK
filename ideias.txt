@@ -67,3 +67,159 @@ relatórios {
     metas,
     resumo mensal
 }
+
+organizacao de telas {
+    dashboard {
+        visao geral do sistema
+        saldo total
+        total de contas
+        total de usuarios
+        ultimas transacoes
+    }
+
+    usuarios {
+        cadastro de usuarios
+        nome
+        nome social
+        cpf
+        email
+        data de nascimento
+    }
+
+    contas {
+        criar conta para usuario
+        listar contas
+        deposito
+        saque
+        saldo
+        limite
+        chave pix
+    }
+
+    transferencias {
+        conta origem
+        conta destino
+        valor
+        registrar no extrato das duas contas
+    }
+
+    extrato {
+        buscar por conta
+        listar transacoes
+        filtrar por tipo
+        filtrar por data
+        filtrar por categoria
+    }
+
+    dados {
+        tela do cliente
+        mostrar dados pessoais
+        mostrar nome social quando existir
+        mostrar email e cpf
+    }
+
+    minha conta {
+        tela do cliente
+        mostrar saldo
+        numero da conta
+        chave pix
+        limite
+        atalhos para transferencia e extrato
+    }
+}
+
+perfis do sistema {
+    cliente {
+        ver seus dados
+        ver sua conta
+        transferir
+        consultar extrato
+        acompanhar metas
+        acompanhar investimentos
+    }
+
+    administracao {
+        cadastrar usuarios
+        cadastrar contas
+        ver todas as contas
+        ver total de usuarios
+        ver saldo total do sistema
+        acompanhar transacoes
+        gerar relatorios
+    }
+}
+
+investimentos {
+    perfil do investidor {
+        conservador
+        moderado
+        arrojado
+    }
+
+    produtos ficticios {
+        renda fixa
+        tesouro eclipse
+        carteira automatica
+        cripto ficticia
+        fundo eclipse
+    }
+
+    funcionalidades {
+        simular investimento
+        aplicar valor ficticio
+        resgatar valor ficticio
+        acompanhar rendimento
+        historico de aplicacoes
+        grafico de evolucao
+        consultar dados de mercado usando api da b3 futuramente
+        usar dados da b3 como referencia informativa
+    }
+
+    dashboard de investimentos {
+        total investido
+        rendimento total
+        rendimento do mes
+        investimentos por tipo
+        cotacoes ou indicadores da b3 futuramente
+    }
+}
+
+andamento do projeto {
+    feito {
+        backend spring boot rodando
+        banco h2 configurado
+        usuario com nome social
+        cpf e email unicos
+        conta ligada a usuario
+        numero da conta e chave pix unicos
+        deposito
+        saque
+        transferencia entre contas
+        extrato por conta
+        transacoes ligadas a conta
+        dashboard com saldo total, contas e usuarios
+        telas de usuarios, contas, extrato e dashboard
+        tela de transferencias
+        tela minha conta
+        tela meus dados
+        layout escuro eclipse bank
+    }
+
+    parcial {
+        categorias fixas
+        dashboard ainda pode ficar mais completo
+        area de cliente ainda sem login
+    }
+
+    falta fazer {
+        login
+        separar cliente e administracao
+        cartoes
+        faturas
+        metas financeiras
+        investimentos
+        api da b3 no modulo de investimentos
+        relatorios com python
+        graficos
+    }
+}
