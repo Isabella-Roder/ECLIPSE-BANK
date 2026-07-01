@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.eclipsebank.backend.model.Conta;
 import com.eclipsebank.backend.service.ContaService;
+import com.eclipsebank.backend.dto.TransferenciaRequest;
 
 @RestController
 public class ContaController {
@@ -44,5 +45,10 @@ public class ContaController {
     @PostMapping("/contas/{contaId}/sacar")
     public Conta sacar(@PathVariable Long contaId, @RequestParam Double valor) {
         return contaService.sacar(contaId, valor);
+    }
+
+    @PostMapping("/contas/transferir")
+    public Conta transferir(@RequestBody TransferenciaRequest request) {
+        return contaService.transferir(request);
     }
 }

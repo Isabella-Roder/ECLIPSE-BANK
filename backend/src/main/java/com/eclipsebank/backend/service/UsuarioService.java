@@ -16,12 +16,7 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public List<Usuario> listar() {
-        return usuarioRepository.findAll();
-    }
-
-    public Usuario cadastrar(Usuario usuario) {
-
+    private void validarUsuario(Usuario usuario) {
         if (usuario.getNome() == null || usuario.getNome().isBlank()) {
             throw new IllegalArgumentException("Nome não pode ser vazio.");
         }else if (usuario.getCpf() == null || usuario.getCpf().isBlank()) {
@@ -39,7 +34,14 @@ public class UsuarioService {
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
             throw new IllegalArgumentException("Email já cadastrado.");
         }
+    }
 
+    public List<Usuario> listar() {
+        return usuarioRepository.findAll();
+    }
+
+    public Usuario cadastrar(Usuario usuario) {
+        validarUsuario(usuario);
         return usuarioRepository.save(usuario);
     }
 
