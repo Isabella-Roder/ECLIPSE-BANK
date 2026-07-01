@@ -38,6 +38,11 @@ public class TransacaoController {
         return transacaoService.listarPorCategoria(categoria);
     }
 
+    @GetMapping("/contas/{contaId}/transacoes")
+    public List<Transacao> listarPorConta(@PathVariable Long contaId) {
+        return transacaoService.listarPorConta(contaId);
+    }
+
     //rota com metodo post
     @PostMapping("/transacoes")
     public Transacao cadastrar(@RequestBody Transacao transacao) {

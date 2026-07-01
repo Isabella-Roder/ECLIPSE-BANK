@@ -16,6 +16,7 @@ async function carregarUsuarios() {
         linha.innerHTML = `
             <td>${usuario.id}</td>
             <td>${usuario.nome}</td>
+            <td>${usuario.nomeSocial || "-"}</td>
             <td>${usuario.cpf}</td>
             <td>${usuario.email}</td>
             <td>${usuario.dataNascimento}</td>
@@ -30,6 +31,7 @@ formUsuario.addEventListener("submit", async (evento) => {
 
     const usuario = {
         nome: document.getElementById("nome").value,
+        nomeSocial: document.getElementById("nomeSocial").value,
         cpf: document.getElementById("cpf").value,
         email: document.getElementById("email").value,
         senha: document.getElementById("senha").value,
@@ -45,7 +47,8 @@ formUsuario.addEventListener("submit", async (evento) => {
     });
 
     if (!resposta.ok) {
-        mensagemUsuario.textContent = "Erro ao cadastrar usuário.";
+        const erro = await resposta.json();
+        mensagemUsuario.textContent = erro.erro;
         return;
     }
 

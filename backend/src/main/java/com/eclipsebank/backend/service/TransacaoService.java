@@ -13,6 +13,7 @@ public class TransacaoService {
     
     private TransacaoRepository transacaoRepository;
 
+
     public TransacaoService(TransacaoRepository transacaoRepository) {
         this.transacaoRepository = transacaoRepository;
     }
@@ -27,6 +28,10 @@ public class TransacaoService {
 
     public List<Transacao> listarPorCategoria(String categoria) {
         return transacaoRepository.findByCategoriaIgnoreCase(categoria);
+    }
+
+    public List<Transacao> listarPorConta(Long contaId) {
+        return transacaoRepository.findByContaId(contaId);
     }
 
     public Transacao cadastrar(Transacao transacao) {

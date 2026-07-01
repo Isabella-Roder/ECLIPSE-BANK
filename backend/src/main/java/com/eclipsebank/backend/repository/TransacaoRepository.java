@@ -13,4 +13,6 @@ public interface TransacaoRepository extends JpaRepository<Transacao, Long> {
 
     List<Transacao> findByCategoriaIgnoreCase(String categoria);
 
+    List<Transacao> findByContaId(Long contaId);
+
 }

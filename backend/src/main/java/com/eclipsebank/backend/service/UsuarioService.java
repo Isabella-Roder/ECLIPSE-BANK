@@ -21,6 +21,25 @@ public class UsuarioService {
     }
 
     public Usuario cadastrar(Usuario usuario) {
+
+        if (usuario.getNome() == null || usuario.getNome().isBlank()) {
+            throw new IllegalArgumentException("Nome não pode ser vazio.");
+        }else if (usuario.getCpf() == null || usuario.getCpf().isBlank()) {
+            throw new IllegalArgumentException("CPF não pode ser vazio.");
+        }else if (usuario.getEmail() == null || usuario.getEmail().isBlank()) {
+            throw new IllegalArgumentException("Email não pode ser vazio.");
+        }else if (usuario.getSenha() == null || usuario.getSenha().isBlank()) {
+            throw new IllegalArgumentException("Senha não pode ser vazio.");
+        }
+
+        if (usuarioRepository.existsByCpf(usuario.getCpf())) {
+            throw new IllegalArgumentException("CPF ja cadastrado.");
+        }
+
+        if (usuarioRepository.existsByEmail(usuario.getEmail())) {
+            throw new IllegalArgumentException("Email já cadastrado.");
+        }
+
         return usuarioRepository.save(usuario);
     }
 

@@ -1,9 +1,9 @@
 const API_URL = "http://localhost:8080";
 
 const saldoAtual = document.getElementById("saldo-atual");
-const entradasMes = document.getElementById("entradas-mes");
-const saidasMes = document.getElementById("saidas-mes");
 const economia = document.getElementById("economia");
+const totalContas = document.getElementById("total-contas");
+const totalUsuarios = document.getElementById("total-usuarios");
 const tabelaTransacoes = document.getElementById("tabela-transacoes");
 const formTransacao = document.getElementById("form-transacao");
 const mensagem = document.getElementById("mensagem");
@@ -23,9 +23,9 @@ async function carregarDashboard() {
     const dados = await resposta.json();
 
     saldoAtual.textContent = formatarMoeda(dados.saldoAtual);
-    entradasMes.textContent = formatarMoeda(dados.entradasMes);
-    saidasMes.textContent = formatarMoeda(dados.saidasMes);
     economia.textContent = formatarMoeda(dados.economia);
+    totalContas.textContent = dados.totalContas;
+    totalUsuarios.textContent = dados.totalUsuarios;
 }
 
 async function carregarTransacoes() {

@@ -9,7 +9,7 @@ function criarSidebar() {
             <a href="index.html">Dashboard</a>
             <a href="usuarios.html">Usuários</a>
             <a href="contas.html">Contas</a>
-            <a href="#">Extrato</a>
+            <a href="extrato.html">Extrato</a>
             <a href="#">Relatórios</a>
         </nav>
     `;

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extrato - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Movimentacoes</p>
+                <h2>Extrato por conta</h2>
+            </div>
+        </header>
+
+        <section class="painel">
+            <h3>Buscar extrato</h3>
+
+            <form id="form-extrato">
+                <input type="number" id="contaId" placeholder="ID da conta" required>
+                <button type="submit">Buscar extrato</button>
+            </form>
+
+            <p id="mensagem-extrato"></p>
+        </section>
+
+        <section class="painel">
+            <h3>Transacoes da conta</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descricao</th>
+                        <th>Categoria</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-extrato"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/extrato.js"></script>
+</body>
+</html>

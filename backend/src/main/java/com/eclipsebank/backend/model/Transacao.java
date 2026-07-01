@@ -8,6 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 // classe vira uma tabela do banco
 @Entity
@@ -27,6 +29,10 @@ public class Transacao {
     private String categoria;
     private LocalDate data;
 
+    @ManyToOne
+    @JoinColumn(name = "conta_id")
+    private Conta conta;
+
     public Transacao() {
 
     }
@@ -41,6 +47,10 @@ public class Transacao {
 
     public Long getId() {
         return id;
+    }
+
+    public Conta getConta() {
+        return conta;
     }
 
     public String getDescricao() {
@@ -61,6 +71,10 @@ public class Transacao {
 
     public LocalDate getData() {
         return data;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
     }
 
     public void setDescricao(String descricao) {

@@ -1,17 +1,17 @@
 package com.eclipsebank.backend.service;
 
-import java.util.List;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.eclipsebank.backend.model.Conta;
-import com.eclipsebank.backend.repository.ContaRepository;
-import com.eclipsebank.backend.model.Usuario;
-import com.eclipsebank.backend.repository.UsuarioRepository;
 import com.eclipsebank.backend.model.TipoTransacao;
 import com.eclipsebank.backend.model.Transacao;
+import com.eclipsebank.backend.model.Usuario;
+import com.eclipsebank.backend.repository.ContaRepository;
 import com.eclipsebank.backend.repository.TransacaoRepository;
+import com.eclipsebank.backend.repository.UsuarioRepository;
 
 @Service
 public class ContaService {
@@ -31,6 +31,25 @@ public class ContaService {
     }
 
     public Conta cadastrar(Conta conta) {
+
+        if (conta.getTitular() == null || conta.getTitular().isBlank()) {
+            throw new IllegalArgumentException("Titular não pode ser vazio.");
+        }else if (conta.getNumero() == null) {
+            throw new IllegalArgumentException("Numero não pode ser vazio.");
+        }else if (conta.getChavePix() == null || conta.getChavePix().isBlank()) {
+            throw new IllegalArgumentException("Chave Pix não pode ser vazio.");
+        }else if (conta.getLimite() == null) {
+            throw new IllegalArgumentException("Limite não pode ser vazio.");
+        }
+
+        if (contaRepository.existsByNumero(conta.getNumero())) {
+            throw new IllegalArgumentException("Numero da conta já existe.");
+        }
+
+        if (contaRepository.existsByChavePix(conta.getChavePix())) {
+            throw new IllegalArgumentException("Essa chave pix já existe");
+        }
+
         return contaRepository.save(conta);
     }
 
@@ -62,6 +81,9 @@ public class ContaService {
             conta.setSaldo(0.0);
         }
 
+        conta.setSaldo(conta.getSaldo() + valor);
+        contaRepository.save(conta);
+
         Transacao transacao = new Transacao(
             "Depósito em conta",
             valor,
@@ -70,11 +92,10 @@ public class ContaService {
             LocalDate.now()
         );
 
+        transacao.setConta(conta);
         transacaoRepository.save(transacao);
 
-        conta.setSaldo(conta.getSaldo() + valor);
-
-        return contaRepository.save(conta);
+        return conta;
     }
 
     public Conta sacar(Long contaId, Double valor) {
@@ -100,6 +121,7 @@ public class ContaService {
         }
 
         conta.setSaldo(conta.getSaldo() - valor);
+        contaRepository.save(conta);
 
         Transacao transacao = new Transacao(
             "Saque em conta",
@@ -109,9 +131,10 @@ public class ContaService {
             LocalDate.now()
         );
 
+        transacao.setConta(conta);
         transacaoRepository.save(transacao);
 
-        return contaRepository.save(conta);
+        return conta;
     }
 
 }
