@@ -1,9 +1,13 @@
 const API_URL = "http://localhost:8080";
 
-const contaId = document.getElementById("contaId");
-const formExtrato = document.getElementById("form-extrato");
 const mensagemExtrato = document.getElementById("mensagem-extrato");
 const tabelaExtrato = document.getElementById("tabela-extrato");
+
+const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+if (!usuarioLogado) {
+    window.location.href = "login.html";
+}
 
 function formatarMoeda(valor) {
     return valor.toLocaleString("pt-BR", {
@@ -12,8 +16,21 @@ function formatarMoeda(valor) {
     });
 }
 
-async function carregarExtrato() {
-    const resposta = await fetch(`${API_URL}/contas/${contaId.value}/transacoes`);
+async function carregarContaUsuario() {
+    const resposta = await fetch(`${API_URL}/usuarios/${usuarioLogado.id}/conta`);
+
+    if (!resposta.ok) {
+        mensagemExtrato.textContent = "Conta não encontrada para esse usuario.";
+        return;
+    }
+
+    const conta = await resposta.json();
+
+    carregarExtrato(conta.id);
+}
+
+async function carregarExtrato(contaId) {
+    const resposta = await fetch(`${API_URL}/contas/${contaId}/transacoes`);
 
     if (!resposta.ok) {
         mensagemExtrato.textContent = "Erro ao buscar extrato.";
@@ -45,8 +62,4 @@ async function carregarExtrato() {
     });
 }
 
-formExtrato.addEventListener("submit", async (evento) => {
-    evento.preventDefault();
-
-    await carregarExtrato();
-});
+carregarContaUsuario();

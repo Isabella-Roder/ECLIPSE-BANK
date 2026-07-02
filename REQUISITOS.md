@@ -15,6 +15,7 @@ O projeto será desenvolvido usando duas linguagens:
 - Permitir controle de saldo, entradas, saídas e transferências.
 - Exibir um dashboard com informações financeiras importantes.
 - Registrar receitas, despesas, depósitos, saques e pagamentos.
+- Permitir pagamentos por transferencia, Pix e boleto ficticio.
 - Gerenciar categorias de gastos.
 - Controlar cartão de crédito, compras e faturas.
 - Criar metas financeiras.
@@ -38,8 +39,9 @@ Status atual:
 - [x] Validação de campos obrigatórios do usuário implementada.
 - [x] Login simples com email e senha implementado.
 - [x] Tela de login implementada.
+- [x] Logout pelo menu lateral implementado.
 - [ ] Login com conta Google ainda não implementado.
-- [ ] Proteção de telas usando usuário logado ainda não implementada.
+- [~] Proteção de telas usando usuário logado implementada parcialmente.
 
 Requisitos:
 
@@ -49,6 +51,10 @@ Requisitos:
 - Consultar saldo atual.
 - Ter uma conta corrente vinculada ao usuário.
 - Ter uma chave Pix fictícia.
+- Ter telefone cadastrado.
+- Permitir telefone como chave Pix.
+- Permitir geracao de chave Pix aleatoria.
+- Melhorar cadastro com mascaras, confirmacao de senha e validacoes.
 
 ### 3.2 Dashboard Financeiro
 
@@ -88,7 +94,9 @@ Status atual:
 - [x] Depósito registrado como transação.
 - [x] Saque registrado como transação.
 - [x] Transferência registrada no extrato da origem e do destino.
+- [x] Transferência por numero da conta implementada.
 - [x] Transação vinculada a uma conta.
+- [ ] Horario das movimentacoes ainda nao implementado.
 - [ ] Edição de lançamento ainda não implementada.
 - [ ] Exclusão de lançamento ainda não implementada.
 
@@ -98,6 +106,8 @@ Tipos de lançamentos:
 - Despesa.
 - Transferência.
 - Pagamento.
+- Pix.
+- Boleto.
 - Depósito.
 - Saque.
 
@@ -145,20 +155,29 @@ Status atual:
 - [x] Depósito implementado.
 - [x] Saque implementado.
 - [x] Transferência entre contas implementada.
+- [x] Transferência por numero da conta implementada.
 - [x] Validação de saldo em saque implementada.
 - [x] Validação de saldo em transferência implementada.
 - [x] Validação para impedir transferência para a mesma conta implementada.
 - [~] Limite da conta implementado parcialmente.
 - [ ] Busca por chave Pix ainda não implementada.
+- [ ] Pix por telefone ainda não implementado.
+- [ ] Chave Pix aleatoria ainda não implementada.
+- [ ] Botao para gerar chave Pix aleatoria ainda não implementado.
+- [ ] Pagamento de boleto ainda não implementado.
 
 Funcionalidades:
 
 - Conta corrente.
 - Chave Pix fictícia.
 - Transferência entre usuários.
+- Transferência por numero da conta.
+- Transferência por chave Pix.
+- Pix por telefone.
 - Depósito.
 - Saque.
 - Pagamento.
+- Pagamento de boleto ficticio.
 - Validação de saldo.
 - Limite da conta.
 
@@ -168,6 +187,9 @@ Requisitos:
 - Registrar toda movimentação no extrato.
 - Permitir transferência entre contas de usuários cadastrados.
 - Permitir busca de usuário por chave Pix fictícia.
+- Permitir pagamento por Pix, boleto ficticio e transferencia.
+- Permitir telefone como uma chave Pix valida.
+- Permitir geracao automatica de chave Pix aleatoria.
 
 ### 3.6 Extrato
 
@@ -255,6 +277,37 @@ Requisitos:
 - Permitir filtros por mês e categoria.
 - Usar Python para processar dados e gerar indicadores.
 
+### 3.10 Pagamentos
+
+O sistema deve possuir uma area de pagamentos para concentrar as operacoes bancarias do cliente.
+
+Status atual:
+
+- [x] Transferencia por numero da conta implementada.
+- [ ] Tela `pagamentos.html` ainda nao implementada.
+- [ ] Pix por chave Pix ainda nao implementado.
+- [ ] Pix por telefone ainda nao implementado.
+- [ ] Pagamento de boleto ficticio ainda nao implementado.
+- [ ] Historico de pagamentos ainda nao implementado como tela propria.
+
+Metodos de pagamento previstos:
+
+- Transferencia por numero da conta.
+- Pix por chave Pix.
+- Pix por telefone.
+- Boleto ficticio.
+- Outros metodos de pagamento futuramente.
+
+Requisitos:
+
+- Permitir que o cliente escolha o metodo de pagamento.
+- Validar saldo antes de concluir qualquer pagamento.
+- Registrar pagamentos no extrato.
+- Registrar data e horario do pagamento.
+- Permitir pagamento de boleto ficticio com codigo digitado.
+- Permitir Pix usando chave Pix cadastrada.
+- Permitir Pix usando telefone cadastrado como chave Pix.
+
 ## 4. Divisão Entre Java e Python
 
 ### 4.1 Java
@@ -270,6 +323,10 @@ Responsabilidades:
 - Transações.
 - Transferências.
 - Pix fictício.
+- Pagamentos.
+- Transferencia por numero da conta.
+- Transferencia por chave Pix.
+- Pagamento de boleto ficticio.
 - Cartões.
 - Faturas.
 - Metas financeiras.
@@ -328,13 +385,14 @@ Status atual do MVP:
 - [x] Cadastro de usuário.
 - [x] Login simples com email e senha.
 - [ ] Login com conta Google.
-- [ ] Uso automatico do usuario logado nas telas.
+- [~] Uso automatico do usuario logado nas telas.
 - [x] Conta corrente com saldo.
 - [x] Cadastro de receitas/transações.
 - [x] Cadastro de despesas/transações.
 - [x] Depósito.
 - [x] Saque.
 - [x] Transferência entre contas.
+- [x] Transferência por numero da conta.
 - [x] Extrato.
 - [~] Categorias fixas.
 - [x] Dashboard com saldo e dados gerais.
@@ -355,6 +413,9 @@ Depois do MVP, podem ser adicionados:
 
 - Transferência entre usuários.
 - Pix fictício.
+- Pix por telefone.
+- Pix por chave Pix.
+- Pagamento de boleto ficticio.
 - Cartão de crédito.
 - Fatura.
 - Metas financeiras.
@@ -385,6 +446,12 @@ Entidades sugeridas para o sistema:
 - Receitas e depósitos devem aumentar o saldo.
 - Despesas, saques e pagamentos devem diminuir o saldo.
 - O dashboard deve considerar os dados do mês atual.
+- Pagamentos devem registrar data e horario.
+- Transferencias devem registrar data e horario.
+- A conta destino deve receber o valor transferido.
+- A conta origem deve perder o valor transferido.
+- Chaves Pix devem ser unicas.
+- Telefone pode ser usado como chave Pix quando cadastrado.
 
 ## 9. Ideias Futuras
 
@@ -408,7 +475,8 @@ Status atual:
 - [x] Tela `transferencias.html` criada para transferência entre contas.
 - [~] Telas administrativas existem, mas ainda sem controle de permissão.
 - [x] Login simples implementado.
-- [ ] Login ainda não controla acesso das telas.
+- [~] Login controla acesso de algumas telas do cliente.
+- [x] Logout implementado no menu lateral.
 - [ ] Login com conta Google ainda não implementado.
 - [ ] Separação real entre cliente e administração ainda não implementada.
 
@@ -458,6 +526,8 @@ Status atual:
 - [x] `minha-conta.html` implementado.
 - [x] `login.html` implementado.
 - [x] `layout.js` implementado para sidebar reutilizável.
+- [x] Logout implementado no `layout.js`.
+- [ ] `pagamentos.html` ainda não implementado.
 - [ ] Tela de relatórios ainda não implementada.
 - [ ] Tela de investimentos ainda não implementada.
 
@@ -471,6 +541,7 @@ Telas sugeridas:
 - `dados.html`: dados pessoais do cliente.
 - `minha-conta.html`: informacoes da conta do cliente.
 - `login.html`: login simples com email e senha.
+- `pagamentos.html`: pagamentos por transferencia, Pix e boleto.
 
 ### 11.1 Dashboard
 
@@ -507,10 +578,24 @@ Requisitos:
 - Informar conta de origem.
 - Informar conta de destino.
 - Informar valor.
+- Permitir transferencia usando numero da conta destino.
+- Usar a conta do usuario logado como origem.
 - Validar saldo da conta de origem.
 - Nao permitir transferencia para a mesma conta.
 - Registrar a saida no extrato da conta origem.
 - Registrar a entrada no extrato da conta destino.
+
+### 11.5 Pagamentos
+
+Requisitos:
+
+- Exibir opcoes de pagamento.
+- Permitir transferencia por numero da conta.
+- Permitir Pix por chave Pix.
+- Permitir Pix por telefone.
+- Permitir pagamento de boleto ficticio.
+- Exibir mensagem de sucesso ou erro.
+- Usar a conta do usuario logado como origem do pagamento.
 
 ## 12. Investimentos
 
@@ -592,9 +677,17 @@ Legenda:
 - [x] Validacao de CPF unico.
 - [x] Validacao de email unico.
 - [x] Validacao de campos obrigatorios do usuario.
+- [ ] Telefone ainda nao implementado no usuario.
+- [ ] Mascara de CPF ainda nao implementada.
+- [ ] Mascara de telefone ainda nao implementada.
+- [ ] Confirmacao de senha ainda nao implementada.
+- [ ] Botao mostrar/ocultar senha ainda nao implementado.
 - [x] Cadastro de contas para usuarios.
 - [x] Listagem de contas.
 - [x] Saldo, limite, numero e chave Pix na conta.
+- [ ] Telefone como chave Pix ainda nao implementado.
+- [ ] Geracao de chave Pix aleatoria ainda nao implementada.
+- [ ] Numero da conta automatico ainda nao implementado.
 - [x] Validacao de usuario com apenas uma conta.
 - [x] Validacao de numero de conta unico.
 - [x] Validacao de chave Pix unica.
@@ -603,6 +696,7 @@ Legenda:
 - [x] Saque em conta.
 - [x] Validacao de saldo para saque.
 - [x] Transferencia entre contas.
+- [x] Transferencia por numero da conta.
 - [x] Validacao para nao transferir para a mesma conta.
 - [x] Validacao de saldo para transferencia.
 - [x] Registro de deposito no extrato.
@@ -613,6 +707,9 @@ Legenda:
 - [x] Busca de conta por ID.
 - [x] Busca de usuario por ID.
 - [x] Login simples por email e senha.
+- [x] Logout pelo frontend.
+- [x] Busca de conta por usuario logado.
+- [x] Transferencia por numero da conta.
 - [x] Dashboard com saldo total, total de contas e total de usuarios.
 - [x] Tratamento de erro com `ErroController`.
 - [~] Categorias fixas.
@@ -642,13 +739,37 @@ Legenda:
 - [x] Tela de login.
 - [x] Login pelo HTML.
 - [x] Usuario logado salvo no `localStorage`.
+- [x] Logout pelo menu lateral.
+- [x] Tela de dados usando usuario logado.
+- [x] Tela minha conta usando usuario logado.
+- [x] Tela de extrato usando usuario logado.
+- [x] Tela de transferencias usando conta do usuario logado como origem.
+- [x] Transferencia por numero da conta pelo HTML.
+- [ ] Mascaras de CPF, telefone, data, dinheiro e valor.
+- [ ] Botao mostrar/ocultar senha.
+- [ ] Sidebar ainda precisa ser aprimorada visualmente.
+- [ ] Resumo da conta no canto direito superior ainda nao implementado.
 - [~] Dashboard conectado aos dados principais.
+- [ ] Tela de pagamentos.
 - [ ] Tela de investimentos.
 
 ### 13.3 Funcionalidades Pendentes
 
-- [ ] Proteger telas usando usuario logado.
-- [ ] Usar usuario logado para preencher telas sem digitar ID.
+- [~] Proteger telas usando usuario logado.
+- [~] Usar usuario logado para preencher telas sem digitar ID.
+- [ ] Resetar banco H2 para limpar dados de teste baguncados.
+- [ ] Adicionar horario nas transferencias e movimentacoes.
+- [ ] Criar aba de pagamentos.
+- [ ] Pagamento de boleto ficticio.
+- [ ] Pix por chave Pix.
+- [ ] Pix por telefone.
+- [ ] Gerar chave Pix aleatoria.
+- [ ] Adicionar telefone no cadastro.
+- [ ] Aprimorar criacao de usuario.
+- [ ] Aprimorar criacao de conta.
+- [ ] Melhorar estilo visual geral.
+- [ ] Melhorar sidebar.
+- [ ] Mostrar resumo da conta no canto direito superior.
 - [ ] Login com conta Google.
 - [ ] Separacao real entre cliente e administracao.
 - [ ] Cartoes.

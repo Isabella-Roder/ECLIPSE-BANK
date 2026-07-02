@@ -18,6 +18,8 @@ lançamentos {
     transferencias
     pagamento
     deposito
+    pix
+    boleto
 }
 
 categorias {
@@ -32,11 +34,17 @@ categorias {
 sistema bancario {
     conta corrente
     chave pix ficticia
+    chave pix por telefone
+    chave pix aleatoria
+    botao para gerar chave pix aleatoria
     transferência entre usuarios
+    transferencia por numero da conta
+    transferencia por chave pix
     extrato {
         cadastrar transação
         listar
         filtrar por tipo/mes/categoria
+        mostrar data e horario das transferencias
     }
     limite
     catões {
@@ -47,6 +55,15 @@ sistema bancario {
     }
     fatura
     deposito/saque
+    pagamentos {
+        pagar boleto ficticio
+        pagar pix
+        transferencia por numero da conta
+        transferencia por chave pix
+        outros metodos de pagamento
+        historico de pagamentos
+        validar saldo antes de pagar
+    }
     validacao saldo
     Investimentos
 }
@@ -82,8 +99,15 @@ organizacao de telas {
         nome
         nome social
         cpf
+        telefone
         email
         data de nascimento
+        senha
+        confirmacao de senha
+        mascara de cpf
+        mascara de telefone
+        mascara de data
+        botao mostrar/ocultar senha
     }
 
     contas {
@@ -94,6 +118,17 @@ organizacao de telas {
         saldo
         limite
         chave pix
+        telefone como chave pix
+        gerar chave pix aleatoria
+        numero da conta automatico futuramente
+    }
+
+    pagamentos {
+        pagar boleto
+        pagar pix
+        transferencia por numero da conta
+        transferencia por chave pix
+        mostrar metodos de pagamento
     }
 
     transferencias {
@@ -124,6 +159,7 @@ organizacao de telas {
         numero da conta
         chave pix
         limite
+        mostrar telefone vinculado
         atalhos para transferencia e extrato
     }
 }
@@ -195,6 +231,7 @@ andamento do projeto {
         deposito
         saque
         transferencia entre contas
+        transferencia por numero da conta
         extrato por conta
         transacoes ligadas a conta
         dashboard com saldo total, contas e usuarios
@@ -214,6 +251,20 @@ andamento do projeto {
     }
 
     falta fazer {
+        resetar banco h2 porque esta com dados de teste baguncados
+        mascaras nos campos de cpf, telefone, data, senha, dinheiro e valor
+        adicionar horario nas transferencias e movimentacoes do extrato
+        estilizar melhor o sistema
+        melhorar sidebar
+        mostrar resumo da conta no canto direito superior
+        criar aba de pagamentos
+        metodos de pagamento: transferencia, pix, boleto e outros
+        pix por chave pix
+        pix por telefone
+        botao para gerar chave pix aleatoria na criacao de conta
+        aprimorar criacao de usuario
+        aprimorar criacao de conta
+        adicionar telefone no usuario/conta
         login com api de conta com o google futuramente
         usar usuario logado para preencher telas sem digitar id manualmente
         proteger telas de cliente e administracao

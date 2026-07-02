@@ -19,41 +19,13 @@
             <h3>Nova transferencia</h3>
 
             <form id="form-transferencia">
-                <input type="number" id="contaOrigemId" placeholder="ID da conta origem" required>
-                <input type="number" id="contaDestinoId" placeholder="ID da conta destino" required>
+                <input type="number" id="contaDestinoId" placeholder="Numero da conta" required>
                 <input type="number" id="valorTransferencia" placeholder="Valor" step="0.01" required>
 
                 <button type="submit">Transferir</button>
             </form>
 
             <p id="mensagem-transferencia"></p>
-        </section>
-
-        <section class="painel">
-            <h3>Como testar</h3>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Campo</th>
-                        <th>O que colocar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Conta origem</td>
-                        <td>ID de uma conta que tenha saldo</td>
-                    </tr>
-                    <tr>
-                        <td>Conta destino</td>
-                        <td>ID de outra conta cadastrada</td>
-                    </tr>
-                    <tr>
-                        <td>Valor</td>
-                        <td>Valor menor ou igual ao saldo da origem</td>
-                    </tr>
-                </tbody>
-            </table>
         </section>
     </main>
 

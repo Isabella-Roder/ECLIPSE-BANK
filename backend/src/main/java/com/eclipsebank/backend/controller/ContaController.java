@@ -3,15 +3,16 @@ package com.eclipsebank.backend.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.eclipsebank.backend.dto.TransferenciaPorNumeroRequest;
+import com.eclipsebank.backend.dto.TransferenciaRequest;
 import com.eclipsebank.backend.model.Conta;
 import com.eclipsebank.backend.service.ContaService;
-import com.eclipsebank.backend.dto.TransferenciaRequest;
 
 @RestController
 public class ContaController {
@@ -37,6 +38,11 @@ public class ContaController {
         return contaService.buscarPorId(contaId);
     }
 
+    @GetMapping("/usuarios/{usuarioId}/conta")
+    public Conta buscarContaPorUsuario(@PathVariable Long usuarioId) {
+        return contaService.buscarPorUsuario(usuarioId);
+    }
+
     @PostMapping("/contas/usuario/{usuarioId}")
     public Conta cadastrarParaUsuario(@PathVariable Long usuarioId, @RequestBody Conta conta) {
         return contaService.cadastrarParaUsuario(usuarioId, conta);
@@ -55,5 +61,10 @@ public class ContaController {
     @PostMapping("/contas/transferir")
     public Conta transferir(@RequestBody TransferenciaRequest request) {
         return contaService.transferir(request);
+    }
+
+    @PostMapping("/contas/transferir/numero")
+    public Conta transferirPorNumero(@RequestBody TransferenciaPorNumeroRequest request) {
+        return contaService.TransferirPorNumero(request);
     }
 }

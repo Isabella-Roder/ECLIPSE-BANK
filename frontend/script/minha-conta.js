@@ -1,6 +1,5 @@
 const API_URL = "http://localhost:8080";
 
-const formMinhaConta = document.getElementById("form-minha-conta");
 const mensagemMinhaConta = document.getElementById("mensagem-minha-conta");
 
 const titularConta = document.getElementById("titular-conta");
@@ -11,6 +10,12 @@ const chavePix = document.getElementById("chave-pix");
 const usuarioConta = document.getElementById("usuario-conta");
 const emailConta = document.getElementById("email-conta");
 
+const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+if (!usuarioLogado) {
+    window.location.href = "login.html";
+}
+
 function formatarMoeda(valor) {
     return valor.toLocaleString("pt-BR", {
         style: "currency",
@@ -18,8 +23,8 @@ function formatarMoeda(valor) {
     });
 }
 
-async function carregarMinhaConta(contaId) {
-    const resposta = await fetch(`${API_URL}/contas/${contaId}`);
+async function carregarMinhaConta(usuarioId) {
+    const resposta = await fetch(`${API_URL}/usuarios/${usuarioId}/conta`);
 
     if (!resposta.ok) {
         mensagemMinhaConta.textContent = "Erro essa conta não existe.";
@@ -29,11 +34,6 @@ async function carregarMinhaConta(contaId) {
     const minhaConta = await resposta.json();
 
     mensagemMinhaConta.textContent = "";
-
-    if (minhaConta.length === 0) {
-        mensagemMinhaConta.textContent = "Essa conta esta vazia.";
-        return;
-    }
 
     titularConta.textContent = minhaConta.titular;
     saldoConta.textContent = formatarMoeda(minhaConta.saldo || 0);
@@ -46,9 +46,4 @@ async function carregarMinhaConta(contaId) {
     mensagemMinhaConta.textContent = "Conta carregada com sucesso.";
 }
 
-formMinhaConta.addEventListener("submit", async (evento) => {
-    evento.preventDefault();
-
-    const contaId = document.getElementById("contaId").value;
-    await carregarMinhaConta(contaId);
-});
+carregarMinhaConta(usuarioLogado.id);

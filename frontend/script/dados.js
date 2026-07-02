@@ -1,6 +1,5 @@
 const API_URL = "http://localhost:8080";
 
-const formDados = document.getElementById("form-dados");
 const mensagensDados = document.getElementById("mensagem-dados");
 
 const nome = document.getElementById("nome-usuario");
@@ -9,6 +8,12 @@ const cpf = document.getElementById("cpf-usuario");
 const dataNascimento = document.getElementById("data-nascimento");
 const email = document.getElementById("email-usuario");
 const idUsuario = document.getElementById("id-usuario");
+
+const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+if (!usuarioLogado) {
+    window.location.href = "login.html";
+}
 
 async function carregarDados(usuarioId) {
     const resposta = await fetch(`${API_URL}/usuarios/${usuarioId}`);
@@ -31,9 +36,4 @@ async function carregarDados(usuarioId) {
     mensagensDados.textContent = "Usuario encontrado.";
 }
 
-formDados.addEventListener("submit", async (evento) => {
-    evento.preventDefault();
-
-    const usuarioId = document.getElementById("usuarioId").value;
-    await carregarDados(usuarioId);
-});
+carregarDados(usuarioLogado.id);

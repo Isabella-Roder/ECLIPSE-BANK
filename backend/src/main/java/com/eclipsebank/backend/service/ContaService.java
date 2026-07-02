@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.eclipsebank.backend.dto.TransferenciaPorNumeroRequest;
 import com.eclipsebank.backend.dto.TransferenciaRequest;
 import com.eclipsebank.backend.model.Conta;
 import com.eclipsebank.backend.model.TipoTransacao;
@@ -29,6 +30,10 @@ public class ContaService {
 
     public Conta buscarPorId(Long contaId) {
         return contaRepository.findById(contaId).orElseThrow(() -> new IllegalArgumentException("Conta nao encontrada."));
+    }
+
+    public Conta buscarPorUsuario(Long usuarioId) {
+        return contaRepository.findByUsuarioId(usuarioId).orElseThrow(() -> new IllegalArgumentException("Conta não encontrada."));
     }
 
     private void validarConta(Conta conta) {
@@ -156,6 +161,67 @@ public class ContaService {
 
         Transacao transacaoDestino = new Transacao(
             "Transferencia recebida",
+            valor,
+            TipoTransacao.DEPOSITO,
+            "Transferencia",
+            LocalDate.now()
+        );
+
+        transacaoDestino.setConta(contaDestino);
+        transacaoRepository.save(transacaoDestino);
+
+        return contaOrigem;
+    }
+
+    public Conta TransferirPorNumero(TransferenciaPorNumeroRequest requestNum) {
+        Double valor = requestNum.getValor();
+
+        if (valor < 0) {
+            throw new IllegalArgumentException("valor da transferencia deve ser maior que zero.");
+        }
+
+        if (requestNum.getContaOrigem().equals(requestNum.getContaNumeroDestino())) {
+            throw new IllegalArgumentException("A conta de origem e destino devem ser diferentes.");
+        }
+
+        Conta contaOrigem = contaRepository.findById(requestNum.getContaOrigem()).orElseThrow(() -> new IllegalArgumentException("Conta origem não encontrada."));
+        Conta contaDestino = contaRepository.findByNumero(requestNum.getContaNumeroDestino()).orElseThrow(() -> new IllegalArgumentException("Conta destino não encontrada."));
+
+        if (contaOrigem.getId().equals(contaDestino.getId())) {
+            throw new IllegalArgumentException("A conta de origem e destino devem ser diferentes.");
+        }
+
+        if (contaOrigem.getSaldo() == null) {
+            contaOrigem.setSaldo(0.0);
+        }
+
+        if (contaDestino.getSaldo() == null) {
+            contaDestino.setSaldo(0.0);
+        }
+
+        if (valor > contaOrigem.getSaldo()) {
+            throw new IllegalArgumentException("Saldo insuficiente");
+        }
+
+        contaOrigem.setSaldo(contaOrigem.getSaldo() - valor);
+        contaDestino.setSaldo(contaDestino.getSaldo() + valor);
+
+        contaRepository.save(contaOrigem);
+        contaRepository.save(contaDestino);
+
+        Transacao transacaoOrigem = new Transacao(
+            "Transferencia enviada.",
+            valor,
+            TipoTransacao.TRANSFERENCIA,
+            "Transferencia",
+            LocalDate.now()
+        );
+
+        transacaoOrigem.setConta(contaOrigem);
+        transacaoRepository.save(transacaoOrigem);
+
+        Transacao transacaoDestino = new Transacao(
+            "Transferencia recebida.",
             valor,
             TipoTransacao.DEPOSITO,
             "Transferencia",
