@@ -36,7 +36,10 @@ Status atual:
 - [x] Validação de CPF único implementada.
 - [x] Validação de email único implementada.
 - [x] Validação de campos obrigatórios do usuário implementada.
-- [ ] Login ainda não implementado.
+- [x] Login simples com email e senha implementado.
+- [x] Tela de login implementada.
+- [ ] Login com conta Google ainda não implementado.
+- [ ] Proteção de telas usando usuário logado ainda não implementada.
 
 Requisitos:
 
@@ -323,7 +326,9 @@ Para começar o projeto, a primeira versão deve conter:
 Status atual do MVP:
 
 - [x] Cadastro de usuário.
-- [ ] Login.
+- [x] Login simples com email e senha.
+- [ ] Login com conta Google.
+- [ ] Uso automatico do usuario logado nas telas.
 - [x] Conta corrente com saldo.
 - [x] Cadastro de receitas/transações.
 - [x] Cadastro de despesas/transações.
@@ -402,7 +407,9 @@ Status atual:
 - [x] Tela `minha-conta.html` criada para dados da conta.
 - [x] Tela `transferencias.html` criada para transferência entre contas.
 - [~] Telas administrativas existem, mas ainda sem controle de permissão.
-- [ ] Login ainda não implementado.
+- [x] Login simples implementado.
+- [ ] Login ainda não controla acesso das telas.
+- [ ] Login com conta Google ainda não implementado.
 - [ ] Separação real entre cliente e administração ainda não implementada.
 
 ### 10.1 Cliente
@@ -449,6 +456,7 @@ Status atual:
 - [x] `extrato.html` implementado.
 - [x] `dados.html` implementado.
 - [x] `minha-conta.html` implementado.
+- [x] `login.html` implementado.
 - [x] `layout.js` implementado para sidebar reutilizável.
 - [ ] Tela de relatórios ainda não implementada.
 - [ ] Tela de investimentos ainda não implementada.
@@ -462,6 +470,7 @@ Telas sugeridas:
 - `extrato.html`: consulta de extrato por conta.
 - `dados.html`: dados pessoais do cliente.
 - `minha-conta.html`: informacoes da conta do cliente.
+- `login.html`: login simples com email e senha.
 
 ### 11.1 Dashboard
 
@@ -603,6 +612,7 @@ Legenda:
 - [x] Extrato por conta.
 - [x] Busca de conta por ID.
 - [x] Busca de usuario por ID.
+- [x] Login simples por email e senha.
 - [x] Dashboard com saldo total, total de contas e total de usuarios.
 - [x] Tratamento de erro com `ErroController`.
 - [~] Categorias fixas.
@@ -629,12 +639,17 @@ Legenda:
 - [x] Consulta de dados da conta pelo HTML.
 - [x] Tela de dados do cliente.
 - [x] Consulta de dados do usuario pelo HTML.
+- [x] Tela de login.
+- [x] Login pelo HTML.
+- [x] Usuario logado salvo no `localStorage`.
 - [~] Dashboard conectado aos dados principais.
 - [ ] Tela de investimentos.
 
 ### 13.3 Funcionalidades Pendentes
 
-- [ ] Login.
+- [ ] Proteger telas usando usuario logado.
+- [ ] Usar usuario logado para preencher telas sem digitar ID.
+- [ ] Login com conta Google.
 - [ ] Separacao real entre cliente e administracao.
 - [ ] Cartoes.
 - [ ] Fatura.

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.eclipsebank.backend.dto.LoginRequest;
 import com.eclipsebank.backend.model.Usuario;
 import com.eclipsebank.backend.repository.UsuarioRepository;
 
@@ -18,6 +19,17 @@ public class UsuarioService {
 
     public Usuario buscarPorId(Long usuarioId) {
         return usuarioRepository.findById(usuarioId).orElseThrow(() -> new IllegalArgumentException("Usuario não encontrado"));
+    }
+
+    public Usuario buscarPorEmail(LoginRequest request) {
+        Usuario usuario = usuarioRepository.findByEmail(request.getEmail())
+            .orElseThrow(() -> new IllegalArgumentException("Email ou senha invalidos."));
+
+        if (!usuario.getSenha().equals(request.getSenha())) {
+            throw new IllegalArgumentException("Email ou senha invalido.");
+        }
+
+        return usuario;
     }
 
     private void validarUsuario(Usuario usuario) {

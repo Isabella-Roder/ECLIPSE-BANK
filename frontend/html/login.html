@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="auth-page">
+        <section class="auth-card">
+            <div class="brand auth-brand">
+                <span class="brand-mark"></span>
+                <div>
+                    <strong>ECLIPSE</strong>
+                    <small>BANK</small>
+                </div>
+            </div>
+
+            <div class="auth-header">
+                <p class="eyebrow">Acesso seguro</p>
+                <h1>Entrar na conta</h1>
+                <p>Informe seus dados para acessar o Eclipse Bank.</p>
+            </div>
+
+            <form id="form-login" class="form-card">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="seuemail@email.com" required>
+
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="Digite sua senha" required>
+
+                <button type="submit">Entrar</button>
+            </form>
+
+            <p id="mensagem-login" class="form-message"></p>
+
+            <div class="auth-footer">
+                <a href="usuarios.html">Criar novo usuario</a>
+                <a href="index.html">Voltar ao dashboard</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/login.js"></script>
+</body>
+</html>

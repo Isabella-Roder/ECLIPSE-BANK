@@ -172,7 +172,7 @@ investimentos {
         historico de aplicacoes
         grafico de evolucao
         consultar dados de mercado usando api da b3 futuramente
-        usar dados da b3 como referencia informativa
+        usar dados da b3 como referencia informativa, para simulação
     }
 
     dashboard de investimentos {
@@ -202,17 +202,21 @@ andamento do projeto {
         tela de transferencias
         tela minha conta
         tela meus dados
+        login simples com email e senha
+        tela de login
         layout escuro eclipse bank
     }
 
     parcial {
         categorias fixas
         dashboard ainda pode ficar mais completo
-        area de cliente ainda sem login
+        area de cliente com login simples, mas ainda sem bloqueio de acesso por pagina
     }
 
     falta fazer {
-        login
+        login com api de conta com o google futuramente
+        usar usuario logado para preencher telas sem digitar id manualmente
+        proteger telas de cliente e administracao
         separar cliente e administracao
         cartoes
         faturas

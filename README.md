@@ -29,6 +29,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Validacao de CPF unico.
 - Validacao de email unico.
 - Validacao de campos obrigatorios do usuario.
+- Login simples com email e senha.
 - Cadastro e listagem de contas.
 - Busca de conta por ID.
 - Conta vinculada a usuario.
@@ -67,6 +68,9 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Consulta de dados da conta pelo HTML.
 - Tela `dados`.
 - Consulta de dados do usuario pelo HTML.
+- Tela de login.
+- Login pelo HTML usando a rota `/login`.
+- Usuario logado salvo no `localStorage`.
 
 ## Telas Atuais
 
@@ -77,6 +81,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `extrato.html`: consulta de extrato por conta.
 - `minha-conta.html`: dados bancarios de uma conta.
 - `dados.html`: dados pessoais de um usuario.
+- `login.html`: entrada do usuario no sistema.
 
 ## Estrutura Geral
 
@@ -97,7 +102,9 @@ frontend/
 
 ## Funcionalidades Pendentes
 
-- Login.
+- Proteger telas usando o usuario logado.
+- Usar o usuario logado para preencher dados automaticamente, sem digitar ID.
+- Login com conta Google futuramente.
 - Separacao real entre cliente e administracao.
 - Cartoes.
 - Faturas.
@@ -111,4 +118,4 @@ frontend/
 
 ## Observacao
 
-Este projeto ainda esta em desenvolvimento. Algumas telas usam IDs digitados manualmente porque ainda nao existe login/autenticacao. Futuramente, o sistema deve identificar automaticamente o usuario logado e separar melhor a experiencia do cliente e da administracao.
+Este projeto ainda esta em desenvolvimento. O login simples ja existe, mas algumas telas ainda usam IDs digitados manualmente. Futuramente, o sistema deve identificar automaticamente o usuario logado, proteger as paginas e separar melhor a experiencia do cliente e da administracao.
