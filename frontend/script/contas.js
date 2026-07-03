@@ -7,6 +7,32 @@ const tabelaContas = document.getElementById("tabela-contas");
 const botaoDepositar = document.getElementById("botao-depositar");
 const botaoSacar = document.getElementById("botao-sacar");
 const mensagemOperacao = document.getElementById("mensagem-operacao");
+const inputLimite = document.getElementById("limite");
+const inputValorOperacao = document.getElementById("valorOperacao");
+
+function mascararDinheiro(valor) {
+    valor = valor.replace(/\D/g, "");
+
+    const numero = Number(valor) / 100;
+
+    return numero.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+}
+
+function converterDinheiroParaNumero(valor) {
+    valor = valor.replace(/\D/g, "");
+    return Number(valor) / 100;
+}
+
+inputLimite.addEventListener("input", () => {
+    inputLimite.value = mascararDinheiro(inputLimite.value);
+});
+
+inputValorOperacao.addEventListener("input", () => {
+    inputValorOperacao.value = mascararDinheiro(inputValorOperacao.value);
+});
 
 async function carregarConta() {
     const resposta = await fetch(`${API_URL}/contas`);
@@ -40,7 +66,7 @@ formConta.addEventListener("submit", async (evento) => {
         titular: document.getElementById("titular").value,
         numero: Number(document.getElementById("numero").value),
         chavePix: document.getElementById("chavePix").value,
-        limite: Number(document.getElementById("limite").value)
+        limite: converterDinheiroParaNumero(document.getElementById("limite").value)
     };
 
     const resposta = await fetch(`${API_URL}/contas/usuario/${usuarioId}`, {
@@ -64,7 +90,7 @@ formConta.addEventListener("submit", async (evento) => {
 
 botaoDepositar.addEventListener("click", async () => {
     const contaId = document.getElementById("contaIdOperacao").value;
-    const valor = document.getElementById("valorOperacao").value;
+    const valor = converterDinheiroParaNumero(document.getElementById("valorOperacao").value);
 
     const resposta = await fetch(`${API_URL}/contas/${contaId}/depositar?valor=${valor}`, {
         method: "POST"
@@ -82,7 +108,7 @@ botaoDepositar.addEventListener("click", async () => {
 
 botaoSacar.addEventListener("click", async () => {
     const contaId = document.getElementById("contaIdOperacao").value;
-    const valor = document.getElementById("valorOperacao").value;
+    const valor = converterDinheiroParaNumero(document.getElementById("valorOperacao").value);
 
     const resposta = await fetch(`${API_URL}/contas/${contaId}/sacar?valor=${valor}`, {
         method: "POST"

@@ -1,5 +1,6 @@
 package com.eclipsebank.backend.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -42,6 +43,10 @@ public class TransacaoService {
 
         if (ehSaida(transacao.getTipo()) && transacao.getValor() > calcularSaldo()) {
             throw new IllegalArgumentException("Saldo insuficiente para realizar a transação.");
+        }
+
+        if (transacao.getDataHora() == null) {
+            transacao.setDataHora(LocalDateTime.now());
         }
 
         return transacaoRepository.save(transacao);

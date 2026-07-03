@@ -37,6 +37,8 @@ public class UsuarioService {
             throw new IllegalArgumentException("Nome não pode ser vazio.");
         }else if (usuario.getCpf() == null || usuario.getCpf().isBlank()) {
             throw new IllegalArgumentException("CPF não pode ser vazio.");
+        }else if (usuario.getTelefone() == null || usuario.getTelefone().isBlank()) {
+            throw new IllegalArgumentException("Telefone não pode ser vazio.");
         }else if (usuario.getEmail() == null || usuario.getEmail().isBlank()) {
             throw new IllegalArgumentException("Email não pode ser vazio.");
         }else if (usuario.getSenha() == null || usuario.getSenha().isBlank()) {

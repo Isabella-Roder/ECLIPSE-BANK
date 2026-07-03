@@ -18,6 +18,8 @@ O projeto será desenvolvido usando duas linguagens:
 - Registrar receitas, despesas, depósitos, saques e pagamentos.
 - Permitir pagamentos por transferencia, Pix e boleto ficticio.
 - Gerar comprovantes de pagamento e transferencia futuramente.
+- Permitir imprimir comprovantes futuramente.
+- Permitir baixar comprovantes em PDF futuramente.
 - Gerenciar categorias de gastos.
 - Controlar cartão de crédito, compras e faturas.
 - Criar metas financeiras.
@@ -100,7 +102,7 @@ Status atual:
 - [x] Transferência registrada no extrato da origem e do destino.
 - [x] Transferência por numero da conta implementada.
 - [x] Transação vinculada a uma conta.
-- [ ] Horario das movimentacoes ainda nao implementado.
+- [x] Horario das movimentacoes implementado com `dataHora`.
 - [ ] Edição de lançamento ainda não implementada.
 - [ ] Exclusão de lançamento ainda não implementada.
 
@@ -294,7 +296,9 @@ Status atual:
 - [ ] Pagamento de boleto ficticio ainda nao implementado.
 - [ ] Historico de pagamentos ainda nao implementado como tela propria.
 - [ ] Comprovante de pagamento ainda nao implementado.
-- [ ] Comprovante de transferencia ainda nao implementado.
+- [x] Comprovante de transferencia visual implementado.
+- [x] Botao de imprimir comprovante implementado.
+- [ ] Download de comprovante em PDF ainda nao implementado.
 
 Metodos de pagamento previstos:
 
@@ -316,6 +320,8 @@ Requisitos:
 - Gerar comprovante apos pagamento aprovado.
 - Gerar comprovante apos transferencia aprovada.
 - Permitir visualizar ou baixar comprovante futuramente.
+- Permitir imprimir comprovante futuramente.
+- Permitir baixar comprovante em PDF futuramente.
 
 ### 3.11 Conta Empresa
 
@@ -566,7 +572,8 @@ Status atual:
 - [x] Logout implementado no `layout.js`.
 - [ ] `pagamentos.html` ainda não implementado.
 - [ ] Tela de empresas ainda não implementada.
-- [ ] Tela de comprovantes ainda não implementada.
+- [x] Tela `comprovante.html` implementada para ultima transferencia.
+- [ ] Tela de historico de comprovantes ainda não implementada.
 - [ ] Tela de relatórios ainda não implementada.
 - [ ] Tela de investimentos ainda não implementada.
 
@@ -583,6 +590,7 @@ Telas sugeridas:
 - `pagamentos.html`: pagamentos por transferencia, Pix e boleto.
 - `empresas.html`: cadastro e gestao de empresas futuramente.
 - `comprovantes.html`: consulta de comprovantes futuramente.
+- `comprovante.html`: visualizacao do comprovante gerado apos uma operacao.
 
 ### 11.1 Dashboard
 
@@ -642,10 +650,24 @@ Requisitos:
 - Permitir pagamento de boleto ficticio.
 - Gerar comprovante de pagamento.
 - Gerar comprovante de transferencia.
+- Exibir botao para imprimir comprovante.
+- Exibir botao para baixar comprovante em PDF.
 - Exibir mensagem de sucesso ou erro.
 - Usar a conta do usuario logado como origem do pagamento.
 
-### 11.6 Empresas
+### 11.6 Comprovantes
+
+Requisitos:
+
+- Exibir comprovante apos transferencia aprovada.
+- Exibir comprovante apos pagamento aprovado.
+- Mostrar valor, data, horario, conta origem e conta destino.
+- Mostrar metodo usado: transferencia, Pix ou boleto.
+- Permitir imprimir comprovante.
+- Permitir baixar comprovante em PDF futuramente.
+- Permitir consultar historico de comprovantes futuramente.
+
+### 11.7 Empresas
 
 Requisitos:
 
@@ -735,12 +757,12 @@ Legenda:
 - [x] Validacao de CPF unico.
 - [x] Validacao de email unico.
 - [x] Validacao de campos obrigatorios do usuario.
-- [ ] Telefone ainda nao implementado no usuario.
+- [x] Telefone implementado no usuario.
 - [ ] Empresa ainda nao implementada.
 - [ ] CNPJ ainda nao implementado.
 - [ ] Conta empresa ainda nao implementada.
-- [ ] Mascara de CPF ainda nao implementada.
-- [ ] Mascara de telefone ainda nao implementada.
+- [x] Mascara de CPF implementada no cadastro de usuario.
+- [x] Mascara de telefone implementada no cadastro de usuario.
 - [ ] Confirmacao de senha ainda nao implementada.
 - [ ] Botao mostrar/ocultar senha ainda nao implementado.
 - [x] Cadastro de contas para usuarios.
@@ -799,6 +821,7 @@ Legenda:
 - [x] Consulta de dados do usuario pelo HTML.
 - [x] Tela de login.
 - [x] Login pelo HTML.
+- [x] Login com tratamento de erro no frontend.
 - [x] Usuario logado salvo no `localStorage`.
 - [x] Logout pelo menu lateral.
 - [x] Tela de dados usando usuario logado.
@@ -806,14 +829,18 @@ Legenda:
 - [x] Tela de extrato usando usuario logado.
 - [x] Tela de transferencias usando conta do usuario logado como origem.
 - [x] Transferencia por numero da conta pelo HTML.
-- [ ] Mascaras de CPF, telefone, data, dinheiro e valor.
+- [x] Mascara de CPF implementada.
+- [x] Mascara de telefone implementada.
+- [x] Mascara de dinheiro/valor implementada em conta, deposito, saque, transferencia e transacao.
+- [ ] Mascara de data ainda nao implementada.
 - [ ] Botao mostrar/ocultar senha.
 - [ ] Sidebar ainda precisa ser aprimorada visualmente.
 - [ ] Resumo da conta no canto direito superior ainda nao implementado.
 - [ ] Tela minha conta precisa ser ajustada.
 - [ ] Tela meus dados precisa ser ajustada.
 - [ ] Tela de empresas.
-- [ ] Tela de comprovantes.
+- [x] Tela de comprovante da ultima transferencia.
+- [ ] Tela de historico de comprovantes.
 - [~] Dashboard conectado aos dados principais.
 - [ ] Tela de pagamentos.
 - [ ] Tela de investimentos.
@@ -823,11 +850,13 @@ Legenda:
 - [~] Proteger telas usando usuario logado.
 - [~] Usar usuario logado para preencher telas sem digitar ID.
 - [ ] Resetar banco H2 para limpar dados de teste baguncados.
-- [ ] Adicionar horario nas transferencias e movimentacoes.
+- [x] Adicionar horario nas transferencias e movimentacoes.
 - [ ] Criar aba de pagamentos.
 - [ ] Pagamento de boleto ficticio.
 - [ ] Gerar comprovante de pagamento.
-- [ ] Gerar comprovante de transferencia.
+- [x] Gerar comprovante visual de transferencia.
+- [x] Botao para imprimir comprovante.
+- [ ] Botao para baixar comprovante em PDF.
 - [ ] Conta de empresa com CNPJ.
 - [ ] Cadastro de empresa.
 - [ ] Diferenciar conta pessoa fisica e conta empresa.
@@ -836,7 +865,7 @@ Legenda:
 - [ ] Pix por chave Pix.
 - [ ] Pix por telefone.
 - [ ] Gerar chave Pix aleatoria.
-- [ ] Adicionar telefone no cadastro.
+- [x] Adicionar telefone no cadastro.
 - [ ] Aprimorar criacao de usuario.
 - [ ] Aprimorar criacao de conta.
 - [ ] Melhorar estilo visual geral.

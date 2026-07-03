@@ -1,6 +1,6 @@
 package com.eclipsebank.backend.service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -102,7 +102,7 @@ public class ContaService {
             valor,
             TipoTransacao.DEPOSITO,
             "Depósito",
-            LocalDate.now()
+            LocalDateTime.now()
         );
 
         transacao.setConta(conta);
@@ -153,7 +153,7 @@ public class ContaService {
             valor,
             TipoTransacao.TRANSFERENCIA,
             "Transferencia",
-            LocalDate.now()
+            LocalDateTime.now()
         );
         
         transacaoOrigem.setConta(contaOrigem);
@@ -164,7 +164,7 @@ public class ContaService {
             valor,
             TipoTransacao.DEPOSITO,
             "Transferencia",
-            LocalDate.now()
+            LocalDateTime.now()
         );
 
         transacaoDestino.setConta(contaDestino);
@@ -178,10 +178,6 @@ public class ContaService {
 
         if (valor < 0) {
             throw new IllegalArgumentException("valor da transferencia deve ser maior que zero.");
-        }
-
-        if (requestNum.getContaOrigem().equals(requestNum.getContaNumeroDestino())) {
-            throw new IllegalArgumentException("A conta de origem e destino devem ser diferentes.");
         }
 
         Conta contaOrigem = contaRepository.findById(requestNum.getContaOrigem()).orElseThrow(() -> new IllegalArgumentException("Conta origem não encontrada."));
@@ -214,7 +210,7 @@ public class ContaService {
             valor,
             TipoTransacao.TRANSFERENCIA,
             "Transferencia",
-            LocalDate.now()
+            LocalDateTime.now()
         );
 
         transacaoOrigem.setConta(contaOrigem);
@@ -225,7 +221,7 @@ public class ContaService {
             valor,
             TipoTransacao.DEPOSITO,
             "Transferencia",
-            LocalDate.now()
+            LocalDateTime.now()
         );
 
         transacaoDestino.setConta(contaDestino);
@@ -264,7 +260,7 @@ public class ContaService {
             valor,
             TipoTransacao.SAQUE,
             "Saque",
-            LocalDate.now()
+            LocalDateTime.now()
         );
 
         transacao.setConta(conta);

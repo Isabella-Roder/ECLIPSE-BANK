@@ -1,6 +1,6 @@
 package com.eclipsebank.backend.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -27,7 +27,7 @@ public class Transacao {
     @Enumerated(EnumType.STRING)
     private TipoTransacao tipo; //tipoTransacao, vem da classe do arquivo TipoTransacao
     private String categoria;
-    private LocalDate data;
+    private LocalDateTime dataHora;
 
     @ManyToOne
     @JoinColumn(name = "conta_id")
@@ -37,12 +37,12 @@ public class Transacao {
 
     }
 
-    public Transacao(String descricao, double valor, TipoTransacao tipo, String categoria, LocalDate data) {
+    public Transacao(String descricao, double valor, TipoTransacao tipo, String categoria, LocalDateTime dataHora) {
         this.descricao = descricao;
         this.valor = valor;
         this.tipo = tipo;
         this.categoria = categoria;
-        this.data = data;
+        this.dataHora = dataHora;
     }
 
     public Long getId() {
@@ -69,8 +69,8 @@ public class Transacao {
         return categoria;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDateTime getDataHora() {
+        return dataHora;
     }
 
     public void setConta(Conta conta) {
@@ -93,7 +93,7 @@ public class Transacao {
         this.categoria = categoria;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
     }
 }

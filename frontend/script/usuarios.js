@@ -3,6 +3,35 @@ const API_URL = "http://localhost:8080";
 const formUsuario = document.getElementById("form-usuario");
 const tabelaUsuarios = document.getElementById("tabela-usuarios");
 const mensagemUsuario = document.getElementById("mensagem-usuario");
+const inputCpf = document.getElementById("cpf");
+const inputTelefone = document.getElementById("telefone");
+
+function mascararCpf(valor) {
+    valor = valor.replace(/\D/g, "");
+    valor = valor.slice(0, 11);
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+    valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+    return valor;
+}
+
+function mascararTelefone(valor) {
+    valor = valor.replace(/\D/g, "");
+    valor = valor.slice(0, 11);
+    valor = valor.replace(/(\d{2})(\d)/, "($1) $2");
+    valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+
+    return valor;
+}
+
+inputCpf.addEventListener("input", () => {
+    inputCpf.value = mascararCpf(inputCpf.value);
+});
+
+inputTelefone.addEventListener("input", () => {
+    inputTelefone.value = mascararTelefone(inputTelefone.value);
+});
 
 async function carregarUsuarios() {
     const resposta = await fetch(`${API_URL}/usuarios`);
@@ -18,6 +47,7 @@ async function carregarUsuarios() {
             <td>${usuario.nome}</td>
             <td>${usuario.nomeSocial || "-"}</td>
             <td>${usuario.cpf}</td>
+            <td>${usuario.telefone}</td>
             <td>${usuario.email}</td>
             <td>${usuario.dataNascimento}</td>
         `;
@@ -33,6 +63,7 @@ formUsuario.addEventListener("submit", async (evento) => {
         nome: document.getElementById("nome").value,
         nomeSocial: document.getElementById("nomeSocial").value,
         cpf: document.getElementById("cpf").value,
+        telefone: document.getElementById("telefone").value,
         email: document.getElementById("email").value,
         senha: document.getElementById("senha").value,
         dataNascimento: document.getElementById("dataNascimento").value

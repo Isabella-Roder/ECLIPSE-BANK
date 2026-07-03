@@ -15,21 +15,24 @@
             </div>
         </header>
 
-        <section class="painel">
-            <h3>Buscar conta</h3>
+        <section class="resumo-principal">
+            <div>
+                <span>Saldo disponivel</span>
+                <strong id="saldo-conta">R$ 0,00</strong>
+                <p id="mensagem-minha-conta">Carregando conta...</p>
+            </div>
 
-            <p id="mensagem-minha-conta"></p>
+            <div class="resumo-acoes">
+                <a href="transferencias.html">Transferir</a>
+                <a href="extrato.html">Ver extrato</a>
+                <a href="#">Pagamentos</a>
+            </div>
         </section>
 
         <section class="cards">
             <div class="card">
                 <span>Titular</span>
                 <strong id="titular-conta">-</strong>
-            </div>
-
-            <div class="card">
-                <span>Saldo</span>
-                <strong id="saldo-conta">R$ 0,00</strong>
             </div>
 
             <div class="card">
@@ -43,25 +46,30 @@
             </div>
         </section>
 
-        <section class="painel">
+        <section class="painel info-bloco">
             <h3>Dados bancarios</h3>
 
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Chave Pix</th>
-                        <td id="chave-pix">-</td>
-                    </tr>
-                    <tr>
-                        <th>Usuario</th>
-                        <td id="usuario-conta">-</td>
-                    </tr>
-                    <tr>
-                        <th>Email</th>
-                        <td id="email-conta">-</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="info-grid">
+                <div>
+                    <span>Chave Pix</span>
+                    <strong id="chave-pix">-</strong>
+                </div>
+
+                <div>
+                    <span>Usuario</span>
+                    <strong id="usuario-conta">-</strong>
+                </div>
+
+                <div>
+                    <span>Email</span>
+                    <strong id="email-conta">-</strong>
+                </div>
+
+                <div>
+                    <span>Tipo de conta</span>
+                    <strong>Conta pessoal</strong>
+                </div>
+            </div>
         </section>
     </main>
 

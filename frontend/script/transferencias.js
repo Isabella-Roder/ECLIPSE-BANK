@@ -2,6 +2,27 @@ const API_URL = "http://localhost:8080";
 
 const formTransferencia = document.getElementById("form-transferencia");
 const mensagemTransferencia = document.getElementById("mensagem-transferencia");
+const inputValorTransferencia = document.getElementById("valorTransferencia");
+
+function mascararDinheiro(valor) {
+    valor = valor.replace(/\D/g, "");
+
+    const numero = Number(valor) / 100;
+
+    return numero.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+}
+
+function converterDinheiroParaNumero(valor) {
+    valor = valor.replace(/\D/g, "");
+    return Number(valor) / 100;
+}
+
+inputValorTransferencia.addEventListener("input", () => {
+    inputValorTransferencia.value = mascararDinheiro(inputValorTransferencia.value);
+});
 
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -34,7 +55,7 @@ formTransferencia.addEventListener("submit", async (evento) => {
     const transferencia = {
         contaOrigem: contaOrigem.id,
         contaNumeroDestino: Number(document.getElementById("contaDestinoId").value),
-        valor: Number(document.getElementById("valorTransferencia").value)
+        valor: converterDinheiroParaNumero(document.getElementById("valorTransferencia").value)
     };
 
     const resposta = await fetch(`${API_URL}/contas/transferir/numero`, {
@@ -52,6 +73,20 @@ formTransferencia.addEventListener("submit", async (evento) => {
     }
 
     mensagemTransferencia.textContent = "Transferencia realizada com sucesso";
+
+    const comprovante = {
+        valor: transferencia.valor,
+        contaOrigem: contaOrigem.numero,
+        contaDestino: transferencia.contaNumeroDestino,
+        metodo: "Transferencia",
+        dataHora: new Date().toISOString(),
+        status: "Concluida",
+        codigoAutenticacao: `EB-${Date.now()}`
+    };
+
+    localStorage.setItem("ultimoComprovante", JSON.stringify(comprovante));
+
     formTransferencia.reset();
+    window.location.href = "comprovante.html"
 
 });

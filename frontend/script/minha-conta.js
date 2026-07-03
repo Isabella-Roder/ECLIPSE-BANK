@@ -33,7 +33,7 @@ async function carregarMinhaConta(usuarioId) {
 
     const minhaConta = await resposta.json();
 
-    mensagemMinhaConta.textContent = "";
+    mensagemMinhaConta.textContent = "Conta carregada com sucesso.";
 
     titularConta.textContent = minhaConta.titular;
     saldoConta.textContent = formatarMoeda(minhaConta.saldo || 0);
@@ -43,7 +43,6 @@ async function carregarMinhaConta(usuarioId) {
     usuarioConta.textContent = minhaConta.usuario ? minhaConta.usuario.nome : "-";
     emailConta.textContent = minhaConta.usuario ? minhaConta.usuario.email : "-";
 
-    mensagemMinhaConta.textContent = "Conta carregada com sucesso.";
 }
 
 carregarMinhaConta(usuarioLogado.id);

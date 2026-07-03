@@ -17,6 +17,7 @@ public class Usuario {
     private String nome;
     private String nomeSocial;
     private String cpf;
+    private String telefone;
     private String email;
     private String senha;
     private LocalDate dataNascimento;
@@ -25,10 +26,11 @@ public class Usuario {
 
     }
 
-    public Usuario(String nome, String nomeSocial, String cpf, String email, String senha, LocalDate dataNascimento) {
+    public Usuario(String nome, String nomeSocial, String cpf, String telefone, String email, String senha, LocalDate dataNascimento) {
         this.nome = nome;
         this.nomeSocial = nomeSocial;
         this.cpf = cpf;
+        this.telefone = telefone;
         this.email = email;
         this.senha = senha;
         this.dataNascimento = dataNascimento;
@@ -48,6 +50,10 @@ public class Usuario {
 
     public String getCpf() {
         return cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
     }
 
     public String getEmail() {
@@ -72,6 +78,10 @@ public class Usuario {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public void setEmail(String email) {

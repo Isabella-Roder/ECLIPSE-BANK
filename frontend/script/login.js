@@ -5,33 +5,44 @@ const emailInput = document.getElementById("email");
 const senhaInput = document.getElementById("senha");
 const mensagemLogin = document.getElementById("mensagem-login");
 
+if (localStorage.getItem("usuarioLogado")) {
+    window.location.href = "index.html";
+}
+
 formLogin.addEventListener("submit", async function (event) {
     event.preventDefault();
+    mensagemLogin.textContent = "Entrando...";
 
     const login = {
-        email: emailInput.value,
+        email: emailInput.value.trim(),
         senha: senhaInput.value
     };
 
-    const resposta = await fetch(`${API_URL}/login`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(login)
-    });
-
-    if (!resposta.ok) {
-        const erro = await resposta.json();
-        mensagemLogin.textContent = erro.erro;
+    if (!login.email || !login.senha) {
+        mensagemLogin.textContent = "Preencha email e senha.";
         return;
     }
 
-    const usuario = await resposta.json();
+    try {
+        const resposta = await fetch(`${API_URL}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(login)
+        });
 
-    if (usuario) {
+        if (!resposta.ok) {
+            const erro = await resposta.json();
+            mensagemLogin.textContent = erro.erro || "Email ou senha invalidos.";
+            return;
+        }
+
+        const usuario = await resposta.json();
+
         localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
         window.location.href = "index.html";
-        return;
+    } catch (erro) {
+        mensagemLogin.textContent = "Nao foi possivel conectar ao servidor.";
     }
 })

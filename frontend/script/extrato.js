@@ -16,6 +16,13 @@ function formatarMoeda(valor) {
     });
 }
 
+function formatarDataHora(dataHora) {
+    if (!dataHora) {
+        return "-";
+    }
+    return new Date(dataHora).toLocaleString("pt-BR");
+}
+
 async function carregarContaUsuario() {
     const resposta = await fetch(`${API_URL}/usuarios/${usuarioLogado.id}/conta`);
 
@@ -52,7 +59,7 @@ async function carregarExtrato(contaId) {
         const linha = document.createElement("tr");
 
         linha.innerHTML = `
-            <td>${extrato.data}</td>
+            <td>${formatarDataHora(extrato.dataHora)}</td>
             <td>${extrato.descricao}</td>
             <td>${extrato.categoria}</td>
             <td>${extrato.tipo}</td>

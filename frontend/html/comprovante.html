@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprovante - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Operacao concluida</p>
+                <h2>Comprovante</h2>
+            </div>
+        </header>
+
+        <section class="painel comprovante">
+            <div class="comprovante-cabecalho">
+                <div class="brand comprovante-brand">
+                    <span class="brand-mark"></span>
+                    <div>
+                        <strong>ECLIPSE</strong>
+                        <small>BANK</small>
+                    </div>
+                </div>
+
+                <span class="selo-status">Concluida</span>
+            </div>
+
+            <div class="comprovante-titulo">
+                <p>Comprovante de operacao</p>
+                <h3>Transferencia realizada</h3>
+            </div>
+
+            <div class="info-grid">
+                <div>
+                    <span>Valor</span>
+                    <strong id="comprovante-valor">-</strong>
+                </div>
+
+                <div>
+                    <span>Data e horario</span>
+                    <strong id="comprovante-data">-</strong>
+                </div>
+
+                <div>
+                    <span>Conta origem</span>
+                    <strong id="comprovante-origem">-</strong>
+                </div>
+
+                <div>
+                    <span>Conta destino</span>
+                    <strong id="comprovante-destino">-</strong>
+                </div>
+
+                <div>
+                    <span>Metodo</span>
+                    <strong id="comprovante-metodo">Transferencia</strong>
+                </div>
+
+                <div>
+                    <span>Status</span>
+                    <strong id="comprovante-status">Concluida</strong>
+                </div>
+
+                <div class="comprovante-codigo">
+                    <span>Codigo de autenticacao</span>
+                    <strong id="comprovante-codigo">-</strong>
+                </div>
+            </div>
+
+            <div class="resumo-acoes">
+                <button type="button" id="botao-imprimir">Imprimir</button>
+                <a href="transferencias.html">Nova transferencia</a>
+                <a href="extrato.html">Ver extrato</a>
+            </div>
+
+            <p id="mensagem-comprovante"></p>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/comprovante.js"></script>
+</body>
+</html>

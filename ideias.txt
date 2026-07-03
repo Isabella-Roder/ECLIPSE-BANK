@@ -67,6 +67,9 @@ sistema bancario {
         gerar comprovante de pagamento
         gerar comprovante de transferencia
         baixar ou visualizar comprovante
+        botao para imprimir comprovante
+        botao para baixar comprovante em pdf
+        gerar pdf do comprovante futuramente
         historico de pagamentos
         validar saldo antes de pagar
     }
@@ -177,6 +180,19 @@ organizacao de telas {
         arrumar layout e informacoes exibidas
         mostrar comprovantes ou atalhos de operacoes
     }
+
+    comprovantes {
+        comprovante de transferencia
+        comprovante de pagamento
+        mostrar valor
+        mostrar data e horario
+        mostrar conta origem
+        mostrar conta destino
+        mostrar metodo usado: transferencia, pix ou boleto
+        botao para imprimir
+        botao para baixar em pdf
+        historico de comprovantes
+    }
 }
 
 perfis do sistema {
@@ -271,6 +287,9 @@ andamento do projeto {
         diferenciar conta pessoa fisica e conta empresa
         gerar comprovante de pagamento
         gerar comprovante de transferencia
+        gerar comprovante em pdf futuramente
+        botao de imprimir comprovante
+        botao de baixar comprovante
         arrumar tela minha conta
         arrumar tela meus dados
         resetar banco h2 porque esta com dados de teste baguncados

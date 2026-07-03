@@ -29,6 +29,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Validacao de CPF unico.
 - Validacao de email unico.
 - Validacao de campos obrigatorios do usuario.
+- Telefone no cadastro de usuario.
 - Login simples com email e senha.
 - Logout pelo frontend.
 - Cadastro e listagem de contas.
@@ -45,6 +46,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Transferencia por numero da conta.
 - Validacao de saldo para saque e transferencia.
 - Registro automatico de deposito, saque e transferencia no extrato.
+- Data e horario nas movimentacoes do extrato.
 - Transacoes vinculadas a conta.
 - Extrato por conta.
 - Dashboard com saldo total, total de contas e total de usuarios.
@@ -74,9 +76,13 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Consulta de dados do usuario pelo HTML.
 - Tela de login.
 - Login pelo HTML usando a rota `/login`.
+- Tratamento de erro no login pelo frontend.
 - Usuario logado salvo no `localStorage`.
 - Logout pelo menu lateral.
 - Telas `dados`, `minha-conta`, `extrato` e `transferencias` usando o usuario logado parcialmente.
+- Mascaras de CPF, telefone e dinheiro/valor.
+- Tela de comprovante da ultima transferencia.
+- Botao para imprimir comprovante.
 
 ## Telas Atuais
 
@@ -88,6 +94,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `minha-conta.html`: dados bancarios de uma conta.
 - `dados.html`: dados pessoais de um usuario.
 - `login.html`: entrada do usuario no sistema.
+- `comprovante.html`: comprovante visual da ultima transferencia.
 
 ## Funcionalidades Planejadas
 
@@ -96,9 +103,10 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Pix por telefone.
 - Pagamento de boleto ficticio.
 - Geracao de chave Pix aleatoria.
-- Telefone no cadastro de usuario/conta.
-- Mascaras para CPF, telefone, data, dinheiro e valores.
-- Horario nas transferencias e movimentacoes do extrato.
+- Telefone como chave Pix.
+- Mascara de data.
+- Historico de comprovantes.
+- Download de comprovante em PDF.
 - Melhorias visuais na sidebar.
 - Resumo da conta no canto superior direito.
 - Reset do banco H2 para limpar dados de teste.
@@ -125,10 +133,10 @@ frontend/
 - Proteger telas usando o usuario logado.
 - Usar o usuario logado para preencher dados automaticamente, sem digitar ID.
 - Resetar banco H2 de desenvolvimento.
-- Adicionar telefone no cadastro.
-- Adicionar mascaras nos formularios.
 - Criar aba de pagamentos.
 - Implementar Pix e boleto ficticio.
+- Criar historico de comprovantes.
+- Baixar comprovante em PDF.
 - Login com conta Google futuramente.
 - Separacao real entre cliente e administracao.
 - Cartoes.
@@ -143,4 +151,4 @@ frontend/
 
 ## Observacao
 
-Este projeto ainda esta em desenvolvimento. O login simples e o logout ja existem, e algumas telas ja usam o usuario logado. Ainda falta proteger melhor as paginas, separar cliente e administracao, limpar dados antigos do banco H2 e evoluir pagamentos, Pix, boleto, mascaras e relatorios.
+Este projeto ainda esta em desenvolvimento. O login simples, logout, extrato com horario, mascaras principais e comprovante visual de transferencia ja existem. Ainda falta proteger melhor as paginas, separar cliente e administracao, evoluir pagamentos, Pix, boleto, historico de comprovantes, PDF e relatorios.

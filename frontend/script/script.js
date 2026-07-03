@@ -10,6 +10,7 @@ const mensagem = document.getElementById("mensagem");
 const categoriaSelect = document.getElementById("categoria");
 const filtroTipo = document.getElementById("filtro-tipo");
 const filtroCategoria = document.getElementById("filtro-categoria");
+const inputValor = document.getElementById("valor");
 
 function formatarMoeda(valor) {
     return valor.toLocaleString("pt-BR", {
@@ -17,6 +18,30 @@ function formatarMoeda(valor) {
         currency: "BRL"
     });
 }
+
+function formatarDataHora(dataHora) {
+    if (!dataHora) {
+        return "-";
+    }
+    return new Date(dataHora).toLocaleString("pt-BR");
+}
+
+function mascararDinheiro(valor) {
+    valor = valor.replace(/\D/g, "");
+
+    const numero = Number(valor) / 100;
+
+    return formatarMoeda(numero);
+}
+
+function converterDinheiroParaNumero(valor) {
+    valor = valor.replace(/\D/g, "");
+    return Number(valor) / 100;
+}
+
+inputValor.addEventListener("input", () => {
+    inputValor.value = mascararDinheiro(inputValor.value);
+});
 
 async function carregarDashboard() {
     const resposta = await fetch(`${API_URL}/dashboard`);
@@ -85,10 +110,9 @@ formTransacao.addEventListener("submit", async (evento) => {
 
     const transacao = {
         descricao: document.getElementById("descricao").value,
-        valor: Number(document.getElementById("valor").value),
+        valor: converterDinheiroParaNumero(document.getElementById("valor").value),
         tipo: document.getElementById("tipo").value,
         categoria: document.getElementById("categoria").value,
-        data: document.getElementById("data").value
     };
 
     const resposta = await fetch(`${API_URL}/transacoes`, {
