@@ -60,11 +60,12 @@ formPagamento.addEventListener("submit", async (evento) => {
     if (metodo === "TRANSFERENCIA") {
         const pagamento = {
             contaOrigem: contaOrigem.id,
-            contaNumeroDestino: Number(destino),
-            valor: converterDinheiroParaNumero(valor)
+            destino: destino,
+            valor: converterDinheiroParaNumero(valor),
+            metodo: metodo
         };
 
-        const resposta = await fetch(`${API_URL}/contas/transferir/numero`, {
+        const resposta = await fetch(`${API_URL}/pagamentos`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -79,6 +80,21 @@ formPagamento.addEventListener("submit", async (evento) => {
         }
 
         mensagemPagamento.textContent = "Transferencia realizada com sucesso.";
+
+        const comprovante = {
+            valor: pagamento.valor,
+            contaOrigem: contaOrigem.numero,
+            contaDestino: pagamento.contaNumeroDestino,
+            metodo: "Pagamento por transferencia",
+            dataHora: new Date().toISOString(),
+            status: "Concluida",
+            codigoAutenticacao: `EB-${Date.now()}`
+        };
+
+        localStorage.setItem("ultimoComprovante", JSON.stringify(comprovante));
+        formPagamento.reset();
+        window.location.href = "comprovante.html";
+
     }else {
         mensagemPagamento.textContent = "Metodo ainda não implementado.";
     }

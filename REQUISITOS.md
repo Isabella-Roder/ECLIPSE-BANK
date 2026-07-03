@@ -17,6 +17,7 @@ O projeto será desenvolvido usando duas linguagens:
 - Exibir um dashboard com informações financeiras importantes.
 - Registrar receitas, despesas, depósitos, saques e pagamentos.
 - Permitir pagamentos por transferencia, Pix e boleto ficticio.
+- Permitir futuramente leitura de codigo de barras e QR Code pela camera do celular.
 - Gerar comprovantes de pagamento e transferencia futuramente.
 - Permitir imprimir comprovantes futuramente.
 - Permitir baixar comprovantes em PDF futuramente.
@@ -290,12 +291,21 @@ O sistema deve possuir uma area de pagamentos para concentrar as operacoes banca
 Status atual:
 
 - [x] Transferencia por numero da conta implementada.
-- [ ] Tela `pagamentos.html` ainda nao implementada.
+- [x] Entidade `Pagamento` implementada.
+- [x] Repository de pagamentos implementado.
+- [x] Service de pagamentos implementado parcialmente.
+- [x] Controller de pagamentos implementado.
+- [x] Rota `POST /pagamentos` implementada.
+- [x] Tela `pagamentos.html` implementada.
+- [x] Pagamento por transferencia salvo no banco.
 - [ ] Pix por chave Pix ainda nao implementado.
 - [ ] Pix por telefone ainda nao implementado.
+- [ ] Pix por QR Code ainda nao implementado.
 - [ ] Pagamento de boleto ficticio ainda nao implementado.
+- [ ] Leitura de codigo de barras pela camera ainda nao implementada.
+- [ ] Leitura de QR Code pela camera ainda nao implementada.
 - [ ] Historico de pagamentos ainda nao implementado como tela propria.
-- [ ] Comprovante de pagamento ainda nao implementado.
+- [x] Comprovante de pagamento por transferencia implementado.
 - [x] Comprovante de transferencia visual implementado.
 - [x] Botao de imprimir comprovante implementado.
 - [ ] Download de comprovante em PDF ainda nao implementado.
@@ -305,7 +315,9 @@ Metodos de pagamento previstos:
 - Transferencia por numero da conta.
 - Pix por chave Pix.
 - Pix por telefone.
+- Pix por QR Code.
 - Boleto ficticio.
+- Boleto por codigo de barras escaneado.
 - Outros metodos de pagamento futuramente.
 
 Requisitos:
@@ -317,6 +329,9 @@ Requisitos:
 - Permitir pagamento de boleto ficticio com codigo digitado.
 - Permitir Pix usando chave Pix cadastrada.
 - Permitir Pix usando telefone cadastrado como chave Pix.
+- Permitir Pix usando QR Code futuramente.
+- Permitir abrir a camera no celular para ler QR Code.
+- Permitir abrir a camera no celular para ler codigo de barras de boleto.
 - Gerar comprovante apos pagamento aprovado.
 - Gerar comprovante apos transferencia aprovada.
 - Permitir visualizar ou baixar comprovante futuramente.
@@ -570,7 +585,7 @@ Status atual:
 - [x] `login.html` implementado.
 - [x] `layout.js` implementado para sidebar reutilizável.
 - [x] Logout implementado no `layout.js`.
-- [ ] `pagamentos.html` ainda não implementado.
+- [x] `pagamentos.html` implementado.
 - [ ] Tela de empresas ainda não implementada.
 - [x] Tela `comprovante.html` implementada para ultima transferencia.
 - [ ] Tela de historico de comprovantes ainda não implementada.
@@ -647,7 +662,10 @@ Requisitos:
 - Permitir transferencia por numero da conta.
 - Permitir Pix por chave Pix.
 - Permitir Pix por telefone.
+- Permitir Pix por QR Code futuramente.
 - Permitir pagamento de boleto ficticio.
+- Permitir escanear codigo de barras de boleto usando a camera do celular futuramente.
+- Permitir escanear QR Code de Pix usando a camera do celular futuramente.
 - Gerar comprovante de pagamento.
 - Gerar comprovante de transferencia.
 - Exibir botao para imprimir comprovante.
@@ -833,6 +851,11 @@ Legenda:
 - [x] Mascara de telefone implementada.
 - [x] Mascara de dinheiro/valor implementada em conta, deposito, saque, transferencia e transacao.
 - [ ] Mascara de data ainda nao implementada.
+- [~] Responsividade basica iniciada.
+- [ ] Responsividade completa para celular ainda nao implementada.
+- [ ] Menu mobile ainda nao implementado.
+- [ ] Leitura por camera de QR Code ainda nao implementada.
+- [ ] Leitura por camera de codigo de barras ainda nao implementada.
 - [ ] Botao mostrar/ocultar senha.
 - [ ] Sidebar ainda precisa ser aprimorada visualmente.
 - [ ] Resumo da conta no canto direito superior ainda nao implementado.
@@ -842,7 +865,7 @@ Legenda:
 - [x] Tela de comprovante da ultima transferencia.
 - [ ] Tela de historico de comprovantes.
 - [~] Dashboard conectado aos dados principais.
-- [ ] Tela de pagamentos.
+- [x] Tela de pagamentos.
 - [ ] Tela de investimentos.
 
 ### 13.3 Funcionalidades Pendentes
@@ -851,9 +874,13 @@ Legenda:
 - [~] Usar usuario logado para preencher telas sem digitar ID.
 - [ ] Resetar banco H2 para limpar dados de teste baguncados.
 - [x] Adicionar horario nas transferencias e movimentacoes.
-- [ ] Criar aba de pagamentos.
+- [x] Criar aba de pagamentos.
 - [ ] Pagamento de boleto ficticio.
-- [ ] Gerar comprovante de pagamento.
+- [ ] Pix por QR Code.
+- [ ] Camera no celular para ler QR Code.
+- [ ] Camera no celular para ler codigo de barras.
+- [ ] Responsividade completa para celular.
+- [x] Gerar comprovante de pagamento por transferencia.
 - [x] Gerar comprovante visual de transferencia.
 - [x] Botao para imprimir comprovante.
 - [ ] Botao para baixar comprovante em PDF.

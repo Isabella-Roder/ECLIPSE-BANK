@@ -87,6 +87,6 @@ formTransferencia.addEventListener("submit", async (evento) => {
     localStorage.setItem("ultimoComprovante", JSON.stringify(comprovante));
 
     formTransferencia.reset();
-    window.location.href = "comprovante.html"
+    window.location.href = "comprovante.html";
 
 });

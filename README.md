@@ -44,6 +44,10 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Saque em conta.
 - Transferencia entre contas.
 - Transferencia por numero da conta.
+- Modulo de pagamentos iniciado.
+- Entidade, repository, service e controller de pagamentos.
+- Rota `POST /pagamentos`.
+- Pagamento por transferencia salvo no banco.
 - Validacao de saldo para saque e transferencia.
 - Registro automatico de deposito, saque e transferencia no extrato.
 - Data e horario nas movimentacoes do extrato.
@@ -68,6 +72,8 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Tela de transferencias.
 - Transferencia entre contas pelo HTML.
 - Transferencia por numero da conta pelo HTML.
+- Tela de pagamentos.
+- Pagamento por transferencia pelo HTML.
 - Tela de extrato.
 - Consulta de extrato por conta pelo HTML.
 - Tela `minha-conta`.
@@ -90,6 +96,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `usuarios.html`: cadastro e listagem de usuarios.
 - `contas.html`: cadastro, listagem, deposito e saque de contas.
 - `transferencias.html`: transferencia entre contas.
+- `pagamentos.html`: central de pagamentos.
 - `extrato.html`: consulta de extrato por conta.
 - `minha-conta.html`: dados bancarios de uma conta.
 - `dados.html`: dados pessoais de um usuario.
@@ -98,7 +105,6 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 
 ## Funcionalidades Planejadas
 
-- Aba `pagamentos.html`.
 - Pix por chave Pix.
 - Pix por telefone.
 - Pagamento de boleto ficticio.
@@ -133,7 +139,6 @@ frontend/
 - Proteger telas usando o usuario logado.
 - Usar o usuario logado para preencher dados automaticamente, sem digitar ID.
 - Resetar banco H2 de desenvolvimento.
-- Criar aba de pagamentos.
 - Implementar Pix e boleto ficticio.
 - Criar historico de comprovantes.
 - Baixar comprovante em PDF.

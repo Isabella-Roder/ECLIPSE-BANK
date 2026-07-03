@@ -60,7 +60,11 @@ sistema bancario {
     deposito/saque
     pagamentos {
         pagar boleto ficticio
+        pagar boleto usando codigo digitado
+        abrir camera no celular para escanear codigo de barras
+        abrir camera no celular para escanear qr code
         pagar pix
+        pagar pix por qr code
         transferencia por numero da conta
         transferencia por chave pix
         outros metodos de pagamento
@@ -137,11 +141,23 @@ organizacao de telas {
 
     pagamentos {
         pagar boleto
+        escanear codigo de barras pelo celular
+        escanear qr code pelo celular
         pagar pix
+        pix por qr code
         transferencia por numero da conta
         transferencia por chave pix
         gerar comprovante
         mostrar metodos de pagamento
+    }
+
+    responsivo/mobile {
+        adaptar telas para celular
+        melhorar menu lateral no celular
+        botoes e formularios confortaveis no toque
+        pagamentos com leitura por camera
+        escanear codigo de barras de boleto
+        escanear qr code de pix
     }
 
     transferencias {
@@ -263,6 +279,9 @@ andamento do projeto {
         saque
         transferencia entre contas
         transferencia por numero da conta
+        pagamentos com transferencia por numero da conta
+        pagamento salvo no banco
+        tela de pagamentos
         extrato por conta
         transacoes ligadas a conta
         dashboard com saldo total, contas e usuarios
@@ -279,13 +298,13 @@ andamento do projeto {
         categorias fixas
         dashboard ainda pode ficar mais completo
         area de cliente com login simples, mas ainda sem bloqueio de acesso por pagina
+        modulo de pagamentos iniciado, mas ainda sem pix e boleto
     }
 
     falta fazer {
         conta de empresa com cnpj
         cadastro de empresa
         diferenciar conta pessoa fisica e conta empresa
-        gerar comprovante de pagamento
         gerar comprovante de transferencia
         gerar comprovante em pdf futuramente
         botao de imprimir comprovante
@@ -298,10 +317,12 @@ andamento do projeto {
         estilizar melhor o sistema
         melhorar sidebar
         mostrar resumo da conta no canto direito superior
-        criar aba de pagamentos
-        metodos de pagamento: transferencia, pix, boleto e outros
+        metodos de pagamento: pix, boleto e outros
+        deixar o sistema responsivo para celular
+        pagamentos no celular com camera para codigo de barras e qr code
         pix por chave pix
         pix por telefone
+        pix por qr code
         botao para gerar chave pix aleatoria na criacao de conta
         aprimorar criacao de usuario
         aprimorar criacao de conta
