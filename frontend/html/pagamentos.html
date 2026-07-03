@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamentos - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Operacoes bancarias</p>
+                <h2>Pagamentos</h2>
+            </div>
+        </header>
+
+        <section class="painel">
+            <h3>Novo pagamento</h3>
+
+            <form id="form-pagamento">
+                <select id="metodoPagamento" required>
+                    <option value="TRANSFERENCIA">Transferencia por numero da conta</option>
+                    <option value="PIX_CHAVE">Pix por chave Pix</option>
+                    <option value="PIX_TELEFONE">Pix por telefone</option>
+                    <option value="BOLETO">Boleto ficticio</option>
+                </select>
+
+                <input
+                    type="text"
+                    id="destinoPagamento"
+                    placeholder="Conta, chave Pix, telefone ou codigo do boleto"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="valorPagamento"
+                    placeholder="Valor"
+                    required
+                >
+
+                <button type="submit">Pagar</button>
+            </form>
+
+            <p id="mensagem-pagamento"></p>
+        </section>
+
+        <section class="painel">
+            <h3>Metodos disponiveis</h3>
+
+            <div class="info-grid">
+                <div>
+                    <span>Transferencia</span>
+                    <strong>Disponivel agora</strong>
+                </div>
+
+                <div>
+                    <span>Pix por chave</span>
+                    <strong>Em breve</strong>
+                </div>
+
+                <div>
+                    <span>Pix por telefone</span>
+                    <strong>Em breve</strong>
+                </div>
+
+                <div>
+                    <span>Boleto</span>
+                    <strong>Em breve</strong>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/pagamentos.js"></script>
+</body>
+</html>
