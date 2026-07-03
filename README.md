@@ -30,8 +30,10 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Validacao de email unico.
 - Validacao de campos obrigatorios do usuario.
 - Login simples com email e senha.
+- Logout pelo frontend.
 - Cadastro e listagem de contas.
 - Busca de conta por ID.
+- Busca de conta pelo usuario logado.
 - Conta vinculada a usuario.
 - Saldo, limite, numero da conta e chave Pix.
 - Validacao para usuario ter apenas uma conta.
@@ -40,6 +42,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Deposito em conta.
 - Saque em conta.
 - Transferencia entre contas.
+- Transferencia por numero da conta.
 - Validacao de saldo para saque e transferencia.
 - Registro automatico de deposito, saque e transferencia no extrato.
 - Transacoes vinculadas a conta.
@@ -62,6 +65,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Deposito e saque pelo HTML.
 - Tela de transferencias.
 - Transferencia entre contas pelo HTML.
+- Transferencia por numero da conta pelo HTML.
 - Tela de extrato.
 - Consulta de extrato por conta pelo HTML.
 - Tela `minha-conta`.
@@ -71,6 +75,8 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Tela de login.
 - Login pelo HTML usando a rota `/login`.
 - Usuario logado salvo no `localStorage`.
+- Logout pelo menu lateral.
+- Telas `dados`, `minha-conta`, `extrato` e `transferencias` usando o usuario logado parcialmente.
 
 ## Telas Atuais
 
@@ -82,6 +88,20 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `minha-conta.html`: dados bancarios de uma conta.
 - `dados.html`: dados pessoais de um usuario.
 - `login.html`: entrada do usuario no sistema.
+
+## Funcionalidades Planejadas
+
+- Aba `pagamentos.html`.
+- Pix por chave Pix.
+- Pix por telefone.
+- Pagamento de boleto ficticio.
+- Geracao de chave Pix aleatoria.
+- Telefone no cadastro de usuario/conta.
+- Mascaras para CPF, telefone, data, dinheiro e valores.
+- Horario nas transferencias e movimentacoes do extrato.
+- Melhorias visuais na sidebar.
+- Resumo da conta no canto superior direito.
+- Reset do banco H2 para limpar dados de teste.
 
 ## Estrutura Geral
 
@@ -104,6 +124,11 @@ frontend/
 
 - Proteger telas usando o usuario logado.
 - Usar o usuario logado para preencher dados automaticamente, sem digitar ID.
+- Resetar banco H2 de desenvolvimento.
+- Adicionar telefone no cadastro.
+- Adicionar mascaras nos formularios.
+- Criar aba de pagamentos.
+- Implementar Pix e boleto ficticio.
 - Login com conta Google futuramente.
 - Separacao real entre cliente e administracao.
 - Cartoes.
@@ -118,4 +143,4 @@ frontend/
 
 ## Observacao
 
-Este projeto ainda esta em desenvolvimento. O login simples ja existe, mas algumas telas ainda usam IDs digitados manualmente. Futuramente, o sistema deve identificar automaticamente o usuario logado, proteger as paginas e separar melhor a experiencia do cliente e da administracao.
+Este projeto ainda esta em desenvolvimento. O login simples e o logout ja existem, e algumas telas ja usam o usuario logado. Ainda falta proteger melhor as paginas, separar cliente e administracao, limpar dados antigos do banco H2 e evoluir pagamentos, Pix, boleto, mascaras e relatorios.

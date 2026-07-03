@@ -12,10 +12,12 @@ O projeto será desenvolvido usando duas linguagens:
 ## 2. Objetivos
 
 - Criar uma conta bancária fictícia para cada usuário.
+- Permitir futuramente conta de empresa com CNPJ.
 - Permitir controle de saldo, entradas, saídas e transferências.
 - Exibir um dashboard com informações financeiras importantes.
 - Registrar receitas, despesas, depósitos, saques e pagamentos.
 - Permitir pagamentos por transferencia, Pix e boleto ficticio.
+- Gerar comprovantes de pagamento e transferencia futuramente.
 - Gerenciar categorias de gastos.
 - Controlar cartão de crédito, compras e faturas.
 - Criar metas financeiras.
@@ -46,6 +48,7 @@ Status atual:
 Requisitos:
 
 - Cadastrar usuário.
+- Cadastrar empresa futuramente.
 - Fazer login.
 - Consultar dados da conta.
 - Consultar saldo atual.
@@ -55,6 +58,7 @@ Requisitos:
 - Permitir telefone como chave Pix.
 - Permitir geracao de chave Pix aleatoria.
 - Melhorar cadastro com mascaras, confirmacao de senha e validacoes.
+- Diferenciar conta pessoa fisica e conta empresa futuramente.
 
 ### 3.2 Dashboard Financeiro
 
@@ -289,6 +293,8 @@ Status atual:
 - [ ] Pix por telefone ainda nao implementado.
 - [ ] Pagamento de boleto ficticio ainda nao implementado.
 - [ ] Historico de pagamentos ainda nao implementado como tela propria.
+- [ ] Comprovante de pagamento ainda nao implementado.
+- [ ] Comprovante de transferencia ainda nao implementado.
 
 Metodos de pagamento previstos:
 
@@ -307,6 +313,32 @@ Requisitos:
 - Permitir pagamento de boleto ficticio com codigo digitado.
 - Permitir Pix usando chave Pix cadastrada.
 - Permitir Pix usando telefone cadastrado como chave Pix.
+- Gerar comprovante apos pagamento aprovado.
+- Gerar comprovante apos transferencia aprovada.
+- Permitir visualizar ou baixar comprovante futuramente.
+
+### 3.11 Conta Empresa
+
+O sistema deve permitir futuramente a criacao de contas para empresas, usando CNPJ.
+
+Status atual:
+
+- [ ] Conta empresa ainda nao implementada.
+- [ ] Cadastro de empresa ainda nao implementado.
+- [ ] CNPJ ainda nao implementado.
+- [ ] Separacao entre conta pessoa fisica e conta empresa ainda nao implementada.
+
+Requisitos:
+
+- Cadastrar empresa.
+- Informar razao social.
+- Informar nome fantasia.
+- Informar CNPJ.
+- Validar CNPJ unico.
+- Criar conta bancaria vinculada a empresa.
+- Diferenciar conta pessoa fisica e conta empresa.
+- Permitir chave Pix para empresa.
+- Permitir telefone como chave Pix da empresa futuramente.
 
 ## 4. Divisão Entre Java e Python
 
@@ -427,6 +459,7 @@ Depois do MVP, podem ser adicionados:
 Entidades sugeridas para o sistema:
 
 - Usuário.
+- Empresa.
 - Conta.
 - Transação.
 - Categoria.
@@ -435,6 +468,7 @@ Entidades sugeridas para o sistema:
 - Fatura.
 - MetaFinanceira.
 - Relatório.
+- Comprovante.
 
 ## 8. Regras de Negócio
 
@@ -448,10 +482,13 @@ Entidades sugeridas para o sistema:
 - O dashboard deve considerar os dados do mês atual.
 - Pagamentos devem registrar data e horario.
 - Transferencias devem registrar data e horario.
+- Pagamentos aprovados devem gerar comprovante.
+- Transferencias aprovadas devem gerar comprovante.
 - A conta destino deve receber o valor transferido.
 - A conta origem deve perder o valor transferido.
 - Chaves Pix devem ser unicas.
 - Telefone pode ser usado como chave Pix quando cadastrado.
+- CNPJ deve ser unico para contas empresa.
 
 ## 9. Ideias Futuras
 
@@ -528,6 +565,8 @@ Status atual:
 - [x] `layout.js` implementado para sidebar reutilizável.
 - [x] Logout implementado no `layout.js`.
 - [ ] `pagamentos.html` ainda não implementado.
+- [ ] Tela de empresas ainda não implementada.
+- [ ] Tela de comprovantes ainda não implementada.
 - [ ] Tela de relatórios ainda não implementada.
 - [ ] Tela de investimentos ainda não implementada.
 
@@ -542,6 +581,8 @@ Telas sugeridas:
 - `minha-conta.html`: informacoes da conta do cliente.
 - `login.html`: login simples com email e senha.
 - `pagamentos.html`: pagamentos por transferencia, Pix e boleto.
+- `empresas.html`: cadastro e gestao de empresas futuramente.
+- `comprovantes.html`: consulta de comprovantes futuramente.
 
 ### 11.1 Dashboard
 
@@ -559,6 +600,9 @@ Requisitos:
 
 - Consultar dados pessoais.
 - Exibir nome, nome social, CPF, email e data de nascimento.
+- Exibir telefone futuramente.
+- Melhorar layout e organizacao das informacoes.
+- Exibir tipo de cliente futuramente.
 - Permitir futura edicao de dados cadastrais.
 
 ### 11.3 Minha Conta
@@ -569,6 +613,8 @@ Requisitos:
 - Consultar numero da conta.
 - Consultar chave Pix.
 - Consultar limite.
+- Melhorar layout e organizacao das informacoes.
+- Exibir atalhos para pagamentos, Pix, extrato e comprovantes.
 - Acessar atalhos para transferencia e extrato.
 
 ### 11.4 Transferencias
@@ -594,8 +640,20 @@ Requisitos:
 - Permitir Pix por chave Pix.
 - Permitir Pix por telefone.
 - Permitir pagamento de boleto ficticio.
+- Gerar comprovante de pagamento.
+- Gerar comprovante de transferencia.
 - Exibir mensagem de sucesso ou erro.
 - Usar a conta do usuario logado como origem do pagamento.
+
+### 11.6 Empresas
+
+Requisitos:
+
+- Cadastrar empresa.
+- Listar empresas.
+- Criar conta para empresa.
+- Exibir CNPJ, razao social e nome fantasia.
+- Separar conta empresa de conta pessoa fisica.
 
 ## 12. Investimentos
 
@@ -678,6 +736,9 @@ Legenda:
 - [x] Validacao de email unico.
 - [x] Validacao de campos obrigatorios do usuario.
 - [ ] Telefone ainda nao implementado no usuario.
+- [ ] Empresa ainda nao implementada.
+- [ ] CNPJ ainda nao implementado.
+- [ ] Conta empresa ainda nao implementada.
 - [ ] Mascara de CPF ainda nao implementada.
 - [ ] Mascara de telefone ainda nao implementada.
 - [ ] Confirmacao de senha ainda nao implementada.
@@ -749,6 +810,10 @@ Legenda:
 - [ ] Botao mostrar/ocultar senha.
 - [ ] Sidebar ainda precisa ser aprimorada visualmente.
 - [ ] Resumo da conta no canto direito superior ainda nao implementado.
+- [ ] Tela minha conta precisa ser ajustada.
+- [ ] Tela meus dados precisa ser ajustada.
+- [ ] Tela de empresas.
+- [ ] Tela de comprovantes.
 - [~] Dashboard conectado aos dados principais.
 - [ ] Tela de pagamentos.
 - [ ] Tela de investimentos.
@@ -761,6 +826,13 @@ Legenda:
 - [ ] Adicionar horario nas transferencias e movimentacoes.
 - [ ] Criar aba de pagamentos.
 - [ ] Pagamento de boleto ficticio.
+- [ ] Gerar comprovante de pagamento.
+- [ ] Gerar comprovante de transferencia.
+- [ ] Conta de empresa com CNPJ.
+- [ ] Cadastro de empresa.
+- [ ] Diferenciar conta pessoa fisica e conta empresa.
+- [ ] Arrumar tela minha conta.
+- [ ] Arrumar tela meus dados.
 - [ ] Pix por chave Pix.
 - [ ] Pix por telefone.
 - [ ] Gerar chave Pix aleatoria.
