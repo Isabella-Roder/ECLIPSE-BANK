@@ -2,7 +2,12 @@ const API_URL = "http://localhost:8080";
 
 const formPagamento = document.getElementById("form-pagamento");
 
+const selectMetodoPagamento = document.getElementById("metodoPagamento");
+const inputDestinoPagamento = document.getElementById("destinoPagamento");
+
 const mensagemPagamento = document.getElementById("mensagem-pagamento");
+
+const listaPagamentos = document.getElementById("lista-pagamentos");
 
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -43,6 +48,110 @@ async function carregarContaUsuario() {
     }
 
     contaOrigem = await resposta.json();
+}
+
+function atualizarCampoDestino() {
+    const metodo = selectMetodoPagamento.value;
+
+    if (metodo === "TRANSFERENCIA") {
+        inputDestinoPagamento.placeholder = "Digite o número da conta destino";
+    } else if (metodo === "PIX") {
+        inputDestinoPagamento.placeholder = "Digite a chave Pix";
+    } else if (metodo === "BOLETO") {
+        inputDestinoPagamento.placeholder = "Digite o código do boleto";
+    }
+}
+
+async function carregarPagamentos() {
+    const resposta = await fetch(`${API_URL}/pagamentos`);
+
+    if (!resposta.ok) {
+        listaPagamentos.innerHTML = `<p class="texto-vazio">Erro ao carregar pagamentos.</p>`;
+        return;
+    }
+
+    const pagamentos = await resposta.json();
+
+    if (pagamentos.length === 0) {
+        listaPagamentos.innerHTML = `<p class="texto-vazio">Nenhum pagamento encontrado.</p>`;
+        return;
+    }
+
+    listaPagamentos.innerHTML = "";
+
+    pagamentos.forEach((pagamento) => {
+        const item = document.createElement("div");
+        item.classList.add("item-pagamento");
+
+        item.innerHTML = `
+            <div class="pagamento-info">
+                <strong>${formatarMetodo(pagamento.metodo)}</strong>
+                <span>${pagamento.destino}</span>
+            </div>
+
+            <div class="pagamento-status">
+                <span>${pagamento.status}</span>
+            </div>
+
+            <div class="pagamento-valor">
+                <strong>${formatarMoeda(pagamento.valor)}</strong>
+                <span>${formatarDataHora(pagamento.dataHora)}</span>
+            </div>
+
+            <button class="botao-comprovante" type="button">
+                Ver comprovante
+            </button>
+            
+        `;
+        listaPagamentos.appendChild(item);
+        
+        const botaoComprovante = item.querySelector(".botao-comprovante");
+
+        botaoComprovante.addEventListener("click", () => {
+            const comprovate = {
+                valor: pagamento.valor,
+                contaOrigem: pagamento.conta.numero,
+                contaDestino: pagamento.destino,
+                metodo:
+                    pagamento.metodo === "PIX" ? "Pix" :
+                    pagamento.metodo === "BOLETO" ? "Pagamento de boleto" :
+                    "Pagamento por transferencia",
+                dataHora: pagamento.dataHora,
+                status: pagamento.status,
+                codigoAutenticacao: pagamento.codigoAutenticacao
+            };
+
+            localStorage.setItem("ultimoComprovante", JSON.stringify(comprovate));
+            window.location.href = "comprovante.html";
+        });
+    }); 
+}
+
+function formatarMoeda(valor) {
+    return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+}
+
+function formatarDataHora(dataHora) {
+    if (!dataHora) {
+        return "-";
+    }
+
+    return new Date(dataHora).toLocaleString("pt-BR");
+}
+
+function formatarMetodo(metodo) {
+    if (metodo === "PIX") {
+        return "Pix";
+    }
+
+    if (metodo === "BOLETO") {
+        return "Boleto";
+    }
+
+    return "Transferencia";
 }
 
 formPagamento.addEventListener("submit", async (evento) => {
@@ -106,8 +215,13 @@ formPagamento.addEventListener("submit", async (evento) => {
     }else {
         mensagemPagamento.textContent = "Metodo ainda não implementado.";
     }
-
-    
 });
 
+selectMetodoPagamento.addEventListener("change", atualizarCampoDestino);
+
+
+
+
 carregarContaUsuario();
+carregarPagamentos();
+atualizarCampoDestino();
