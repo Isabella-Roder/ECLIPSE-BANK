@@ -4,14 +4,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.eclipsebank.backend.dto.PagamentoRequest;
 import com.eclipsebank.backend.dto.TransferenciaPorNumeroRequest;
 import com.eclipsebank.backend.enums.MetodoPagamento;
 import com.eclipsebank.backend.model.Conta;
 import com.eclipsebank.backend.model.Pagamento;
-import com.eclipsebank.backend.repository.PagamentoRepository;
 import com.eclipsebank.backend.repository.ContaRepository;
+import com.eclipsebank.backend.repository.PagamentoRepository;
 
 @Service
 public class PagamentoService {
@@ -30,6 +31,21 @@ public class PagamentoService {
         return pagamentoRepository.findAll();
     }
 
+    private Pagamento criarPagamento(PagamentoRequest request, Conta contaOrigem) {
+        Pagamento pagamento = new Pagamento(
+            request.getMetodo(),
+            request.getValor(),
+            request.getDestino(),
+            LocalDateTime.now(),
+            "CONCLUIDO",
+            contaOrigem,
+            "EB-" + System.currentTimeMillis()
+        );
+
+        return pagamentoRepository.save(pagamento);
+    }
+
+    @Transactional
     public Pagamento pagar(PagamentoRequest request) {
 
         if (request.getValor() == null || request.getValor() <= 0) {
@@ -64,19 +80,25 @@ public class PagamentoService {
 
             contaService.TransferirPorNumero(transferencia);
 
-            Pagamento pagamento = new Pagamento(
-                request.getMetodo(),
-                request.getValor(),
+            return criarPagamento(request, contaOrigem);
+        
+        } else if (request.getMetodo() == MetodoPagamento.PIX) {
+            contaService.transferirPorPix(
+                request.getContaOrigem(),
                 request.getDestino(),
-                LocalDateTime.now(),
-                "CONCLUIDO",
-                contaOrigem,
-                "EB-" + System.currentTimeMillis()
+                request.getValor()
             );
 
-            return pagamentoRepository.save(pagamento);
-        
-        } else{ 
+            return criarPagamento(request, contaOrigem);
+        } else if (request.getMetodo() == MetodoPagamento.BOLETO) {
+            contaService.pagarBoleto(
+                request.getContaOrigem(), 
+                request.getDestino(), 
+                request.getValor()
+            );
+
+            return criarPagamento(request, contaOrigem);
+        } else {
             throw new IllegalArgumentException("Metodo de pagamento ainda não implementado.");
         }
 

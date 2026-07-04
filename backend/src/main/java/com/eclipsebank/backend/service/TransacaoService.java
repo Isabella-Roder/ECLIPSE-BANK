@@ -61,6 +61,7 @@ public class TransacaoService {
         return listar().stream().filter(transacao -> transacao.getTipo() == TipoTransacao.DESPESA
             || transacao.getTipo() == TipoTransacao.SAQUE
             || transacao.getTipo() == TipoTransacao.PAGAMENTO
+            || transacao.getTipo() == TipoTransacao.PIX
             || transacao.getTipo() == TipoTransacao.TRANSFERENCIA).mapToDouble(Transacao::getValor).sum();
     }
 
@@ -72,6 +73,7 @@ public class TransacaoService {
         return tipo == TipoTransacao.DESPESA
             || tipo == TipoTransacao.SAQUE
             || tipo == TipoTransacao.PAGAMENTO
+            || tipo == TipoTransacao.PIX
             || tipo == TipoTransacao.TRANSFERENCIA;
     }
 

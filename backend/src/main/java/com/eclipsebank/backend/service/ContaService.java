@@ -229,6 +229,97 @@ public class ContaService {
 
         return contaOrigem;
     }
+
+    public Conta transferirPorPix(Long contaOrigemId, String chavePix, Double valor) {
+        if (valor == null || valor <= 0) {
+            throw new IllegalArgumentException("Valor do Pix deve ser maior que zero.");
+        }
+
+        Conta contaOrigem = contaRepository.findById(contaOrigemId).orElseThrow(() -> new IllegalArgumentException("Conta orgiem não encontrada."));
+        Conta contaDestino = contaRepository.findByChavePix(chavePix).orElseThrow(() -> new IllegalArgumentException("Chave Pix não encontrada."));
+
+        if (contaOrigem.getId().equals(contaDestino.getId())) {
+            throw new IllegalArgumentException("A conta de origem e destino devem ser diferentes.");
+        }
+
+        if (contaOrigem.getSaldo() == null) {
+            contaOrigem.setSaldo(0.0);
+        }
+
+        if (contaDestino.getSaldo() == null) {
+            contaDestino.setSaldo(0.0);
+        }
+
+        if (valor > contaOrigem.getSaldo()) {
+            throw new IllegalArgumentException("Saldo insuficiente.");
+        }
+
+        contaOrigem.setSaldo(contaOrigem.getSaldo() - valor);
+        contaDestino.setSaldo(contaDestino.getSaldo() + valor);
+
+        contaRepository.save(contaOrigem);
+        contaRepository.save(contaDestino);
+
+        Transacao transacaoOrigem = new Transacao(
+            "Pix enviado.",
+            valor,
+            TipoTransacao.PIX,
+            "Pix",
+            LocalDateTime.now()
+        );
+
+        transacaoOrigem.setConta(contaOrigem);
+        transacaoRepository.save(transacaoOrigem);
+
+        Transacao transacaoDestino = new Transacao(
+            "Pix recebido.",
+            valor,
+            TipoTransacao.DEPOSITO,
+            "Pix",
+            LocalDateTime.now()
+        );
+
+        transacaoDestino.setConta(contaDestino);
+        transacaoRepository.save(transacaoDestino);
+
+        return contaOrigem;
+    }
+
+    public Conta pagarBoleto(Long contaId, String codigoBoleto, Double valor) {
+        if (valor == null || valor <= 0) {
+            throw new IllegalArgumentException("Valor do boleto deve ser maior que zero.");
+        }
+
+        if (codigoBoleto == null || codigoBoleto.isBlank()) {
+            throw new IllegalArgumentException("Código do boleto obrigatório.");
+        }
+
+        Conta conta = contaRepository.findById(contaId).orElseThrow(() -> new IllegalArgumentException("Conta não encontrada."));
+
+        if (conta.getSaldo() == null) {
+            conta.setSaldo(0.0);
+        }
+
+        if (valor > conta.getSaldo()) {
+            throw new IllegalArgumentException("Saldo insuficiente");
+        }
+
+        conta.setSaldo(conta.getSaldo() - valor);
+        contaRepository.save(conta);
+
+        Transacao transacao = new Transacao(
+            "Pagamento de boleto.",
+            valor,
+            TipoTransacao.PAGAMENTO,
+            "Boleto",
+            LocalDateTime.now()
+        );
+
+        transacao.setConta(conta);
+        transacaoRepository.save(transacao);
+
+        return conta;
+    }
     
     public Conta sacar(Long contaId, Double valor) {
         if (valor <= 0) {

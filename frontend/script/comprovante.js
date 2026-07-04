@@ -9,6 +9,7 @@ const statusComprovante = document.getElementById("comprovante-status");
 const codigoComprovante = document.getElementById("comprovante-codigo");
 const botaoImprimir = document.getElementById("botao-imprimir");
 const mensagemComprovante = document.getElementById("mensagem-comprovante");
+const tituloComprovante = document.getElementById("comprovante-titulo");
 
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -26,6 +27,9 @@ if (!comprovante) {
     contaOrigem.textContent = comprovante.contaOrigem;
     contaDestino.textContent = comprovante.contaDestino;
     metodo.textContent = comprovante.metodo;
+    tituloComprovante.textContent = comprovante.metodo === "Pix"
+        ? "Pix realizado"
+        : "Transferencia realizada";
     statusComprovante.textContent = comprovante.status;
     codigoComprovante.textContent = comprovante.codigoAutenticacao || gerarCodigoAutenticacao(comprovante);
 }

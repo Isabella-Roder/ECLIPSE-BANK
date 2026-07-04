@@ -167,11 +167,11 @@ Status atual:
 - [x] Validação de saldo em transferência implementada.
 - [x] Validação para impedir transferência para a mesma conta implementada.
 - [~] Limite da conta implementado parcialmente.
-- [ ] Busca por chave Pix ainda não implementada.
+- [x] Busca por chave Pix implementada para Pix.
 - [ ] Pix por telefone ainda não implementado.
 - [ ] Chave Pix aleatoria ainda não implementada.
 - [ ] Botao para gerar chave Pix aleatoria ainda não implementado.
-- [ ] Pagamento de boleto ainda não implementado.
+- [x] Pagamento de boleto ficticio implementado.
 
 Funcionalidades:
 
@@ -293,19 +293,19 @@ Status atual:
 - [x] Transferencia por numero da conta implementada.
 - [x] Entidade `Pagamento` implementada.
 - [x] Repository de pagamentos implementado.
-- [x] Service de pagamentos implementado parcialmente.
+- [x] Service de pagamentos implementado com transferencia, Pix e boleto.
 - [x] Controller de pagamentos implementado.
 - [x] Rota `POST /pagamentos` implementada.
 - [x] Tela `pagamentos.html` implementada.
 - [x] Pagamento por transferencia salvo no banco.
-- [ ] Pix por chave Pix ainda nao implementado.
+- [x] Pix por chave Pix implementado.
 - [ ] Pix por telefone ainda nao implementado.
 - [ ] Pix por QR Code ainda nao implementado.
-- [ ] Pagamento de boleto ficticio ainda nao implementado.
+- [x] Pagamento de boleto ficticio implementado.
 - [ ] Leitura de codigo de barras pela camera ainda nao implementada.
 - [ ] Leitura de QR Code pela camera ainda nao implementada.
 - [ ] Historico de pagamentos ainda nao implementado como tela propria.
-- [x] Comprovante de pagamento por transferencia implementado.
+- [x] Comprovante de pagamento por transferencia, Pix e boleto implementado.
 - [x] Comprovante de transferencia visual implementado.
 - [x] Botao de imprimir comprovante implementado.
 - [ ] Download de comprovante em PDF ainda nao implementado.
@@ -875,12 +875,12 @@ Legenda:
 - [ ] Resetar banco H2 para limpar dados de teste baguncados.
 - [x] Adicionar horario nas transferencias e movimentacoes.
 - [x] Criar aba de pagamentos.
-- [ ] Pagamento de boleto ficticio.
+- [x] Pagamento de boleto ficticio.
 - [ ] Pix por QR Code.
 - [ ] Camera no celular para ler QR Code.
 - [ ] Camera no celular para ler codigo de barras.
 - [ ] Responsividade completa para celular.
-- [x] Gerar comprovante de pagamento por transferencia.
+- [x] Gerar comprovante de pagamento por transferencia, Pix e boleto.
 - [x] Gerar comprovante visual de transferencia.
 - [x] Botao para imprimir comprovante.
 - [ ] Botao para baixar comprovante em PDF.
@@ -889,7 +889,7 @@ Legenda:
 - [ ] Diferenciar conta pessoa fisica e conta empresa.
 - [ ] Arrumar tela minha conta.
 - [ ] Arrumar tela meus dados.
-- [ ] Pix por chave Pix.
+- [x] Pix por chave Pix.
 - [ ] Pix por telefone.
 - [ ] Gerar chave Pix aleatoria.
 - [x] Adicionar telefone no cadastro.

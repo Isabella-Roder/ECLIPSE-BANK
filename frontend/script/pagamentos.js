@@ -57,7 +57,7 @@ formPagamento.addEventListener("submit", async (evento) => {
     const destino = document.getElementById("destinoPagamento").value;
     const valor = document.getElementById("valorPagamento").value;
 
-    if (metodo === "TRANSFERENCIA") {
+    if (metodo === "TRANSFERENCIA" || metodo === "PIX" || metodo === "BOLETO") {
         const pagamento = {
             contaOrigem: contaOrigem.id,
             destino: destino,
@@ -79,16 +79,24 @@ formPagamento.addEventListener("submit", async (evento) => {
             return;
         }
 
-        mensagemPagamento.textContent = "Transferencia realizada com sucesso.";
+        const pagamentoSalvo = await resposta.json();
+
+        mensagemPagamento.textContent = 
+            metodo === "PIX" ? "Pix realizado com sucesso." :
+            metodo === "BOLETO" ? "Boleto pago com sucesso." :
+            "Transferencia realizada com sucesso.";
 
         const comprovante = {
-            valor: pagamento.valor,
+            valor: pagamentoSalvo.valor,
             contaOrigem: contaOrigem.numero,
-            contaDestino: pagamento.contaNumeroDestino,
-            metodo: "Pagamento por transferencia",
-            dataHora: new Date().toISOString(),
-            status: "Concluida",
-            codigoAutenticacao: `EB-${Date.now()}`
+            contaDestino: pagamentoSalvo.destino,
+            metodo: 
+                pagamentoSalvo.metodo === "PIX" ? "Pix" :
+                pagamentoSalvo.metodo === "BOLETO" ? "Pagamento de boleto" :
+                "Pagamento por transferencia",
+            dataHora: pagamentoSalvo.dataHora,
+            status: pagamentoSalvo.status,
+            codigoAutenticacao: pagamentoSalvo.codigoAutenticacao
         };
 
         localStorage.setItem("ultimoComprovante", JSON.stringify(comprovante));

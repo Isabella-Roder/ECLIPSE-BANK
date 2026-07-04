@@ -44,12 +44,12 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Saque em conta.
 - Transferencia entre contas.
 - Transferencia por numero da conta.
-- Modulo de pagamentos iniciado.
+- Modulo de pagamentos implementado com transferencia, Pix e boleto ficticio.
 - Entidade, repository, service e controller de pagamentos.
 - Rota `POST /pagamentos`.
-- Pagamento por transferencia salvo no banco.
+- Pagamentos por transferencia, Pix e boleto salvos no banco.
 - Validacao de saldo para saque e transferencia.
-- Registro automatico de deposito, saque e transferencia no extrato.
+- Registro automatico de deposito, saque, transferencia, Pix e boleto no extrato.
 - Data e horario nas movimentacoes do extrato.
 - Transacoes vinculadas a conta.
 - Extrato por conta.
@@ -73,7 +73,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Transferencia entre contas pelo HTML.
 - Transferencia por numero da conta pelo HTML.
 - Tela de pagamentos.
-- Pagamento por transferencia pelo HTML.
+- Pagamentos por transferencia, Pix e boleto pelo HTML.
 - Tela de extrato.
 - Consulta de extrato por conta pelo HTML.
 - Tela `minha-conta`.
@@ -87,7 +87,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Logout pelo menu lateral.
 - Telas `dados`, `minha-conta`, `extrato` e `transferencias` usando o usuario logado parcialmente.
 - Mascaras de CPF, telefone e dinheiro/valor.
-- Tela de comprovante da ultima transferencia.
+- Tela de comprovante da ultima operacao.
 - Botao para imprimir comprovante.
 
 ## Telas Atuais
@@ -101,13 +101,11 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `minha-conta.html`: dados bancarios de uma conta.
 - `dados.html`: dados pessoais de um usuario.
 - `login.html`: entrada do usuario no sistema.
-- `comprovante.html`: comprovante visual da ultima transferencia.
+- `comprovante.html`: comprovante visual da ultima operacao.
 
 ## Funcionalidades Planejadas
 
-- Pix por chave Pix.
 - Pix por telefone.
-- Pagamento de boleto ficticio.
 - Geracao de chave Pix aleatoria.
 - Telefone como chave Pix.
 - Mascara de data.
@@ -139,7 +137,7 @@ frontend/
 - Proteger telas usando o usuario logado.
 - Usar o usuario logado para preencher dados automaticamente, sem digitar ID.
 - Resetar banco H2 de desenvolvimento.
-- Implementar Pix e boleto ficticio.
+- Melhorar Pix e boleto ficticio.
 - Criar historico de comprovantes.
 - Baixar comprovante em PDF.
 - Login com conta Google futuramente.
@@ -156,4 +154,4 @@ frontend/
 
 ## Observacao
 
-Este projeto ainda esta em desenvolvimento. O login simples, logout, extrato com horario, mascaras principais e comprovante visual de transferencia ja existem. Ainda falta proteger melhor as paginas, separar cliente e administracao, evoluir pagamentos, Pix, boleto, historico de comprovantes, PDF e relatorios.
+Este projeto ainda esta em desenvolvimento. O login simples, logout, extrato com horario, mascaras principais, pagamentos por transferencia, Pix e boleto, e comprovante visual ja existem. Ainda falta proteger melhor as paginas, separar cliente e administracao, evoluir historico de comprovantes, PDF e relatorios.
