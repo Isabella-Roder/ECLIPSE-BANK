@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.eclipsebank.backend.model.TipoTransacao;
+import com.eclipsebank.backend.enums.TipoTransacao;
 import com.eclipsebank.backend.model.Transacao;
 import com.eclipsebank.backend.repository.TransacaoRepository;
 //guarda as regras

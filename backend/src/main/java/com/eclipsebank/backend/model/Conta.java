@@ -1,11 +1,16 @@
 package com.eclipsebank.backend.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+
+import com.eclipsebank.backend.enums.TipoChavePix;
+
+import jakarta.persistence.EnumType;
 
 @Entity
 public class Conta {
@@ -20,6 +25,9 @@ public class Conta {
     private Double limite;
     private Double saldo;
 
+    @Enumerated(EnumType.STRING)
+    private TipoChavePix tipoChavePix;
+
     @OneToOne // uma conta pertence ao usuario
     @JoinColumn(name = "usuario_id") // cria uma coluna usuario_id na tabela conta
     private Usuario usuario;
@@ -32,12 +40,13 @@ public class Conta {
 
     }
 
-    public Conta(String titular, Integer numero, String chavePix, Double limite, Double saldo) {
+    public Conta(String titular, Integer numero, String chavePix, Double limite, Double saldo, TipoChavePix tipoChavePix) {
         this.titular = titular;
         this.numero = numero;
         this.chavePix = chavePix;
         this.limite = limite;
         this.saldo = saldo;
+        this.tipoChavePix = tipoChavePix;
     }
 
     public Long getId() {
@@ -64,6 +73,10 @@ public class Conta {
         return saldo;
     }
 
+    public TipoChavePix getTipoChavePix() {
+        return tipoChavePix;
+    }
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
@@ -86,6 +99,10 @@ public class Conta {
 
     public void setSaldo(Double saldo){
         this.saldo = saldo; 
+    }
+
+    public void setTipoChavePix(TipoChavePix tipoChavePix) {
+        this.tipoChavePix = tipoChavePix;
     }
 
 }

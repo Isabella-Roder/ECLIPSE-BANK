@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.eclipsebank.backend.dto.TransferenciaPorNumeroRequest;
 import com.eclipsebank.backend.dto.TransferenciaRequest;
+import com.eclipsebank.backend.enums.TipoTransacao;
 import com.eclipsebank.backend.model.Conta;
-import com.eclipsebank.backend.model.TipoTransacao;
 import com.eclipsebank.backend.model.Transacao;
 import com.eclipsebank.backend.model.Usuario;
 import com.eclipsebank.backend.repository.ContaRepository;

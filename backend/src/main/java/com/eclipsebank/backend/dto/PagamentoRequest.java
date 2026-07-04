@@ -1,6 +1,6 @@
 package com.eclipsebank.backend.dto;
 
-import com.eclipsebank.backend.model.MetodoPagamento;
+import com.eclipsebank.backend.enums.MetodoPagamento;
 
 public class PagamentoRequest {
     private Long contaOrigem;

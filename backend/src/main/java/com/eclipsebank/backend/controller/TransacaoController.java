@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.eclipsebank.backend.model.TipoTransacao;
+import com.eclipsebank.backend.enums.TipoTransacao;
 import com.eclipsebank.backend.model.Transacao;
 import com.eclipsebank.backend.service.TransacaoService;
 

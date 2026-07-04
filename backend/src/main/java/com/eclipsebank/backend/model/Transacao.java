@@ -2,6 +2,8 @@ package com.eclipsebank.backend.model;
 
 import java.time.LocalDateTime;
 
+import com.eclipsebank.backend.enums.TipoTransacao;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

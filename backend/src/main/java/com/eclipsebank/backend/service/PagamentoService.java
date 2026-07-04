@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.eclipsebank.backend.dto.PagamentoRequest;
 import com.eclipsebank.backend.dto.TransferenciaPorNumeroRequest;
+import com.eclipsebank.backend.enums.MetodoPagamento;
 import com.eclipsebank.backend.model.Conta;
-import com.eclipsebank.backend.model.MetodoPagamento;
 import com.eclipsebank.backend.model.Pagamento;
 import com.eclipsebank.backend.repository.PagamentoRepository;
 import com.eclipsebank.backend.repository.ContaRepository;
