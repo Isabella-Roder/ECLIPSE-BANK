@@ -304,9 +304,11 @@ Status atual:
 - [x] Pagamento de boleto ficticio implementado.
 - [ ] Leitura de codigo de barras pela camera ainda nao implementada.
 - [ ] Leitura de QR Code pela camera ainda nao implementada.
+- [x] Historico visual de pagamentos implementado em `pagamentos.html`.
 - [ ] Historico de pagamentos ainda nao implementado como tela propria.
 - [x] Comprovante de pagamento por transferencia, Pix e boleto implementado.
 - [x] Comprovante de transferencia visual implementado.
+- [x] Botao para ver comprovante no historico de pagamentos implementado.
 - [x] Botao de imprimir comprovante implementado.
 - [ ] Download de comprovante em PDF ainda nao implementado.
 
@@ -587,7 +589,7 @@ Status atual:
 - [x] Logout implementado no `layout.js`.
 - [x] `pagamentos.html` implementado.
 - [ ] Tela de empresas ainda não implementada.
-- [x] Tela `comprovante.html` implementada para ultima transferencia.
+- [x] Tela `comprovante.html` implementada para ultima operacao.
 - [ ] Tela de historico de comprovantes ainda não implementada.
 - [ ] Tela de relatórios ainda não implementada.
 - [ ] Tela de investimentos ainda não implementada.
@@ -862,10 +864,11 @@ Legenda:
 - [ ] Tela minha conta precisa ser ajustada.
 - [ ] Tela meus dados precisa ser ajustada.
 - [ ] Tela de empresas.
-- [x] Tela de comprovante da ultima transferencia.
+- [x] Tela de comprovante da ultima operacao.
 - [ ] Tela de historico de comprovantes.
 - [~] Dashboard conectado aos dados principais.
 - [x] Tela de pagamentos.
+- [x] Historico visual de pagamentos em `pagamentos.html`.
 - [ ] Tela de investimentos.
 
 ### 13.3 Funcionalidades Pendentes
@@ -882,6 +885,7 @@ Legenda:
 - [ ] Responsividade completa para celular.
 - [x] Gerar comprovante de pagamento por transferencia, Pix e boleto.
 - [x] Gerar comprovante visual de transferencia.
+- [x] Botao para ver comprovante no historico de pagamentos.
 - [x] Botao para imprimir comprovante.
 - [ ] Botao para baixar comprovante em PDF.
 - [ ] Conta de empresa com CNPJ.

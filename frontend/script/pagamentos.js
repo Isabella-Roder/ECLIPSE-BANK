@@ -108,7 +108,7 @@ async function carregarPagamentos() {
         const botaoComprovante = item.querySelector(".botao-comprovante");
 
         botaoComprovante.addEventListener("click", () => {
-            const comprovate = {
+            const comprovante = {
                 valor: pagamento.valor,
                 contaOrigem: pagamento.conta.numero,
                 contaDestino: pagamento.destino,
@@ -121,7 +121,7 @@ async function carregarPagamentos() {
                 codigoAutenticacao: pagamento.codigoAutenticacao
             };
 
-            localStorage.setItem("ultimoComprovante", JSON.stringify(comprovate));
+            localStorage.setItem("ultimoComprovante", JSON.stringify(comprovante));
             window.location.href = "comprovante.html";
         });
     }); 

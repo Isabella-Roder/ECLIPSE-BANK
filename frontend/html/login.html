@@ -8,7 +8,7 @@
 </head>
 <body>
     <main class="auth-page">
-        <section class="auth-card">
+        <section class="auth-card" id="auth-card">
             <div class="brand auth-brand">
                 <span class="brand-mark"></span>
                 <div>
@@ -33,10 +33,49 @@
                 <button type="submit">Entrar</button>
             </form>
 
+            <form id="form-abertura-conta" class="form-card form-cadastro-conta">
+                <label for="cadastroNome">Nome</label>
+                <input type="text" id="cadastroNome" required>
+
+                <label for="cadastroNomeSocial">Nome social</label>
+                <input type="text" id="cadastroNomeSocial">
+
+                <label for="cadastroCpf">CPF</label>
+                <input type="text" id="cadastroCpf" required>
+
+                <label for="cadastroTelefone">Telefone</label>
+                <input type="text" id="cadastroTelefone" required>
+
+                <label for="cadastroEmail">Email</label>
+                <input type="email" id="cadastroEmail" required>
+
+                <label for="cadastroSenha">Senha</label>
+                <input type="password" id="cadastroSenha" required>
+
+                <label for="cadastroDataNascimento">Data de nascimento</label>
+                <input type="date" id="cadastroDataNascimento" required>
+
+                <label for="cadastroTipoChavePix">Tipo da chave Pix</label>
+                <select id="cadastroTipoChavePix" required>
+                    <option value="EMAIL">Email</option>
+                    <option value="CPF">CPF</option>
+                    <option value="TELEFONE">Telefone</option>
+                </select>
+
+                <label for="cadastroLimite">Limite inicial</label>
+                <input type="text" id="cadastroLimite" placeholder="R$ 0,00" required>
+
+                <button type="submit">Abrir conta</button>
+
+                <button type="button" class="auth-link" id="mostrar-login">
+                    Já tenho conta
+                </button>
+            </form>
+
             <p id="mensagem-login" class="form-message"></p>
 
             <div class="auth-footer">
-                <a href="usuarios.html">Criar novo usuario</a>
+                <button type="button" class="auth-link" id="mostrar-cadastro">Criar conta</button>
                 <a href="index.html">Voltar ao dashboard</a>
             </div>
         </section>

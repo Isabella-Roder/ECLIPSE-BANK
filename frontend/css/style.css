@@ -368,7 +368,7 @@ body::before {
 
 .item-pagamento {
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(150px, 0.8fr) minmax(110px, auto);
+    grid-template-columns: minmax(0, 1.4fr) minmax(110px, auto) minmax(150px, 0.8fr) 140px;
     align-items: center;
     gap: 16px;
     padding: 14px 16px;
@@ -416,6 +416,13 @@ body::before {
     font-weight: 700;
     border-radius: 999px;
     background: linear-gradient(135deg, var(--gold-strong), var(--gold));
+}
+
+.botao-comprovante {
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 13px;
+    white-space: nowrap;
 }
 
 .comprovante {
@@ -660,6 +667,10 @@ tr:hover td {
         width: max-content;
     }
 
+    .botao-comprovante {
+        width: max-content;
+    }
+
     .auth-card {
         padding: 24px;
     }
@@ -717,4 +728,16 @@ tr:hover td {
     .comprovante-codigo strong {
         color: #8a5a12;
     }
+}
+
+.form-cadastro-conta {
+    display: none;
+}
+
+.auth-card.modo-cadastro #form-login {
+    display: none;
+}
+
+.auth-card.modo-cadastro .form-cadastro-conta {
+    display: grid;
 }

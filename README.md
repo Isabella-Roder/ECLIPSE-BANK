@@ -48,6 +48,8 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Entidade, repository, service e controller de pagamentos.
 - Rota `POST /pagamentos`.
 - Pagamentos por transferencia, Pix e boleto salvos no banco.
+- Historico visual de pagamentos em `pagamentos.html`.
+- Botao para ver comprovante pelo historico de pagamentos.
 - Validacao de saldo para saque e transferencia.
 - Registro automatico de deposito, saque, transferencia, Pix e boleto no extrato.
 - Data e horario nas movimentacoes do extrato.
@@ -74,6 +76,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Transferencia por numero da conta pelo HTML.
 - Tela de pagamentos.
 - Pagamentos por transferencia, Pix e boleto pelo HTML.
+- Historico visual de pagamentos pelo HTML.
 - Tela de extrato.
 - Consulta de extrato por conta pelo HTML.
 - Tela `minha-conta`.
@@ -88,6 +91,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Telas `dados`, `minha-conta`, `extrato` e `transferencias` usando o usuario logado parcialmente.
 - Mascaras de CPF, telefone e dinheiro/valor.
 - Tela de comprovante da ultima operacao.
+- Comprovante acessivel pelo historico visual de pagamentos.
 - Botao para imprimir comprovante.
 
 ## Telas Atuais

@@ -27,8 +27,9 @@ if (!comprovante) {
     contaOrigem.textContent = comprovante.contaOrigem;
     contaDestino.textContent = comprovante.contaDestino;
     metodo.textContent = comprovante.metodo;
-    tituloComprovante.textContent = comprovante.metodo === "Pix"
-        ? "Pix realizado"
+    tituloComprovante.textContent = 
+        comprovante.metodo === "Pix" ? "Pix realizado" :
+        comprovante.metodo === "Pagamento de boleto" ? "Boleto pago"
         : "Transferencia realizada";
     statusComprovante.textContent = comprovante.status;
     codigoComprovante.textContent = comprovante.codigoAutenticacao || gerarCodigoAutenticacao(comprovante);
