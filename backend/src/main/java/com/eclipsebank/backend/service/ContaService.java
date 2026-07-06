@@ -60,12 +60,29 @@ public class ContaService {
         return contaRepository.findAll();
     }
 
+    private Integer gerarNumeroConta() {
+        Integer numero;
+
+        do {
+            numero = (int) (100000 + Math.random() * 900000);
+        } while (contaRepository.existsByNumero(numero));
+
+        return numero;
+    }
+
     public Conta cadastrar(Conta conta) {
+        if (conta.getNumero() == null) {
+            conta.setNumero(gerarNumeroConta());
+        }
+
         validarConta(conta);
         return contaRepository.save(conta);
     }
 
     public Conta cadastrarParaUsuario(Long usuarioId, Conta conta) {
+        if (conta.getNumero() == null) {
+            conta.setNumero(gerarNumeroConta());
+        } 
         validarConta(conta);
 
         if (contaRepository.existsByUsuarioId(usuarioId)) {

@@ -180,6 +180,51 @@ body::before {
     font-size: 13px;
 }
 
+.auth-forms {
+    position: relative;
+    display: grid;
+}
+
+.auth-card {
+    overflow: visible;
+    transition: width 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+}
+
+.auth-card.modo-cadastro {
+    width: min(560px, 100%);
+    border-color: rgba(168, 85, 247, 0.28);
+    box-shadow: 0 30px 100px rgba(168, 85, 247, 0.14), 0 28px 90px rgba(0, 0, 0, 0.44);
+}
+
+.auth-forms .form-card {
+    align-content: start;
+    animation: trocarFormulario 0.28s ease;
+}
+
+.form-cadastro-conta {
+    display: none;
+}
+
+.auth-card.modo-cadastro #form-login {
+    display: none;
+}
+
+.auth-card.modo-cadastro .form-cadastro-conta {
+    display: grid;
+}
+
+@keyframes trocarFormulario {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .form-message {
     min-height: 22px;
     margin-top: 14px;
@@ -728,16 +773,4 @@ tr:hover td {
     .comprovante-codigo strong {
         color: #8a5a12;
     }
-}
-
-.form-cadastro-conta {
-    display: none;
-}
-
-.auth-card.modo-cadastro #form-login {
-    display: none;
-}
-
-.auth-card.modo-cadastro .form-cadastro-conta {
-    display: grid;
 }

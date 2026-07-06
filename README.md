@@ -37,6 +37,8 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Busca de conta pelo usuario logado.
 - Conta vinculada a usuario.
 - Saldo, limite, numero da conta e chave Pix.
+- Numero da conta gerado automaticamente pelo backend.
+- Chave Pix aleatoria na abertura de conta.
 - Validacao para usuario ter apenas uma conta.
 - Validacao de numero de conta unico.
 - Validacao de chave Pix unica.
@@ -86,6 +88,10 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Tela de login.
 - Login pelo HTML usando a rota `/login`.
 - Tratamento de erro no login pelo frontend.
+- Criacao de usuario e conta pela tela de login.
+- Confirmacao de senha na abertura de conta.
+- Botao mostrar/ocultar senha.
+- Email preenchido automaticamente no login apos criar conta.
 - Usuario logado salvo no `localStorage`.
 - Logout pelo menu lateral.
 - Telas `dados`, `minha-conta`, `extrato` e `transferencias` usando o usuario logado parcialmente.
@@ -110,7 +116,6 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 ## Funcionalidades Planejadas
 
 - Pix por telefone.
-- Geracao de chave Pix aleatoria.
 - Telefone como chave Pix.
 - Mascara de data.
 - Historico de comprovantes.

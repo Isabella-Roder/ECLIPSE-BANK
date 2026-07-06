@@ -45,6 +45,9 @@ Status atual:
 - [x] Login simples com email e senha implementado.
 - [x] Tela de login implementada.
 - [x] Logout pelo menu lateral implementado.
+- [x] Confirmacao de senha na criacao de conta implementada.
+- [x] Botao mostrar/ocultar senha implementado.
+- [x] Criacao de usuario e conta pela tela de login implementada.
 - [ ] Login com conta Google ainda não implementado.
 - [~] Proteção de telas usando usuário logado implementada parcialmente.
 
@@ -169,8 +172,9 @@ Status atual:
 - [~] Limite da conta implementado parcialmente.
 - [x] Busca por chave Pix implementada para Pix.
 - [ ] Pix por telefone ainda não implementado.
-- [ ] Chave Pix aleatoria ainda não implementada.
-- [ ] Botao para gerar chave Pix aleatoria ainda não implementado.
+- [x] Chave Pix aleatoria implementada.
+- [x] Opcao para gerar chave Pix aleatoria na criacao da conta implementada.
+- [x] Numero da conta gerado automaticamente pelo backend.
 - [x] Pagamento de boleto ficticio implementado.
 
 Funcionalidades:
@@ -783,14 +787,14 @@ Legenda:
 - [ ] Conta empresa ainda nao implementada.
 - [x] Mascara de CPF implementada no cadastro de usuario.
 - [x] Mascara de telefone implementada no cadastro de usuario.
-- [ ] Confirmacao de senha ainda nao implementada.
-- [ ] Botao mostrar/ocultar senha ainda nao implementado.
+- [x] Confirmacao de senha implementada.
+- [x] Botao mostrar/ocultar senha implementado.
 - [x] Cadastro de contas para usuarios.
 - [x] Listagem de contas.
 - [x] Saldo, limite, numero e chave Pix na conta.
 - [ ] Telefone como chave Pix ainda nao implementado.
-- [ ] Geracao de chave Pix aleatoria ainda nao implementada.
-- [ ] Numero da conta automatico ainda nao implementado.
+- [x] Geracao de chave Pix aleatoria implementada.
+- [x] Numero da conta automatico implementado no backend.
 - [x] Validacao de usuario com apenas uma conta.
 - [x] Validacao de numero de conta unico.
 - [x] Validacao de chave Pix unica.
@@ -842,6 +846,10 @@ Legenda:
 - [x] Tela de login.
 - [x] Login pelo HTML.
 - [x] Login com tratamento de erro no frontend.
+- [x] Criacao de usuario e conta pela tela de login.
+- [x] Confirmacao de senha na abertura de conta.
+- [x] Botao mostrar/ocultar senha.
+- [x] Email preenchido automaticamente no login apos criar conta.
 - [x] Usuario logado salvo no `localStorage`.
 - [x] Logout pelo menu lateral.
 - [x] Tela de dados usando usuario logado.
@@ -858,7 +866,7 @@ Legenda:
 - [ ] Menu mobile ainda nao implementado.
 - [ ] Leitura por camera de QR Code ainda nao implementada.
 - [ ] Leitura por camera de codigo de barras ainda nao implementada.
-- [ ] Botao mostrar/ocultar senha.
+- [x] Botao mostrar/ocultar senha.
 - [ ] Sidebar ainda precisa ser aprimorada visualmente.
 - [ ] Resumo da conta no canto direito superior ainda nao implementado.
 - [ ] Tela minha conta precisa ser ajustada.
@@ -895,10 +903,10 @@ Legenda:
 - [ ] Arrumar tela meus dados.
 - [x] Pix por chave Pix.
 - [ ] Pix por telefone.
-- [ ] Gerar chave Pix aleatoria.
+- [x] Gerar chave Pix aleatoria.
 - [x] Adicionar telefone no cadastro.
-- [ ] Aprimorar criacao de usuario.
-- [ ] Aprimorar criacao de conta.
+- [~] Aprimorar criacao de usuario.
+- [~] Aprimorar criacao de conta.
 - [ ] Melhorar estilo visual geral.
 - [ ] Melhorar sidebar.
 - [ ] Mostrar resumo da conta no canto direito superior.

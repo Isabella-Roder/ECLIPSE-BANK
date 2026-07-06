@@ -3,6 +3,8 @@ const API_URL = "http://localhost:8080";
 const formLogin = document.getElementById("form-login");
 const emailInput = document.getElementById("email");
 const senhaInput = document.getElementById("senha");
+const inputConfirmarSenha = document.getElementById("cadastroConfirmarSenha");
+const botaoMostrarSenhas = document.getElementById("mostrar-senhas");
 const mensagemLogin = document.getElementById("mensagem-login");
 
 if (localStorage.getItem("usuarioLogado")) {
@@ -48,6 +50,8 @@ formLogin.addEventListener("submit", async function (event) {
 })
 
 const authCard = document.getElementById("auth-card");
+const authTitulo = document.querySelector(".auth-header h1");
+const authDescricao = document.querySelector(".auth-header p:not(.eyebrow)");
 const botaoMostrarCadastro = document.getElementById("mostrar-cadastro");
 const botaoMostrarLogin = document.getElementById("mostrar-login");
 const formAberturaConta = document.getElementById("form-abertura-conta");
@@ -55,13 +59,23 @@ const inputCadastroCpf = document.getElementById("cadastroCpf");
 const inputCadastroTelefone = document.getElementById("cadastroTelefone");
 const inputCadastroLimite = document.getElementById("cadastroLimite");
 
-botaoMostrarCadastro.addEventListener("click", () => {
+function mostrarCadastro() {
     authCard.classList.add("modo-cadastro");
-});
+    authTitulo.textContent = "Abrir conta";
+    authDescricao.textContent = "Preencha seus dados para criar seu acesso e sua conta.";
+    mensagemLogin.textContent = "";
+}
 
-botaoMostrarLogin.addEventListener("click", () => {
+function mostrarLogin() {
     authCard.classList.remove("modo-cadastro");
-});
+    authTitulo.textContent = "Entrar na conta";
+    authDescricao.textContent = "Informe seus dados para acessar o Eclipse Bank.";
+    mensagemLogin.textContent = "";
+}
+
+botaoMostrarCadastro.addEventListener("click", mostrarCadastro);
+
+botaoMostrarLogin.addEventListener("click", mostrarLogin);
 
 function converterDinheiroParaNumero(valor) {
     valor = valor.replace(/\D/g, "");
@@ -113,6 +127,11 @@ inputCadastroLimite.addEventListener("input", () => {
 formAberturaConta.addEventListener("submit", async (evento) => {
     evento.preventDefault();
 
+    if (document.getElementById("cadastroSenha").value !== inputConfirmarSenha.value) {
+        mensagemLogin.textContent = "As senhas não podem ser diferentes";
+        return;
+    }
+
     const usuario = {
         nome: document.getElementById("cadastroNome").value,
         nomeSocial: document.getElementById("cadastroNomeSocial").value,
@@ -149,11 +168,12 @@ formAberturaConta.addEventListener("submit", async (evento) => {
         chavePix = usuario.cpf;
     } else if (tipoChavePix === "TELEFONE") {
         chavePix = usuario.telefone;
+    } else if (tipoChavePix === "ALEATORIA") {
+        chavePix = crypto.randomUUID();
     }
 
     const conta = {
         titular: usuario.nomeSocial || usuario.nome,
-        numero: Math.floor(100000 + Math.random() * 900000),
         chavePix: chavePix,
         tipoChavePix: tipoChavePix,
         limite: converterDinheiroParaNumero(document.getElementById("cadastroLimite").value)
@@ -173,7 +193,27 @@ formAberturaConta.addEventListener("submit", async (evento) => {
         return;
     }
 
-    mensagemLogin.textContent = "Conta criada com sucesso. Agora faça login.";
+    const contaCriada = await respostaConta.json();
+
     formAberturaConta.reset();
-    authCard.classList.remove("modo-cadastro");
+    mostrarLogin();
+
+    emailInput.value = usuario.email;
+    senhaInput.value = "";
+
+    mensagemLogin.textContent = `Conta criada com sucesso. Numero da conta: ${contaCriada.numero}. Agora faça login.`;
+});
+
+botaoMostrarSenhas.addEventListener("click", () => {
+    const inputSenha = document.getElementById("cadastroSenha");
+
+    if (inputSenha.type === "password") {
+        inputSenha.type = "text";
+        inputConfirmarSenha.type = "text";
+        botaoMostrarSenhas.textContent = "Ocultar senhas";
+    } else {
+        inputSenha.type = "password";
+        inputConfirmarSenha.type = "password";
+        botaoMostrarSenhas.textContent = "Mostrar senhas";
+    }
 });

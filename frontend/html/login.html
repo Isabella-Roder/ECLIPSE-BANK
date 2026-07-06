@@ -23,6 +23,7 @@
                 <p>Informe seus dados para acessar o Eclipse Bank.</p>
             </div>
 
+            <div class="auth-forms">
             <form id="form-login" class="form-card">
                 <label for="email">Email</label>
                 <input type="email" id="email" placeholder="seuemail@email.com" required>
@@ -52,6 +53,11 @@
                 <label for="cadastroSenha">Senha</label>
                 <input type="password" id="cadastroSenha" required>
 
+                <label for="cadastroConfirmarSenha">Confirma senha</label>
+                <input type="password" id="cadastroConfirmarSenha" required>
+
+                <button type="button" id="mostrar-senhas">Mostrar senhas</button>
+
                 <label for="cadastroDataNascimento">Data de nascimento</label>
                 <input type="date" id="cadastroDataNascimento" required>
 
@@ -60,6 +66,7 @@
                     <option value="EMAIL">Email</option>
                     <option value="CPF">CPF</option>
                     <option value="TELEFONE">Telefone</option>
+                    <option value="ALEATORIA">Chave aleatória</option>
                 </select>
 
                 <label for="cadastroLimite">Limite inicial</label>
@@ -71,6 +78,8 @@
                     Já tenho conta
                 </button>
             </form>
+
+            </div>
 
             <p id="mensagem-login" class="form-message"></p>
 
