@@ -84,6 +84,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Tela de extrato.
 - Consulta de extrato por conta pelo HTML.
 - Filtros do extrato por tipo, categoria e periodo no frontend.
+- Extrato com destaque visual de entradas, saidas e tipo de movimentacao.
 - Tela `minha-conta`.
 - Consulta de dados da conta pelo HTML.
 - Tela `dados`.
@@ -101,6 +102,8 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Mascaras de CPF, telefone e dinheiro/valor.
 - Tela de comprovante da ultima operacao.
 - Comprovante acessivel pelo historico visual de pagamentos.
+- Comprovante com pagador e destino dinamico conforme o metodo.
+- Metodo do comprovante exibido como selo visual.
 - Botao para imprimir comprovante.
 
 ## Telas Atuais

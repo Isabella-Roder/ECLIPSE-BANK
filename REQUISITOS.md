@@ -219,6 +219,8 @@ Status atual:
 - [~] Filtro por mes implementado indiretamente por periodo.
 - [x] Filtro por categoria no extrato da conta implementado no frontend.
 - [x] Filtro por tipo implementado no frontend.
+- [x] Destaque visual de entrada e saida no extrato implementado.
+- [x] Selo visual para tipo de movimentacao no extrato implementado.
 
 Requisitos:
 
@@ -689,6 +691,9 @@ Requisitos:
 - Exibir comprovante apos pagamento aprovado.
 - Mostrar valor, data, horario, conta origem e conta destino.
 - Mostrar metodo usado: transferencia, Pix ou boleto.
+- Mostrar pagador no comprovante.
+- Ajustar o nome do destino conforme o metodo: conta destino, chave Pix ou codigo de boleto.
+- Exibir metodo como selo visual.
 - Permitir imprimir comprovante.
 - Permitir baixar comprovante em PDF futuramente.
 - Permitir consultar historico de comprovantes futuramente.
@@ -839,6 +844,8 @@ Legenda:
 - [x] Saque pelo HTML.
 - [x] Tela de extrato.
 - [x] Consulta de extrato por conta pelo HTML.
+- [x] Filtros do extrato pelo HTML.
+- [x] Extrato com destaque visual de entrada, saida e tipo.
 - [x] Tela de transferencias.
 - [x] Transferencia entre contas pelo HTML.
 - [x] Tela minha conta.
@@ -875,6 +882,9 @@ Legenda:
 - [ ] Tela meus dados precisa ser ajustada.
 - [ ] Tela de empresas.
 - [x] Tela de comprovante da ultima operacao.
+- [x] Comprovante exibindo pagador.
+- [x] Comprovante com destino dinamico por metodo.
+- [x] Metodo do comprovante exibido como selo visual.
 - [ ] Tela de historico de comprovantes.
 - [~] Dashboard conectado aos dados principais.
 - [x] Tela de pagamentos.
@@ -895,6 +905,7 @@ Legenda:
 - [ ] Responsividade completa para celular.
 - [x] Gerar comprovante de pagamento por transferencia, Pix e boleto.
 - [x] Gerar comprovante visual de transferencia.
+- [x] Comprovante com pagador e destino dinamico.
 - [x] Botao para ver comprovante no historico de pagamentos.
 - [x] Botao para imprimir comprovante.
 - [ ] Botao para baixar comprovante em PDF.
