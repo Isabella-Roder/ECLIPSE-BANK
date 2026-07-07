@@ -2,8 +2,14 @@ const API_URL = "http://localhost:8080";
 
 const mensagemExtrato = document.getElementById("mensagem-extrato");
 const tabelaExtrato = document.getElementById("tabela-extrato");
+const filtroTipo = document.getElementById("filtro-tipo");
+const filtroCategoria = document.getElementById("filtro-categoria");
+const filtroDataInicio = document.getElementById("filtro-data-inicio");
+const filtroDataFim = document.getElementById("filtro-data-fim");
+const botaoLimparFiltros = document.getElementById("limpar-filtros");
 
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+let transacoesExtrato = [];
 
 if (!usuarioLogado) {
     window.location.href = "login.html";
@@ -20,42 +26,68 @@ function formatarDataHora(dataHora) {
     if (!dataHora) {
         return "-";
     }
+
     return new Date(dataHora).toLocaleString("pt-BR");
 }
 
-async function carregarContaUsuario() {
-    const resposta = await fetch(`${API_URL}/usuarios/${usuarioLogado.id}/conta`);
-
-    if (!resposta.ok) {
-        mensagemExtrato.textContent = "Conta não encontrada para esse usuario.";
-        return;
+function pegarData(dataHora) {
+    if (!dataHora) {
+        return "";
     }
 
-    const conta = await resposta.json();
-
-    carregarExtrato(conta.id);
+    return dataHora.split("T")[0];
 }
 
-async function carregarExtrato(contaId) {
-    const resposta = await fetch(`${API_URL}/contas/${contaId}/transacoes`);
+function preencherFiltro(select, valores, textoPadrao) {
+    select.innerHTML = `<option value="">${textoPadrao}</option>`;
 
-    if (!resposta.ok) {
-        mensagemExtrato.textContent = "Erro ao buscar extrato.";
-        return;
-    }
+    valores.forEach((valor) => {
+        const option = document.createElement("option");
+        option.value = valor;
+        option.textContent = valor;
+        select.appendChild(option);
+    });
+}
 
-    const extratos = await resposta.json();
+function preencherFiltros(transacoes) {
+    const tipos = [...new Set(transacoes.map((transacao) => transacao.tipo).filter(Boolean))];
+    const categorias = [...new Set(transacoes.map((transacao) => transacao.categoria).filter(Boolean))];
+
+    preencherFiltro(filtroTipo, tipos, "Todos os tipos");
+    preencherFiltro(filtroCategoria, categorias, "Todas as categorias");
+}
+
+function filtrarExtrato() {
+    return transacoesExtrato.filter((transacao) => {
+        const dataTransacao = pegarData(transacao.dataHora);
+
+        const tipoConfere = !filtroTipo.value || transacao.tipo === filtroTipo.value;
+        const categoriaConfere = !filtroCategoria.value || transacao.categoria === filtroCategoria.value;
+        const inicioConfere = !filtroDataInicio.value || dataTransacao >= filtroDataInicio.value;
+        const fimConfere = !filtroDataFim.value || dataTransacao <= filtroDataFim.value;
+
+        return tipoConfere && categoriaConfere && inicioConfere && fimConfere;
+    });
+}
+
+function renderizarExtrato() {
+    const transacoesFiltradas = filtrarExtrato();
 
     tabelaExtrato.innerHTML = "";
 
-    if (extratos.length === 0) {
-        mensagemExtrato.textContent = "Essa conta ainda não tem extrato.";
+    if (transacoesExtrato.length === 0) {
+        mensagemExtrato.textContent = "Essa conta ainda nao tem extrato.";
         return;
     }
 
-    mensagemExtrato.textContent = "";
+    if (transacoesFiltradas.length === 0) {
+        mensagemExtrato.textContent = "Nenhuma transacao encontrada com esses filtros.";
+        return;
+    }
 
-    extratos.forEach((extrato) => {
+    mensagemExtrato.textContent = `${transacoesFiltradas.length} movimentacao(oes) encontrada(s).`;
+
+    transacoesFiltradas.forEach((extrato) => {
         const linha = document.createElement("tr");
 
         linha.innerHTML = `
@@ -68,5 +100,43 @@ async function carregarExtrato(contaId) {
         tabelaExtrato.appendChild(linha);
     });
 }
+
+async function carregarContaUsuario() {
+    const resposta = await fetch(`${API_URL}/usuarios/${usuarioLogado.id}/conta`);
+
+    if (!resposta.ok) {
+        mensagemExtrato.textContent = "Conta nao encontrada para esse usuario.";
+        return;
+    }
+
+    const conta = await resposta.json();
+    carregarExtrato(conta.id);
+}
+
+async function carregarExtrato(contaId) {
+    const resposta = await fetch(`${API_URL}/contas/${contaId}/transacoes`);
+
+    if (!resposta.ok) {
+        mensagemExtrato.textContent = "Erro ao buscar extrato.";
+        return;
+    }
+
+    transacoesExtrato = await resposta.json();
+    preencherFiltros(transacoesExtrato);
+    renderizarExtrato();
+}
+
+filtroTipo.addEventListener("change", renderizarExtrato);
+filtroCategoria.addEventListener("change", renderizarExtrato);
+filtroDataInicio.addEventListener("change", renderizarExtrato);
+filtroDataFim.addEventListener("change", renderizarExtrato);
+
+botaoLimparFiltros.addEventListener("click", () => {
+    filtroTipo.value = "";
+    filtroCategoria.value = "";
+    filtroDataInicio.value = "";
+    filtroDataFim.value = "";
+    renderizarExtrato();
+});
 
 carregarContaUsuario();

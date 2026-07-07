@@ -15,7 +15,7 @@
             </div>
         </header>
 
-        <section class="resumo-principal">
+        <section class="resumo-principal cliente-hero">
             <div>
                 <span>Saldo disponivel</span>
                 <strong id="saldo-conta">R$ 0,00</strong>
@@ -25,12 +25,12 @@
             <div class="resumo-acoes">
                 <a href="transferencias.html">Transferir</a>
                 <a href="extrato.html">Ver extrato</a>
-                <a href="#">Pagamentos</a>
+                <a href="pagamentos.html">Pagamentos</a>
             </div>
         </section>
 
-        <section class="cards">
-            <div class="card">
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
                 <span>Titular</span>
                 <strong id="titular-conta">-</strong>
             </div>
@@ -44,10 +44,22 @@
                 <span>Numero</span>
                 <strong id="numero-conta">-</strong>
             </div>
+
+            <div class="card">
+                <span>Status</span>
+                <strong>Ativa</strong>
+            </div>
         </section>
 
         <section class="painel info-bloco">
-            <h3>Dados bancarios</h3>
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Dados bancarios</h3>
+                    <p>Informacoes principais da sua conta Eclipse Bank.</p>
+                </div>
+
+                <span class="selo-status">Conta pessoal</span>
+            </div>
 
             <div class="info-grid">
                 <div>
@@ -56,8 +68,8 @@
                 </div>
 
                 <div>
-                    <span>Usuario</span>
-                    <strong id="usuario-conta">-</strong>
+                    <span>Tipo da chave Pix</span>
+                    <strong id="tipo-chave-pix">-</strong>
                 </div>
 
                 <div>
@@ -66,9 +78,25 @@
                 </div>
 
                 <div>
-                    <span>Tipo de conta</span>
-                    <strong>Conta pessoal</strong>
+                    <span>Usuario</span>
+                    <strong id="usuario-conta">-</strong>
                 </div>
+            </div>
+        </section>
+
+        <section class="painel atalhos-cliente">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Acoes rapidas</h3>
+                    <p>Atalhos para as operacoes mais usadas.</p>
+                </div>
+            </div>
+
+            <div class="grade-atalhos">
+                <a href="transferencias.html">Nova transferencia</a>
+                <a href="pagamentos.html">Pagar boleto ou Pix</a>
+                <a href="extrato.html">Consultar extrato</a>
+                <a href="comprovante.html">Ultimo comprovante</a>
             </div>
         </section>
     </main>

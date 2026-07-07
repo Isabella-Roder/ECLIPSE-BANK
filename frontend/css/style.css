@@ -231,6 +231,13 @@ body::before {
     color: var(--gold-strong);
 }
 
+.ajuda-campo-pagamento {
+    align-self: center;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
 .auth-footer {
     display: flex;
     justify-content: space-between;
@@ -386,6 +393,73 @@ body::before {
     font-size: 15px;
     font-weight: 600;
     overflow-wrap: anywhere;
+}
+
+.cliente-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.cliente-hero::after {
+    content: "";
+    position: absolute;
+    right: -70px;
+    top: -90px;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    border: 1px solid rgba(247, 199, 120, 0.42);
+    box-shadow: -14px 0 34px rgba(247, 199, 120, 0.22);
+    pointer-events: none;
+}
+
+.cliente-hero > div {
+    position: relative;
+    z-index: 1;
+}
+
+.cards-cliente {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.card-destaque {
+    border-color: rgba(241, 179, 93, 0.2);
+    background:
+        linear-gradient(145deg, rgba(31, 28, 43, 0.98), rgba(18, 20, 33, 0.88)),
+        radial-gradient(circle at 100% 0%, rgba(241, 179, 93, 0.12), transparent 13rem);
+}
+
+.atalhos-cliente .cabecalho-painel {
+    margin-bottom: 16px;
+}
+
+.grade-atalhos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.grade-atalhos a {
+    min-height: 70px;
+    padding: 16px;
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.035);
+    transition: 0.2s ease;
+}
+
+.grade-atalhos a:hover {
+    color: var(--gold-strong);
+    border-color: rgba(241, 179, 93, 0.28);
+    background: rgba(241, 179, 93, 0.08);
+    transform: translateY(-2px);
+}
+
+.form-filtros-extrato {
+    grid-template-columns: 1fr 1fr 150px 150px 140px;
+    align-items: end;
 }
 
 .cabecalho-painel {
@@ -673,7 +747,9 @@ tr:hover td {
     .cards,
     form,
     .info-grid,
-    .resumo-acoes {
+    .resumo-acoes,
+    .grade-atalhos,
+    .form-filtros-extrato {
         grid-template-columns: 1fr;
     }
 

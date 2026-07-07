@@ -22,6 +22,31 @@
         </section>
 
         <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Filtros</h3>
+                    <p>Refine as movimentacoes por tipo, categoria ou periodo.</p>
+                </div>
+            </div>
+
+            <form class="form-filtros-extrato" id="form-filtros-extrato">
+                <select id="filtro-tipo">
+                    <option value="">Todos os tipos</option>
+                </select>
+
+                <select id="filtro-categoria">
+                    <option value="">Todas as categorias</option>
+                </select>
+
+                <input type="date" id="filtro-data-inicio">
+
+                <input type="date" id="filtro-data-fim">
+
+                <button type="button" id="limpar-filtros">Limpar filtros</button>
+            </form>
+        </section>
+
+        <section class="painel">
             <h3>Transacoes da conta</h3>
 
             <table>

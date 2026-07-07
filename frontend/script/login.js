@@ -128,63 +128,45 @@ formAberturaConta.addEventListener("submit", async (evento) => {
     evento.preventDefault();
 
     if (document.getElementById("cadastroSenha").value !== inputConfirmarSenha.value) {
-        mensagemLogin.textContent = "As senhas não podem ser diferentes";
+        mensagemLogin.textContent = "As senhas nao podem ser diferentes";
         return;
     }
-
-    const usuario = {
-        nome: document.getElementById("cadastroNome").value,
-        nomeSocial: document.getElementById("cadastroNomeSocial").value,
-        cpf: document.getElementById("cadastroCpf").value,
-        telefone: document.getElementById("cadastroTelefone").value,
-        email: document.getElementById("cadastroEmail").value,
-        senha: document.getElementById("cadastroSenha").value,
-        dataNascimento: document.getElementById("cadastroDataNascimento").value
-    };
-
-    const resposta = await fetch(`${API_URL}/usuarios`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(usuario)
-    });
-
-    if (!resposta.ok) {
-        const erro = await resposta.json();
-        mensagemLogin.textContent = erro.erro;
-        return;
-    }
-
-    const usuarioConta = await resposta.json();
 
     const tipoChavePix = document.getElementById("cadastroTipoChavePix").value;
 
     let chavePix = "";
 
     if (tipoChavePix === "EMAIL") {
-        chavePix = usuario.email;
+        chavePix = document.getElementById("cadastroEmail").value;
     } else if (tipoChavePix === "CPF") {
-        chavePix = usuario.cpf;
+        chavePix = document.getElementById("cadastroCpf").value;
     } else if (tipoChavePix === "TELEFONE") {
-        chavePix = usuario.telefone;
+        chavePix = document.getElementById("cadastroTelefone").value;
     } else if (tipoChavePix === "ALEATORIA") {
         chavePix = crypto.randomUUID();
     }
 
-    const conta = {
-        titular: usuario.nomeSocial || usuario.nome,
+    const aberturaConta = {
+        nome: document.getElementById("cadastroNome").value,
+        nomeSocial: document.getElementById("cadastroNomeSocial").value,
+        cpf: document.getElementById("cadastroCpf").value,
+        telefone: document.getElementById("cadastroTelefone").value,
+        email: document.getElementById("cadastroEmail").value,
+        senha: document.getElementById("cadastroSenha").value,
+        dataNascimento: document.getElementById("cadastroDataNascimento").value,
+
+        titular: document.getElementById("cadastroNomeSocial").value || document.getElementById("cadastroNome").value,
         chavePix: chavePix,
         tipoChavePix: tipoChavePix,
         limite: converterDinheiroParaNumero(document.getElementById("cadastroLimite").value)
-    };
+    }
 
-    const respostaConta = await fetch(`${API_URL}/contas/usuario/${usuarioConta.id}`, {
+    const respostaConta = await fetch(`${API_URL}/abertura-conta`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(conta)
+        body: JSON.stringify(aberturaConta)
     });
 
     if (!respostaConta.ok) {
@@ -198,7 +180,7 @@ formAberturaConta.addEventListener("submit", async (evento) => {
     formAberturaConta.reset();
     mostrarLogin();
 
-    emailInput.value = usuario.email;
+    emailInput.value = aberturaConta.email;
     senhaInput.value = "";
 
     mensagemLogin.textContent = `Conta criada com sucesso. Numero da conta: ${contaCriada.numero}. Agora faça login.`;

@@ -15,7 +15,7 @@
             </div>
         </header>
 
-        <section class="resumo-principal">
+        <section class="resumo-principal cliente-hero">
             <div>
                 <span>Perfil do cliente</span>
                 <strong id="nome-usuario">-</strong>
@@ -25,7 +25,12 @@
             <div class="selo-conta">Pessoa fisica</div>
         </section>
 
-        <section class="cards">
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Nome completo</span>
+                <strong id="nome-completo">-</strong>
+            </div>
+
             <div class="card">
                 <span>Nome social</span>
                 <strong id="nome-social">-</strong>
@@ -43,7 +48,14 @@
         </section>
 
         <section class="painel info-bloco">
-            <h3>Contato</h3>
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Contato</h3>
+                    <p>Dados usados para identificacao e comunicacao da conta.</p>
+                </div>
+
+                <span class="selo-status">Cadastro ativo</span>
+            </div>
 
             <div class="info-grid">
                 <div>
@@ -62,9 +74,25 @@
                 </div>
 
                 <div>
-                    <span>Cadastro</span>
-                    <strong>Ativo</strong>
+                    <span>Tipo de cliente</span>
+                    <strong>Pessoa fisica</strong>
                 </div>
+            </div>
+        </section>
+
+        <section class="painel atalhos-cliente">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Minha area</h3>
+                    <p>Acesse sua conta, extrato e pagamentos.</p>
+                </div>
+            </div>
+
+            <div class="grade-atalhos">
+                <a href="minha-conta.html">Minha conta</a>
+                <a href="extrato.html">Meu extrato</a>
+                <a href="pagamentos.html">Pagamentos</a>
+                <a href="transferencias.html">Transferencias</a>
             </div>
         </section>
     </main>

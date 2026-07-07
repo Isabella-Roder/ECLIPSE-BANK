@@ -7,6 +7,7 @@ const saldoConta = document.getElementById("saldo-conta");
 const limiteConta = document.getElementById("limite-conta");
 const numeroConta = document.getElementById("numero-conta");
 const chavePix = document.getElementById("chave-pix");
+const tipoChavePix = document.getElementById("tipo-chave-pix");
 const usuarioConta = document.getElementById("usuario-conta");
 const emailConta = document.getElementById("email-conta");
 
@@ -40,6 +41,7 @@ async function carregarMinhaConta(usuarioId) {
     limiteConta.textContent = formatarMoeda(minhaConta.limite || 0);
     numeroConta.textContent = minhaConta.numero;
     chavePix.textContent = minhaConta.chavePix;
+    tipoChavePix.textContent = minhaConta.tipoChavePix || "-";
     usuarioConta.textContent = minhaConta.usuario ? minhaConta.usuario.nome : "-";
     emailConta.textContent = minhaConta.usuario ? minhaConta.usuario.email : "-";
 

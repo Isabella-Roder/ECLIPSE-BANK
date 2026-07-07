@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 import com.eclipsebank.backend.dto.LoginRequest;
 import com.eclipsebank.backend.model.Usuario;
 import com.eclipsebank.backend.repository.UsuarioRepository;
+import com.eclipsebank.backend.model.Conta;
+import com.eclipsebank.backend.dto.AberturaContaRequest;
+import com.eclipsebank.backend.service.ContaService;
 
 @Service
 public class UsuarioService {
     
     private UsuarioRepository usuarioRepository;
+    private ContaService contaService;
 
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
