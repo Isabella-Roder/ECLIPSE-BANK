@@ -5,11 +5,14 @@ const DataHora = document.getElementById("comprovante-data");
 const contaOrigem = document.getElementById("comprovante-origem");
 const contaDestino = document.getElementById("comprovante-destino");
 const metodo = document.getElementById("comprovante-metodo");
+const pagador = document.getElementById("comprovante-pagador");
 const statusComprovante = document.getElementById("comprovante-status");
 const codigoComprovante = document.getElementById("comprovante-codigo");
 const botaoImprimir = document.getElementById("botao-imprimir");
 const mensagemComprovante = document.getElementById("mensagem-comprovante");
 const tituloComprovante = document.getElementById("comprovante-titulo");
+
+const labelDestino = document.getElementById("label-destino-comprovante");
 
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -26,6 +29,7 @@ if (!comprovante) {
     DataHora.textContent = formatarDataHora(comprovante.dataHora);
     contaOrigem.textContent = comprovante.contaOrigem;
     contaDestino.textContent = comprovante.contaDestino;
+    pagador.textContent = comprovante.pagador || "-";
     metodo.textContent = comprovante.metodo;
     tituloComprovante.textContent = 
         comprovante.metodo === "Pix" ? "Pix realizado" :
@@ -33,6 +37,14 @@ if (!comprovante) {
         : "Transferencia realizada";
     statusComprovante.textContent = comprovante.status;
     codigoComprovante.textContent = comprovante.codigoAutenticacao || gerarCodigoAutenticacao(comprovante);
+
+    if (comprovante.metodo === "Pix" || comprovante.metodo === "PIX") {
+        labelDestino.textContent = "Chave Pix destino";
+    } else if (comprovante.metodo === "Pagamento de boleto") {
+        labelDestino.textContent = "Codigo de boleto";
+    } else {
+        labelDestino.textContent = "Conta destino";
+    }
 }
 
 function formatarMoeda(valor) {

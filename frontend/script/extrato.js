@@ -70,6 +70,18 @@ function filtrarExtrato() {
     });
 }
 
+function ehEntrada(tipo) {
+    return tipo === "RECEITA" || tipo === "DEPOSITO";
+}
+
+function classeValor(tipo) {
+    if (ehEntrada(tipo)) {
+        return "valor-entrada";
+    }
+
+    return "valor-saida";
+}
+
 function renderizarExtrato() {
     const transacoesFiltradas = filtrarExtrato();
 
@@ -94,8 +106,8 @@ function renderizarExtrato() {
             <td>${formatarDataHora(extrato.dataHora)}</td>
             <td>${extrato.descricao}</td>
             <td>${extrato.categoria}</td>
-            <td>${extrato.tipo}</td>
-            <td>${formatarMoeda(extrato.valor)}</td>
+            <td><span class="selo-tipo">${extrato.tipo}</span></td>
+            <td class="${classeValor(extrato.tipo)}">${formatarMoeda(extrato.valor)}</td>
         `;
         tabelaExtrato.appendChild(linha);
     });

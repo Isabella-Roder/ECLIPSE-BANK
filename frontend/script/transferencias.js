@@ -78,6 +78,7 @@ formTransferencia.addEventListener("submit", async (evento) => {
         valor: transferencia.valor,
         contaOrigem: contaOrigem.numero,
         contaDestino: transferencia.contaNumeroDestino,
+        pagador: usuarioLogado.nomeSocial || usuarioLogado.nome,
         metodo: "Transferencia",
         dataHora: new Date().toISOString(),
         status: "Concluida",

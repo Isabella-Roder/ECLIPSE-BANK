@@ -32,6 +32,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Telefone no cadastro de usuario.
 - Login simples com email e senha.
 - Logout pelo frontend.
+- Rota unica `/abertura-conta` para criar usuario e conta juntos.
 - Cadastro e listagem de contas.
 - Busca de conta por ID.
 - Busca de conta pelo usuario logado.
@@ -46,6 +47,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Saque em conta.
 - Transferencia entre contas.
 - Transferencia por numero da conta.
+- Pix por chave Pix e telefone.
 - Modulo de pagamentos implementado com transferencia, Pix e boleto ficticio.
 - Entidade, repository, service e controller de pagamentos.
 - Rota `POST /pagamentos`.
@@ -81,6 +83,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Historico visual de pagamentos pelo HTML.
 - Tela de extrato.
 - Consulta de extrato por conta pelo HTML.
+- Filtros do extrato por tipo, categoria e periodo no frontend.
 - Tela `minha-conta`.
 - Consulta de dados da conta pelo HTML.
 - Tela `dados`.
@@ -115,8 +118,6 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 
 ## Funcionalidades Planejadas
 
-- Pix por telefone.
-- Telefone como chave Pix.
 - Mascara de data.
 - Historico de comprovantes.
 - Download de comprovante em PDF.
@@ -159,7 +160,7 @@ frontend/
 - Investimentos ficticios.
 - Integracao futura com API da B3 para modulo de investimentos.
 - Exportacao de relatorios.
-- Filtros avancados no extrato por data, tipo e categoria.
+- Filtros avancados do extrato no backend.
 
 ## Observacao
 

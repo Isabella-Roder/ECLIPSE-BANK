@@ -48,6 +48,7 @@ Status atual:
 - [x] Confirmacao de senha na criacao de conta implementada.
 - [x] Botao mostrar/ocultar senha implementado.
 - [x] Criacao de usuario e conta pela tela de login implementada.
+- [x] Rota unica `/abertura-conta` implementada para criar usuario e conta juntos.
 - [ ] Login com conta Google ainda não implementado.
 - [~] Proteção de telas usando usuário logado implementada parcialmente.
 
@@ -171,7 +172,7 @@ Status atual:
 - [x] Validação para impedir transferência para a mesma conta implementada.
 - [~] Limite da conta implementado parcialmente.
 - [x] Busca por chave Pix implementada para Pix.
-- [ ] Pix por telefone ainda não implementado.
+- [x] Pix por telefone implementado.
 - [x] Chave Pix aleatoria implementada.
 - [x] Opcao para gerar chave Pix aleatoria na criacao da conta implementada.
 - [x] Numero da conta gerado automaticamente pelo backend.
@@ -214,9 +215,10 @@ Status atual:
 - [x] Registro automático de transferência recebida.
 - [x] Consulta de extrato por conta implementada.
 - [x] Tela `extrato.html` implementada.
-- [ ] Filtro por data ainda não implementado.
-- [ ] Filtro por mês ainda não implementado.
-- [ ] Filtro avançado por categoria no extrato da conta ainda não implementado.
+- [x] Filtro por data implementado no frontend.
+- [~] Filtro por mes implementado indiretamente por periodo.
+- [x] Filtro por categoria no extrato da conta implementado no frontend.
+- [x] Filtro por tipo implementado no frontend.
 
 Requisitos:
 
@@ -303,7 +305,7 @@ Status atual:
 - [x] Tela `pagamentos.html` implementada.
 - [x] Pagamento por transferencia salvo no banco.
 - [x] Pix por chave Pix implementado.
-- [ ] Pix por telefone ainda nao implementado.
+- [x] Pix por telefone implementado.
 - [ ] Pix por QR Code ainda nao implementado.
 - [x] Pagamento de boleto ficticio implementado.
 - [ ] Leitura de codigo de barras pela camera ainda nao implementada.
@@ -792,7 +794,7 @@ Legenda:
 - [x] Cadastro de contas para usuarios.
 - [x] Listagem de contas.
 - [x] Saldo, limite, numero e chave Pix na conta.
-- [ ] Telefone como chave Pix ainda nao implementado.
+- [x] Telefone como chave Pix implementado.
 - [x] Geracao de chave Pix aleatoria implementada.
 - [x] Numero da conta automatico implementado no backend.
 - [x] Validacao de usuario com apenas uma conta.
@@ -902,7 +904,7 @@ Legenda:
 - [ ] Arrumar tela minha conta.
 - [ ] Arrumar tela meus dados.
 - [x] Pix por chave Pix.
-- [ ] Pix por telefone.
+- [x] Pix por telefone.
 - [x] Gerar chave Pix aleatoria.
 - [x] Adicionar telefone no cadastro.
 - [~] Aprimorar criacao de usuario.
@@ -920,4 +922,4 @@ Legenda:
 - [ ] Investimentos ficticios.
 - [ ] Integracao futura com API da B3 para modulo de investimentos.
 - [ ] Exportacao de relatorios.
-- [ ] Filtros avancados no extrato por data, tipo e categoria.
+- [x] Filtros no extrato por data, tipo e categoria implementados no frontend.

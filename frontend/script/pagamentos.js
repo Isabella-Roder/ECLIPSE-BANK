@@ -102,6 +102,7 @@ async function carregarPagamentos() {
                 valor: pagamento.valor,
                 contaOrigem: pagamento.conta.numero,
                 contaDestino: pagamento.destino,
+                pagador: usuarioLogado.nomeSocial || usuarioLogado.nome,
                 metodo:
                     pagamento.metodo === "PIX" ? "Pix" :
                     pagamento.metodo === "BOLETO" ? "Pagamento de boleto" :
@@ -206,6 +207,7 @@ formPagamento.addEventListener("submit", async (evento) => {
             valor: pagamentoSalvo.valor,
             contaOrigem: contaOrigem.numero,
             contaDestino: pagamentoSalvo.destino,
+            pagador: usuarioLogado.nomeSocial || usuarioLogado.nome,
             metodo: 
                 pagamentoSalvo.metodo === "PIX" ? "Pix" :
                 pagamentoSalvo.metodo === "BOLETO" ? "Pagamento de boleto" :
