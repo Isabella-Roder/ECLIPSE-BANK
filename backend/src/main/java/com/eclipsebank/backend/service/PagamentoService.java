@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eclipsebank.backend.dto.PagamentoRequest;
 import com.eclipsebank.backend.dto.TransferenciaPorNumeroRequest;
 import com.eclipsebank.backend.enums.MetodoPagamento;
+import com.eclipsebank.backend.model.Comprovante;
 import com.eclipsebank.backend.model.Conta;
 import com.eclipsebank.backend.model.Pagamento;
 import com.eclipsebank.backend.repository.ContaRepository;
@@ -20,15 +21,29 @@ public class PagamentoService {
     private PagamentoRepository pagamentoRepository;
     private ContaRepository contaRepository;
     private ContaService contaService;
+    private ComprovanteService comprovanteService;
 
-    public PagamentoService(PagamentoRepository pagamentoRepository, ContaRepository contaRepository, ContaService contaService) {
+    public PagamentoService(PagamentoRepository pagamentoRepository, ContaRepository contaRepository, ContaService contaService, ComprovanteService comprovanteService) {
         this.pagamentoRepository = pagamentoRepository;
         this.contaRepository = contaRepository;
         this.contaService = contaService;
+        this.comprovanteService = comprovanteService;
     }
 
     public List<Pagamento> listar() {
         return pagamentoRepository.findAll();
+    }
+
+    private String definirLabelDestino(MetodoPagamento metodo) {
+        if (metodo == MetodoPagamento.PIX) {
+            return "Chave Pix destino";
+        }
+
+        if (metodo == MetodoPagamento.BOLETO) {
+            return "Codigo de boleto";
+        }
+        
+        return "Conta destino";
     }
 
     private Pagamento criarPagamento(PagamentoRequest request, Conta contaOrigem) {
@@ -42,7 +57,24 @@ public class PagamentoService {
             "EB-" + System.currentTimeMillis()
         );
 
-        return pagamentoRepository.save(pagamento);
+        Pagamento pagamentoSalvo = pagamentoRepository.save(pagamento);
+
+        Comprovante comprovante = new Comprovante();
+            comprovante.setMetodo(request.getMetodo().name());
+            comprovante.setPagador(contaOrigem.getTitular());
+            comprovante.setDestino(request.getDestino());
+            comprovante.setLabelDestino(definirLabelDestino(request.getMetodo()));
+            comprovante.setValor(request.getValor());
+            comprovante.setDataHora(pagamentoSalvo.getDataHora());
+            comprovante.setStatus("CONCLUIDO");
+            comprovante.setCodigo(pagamentoSalvo.getCodigoAutenticacao());
+            comprovante.setContaOrigem(contaOrigem);
+
+            comprovanteService.salvar(comprovante);
+
+        
+
+         return pagamentoSalvo;
     }
 
     @Transactional

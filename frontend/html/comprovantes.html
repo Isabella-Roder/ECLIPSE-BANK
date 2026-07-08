@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprovantes - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Histórico</p>
+                <h2>Meus comprovantes</h2>
+            </div>
+        </header>
+
+        <section class="painel">
+            <h3>Comprovantes da conta</h3>
+            <p id="mensagem-comprovantes"></p>
+        </section>
+
+        <section class="painel">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Método</th>
+                        <th>Destino</th>
+                        <th>Status</th>
+                        <th>Valor</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-comprovantes"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/comprovantes.js"></script>
+</body>
+</html>

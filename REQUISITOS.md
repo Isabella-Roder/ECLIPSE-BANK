@@ -316,9 +316,16 @@ Status atual:
 - [ ] Leitura de codigo de barras pela camera ainda nao implementada.
 - [ ] Leitura de QR Code pela camera ainda nao implementada.
 - [x] Historico visual de pagamentos implementado em `pagamentos.html`.
-- [ ] Historico de pagamentos ainda nao implementado como tela propria.
+- [x] Historico real de comprovantes implementado com tela propria `comprovantes.html`.
 - [x] Comprovante de pagamento por transferencia, Pix e boleto implementado.
 - [x] Comprovante de transferencia visual implementado.
+- [x] Entidade `Comprovante` implementada.
+- [x] Repository de comprovantes implementado.
+- [x] Service de comprovantes implementado.
+- [x] Controller de comprovantes implementado.
+- [x] Rota `GET /comprovantes/{id}` implementada.
+- [x] Rota `GET /contas/{contaId}/comprovantes` implementada.
+- [x] Comprovantes de pagamentos salvos no banco.
 - [x] Botao para ver comprovante no historico de pagamentos implementado.
 - [x] Botao de imprimir comprovante implementado.
 - [ ] Download de comprovante em PDF ainda nao implementado.
@@ -601,7 +608,7 @@ Status atual:
 - [x] `pagamentos.html` implementado.
 - [ ] Tela de empresas ainda não implementada.
 - [x] Tela `comprovante.html` implementada para ultima operacao.
-- [ ] Tela de historico de comprovantes ainda não implementada.
+- [x] Tela `comprovantes.html` implementada para historico real de comprovantes.
 - [ ] Tela de relatórios ainda não implementada.
 - [ ] Tela de investimentos ainda não implementada.
 
@@ -699,7 +706,8 @@ Requisitos:
 - Exibir metodo como selo visual.
 - Permitir imprimir comprovante.
 - Permitir baixar comprovante em PDF futuramente.
-- Permitir consultar historico de comprovantes futuramente.
+- Permitir consultar historico de comprovantes.
+- Buscar comprovante individual pelo backend usando ID.
 
 ### 11.7 Empresas
 
@@ -888,10 +896,11 @@ Legenda:
 - [ ] Tela meus dados precisa ser ajustada.
 - [ ] Tela de empresas.
 - [x] Tela de comprovante da ultima operacao.
+- [x] Tela de historico de comprovantes.
 - [x] Comprovante exibindo pagador.
 - [x] Comprovante com destino dinamico por metodo.
 - [x] Metodo do comprovante exibido como selo visual.
-- [ ] Tela de historico de comprovantes.
+- [x] Comprovante individual carregado pelo backend usando ID.
 - [~] Dashboard conectado aos dados principais.
 - [x] Tela de pagamentos.
 - [x] Historico visual de pagamentos em `pagamentos.html`.
@@ -911,6 +920,8 @@ Legenda:
 - [ ] Responsividade completa para celular.
 - [x] Gerar comprovante de pagamento por transferencia, Pix e boleto.
 - [x] Gerar comprovante visual de transferencia.
+- [x] Salvar comprovantes de pagamentos no banco.
+- [x] Historico real de comprovantes por conta.
 - [x] Comprovante com pagador e destino dinamico.
 - [x] Botao para ver comprovante no historico de pagamentos.
 - [x] Botao para imprimir comprovante.

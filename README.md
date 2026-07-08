@@ -53,6 +53,9 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Rota `POST /pagamentos`.
 - Pagamentos por transferencia, Pix e boleto salvos no banco.
 - Historico visual de pagamentos em `pagamentos.html`.
+- Historico real de comprovantes salvo no banco.
+- Entidade, repository, service e controller de comprovantes.
+- Rotas `GET /comprovantes/{id}` e `GET /contas/{contaId}/comprovantes`.
 - Botao para ver comprovante pelo historico de pagamentos.
 - Validacao de saldo para saque e transferencia.
 - Registro automatico de deposito, saque, transferencia, Pix e boleto no extrato.
@@ -83,6 +86,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Tela de pagamentos.
 - Pagamentos por transferencia, Pix e boleto pelo HTML.
 - Historico visual de pagamentos pelo HTML.
+- Tela de historico real de comprovantes.
 - Tela de extrato.
 - Consulta de extrato por conta pelo HTML.
 - Filtros do extrato por tipo, categoria e periodo integrados com o backend.
@@ -103,7 +107,9 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Telas `dados`, `minha-conta`, `extrato` e `transferencias` usando o usuario logado parcialmente.
 - Mascaras de CPF, telefone e dinheiro/valor.
 - Tela de comprovante da ultima operacao.
+- Tela de historico de comprovantes.
 - Comprovante acessivel pelo historico visual de pagamentos.
+- Comprovante individual carregado pelo backend usando ID.
 - Comprovante com pagador e destino dinamico conforme o metodo.
 - Metodo do comprovante exibido como selo visual.
 - Botao para imprimir comprovante.
@@ -115,6 +121,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `contas.html`: cadastro, listagem, deposito e saque de contas.
 - `transferencias.html`: transferencia entre contas.
 - `pagamentos.html`: central de pagamentos.
+- `comprovantes.html`: historico real de comprovantes.
 - `extrato.html`: consulta de extrato por conta.
 - `minha-conta.html`: dados bancarios de uma conta.
 - `dados.html`: dados pessoais de um usuario.
@@ -124,7 +131,6 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 ## Funcionalidades Planejadas
 
 - Mascara de data.
-- Historico de comprovantes.
 - Download de comprovante em PDF.
 - Melhorias visuais na sidebar.
 - Resumo da conta no canto superior direito.
@@ -153,7 +159,6 @@ frontend/
 - Usar o usuario logado para preencher dados automaticamente, sem digitar ID.
 - Resetar banco H2 de desenvolvimento.
 - Melhorar Pix e boleto ficticio.
-- Criar historico de comprovantes.
 - Baixar comprovante em PDF.
 - Login com conta Google futuramente.
 - Separacao real entre cliente e administracao.
@@ -168,4 +173,4 @@ frontend/
 
 ## Observacao
 
-Este projeto ainda esta em desenvolvimento. O login simples, logout, extrato com horario, mascaras principais, pagamentos por transferencia, Pix e boleto, e comprovante visual ja existem. Ainda falta proteger melhor as paginas, separar cliente e administracao, evoluir historico de comprovantes, PDF e relatorios.
+Este projeto ainda esta em desenvolvimento. O login simples, logout, extrato com horario, mascaras principais, pagamentos por transferencia, Pix e boleto, historico real de comprovantes e comprovante visual ja existem. Ainda falta proteger melhor as paginas, separar cliente e administracao, evoluir PDF e relatorios.

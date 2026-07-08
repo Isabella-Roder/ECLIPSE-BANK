@@ -20,32 +20,8 @@ if (!usuarioLogado) {
     window.location.href = "index.html";
 }
 
-const comprovante = JSON.parse(localStorage.getItem("ultimoComprovante"));
-
-if (!comprovante) {
-    mensagemComprovante.textContent = "Nenhum comprovante encontrado.";
-} else {
-    valor.textContent = formatarMoeda(comprovante.valor);
-    DataHora.textContent = formatarDataHora(comprovante.dataHora);
-    contaOrigem.textContent = comprovante.contaOrigem;
-    contaDestino.textContent = comprovante.contaDestino;
-    pagador.textContent = comprovante.pagador || "-";
-    metodo.textContent = comprovante.metodo;
-    tituloComprovante.textContent = 
-        comprovante.metodo === "Pix" ? "Pix realizado" :
-        comprovante.metodo === "Pagamento de boleto" ? "Boleto pago"
-        : "Transferencia realizada";
-    statusComprovante.textContent = comprovante.status;
-    codigoComprovante.textContent = comprovante.codigoAutenticacao || gerarCodigoAutenticacao(comprovante);
-
-    if (comprovante.metodo === "Pix" || comprovante.metodo === "PIX") {
-        labelDestino.textContent = "Chave Pix destino";
-    } else if (comprovante.metodo === "Pagamento de boleto") {
-        labelDestino.textContent = "Codigo de boleto";
-    } else {
-        labelDestino.textContent = "Conta destino";
-    }
-}
+const params = new URLSearchParams(window.location.search);
+const comprovanteId = params.get("id");
 
 function formatarMoeda(valor) {
     return valor.toLocaleString("pt-BR", {
@@ -61,8 +37,60 @@ function formatarDataHora(dataHora) {
     return new Date(dataHora).toLocaleString("pt-BR");
 }
 
+function preencherComprovante(comprovante) {
+    valor.textContent = formatarMoeda(comprovante.valor);
+    DataHora.textContent = formatarDataHora(comprovante.dataHora);
+    contaOrigem.textContent = comprovante.contaOrigem?.numero || comprovante.contaOrigem || "-";
+    contaDestino.textContent = comprovante.destino || comprovante.contaDestino || "-";
+    pagador.textContent = comprovante.pagador || "-";
+    metodo.textContent = comprovante.metodo;
+    statusComprovante.textContent = comprovante.status;
+    codigoComprovante.textContent = comprovante.codigo || comprovante.codigoAutenticacao || gerarCodigoAutenticacao(comprovante);
+
+    if (comprovante.labelDestino) {
+        labelDestino.textContent = comprovante.labelDestino;
+    } else if (comprovante.metodo === "Pix" || comprovante.metodo === "PIX") {
+        labelDestino.textContent = "Chave Pix destino";
+    } else if (comprovante.metodo === "BOLETO" || comprovante.metodo === "Pagamento de boleto") {
+        labelDestino.textContent = "Codigo de boleto";
+    } else {
+        labelDestino.textContent = "Conta destino";
+    }
+
+    tituloComprovante.textContent =
+        comprovante.metodo === "PIX" ? "Pix realizado" :
+        comprovante.metodo === "BOLETO" ? "Boleto pago" :
+        "Transferencia realizada";
+}
+
+async function carregarComprovante() {
+    if (comprovanteId) {
+        const resposta = await fetch(`${API_URL}/comprovantes/${comprovanteId}`);
+
+        if (!resposta.ok) {
+            mensagemComprovante.textContent = "Comprovante não encontrado.";
+            return;
+        }
+
+        const comprovante = await resposta.json();
+        preencherComprovante(comprovante);
+        return;
+    }
+
+    const comprovante = JSON.parse(localStorage.getItem("ultimoComprovante"));
+
+    if (!comprovante) {
+        mensagemComprovante.textContent = "Nenhum comprovante encontrado";
+        return;
+    }
+
+    preencherComprovante(comprovante);
+}
+
 function gerarCodigoAutenticacao(comprovante) {
-    const base = `${comprovante.contaOrigem}-${comprovante.contaDestino}-${comprovante.valor}-${comprovante.dataHora}`;
+    const origem = comprovante.contaOrigem?.numero || comprovante.contaOrigem || "";
+    const destino = comprovante.destino || comprovante.contaDestino || "";
+    const base = `${origem}-${destino}-${comprovante.valor}-${comprovante.dataHora}`;
     let codigo = 0;
 
     for (let i = 0; i < base.length; i++) {
@@ -75,3 +103,5 @@ function gerarCodigoAutenticacao(comprovante) {
 botaoImprimir.addEventListener("click", () => {
     window.print();
 });
+
+carregarComprovante();
