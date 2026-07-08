@@ -239,6 +239,25 @@ Requisitos:
 
 O sistema deve possuir controle de cartão de crédito.
 
+Status atual:
+
+- [x] Entidade `Cartao` implementada.
+- [x] Repository de cartoes implementado.
+- [x] Service de cartoes implementado.
+- [x] Controller de cartoes implementado.
+- [x] Criacao de cartao vinculado a conta implementada.
+- [x] Busca de cartao por conta implementada.
+- [x] Validacao para impedir mais de um cartao por conta implementada.
+- [x] Numero ficticio de cartao gerado automaticamente.
+- [x] Entidade `CompraCartao` implementada.
+- [x] Repository de compras no cartao implementado.
+- [x] Service de compras no cartao implementado.
+- [x] Controller de compras no cartao implementado.
+- [x] Compra no cartao com validacao de limite implementada.
+- [x] Limite disponivel diminui apos compra aprovada.
+- [ ] Controle de fatura ainda nao implementado.
+- [ ] Pagamento de fatura ainda nao implementado.
+
 Funcionalidades:
 
 - Cartão de crédito.
@@ -550,6 +569,8 @@ Status atual:
 - [~] Telas de cliente começaram a ser separadas.
 - [x] Tela `dados.html` criada para dados pessoais.
 - [x] Tela `minha-conta.html` criada para dados da conta.
+- [x] `minha-conta.html` reorganizada como painel bancario do cliente.
+- [x] `dados.html` reorganizada como perfil cadastral do cliente.
 - [x] Tela `transferencias.html` criada para transferência entre contas.
 - [~] Telas administrativas existem, mas ainda sem controle de permissão.
 - [x] Login simples implementado.
@@ -643,8 +664,10 @@ Requisitos:
 
 - Consultar dados pessoais.
 - Exibir nome, nome social, CPF, email e data de nascimento.
-- Exibir telefone futuramente.
+- Exibir telefone.
 - Melhorar layout e organizacao das informacoes.
+- Separar dados de identidade, contato e seguranca/cadastro.
+- Exibir conta vinculada ao usuario.
 - Exibir tipo de cliente futuramente.
 - Permitir futura edicao de dados cadastrais.
 
@@ -657,6 +680,9 @@ Requisitos:
 - Consultar chave Pix.
 - Consultar limite.
 - Melhorar layout e organizacao das informacoes.
+- Exibir saudacao do cliente.
+- Exibir ultimas movimentacoes da conta.
+- Exibir ultimos comprovantes da conta.
 - Exibir atalhos para pagamentos, Pix, extrato e comprovantes.
 - Acessar atalhos para transferencia e extrato.
 
@@ -837,6 +863,11 @@ Legenda:
 - [x] Logout pelo frontend.
 - [x] Busca de conta por usuario logado.
 - [x] Transferencia por numero da conta.
+- [x] Modulo inicial de cartoes implementado.
+- [x] Criacao e consulta de cartao por conta.
+- [x] Modulo inicial de compras no cartao implementado.
+- [x] Compra no cartao valida limite disponivel.
+- [x] Limite disponivel do cartao diminui apos compra aprovada.
 - [x] Dashboard com saldo total, total de contas e total de usuarios.
 - [x] Tratamento de erro com `ErroController`.
 - [~] Categorias fixas.
@@ -863,8 +894,10 @@ Legenda:
 - [x] Tela de transferencias.
 - [x] Transferencia entre contas pelo HTML.
 - [x] Tela minha conta.
+- [x] Tela minha conta reorganizada como painel bancario do cliente.
 - [x] Consulta de dados da conta pelo HTML.
 - [x] Tela de dados do cliente.
+- [x] Tela de dados reorganizada como perfil cadastral do cliente.
 - [x] Consulta de dados do usuario pelo HTML.
 - [x] Tela de login.
 - [x] Login pelo HTML.
@@ -892,8 +925,8 @@ Legenda:
 - [x] Botao mostrar/ocultar senha.
 - [ ] Sidebar ainda precisa ser aprimorada visualmente.
 - [ ] Resumo da conta no canto direito superior ainda nao implementado.
-- [ ] Tela minha conta precisa ser ajustada.
-- [ ] Tela meus dados precisa ser ajustada.
+- [x] Tela minha conta ajustada.
+- [x] Tela meus dados ajustada.
 - [ ] Tela de empresas.
 - [x] Tela de comprovante da ultima operacao.
 - [x] Tela de historico de comprovantes.
@@ -929,8 +962,8 @@ Legenda:
 - [ ] Conta de empresa com CNPJ.
 - [ ] Cadastro de empresa.
 - [ ] Diferenciar conta pessoa fisica e conta empresa.
-- [ ] Arrumar tela minha conta.
-- [ ] Arrumar tela meus dados.
+- [x] Arrumar tela minha conta.
+- [x] Arrumar tela meus dados.
 - [x] Pix por chave Pix.
 - [x] Pix por telefone.
 - [x] Gerar chave Pix aleatoria.
@@ -942,7 +975,8 @@ Legenda:
 - [ ] Mostrar resumo da conta no canto direito superior.
 - [ ] Login com conta Google.
 - [ ] Separacao real entre cliente e administracao.
-- [ ] Cartoes.
+- [~] Cartoes implementado parcialmente.
+- [x] Compras no cartao implementadas.
 - [ ] Fatura.
 - [ ] Metas financeiras.
 - [ ] Relatorios com Python.

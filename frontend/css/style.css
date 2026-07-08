@@ -356,6 +356,10 @@ body::before {
     min-width: 420px;
 }
 
+.resumo-acoes-perfil {
+    min-width: min(420px, 100%);
+}
+
 .resumo-acoes a,
 .selo-conta {
     display: flex;
@@ -422,6 +426,10 @@ body::before {
     grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.dados-cards .card strong {
+    overflow-wrap: anywhere;
+}
+
 .card-destaque {
     border-color: rgba(241, 179, 93, 0.2);
     background:
@@ -435,7 +443,7 @@ body::before {
 
 .grade-atalhos {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 12px;
 }
 
@@ -455,6 +463,72 @@ body::before {
     border-color: rgba(241, 179, 93, 0.28);
     background: rgba(241, 179, 93, 0.08);
     transform: translateY(-2px);
+}
+
+.painel-duplo-cliente {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 22px;
+}
+
+.link-painel {
+    color: var(--gold-strong);
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.link-painel:hover {
+    text-decoration: underline;
+}
+
+.lista-resumo {
+    display: grid;
+    gap: 10px;
+}
+
+.item-resumo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 64px;
+    padding: 14px 16px;
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.item-resumo strong,
+.item-resumo span {
+    display: block;
+}
+
+.item-resumo strong {
+    font-size: 15px;
+}
+
+.item-resumo span {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.item-resumo > strong {
+    white-space: nowrap;
+}
+
+.item-resumo-link {
+    transition: 0.2s ease;
+}
+
+.item-resumo-link:hover {
+    border-color: rgba(241, 179, 93, 0.28);
+    background: rgba(241, 179, 93, 0.08);
+    transform: translateY(-1px);
 }
 
 .form-filtros-extrato {
@@ -788,7 +862,8 @@ tr:hover td {
     .info-grid,
     .resumo-acoes,
     .grade-atalhos,
-    .form-filtros-extrato {
+    .form-filtros-extrato,
+    .painel-duplo-cliente {
         grid-template-columns: 1fr;
     }
 

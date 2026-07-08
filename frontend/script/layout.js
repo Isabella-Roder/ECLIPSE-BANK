@@ -22,7 +22,9 @@ function criarSidebarUsuario() {
             <a href="minha-conta.html">Minha conta</a>
             <a href="dados.html">Meus dados</a>
             <a href="transferencias.html">Transferencias</a>
+            <a href="pagamentos.html">Pagamentos</a>
             <a href="extrato.html">Extrato</a>
+            <a href="comprovantes.html">Comprovantes</a>
             <a href="#">Relatorios</a>
             <button id="btn-logout" type="button">Sair</button>
         </nav>
@@ -51,7 +53,9 @@ function criarSidebar() {
             <a href="dados.html">Meus dados</a>
             <a href="minha-conta.html">Minha conta</a>
             <a href="transferencias.html">Transferencias</a>
+            <a href="pagamentos.html">Pagamentos</a>
             <a href="extrato.html">Extrato</a>
+            <a href="comprovantes.html">Comprovantes</a>
             <a href="#">Relatorios</a>
             <a href="login.html">Login</a>
         </nav>

@@ -64,6 +64,11 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Extrato por conta.
 - Filtros avancados do extrato no backend por tipo, categoria e periodo.
 - Rota unica `/contas/{contaId}/transacoes/filtro` para consulta filtrada do extrato.
+- Modulo inicial de cartoes implementado.
+- Cartao vinculado a conta, com numero ficticio, limite total, limite disponivel e status.
+- Criacao e consulta de cartao por conta.
+- Modulo inicial de compras no cartao implementado.
+- Compra no cartao valida limite disponivel e diminui o limite apos aprovacao.
 - Dashboard com saldo total, total de contas e total de usuarios.
 - Tratamento de erros com `ErroController`.
 - Categorias fixas.
@@ -93,8 +98,12 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Extrato com destaque visual de entradas, saidas e tipo de movimentacao.
 - Tela `minha-conta`.
 - Consulta de dados da conta pelo HTML.
+- `minha-conta.html` reorganizada como painel bancario do cliente.
+- Ultimas movimentacoes e ultimos comprovantes exibidos na area da conta.
 - Tela `dados`.
 - Consulta de dados do usuario pelo HTML.
+- `dados.html` reorganizada como perfil cadastral do cliente.
+- Dados pessoais separados em identidade, contato e seguranca/cadastro.
 - Tela de login.
 - Login pelo HTML usando a rota `/login`.
 - Tratamento de erro no login pelo frontend.
@@ -104,7 +113,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Email preenchido automaticamente no login apos criar conta.
 - Usuario logado salvo no `localStorage`.
 - Logout pelo menu lateral.
-- Telas `dados`, `minha-conta`, `extrato` e `transferencias` usando o usuario logado parcialmente.
+- Telas `dados`, `minha-conta`, `extrato`, `transferencias`, `pagamentos` e `comprovantes` usando o usuario logado parcialmente.
 - Mascaras de CPF, telefone e dinheiro/valor.
 - Tela de comprovante da ultima operacao.
 - Tela de historico de comprovantes.
@@ -123,8 +132,8 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `pagamentos.html`: central de pagamentos.
 - `comprovantes.html`: historico real de comprovantes.
 - `extrato.html`: consulta de extrato por conta.
-- `minha-conta.html`: dados bancarios de uma conta.
-- `dados.html`: dados pessoais de um usuario.
+- `minha-conta.html`: painel bancario do cliente, com saldo, dados da conta, ultimas movimentacoes e comprovantes.
+- `dados.html`: perfil cadastral do cliente, com identidade, contato e seguranca/cadastro.
 - `login.html`: entrada do usuario no sistema.
 - `comprovante.html`: comprovante visual da ultima operacao.
 
@@ -162,7 +171,8 @@ frontend/
 - Baixar comprovante em PDF.
 - Login com conta Google futuramente.
 - Separacao real entre cliente e administracao.
-- Cartoes.
+- Cartoes parcialmente implementado.
+- Compras no cartao implementadas.
 - Faturas.
 - Metas financeiras.
 - Relatorios com Python.
@@ -173,4 +183,4 @@ frontend/
 
 ## Observacao
 
-Este projeto ainda esta em desenvolvimento. O login simples, logout, extrato com horario, mascaras principais, pagamentos por transferencia, Pix e boleto, historico real de comprovantes e comprovante visual ja existem. Ainda falta proteger melhor as paginas, separar cliente e administracao, evoluir PDF e relatorios.
+Este projeto ainda esta em desenvolvimento. O login simples, logout, area do cliente, extrato com horario, mascaras principais, pagamentos por transferencia, Pix e boleto, historico real de comprovantes e comprovante visual ja existem. Ainda falta proteger melhor as paginas, separar cliente e administracao de forma mais completa, evoluir PDF e relatorios.

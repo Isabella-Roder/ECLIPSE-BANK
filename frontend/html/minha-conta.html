@@ -11,7 +11,7 @@
         <header class="topo">
             <div>
                 <p>Area do cliente</p>
-                <h2>Minha conta</h2>
+                <h2 id="saudacao-cliente">Minha conta</h2>
             </div>
         </header>
 
@@ -24,8 +24,8 @@
 
             <div class="resumo-acoes">
                 <a href="transferencias.html">Transferir</a>
-                <a href="extrato.html">Ver extrato</a>
                 <a href="pagamentos.html">Pagamentos</a>
+                <a href="extrato.html">Ver extrato</a>
             </div>
         </section>
 
@@ -96,7 +96,34 @@
                 <a href="transferencias.html">Nova transferencia</a>
                 <a href="pagamentos.html">Pagar boleto ou Pix</a>
                 <a href="extrato.html">Consultar extrato</a>
-                <a href="comprovante.html">Ultimo comprovante</a>
+                <a href="comprovantes.html">Meus comprovantes</a>
+                <a href="dados.html">Meus dados</a>
+            </div>
+        </section>
+
+        <section class="painel painel-duplo-cliente">
+            <div>
+                <div class="cabecalho-painel">
+                    <div>
+                        <h3>Ultimas movimentacoes</h3>
+                        <p>Resumo recente do extrato da sua conta.</p>
+                    </div>
+                    <a class="link-painel" href="extrato.html">Ver tudo</a>
+                </div>
+
+                <div class="lista-resumo" id="ultimas-transacoes"></div>
+            </div>
+
+            <div>
+                <div class="cabecalho-painel">
+                    <div>
+                        <h3>Ultimos comprovantes</h3>
+                        <p>Comprovantes salvos no historico da conta.</p>
+                    </div>
+                    <a class="link-painel" href="comprovantes.html">Ver tudo</a>
+                </div>
+
+                <div class="lista-resumo" id="ultimos-comprovantes"></div>
             </div>
         </section>
     </main>

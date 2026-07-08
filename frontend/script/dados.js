@@ -10,6 +10,7 @@ const telefone = document.getElementById("telefone-usuario");
 const dataNascimento = document.getElementById("data-nascimento");
 const email = document.getElementById("email-usuario");
 const idUsuario = document.getElementById("id-usuario");
+const contaVinculada = document.getElementById("conta-vinculada");
 
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -48,4 +49,17 @@ async function carregarDados(usuarioId) {
 
 }
 
+async function carregarContaVinculada(usuarioId) {
+    const resposta = await fetch(`${API_URL}/usuarios/${usuarioId}/conta`);
+
+    if (!resposta.ok) {
+        contaVinculada.textContent = "Nenhuma conta vinculada";
+        return;
+    }
+
+    const conta = await resposta.json();
+    contaVinculada.textContent = `Conta ${conta.numero}`;
+}
+
 carregarDados(usuarioLogado.id);
+carregarContaVinculada(usuarioLogado.id);
