@@ -59,6 +59,8 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Data e horario nas movimentacoes do extrato.
 - Transacoes vinculadas a conta.
 - Extrato por conta.
+- Filtros avancados do extrato no backend por tipo, categoria e periodo.
+- Rota unica `/contas/{contaId}/transacoes/filtro` para consulta filtrada do extrato.
 - Dashboard com saldo total, total de contas e total de usuarios.
 - Tratamento de erros com `ErroController`.
 - Categorias fixas.
@@ -83,7 +85,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Historico visual de pagamentos pelo HTML.
 - Tela de extrato.
 - Consulta de extrato por conta pelo HTML.
-- Filtros do extrato por tipo, categoria e periodo no frontend.
+- Filtros do extrato por tipo, categoria e periodo integrados com o backend.
 - Extrato com destaque visual de entradas, saidas e tipo de movimentacao.
 - Tela `minha-conta`.
 - Consulta de dados da conta pelo HTML.
@@ -163,7 +165,6 @@ frontend/
 - Investimentos ficticios.
 - Integracao futura com API da B3 para modulo de investimentos.
 - Exportacao de relatorios.
-- Filtros avancados do extrato no backend.
 
 ## Observacao
 

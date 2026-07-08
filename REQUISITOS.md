@@ -219,6 +219,9 @@ Status atual:
 - [~] Filtro por mes implementado indiretamente por periodo.
 - [x] Filtro por categoria no extrato da conta implementado no frontend.
 - [x] Filtro por tipo implementado no frontend.
+- [x] Filtro de extrato no backend por tipo, categoria e periodo implementado.
+- [x] Rota unica `/contas/{contaId}/transacoes/filtro` implementada.
+- [x] Integracao do `extrato.js` com endpoint de filtros do backend implementada.
 - [x] Destaque visual de entrada e saida no extrato implementado.
 - [x] Selo visual para tipo de movimentacao no extrato implementado.
 
@@ -818,6 +821,8 @@ Legenda:
 - [x] Registro de transferencia no extrato da origem e do destino.
 - [x] Transacao vinculada a conta.
 - [x] Extrato por conta.
+- [x] Filtros do extrato por tipo, categoria e periodo no backend.
+- [x] Rota unica de filtro do extrato por conta.
 - [x] Busca de conta por ID.
 - [x] Busca de usuario por ID.
 - [x] Login simples por email e senha.
@@ -845,6 +850,7 @@ Legenda:
 - [x] Tela de extrato.
 - [x] Consulta de extrato por conta pelo HTML.
 - [x] Filtros do extrato pelo HTML.
+- [x] Filtros do extrato integrados com o backend.
 - [x] Extrato com destaque visual de entrada, saida e tipo.
 - [x] Tela de transferencias.
 - [x] Transferencia entre contas pelo HTML.
@@ -934,3 +940,4 @@ Legenda:
 - [ ] Integracao futura com API da B3 para modulo de investimentos.
 - [ ] Exportacao de relatorios.
 - [x] Filtros no extrato por data, tipo e categoria implementados no frontend.
+- [x] Filtros avancados do extrato implementados no backend.

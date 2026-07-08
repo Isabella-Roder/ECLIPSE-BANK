@@ -35,6 +35,29 @@ public class TransacaoService {
         return transacaoRepository.findByContaId(contaId);
     }
 
+    public List<Transacao> listarPorContaETipo(Long contaId, TipoTransacao tipo) {
+        return transacaoRepository.findByContaIdAndTipo(contaId, tipo);
+    }
+
+    public List<Transacao> listarPorContaECategoria(Long contaId, String categoria) {
+        return transacaoRepository.findByContaIdAndCategoriaIgnoreCase(contaId, categoria);
+    }
+
+    public List<Transacao> listarPorContaEPeriodo(Long contaId, LocalDateTime inicio, LocalDateTime fim) {
+        return transacaoRepository.findByContaIdAndDataHoraBetween(contaId, inicio, fim);
+    }
+
+    public List<Transacao> filtrarTransacoes(
+        Long contaId,
+        TipoTransacao tipo,
+        String categoria, 
+        LocalDateTime inicio,
+        LocalDateTime fim) {
+            return listarPorConta(contaId).stream().filter(transacao -> tipo == null || transacao.getTipo() == tipo)
+                .filter(transacao -> categoria == null || (transacao.getCategoria() != null && transacao.getCategoria().equalsIgnoreCase(categoria)))
+                .filter(transacao -> inicio == null || fim == null || (transacao.getDataHora() != null && !transacao.getDataHora().isBefore(inicio) && !transacao.getDataHora().isAfter(fim))).toList();
+        }
+
     public Transacao cadastrar(Transacao transacao) {
         if (transacao.getValor() <= 0) {
             //para a operação

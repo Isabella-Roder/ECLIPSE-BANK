@@ -11,6 +11,8 @@ const botaoLimparFiltros = document.getElementById("limpar-filtros");
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 let transacoesExtrato = [];
 
+let contaIdAtual = null;
+
 if (!usuarioLogado) {
     window.location.href = "login.html";
 }
@@ -57,17 +59,32 @@ function preencherFiltros(transacoes) {
     preencherFiltro(filtroCategoria, categorias, "Todas as categorias");
 }
 
-function filtrarExtrato() {
-    return transacoesExtrato.filter((transacao) => {
-        const dataTransacao = pegarData(transacao.dataHora);
+async function filtrarExtrato() {
+    if (!contaIdAtual) {
+        mensagemExtrato.textContent = "Conta ainda não carregada.";
+        return;
+    }
 
-        const tipoConfere = !filtroTipo.value || transacao.tipo === filtroTipo.value;
-        const categoriaConfere = !filtroCategoria.value || transacao.categoria === filtroCategoria.value;
-        const inicioConfere = !filtroDataInicio.value || dataTransacao >= filtroDataInicio.value;
-        const fimConfere = !filtroDataFim.value || dataTransacao <= filtroDataFim.value;
+    const contaId = contaIdAtual;
 
-        return tipoConfere && categoriaConfere && inicioConfere && fimConfere;
-    });
+    let url = `${API_URL}/contas/${contaId}/transacoes/filtro`;
+
+    const params = new URLSearchParams();
+
+    if (filtroTipo.value) params.append("tipo", filtroTipo.value);
+    if (filtroCategoria.value) params.append("categoria", filtroCategoria.value);
+    if (filtroDataInicio.value && filtroDataFim.value) {
+        params.append("inicio", filtroDataInicio.value);
+        params.append("fim", filtroDataFim.value);
+    }
+
+    if (params.toString()) {
+        url += `?${params.toString()}`;
+    }
+
+    const resposta = await fetch(url);
+    const transacoes = await resposta.json();
+    renderizarExtrato(transacoes)
 }
 
 function ehEntrada(tipo) {
@@ -82,8 +99,7 @@ function classeValor(tipo) {
     return "valor-saida";
 }
 
-function renderizarExtrato() {
-    const transacoesFiltradas = filtrarExtrato();
+function renderizarExtrato(transacoesFiltradas) {
 
     tabelaExtrato.innerHTML = "";
 
@@ -122,6 +138,7 @@ async function carregarContaUsuario() {
     }
 
     const conta = await resposta.json();
+    contaIdAtual = conta.id;
     carregarExtrato(conta.id);
 }
 
@@ -135,20 +152,20 @@ async function carregarExtrato(contaId) {
 
     transacoesExtrato = await resposta.json();
     preencherFiltros(transacoesExtrato);
-    renderizarExtrato();
+    renderizarExtrato(transacoesExtrato);
 }
 
-filtroTipo.addEventListener("change", renderizarExtrato);
-filtroCategoria.addEventListener("change", renderizarExtrato);
-filtroDataInicio.addEventListener("change", renderizarExtrato);
-filtroDataFim.addEventListener("change", renderizarExtrato);
+filtroTipo.addEventListener("change", filtrarExtrato);
+filtroCategoria.addEventListener("change", filtrarExtrato);
+filtroDataInicio.addEventListener("change", filtrarExtrato);
+filtroDataFim.addEventListener("change", filtrarExtrato);
 
 botaoLimparFiltros.addEventListener("click", () => {
     filtroTipo.value = "";
     filtroCategoria.value = "";
     filtroDataInicio.value = "";
     filtroDataFim.value = "";
-    renderizarExtrato();
+    filtrarExtrato();
 });
 
 carregarContaUsuario();
