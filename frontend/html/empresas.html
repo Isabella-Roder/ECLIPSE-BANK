@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresas - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Gerenciamento</p>
+                <h2>Empresas</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal empresa-hero">
+            <div>
+                <span>Conta empresarial</span>
+                <strong id="total-empresas">0 empresas</strong>
+                <p>Cadastre uma empresa e o Eclipse Bank cria a conta automaticamente.</p>
+            </div>
+
+            <div class="resumo-acoes resumo-acoes-perfil">
+                <span class="selo-conta" id="total-contas-empresas">0 contas</span>
+                <span class="selo-conta" id="saldo-empresas">R$ 0,00</span>
+            </div>
+        </section>
+
+        <section class="painel painel-empresa-cadastro">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Nova empresa</h3>
+                    <p>Ao cadastrar, uma conta PJ com chave Pix por email será criada junto.</p>
+                </div>
+            </div>
+
+            <form id="form-empresa">
+                <input type="text" id="razaoSocial" placeholder="Razao social" required>
+                <input type="text" id="nomeFantasia" placeholder="Nome fantasia" required>
+                <input type="text" id="cnpj" placeholder="CNPJ" required>
+                <input type="text" id="telefoneEmpresa" placeholder="Telefone" required>
+                <input type="email" id="emailEmpresa" placeholder="Email" required>
+                <input type="password" id="senhaEmpresa" placeholder="Senha" required>
+
+                <button type="submit">Cadastrar empresa</button>
+            </form>
+
+            <p id="mensagem-empresa"></p>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Contas empresariais</h3>
+                    <p>Resumo das contas PJ criadas automaticamente.</p>
+                </div>
+            </div>
+
+            <div id="cards-contas-empresas" class="grade-contas-empresas"></div>
+        </section>
+
+        <section class="painel painel-tabela">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Empresas cadastradas</h3>
+                    <p>Dados principais das empresas no banco.</p>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Razao social</th>
+                        <th>Nome fantasia</th>
+                        <th>CNPJ</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-empresas"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/empresas.js"></script>
+</body>
+</html>

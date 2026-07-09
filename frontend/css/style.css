@@ -422,6 +422,111 @@ body::before {
     z-index: 1;
 }
 
+.empresa-hero {
+    overflow: hidden;
+}
+
+.empresa-hero::after {
+    content: "";
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid rgba(247, 199, 120, 0.42);
+    box-shadow: -12px 0 28px rgba(247, 199, 120, 0.24);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.empresa-hero > div {
+    position: relative;
+    z-index: 1;
+}
+
+.painel-empresa-cadastro form {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.painel-empresa-cadastro button {
+    grid-column: span 3;
+}
+
+.grade-contas-empresas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.empresa-conta-card {
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    background:
+        linear-gradient(145deg, rgba(25, 27, 42, 0.98), rgba(18, 20, 33, 0.82)),
+        radial-gradient(circle at 100% 0%, rgba(241, 179, 93, 0.12), transparent 13rem);
+}
+
+.empresa-conta-topo,
+.empresa-conta-info {
+    display: grid;
+    gap: 14px;
+}
+
+.empresa-conta-topo {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    margin-bottom: 22px;
+}
+
+.empresa-conta-topo span,
+.empresa-conta-saldo span,
+.empresa-conta-info span {
+    display: block;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.empresa-conta-topo strong {
+    display: block;
+    margin-top: 6px;
+    font-size: 18px;
+    overflow-wrap: anywhere;
+}
+
+.empresa-conta-saldo {
+    margin-bottom: 22px;
+}
+
+.empresa-conta-saldo strong {
+    display: block;
+    margin-top: 8px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.empresa-conta-info {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.empresa-conta-info div {
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.empresa-conta-info strong {
+    display: block;
+    margin-top: 6px;
+    color: var(--text);
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
 .cartao-visual {
     position: relative;
     display: flex;
@@ -978,8 +1083,18 @@ tr:hover td {
     .info-grid,
     .resumo-acoes,
     .grade-atalhos,
+    .grade-contas-empresas,
+    .painel-empresa-cadastro form,
     .form-filtros-extrato,
     .painel-duplo-cliente {
+        grid-template-columns: 1fr;
+    }
+
+    .painel-empresa-cadastro button {
+        grid-column: auto;
+    }
+
+    .empresa-conta-info {
         grid-template-columns: 1fr;
     }
 

@@ -51,6 +51,7 @@ function criarSidebar() {
             <a href="index.html">Dashboard</a>
             <a href="usuarios.html">Usuarios</a>
             <a href="contas.html">Contas</a>
+            <a href="empresas.html">Empresas</a>
             <a href="dados.html">Meus dados</a>
             <a href="minha-conta.html">Minha conta</a>
             <a href="cartoes.html">Cartões</a>

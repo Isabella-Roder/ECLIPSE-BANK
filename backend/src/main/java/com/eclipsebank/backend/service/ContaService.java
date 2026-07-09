@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 import com.eclipsebank.backend.dto.TransferenciaPorNumeroRequest;
 import com.eclipsebank.backend.dto.TransferenciaRequest;
 import com.eclipsebank.backend.enums.TipoTransacao;
+import com.eclipsebank.backend.enums.TipoConta;
 import com.eclipsebank.backend.model.Conta;
 import com.eclipsebank.backend.model.Transacao;
 import com.eclipsebank.backend.model.Usuario;
+import com.eclipsebank.backend.model.Empresa;
 import com.eclipsebank.backend.repository.ContaRepository;
+import com.eclipsebank.backend.repository.EmpresaRepository;
 import com.eclipsebank.backend.repository.TransacaoRepository;
 import com.eclipsebank.backend.repository.UsuarioRepository;
 
@@ -20,11 +23,13 @@ public class ContaService {
     
     private ContaRepository contaRepository;
     private UsuarioRepository usuarioRepository;
+    private EmpresaRepository empresaRepository;
     private TransacaoRepository transacaoRepository;
 
-    public ContaService (ContaRepository contaRepository, UsuarioRepository usuarioRepository, TransacaoRepository transacaoRepository) {
+    public ContaService (ContaRepository contaRepository, UsuarioRepository usuarioRepository, EmpresaRepository empresaRepository, TransacaoRepository transacaoRepository) {
         this.contaRepository = contaRepository;
         this.usuarioRepository = usuarioRepository;
+        this.empresaRepository = empresaRepository;
         this.transacaoRepository = transacaoRepository;
     }
 
@@ -34,6 +39,10 @@ public class ContaService {
 
     public Conta buscarPorUsuario(Long usuarioId) {
         return contaRepository.findByUsuarioId(usuarioId).orElseThrow(() -> new IllegalArgumentException("Conta não encontrada."));
+    }
+
+    public Conta buscarPorEmpresa(Long empresaId) {
+        return contaRepository.findByEmpresaId(empresaId).orElseThrow(() -> new IllegalArgumentException("Conta não encontrada."));
     }
 
     private void validarConta(Conta conta) {
@@ -92,6 +101,30 @@ public class ContaService {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new IllegalArgumentException("Usuario não encontrado."));
 
         conta.setUsuario(usuario);
+        conta.setTipoConta(TipoConta.PESSOA_FISICA);
+
+        if (conta.getSaldo() == null) {
+            conta.setSaldo(0.0);
+        }
+
+        return contaRepository.save(conta);
+    }
+
+    public Conta cadastrarParaEmpresa(Long empresaId, Conta conta) {
+        if (conta.getNumero() == null) {
+            conta.setNumero(gerarNumeroConta());
+        }
+
+        validarConta(conta);
+
+        if (contaRepository.existsByEmpresaId(empresaId)) {
+            throw new IllegalArgumentException("Empresa já possui conta.");
+        }
+
+        Empresa empresa = empresaRepository.findById(empresaId).orElseThrow(() -> new IllegalArgumentException("Empresa não encontrada."));
+
+        conta.setEmpresa(empresa);
+        conta.setTipoConta(TipoConta.EMPRESA);
 
         if (conta.getSaldo() == null) {
             conta.setSaldo(0.0);
