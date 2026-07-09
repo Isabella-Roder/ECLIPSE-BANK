@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartões - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Área do cliente</p>
+                <h2>Meus cartões</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero">
+            <div>
+                <span>Cartão Eclipse</span>
+                <strong id="numero-cartao">•••• •••• •••• ••••</strong>
+                <p id="mensagem-cartao">Carregando cartão...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="pagamentos.html">Pagamentos</a>
+                <a href="extrato.html">Extrato</a>
+                <a href="minha-conta.html">Minha conta</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente" id="resumo-cartao">
+            <div class="card card-destaque">
+                <span>Nome impresso</span>
+                <strong id="nome-impresso-cartao">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Limite total</span>
+                <strong id="limite-total-cartao">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Limite disponível</span>
+                <strong id="limite-disponivel-cartao">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Status</span>
+                <strong id="status-cartao">-</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco" id="area-criar-cartao">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Criar cartão</h3>
+                    <p>Crie um cartão fictício vinculado à sua conta Eclipse Bank.</p>
+                </div>
+            </div>
+
+            <form id="form-cartao" class="formulario">
+                <label>
+                    Nome impresso
+                    <input type="text" id="nomeImpresso" placeholder="Ex: Isabella Silva" required>
+                </label>
+
+                <label>
+                    Limite total
+                    <input type="text" id="limiteTotal" placeholder="R$ 1.000,00" required>
+                </label>
+
+                <label>
+                    Data de validade
+                    <input type="date" id="dataValidade" required>
+                </label>
+
+                <button type="submit">Criar cartão</button>
+            </form>
+        </section>
+
+        <section class="painel info-bloco" id="area-compras-cartao">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Nova compra</h3>
+                    <p>Simule uma compra no cartão e acompanhe o limite disponível.</p>
+                </div>
+            </div>
+
+            <form id="form-compra-cartao" class="formulario">
+                <label>
+                    Descrição
+                    <input type="text" id="descricaoCompra" placeholder="Ex: Mercado" required>
+                </label>
+
+                <label>
+                    Categoria
+                    <input type="text" id="categoriaCompra" placeholder="Ex: Alimentação" required>
+                </label>
+
+                <label>
+                    Valor
+                    <input type="text" id="valorCompra" placeholder="R$ 0,00" required>
+                </label>
+
+                <button type="submit">Registrar compra</button>
+            </form>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Compras recentes</h3>
+                    <p>Histórico de compras feitas com o cartão.</p>
+                </div>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                            <th>Categoria</th>
+                            <th>Status</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-compras-cartao"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/cartoes.js"></script>
+</body>
+</html>

@@ -69,6 +69,10 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Criacao e consulta de cartao por conta.
 - Modulo inicial de compras no cartao implementado.
 - Compra no cartao valida limite disponivel e diminui o limite apos aprovacao.
+- Tela de cartoes implementada.
+- Criacao de cartao pelo frontend.
+- Registro de compras no cartao pelo frontend.
+- Listagem de compras do cartao pelo frontend.
 - Dashboard com saldo total, total de contas e total de usuarios.
 - Tratamento de erros com `ErroController`.
 - Categorias fixas.
@@ -92,6 +96,8 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Pagamentos por transferencia, Pix e boleto pelo HTML.
 - Historico visual de pagamentos pelo HTML.
 - Tela de historico real de comprovantes.
+- Tela de cartoes.
+- Criacao, consulta e compras no cartao pelo HTML.
 - Tela de extrato.
 - Consulta de extrato por conta pelo HTML.
 - Filtros do extrato por tipo, categoria e periodo integrados com o backend.
@@ -130,6 +136,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `contas.html`: cadastro, listagem, deposito e saque de contas.
 - `transferencias.html`: transferencia entre contas.
 - `pagamentos.html`: central de pagamentos.
+- `cartoes.html`: consulta do cartao, criacao de cartao e registro de compras.
 - `comprovantes.html`: historico real de comprovantes.
 - `extrato.html`: consulta de extrato por conta.
 - `minha-conta.html`: painel bancario do cliente, com saldo, dados da conta, ultimas movimentacoes e comprovantes.
@@ -171,8 +178,7 @@ frontend/
 - Baixar comprovante em PDF.
 - Login com conta Google futuramente.
 - Separacao real entre cliente e administracao.
-- Cartoes parcialmente implementado.
-- Compras no cartao implementadas.
+- Cartoes com tela e compras implementados parcialmente.
 - Faturas.
 - Metas financeiras.
 - Relatorios com Python.

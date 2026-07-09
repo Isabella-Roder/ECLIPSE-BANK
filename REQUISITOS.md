@@ -255,6 +255,11 @@ Status atual:
 - [x] Controller de compras no cartao implementado.
 - [x] Compra no cartao com validacao de limite implementada.
 - [x] Limite disponivel diminui apos compra aprovada.
+- [x] Tela `cartoes.html` implementada.
+- [x] Consulta de cartao pelo frontend implementada.
+- [x] Criacao de cartao pelo frontend implementada.
+- [x] Registro de compras no cartao pelo frontend implementado.
+- [x] Listagem de compras do cartao pelo frontend implementada.
 - [ ] Controle de fatura ainda nao implementado.
 - [ ] Pagamento de fatura ainda nao implementado.
 
@@ -627,6 +632,7 @@ Status atual:
 - [x] `layout.js` implementado para sidebar reutilizável.
 - [x] Logout implementado no `layout.js`.
 - [x] `pagamentos.html` implementado.
+- [x] `cartoes.html` implementado.
 - [ ] Tela de empresas ainda não implementada.
 - [x] Tela `comprovante.html` implementada para ultima operacao.
 - [x] Tela `comprovantes.html` implementada para historico real de comprovantes.
@@ -644,6 +650,7 @@ Telas sugeridas:
 - `minha-conta.html`: informacoes da conta do cliente.
 - `login.html`: login simples com email e senha.
 - `pagamentos.html`: pagamentos por transferencia, Pix e boleto.
+- `cartoes.html`: cartao do cliente, criacao de cartao e compras no cartao.
 - `empresas.html`: cadastro e gestao de empresas futuramente.
 - `comprovantes.html`: consulta de comprovantes futuramente.
 - `comprovante.html`: visualizacao do comprovante gerado apos uma operacao.
@@ -937,6 +944,11 @@ Legenda:
 - [~] Dashboard conectado aos dados principais.
 - [x] Tela de pagamentos.
 - [x] Historico visual de pagamentos em `pagamentos.html`.
+- [x] Tela de cartoes.
+- [x] Criacao de cartao pelo frontend.
+- [x] Consulta de cartao pelo frontend.
+- [x] Registro de compras no cartao pelo frontend.
+- [x] Listagem de compras do cartao pelo frontend.
 - [ ] Tela de investimentos.
 
 ### 13.3 Funcionalidades Pendentes
@@ -976,7 +988,10 @@ Legenda:
 - [ ] Login com conta Google.
 - [ ] Separacao real entre cliente e administracao.
 - [~] Cartoes implementado parcialmente.
+- [x] Tela de cartoes implementada.
+- [x] Criacao e consulta de cartao pelo frontend.
 - [x] Compras no cartao implementadas.
+- [x] Listagem de compras do cartao pelo frontend.
 - [ ] Fatura.
 - [ ] Metas financeiras.
 - [ ] Relatorios com Python.
