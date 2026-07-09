@@ -20,6 +20,7 @@ function criarSidebarUsuario() {
         <nav>
             <a href="index.html">Dashboard</a>
             <a href="minha-conta.html">Minha conta</a>
+            <a href="cartoes.html">Cartões</a>
             <a href="dados.html">Meus dados</a>
             <a href="transferencias.html">Transferencias</a>
             <a href="pagamentos.html">Pagamentos</a>
@@ -52,6 +53,7 @@ function criarSidebar() {
             <a href="contas.html">Contas</a>
             <a href="dados.html">Meus dados</a>
             <a href="minha-conta.html">Minha conta</a>
+            <a href="cartoes.html">Cartões</a>
             <a href="transferencias.html">Transferencias</a>
             <a href="pagamentos.html">Pagamentos</a>
             <a href="extrato.html">Extrato</a>

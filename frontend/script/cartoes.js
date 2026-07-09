@@ -6,6 +6,13 @@ const limiteTotalCartao = document.getElementById("limite-total-cartao");
 const limiteDisponivelCartao = document.getElementById("limite-disponivel-cartao");
 const statusCartao = document.getElementById("status-cartao");
 const mensagemCartao = document.getElementById("mensagem-cartao");
+const totalFaturaCartao = document.getElementById("total-fatura-cartao");
+const quantidadeComprasCartao = document.getElementById("quantidade-compras-cartao");
+const limiteUsadoCartao = document.getElementById("limite-usado-cartao");
+const percentualLimiteCartao = document.getElementById("percentual-limite-cartao");
+const numeroCartaoVisual = document.getElementById("numero-cartao-visual");
+const nomeCartaoVisual = document.getElementById("nome-cartao-visual");
+const validadeCartaoVisual = document.getElementById("validade-cartao-visual");
 
 const formCartao = document.getElementById("form-cartao");
 
@@ -15,8 +22,6 @@ const inputValorCompra = document.getElementById("valorCompra");
 
 const areaCriarCartao = document.getElementById("area-criar-cartao");
 const areaComprasCartao = document.getElementById("area-compras-cartao");
-
-const listaCompraCartao = document.getElementById("lista-compras-cartao");
 
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -58,6 +63,38 @@ function formatarDataHora(dataHora) {
     return new Date(dataHora).toLocaleString("pt-BR");
 }
 
+function mascararNumeroCartao(numero) {
+    if (!numero) {
+        return "**** **** **** ****";
+    }
+
+    const final = String(numero).slice(-4);
+    return `**** **** **** ${final}`;
+}
+
+function formatarValidade(dataValidade) {
+    if (!dataValidade) {
+        return "--/--";
+    }
+
+    const partes = dataValidade.split("-");
+    const ano = partes[0].slice(-2);
+    const mes = partes[1];
+
+    return `${mes}/${ano}`;
+}
+
+function atualizarResumoFatura(compras) {
+    const totalFatura = compras.reduce((soma, compra) => soma + (compra.valor || 0), 0);
+    const limiteTotal = cartaoAtual ? cartaoAtual.limiteTotal || 0 : 0;
+    const percentualUso = limiteTotal > 0 ? (totalFatura / limiteTotal) * 100 : 0;
+
+    totalFaturaCartao.textContent = formatarMoeda(totalFatura);
+    quantidadeComprasCartao.textContent = compras.length;
+    limiteUsadoCartao.textContent = formatarMoeda(totalFatura);
+    percentualLimiteCartao.textContent = `${percentualUso.toFixed(1)}%`;
+}
+
 async function carregarConta(usuarioId) {
     const resposta = await fetch(`${API_URL}/usuarios/${usuarioId}/conta`);
 
@@ -87,6 +124,9 @@ async function carregarCartao(contaId) {
     limiteTotalCartao.textContent = formatarMoeda(cartaoAtual.limiteTotal);
     limiteDisponivelCartao.textContent = formatarMoeda(cartaoAtual.limiteDisponivel);
     statusCartao.textContent = cartaoAtual.status;
+    numeroCartaoVisual.textContent = mascararNumeroCartao(cartaoAtual.numero);
+    nomeCartaoVisual.textContent = cartaoAtual.nomeImpresso || "NOME IMPRESSO";
+    validadeCartaoVisual.textContent = formatarValidade(cartaoAtual.dataValidade);
 
     mensagemCartao.textContent = "Cartão ativo Eclipse Bank";
 
@@ -109,6 +149,7 @@ async function carregarComprasCartao(cartaoId) {
     }
 
     const compras = await resposta.json();
+    atualizarResumoFatura(compras);
 
     if (compras.length === 0) {
         listaComprasCartao.innerHTML = `
@@ -132,7 +173,7 @@ async function carregarComprasCartao(cartaoId) {
             <td class="valor-saida">${formatarMoeda(compra.valor)}</td>
         `;
 
-        listaCompraCartao.appendChild(linha);
+        listaComprasCartao.appendChild(linha);
     });
 }
 
