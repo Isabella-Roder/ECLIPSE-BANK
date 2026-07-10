@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard PJ - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Area empresarial</p>
+                <h2 id="saudacao-empresa">Dashboard PJ</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal empresa-hero">
+            <div>
+                <span>Saldo empresarial</span>
+                <strong id="saldo-empresa">R$ 0,00</strong>
+                <p id="mensagem-empresa-dashboard">Carregando conta empresarial...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="empresa-pagamentos.html">Pagar</a>
+                <a href="empresa-extrato.html">Extrato PJ</a>
+                <a href="comprovantes.html">Comprovantes</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Empresa</span>
+                <strong id="nome-fantasia-empresa">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Limite</span>
+                <strong id="limite-empresa">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Numero da conta</span>
+                <strong id="numero-conta-empresa">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Status</span>
+                <strong>Ativa</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Dados da empresa</h3>
+                    <p>Informacoes principais da conta PJ no Eclipse Bank.</p>
+                </div>
+
+                <span class="selo-status">Conta empresarial</span>
+            </div>
+
+            <div class="info-grid">
+                <div>
+                    <span>Razao social</span>
+                    <strong id="razao-social-empresa">-</strong>
+                </div>
+
+                <div>
+                    <span>CNPJ</span>
+                    <strong id="cnpj-empresa">-</strong>
+                </div>
+
+                <div>
+                    <span>Email</span>
+                    <strong id="email-empresa">-</strong>
+                </div>
+
+                <div>
+                    <span>Telefone</span>
+                    <strong id="telefone-empresa">-</strong>
+                </div>
+
+                <div>
+                    <span>Chave Pix</span>
+                    <strong id="chave-pix-empresa">-</strong>
+                </div>
+
+                <div>
+                    <span>Tipo da chave Pix</span>
+                    <strong id="tipo-chave-pix-empresa">-</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="painel atalhos-cliente">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Acoes rapidas</h3>
+                    <p>Atalhos para operacoes da conta empresarial.</p>
+                </div>
+            </div>
+
+            <div class="grade-atalhos">
+                <a href="empresa-pagamentos.html">Pagar boleto ou Pix</a>
+                <a href="empresa-extrato.html">Consultar extrato PJ</a>
+                <a href="empresa-cartoes.html">Cartoes PJ</a>
+                <a href="comprovantes.html">Comprovantes</a>
+                <a href="empresa-dados.html">Dados da empresa</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/empresa-dashboard.js"></script>
+</body>
+</html>
