@@ -9,6 +9,7 @@ import com.eclipsebank.backend.enums.TipoChavePix;
 import com.eclipsebank.backend.model.Conta;
 import com.eclipsebank.backend.model.Empresa;
 import com.eclipsebank.backend.repository.EmpresaRepository;
+import com.eclipsebank.backend.dto.LoginRequest;
 
 @Service
 public class EmpresaService {
@@ -68,6 +69,16 @@ public class EmpresaService {
         contaService.cadastrarParaEmpresa(empresaSalva.getId(), conta);
 
         return empresaSalva;
+    }
+
+    public Empresa login(LoginRequest request) {
+        Empresa empresa = empresaRepository.findByEmail(request.getEmail()).orElseThrow(() -> new IllegalArgumentException("Email ou senha invalidos."));
+
+        if (!empresa.getSenha().equals(request.getSenha())) {
+            throw new IllegalArgumentException("Email ou senha invalidos.");
+        }
+
+        return empresa;
     }
 
 }

@@ -1,12 +1,13 @@
 const usuarioLayout = JSON.parse(localStorage.getItem("usuarioLogado"));
+const empresaLayout = JSON.parse(localStorage.getItem("empresaLogada"));
 
 function verificarLogin() {
     if (usuarioLayout) {
         criarSidebarUsuario();
-        return;
-    }else {
-        criarSidebar();
-        return;
+    } else if (empresaLayout) {
+        criarSidebarEmpresa();
+    } else {
+        criarSidebarAdmin();
     }
 }
 
@@ -31,16 +32,42 @@ function criarSidebarUsuario() {
         </nav>
     `;
     document.body.prepend(sidebar);
+    configurarLogout("usuarioLogado");
+}
 
+function criarSidebarEmpresa() {
+    const sidebar = document.createElement("aside");
+    sidebar.className = "sidebar";
+
+    sidebar.innerHTML = `
+        <h1>Eclipse</h1>
+
+        <nav>
+            <a href="empresa-dashboard.html">Dashboard PJ</a>
+            <a href="empresa-conta.html">Conta empresarial</a>
+            <a href="empresa-pagamentos.html">Pagamentos PJ</a>
+            <a href="empresa-extrato.html">Extrato PJ</a>
+            <a href="empresa-cartoes.html">Cartões PJ</a>
+            <a href="empresa-dados.html">Dados da empresa</a>
+            <a href="comprovantes.html">Comprovantes</a>
+            <button id="btn-logout" type="button">Sair</button>
+        </nav>
+    `;
+
+    document.body.prepend(sidebar);
+    configurarLogout("empresaLogada");
+}
+
+function configurarLogout(chaveLocalStorage) {
     const botaoLogout = document.getElementById("btn-logout");
 
     botaoLogout.addEventListener("click", () => {
-        localStorage.removeItem("usuarioLogado");
+        localStorage.removeItem(chaveLocalStorage);
         window.location.href = "login.html";
     });
 }
 
-function criarSidebar() {
+function criarSidebarAdmin() {
     const sidebar = document.createElement("aside");
     sidebar.className = "sidebar";
 

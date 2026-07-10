@@ -6,9 +6,14 @@ const senhaInput = document.getElementById("senha");
 const inputConfirmarSenha = document.getElementById("cadastroConfirmarSenha");
 const botaoMostrarSenhas = document.getElementById("mostrar-senhas");
 const mensagemLogin = document.getElementById("mensagem-login");
+const tipoLoginInput = document.getElementById("tipoLogin");
 
 if (localStorage.getItem("usuarioLogado")) {
     window.location.href = "index.html";
+}
+
+if (localStorage.getItem("empresaLogada")) {
+    window.location.href = "empresas.html";
 }
 
 formLogin.addEventListener("submit", async function (event) {
@@ -25,8 +30,14 @@ formLogin.addEventListener("submit", async function (event) {
         return;
     }
 
+    const tipoLogin = tipoLoginInput.value;
+
+    const urlLogin = tipoLogin === "empresa"
+        ? `${API_URL}/login/empresa`
+        : `${API_URL}/login`;
+
     try {
-        const resposta = await fetch(`${API_URL}/login`, {
+        const resposta = await fetch(urlLogin, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -40,10 +51,17 @@ formLogin.addEventListener("submit", async function (event) {
             return;
         }
 
-        const usuario = await resposta.json();
+        const dadosLogin = await resposta.json();
 
-        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-        window.location.href = "index.html";
+        if (tipoLogin === "empresa") {
+            localStorage.removeItem("usuarioLogado");
+            localStorage.setItem("empresaLogada", JSON.stringify(dadosLogin));
+            window.location.href = "empresas.html";
+        } else {
+            localStorage.removeItem("empresaLogada");
+            localStorage.setItem("usuarioLogado", JSON.stringify(dadosLogin));
+            window.location.href = "index.html";
+        }
     } catch (erro) {
         mensagemLogin.textContent = "Nao foi possivel conectar ao servidor.";
     }
@@ -199,3 +217,4 @@ botaoMostrarSenhas.addEventListener("click", () => {
         botaoMostrarSenhas.textContent = "Mostrar senhas";
     }
 });
+

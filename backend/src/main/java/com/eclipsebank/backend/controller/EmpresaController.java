@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.eclipsebank.backend.model.Empresa;
 import com.eclipsebank.backend.service.EmpresaService;
+import com.eclipsebank.backend.dto.LoginRequest;
 
 @RestController
 public class EmpresaController {
@@ -33,6 +34,11 @@ public class EmpresaController {
     @PostMapping("/empresas")
     public Empresa cadastrar(@RequestBody Empresa empresa) {
         return empresaService.cadastrar(empresa);
+    }
+
+    @PostMapping("/login/empresa")
+    public Empresa login(@RequestBody LoginRequest request) {
+        return empresaService.login(request);
     }
 
 }

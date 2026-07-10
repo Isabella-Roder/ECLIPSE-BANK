@@ -65,6 +65,20 @@ public class ContaService {
         }
     }
 
+    private void validarDonoDaConta(Conta conta) {
+        if (conta.getUsuario() != null && conta.getEmpresa() != null) {
+            throw new IllegalArgumentException("Conta não pode pertencer a usuario e empresa ao mesmo tempo.");
+        }
+
+        if (conta.getTipoConta() == TipoConta.PESSOA_FISICA && conta.getUsuario() == null) {
+            throw new IllegalArgumentException("Conta pessoa fisica precisa ter usuario.");
+        }
+
+        if (conta.getTipoConta() == TipoConta.EMPRESA && conta.getEmpresa() == null) {
+            throw new IllegalArgumentException("Conta empresa precisa ter empresa.");
+        }
+    }
+
     public List<Conta> listar() {
         return contaRepository.findAll();
     }
@@ -89,6 +103,8 @@ public class ContaService {
     }
 
     public Conta cadastrarParaUsuario(Long usuarioId, Conta conta) {
+        
+
         if (conta.getNumero() == null) {
             conta.setNumero(gerarNumeroConta());
         } 
@@ -102,6 +118,7 @@ public class ContaService {
 
         conta.setUsuario(usuario);
         conta.setTipoConta(TipoConta.PESSOA_FISICA);
+        validarDonoDaConta(conta);
 
         if (conta.getSaldo() == null) {
             conta.setSaldo(0.0);
@@ -125,6 +142,7 @@ public class ContaService {
 
         conta.setEmpresa(empresa);
         conta.setTipoConta(TipoConta.EMPRESA);
+        validarDonoDaConta(conta);
 
         if (conta.getSaldo() == null) {
             conta.setSaldo(0.0);
