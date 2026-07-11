@@ -11,13 +11,17 @@ const codigoComprovante = document.getElementById("comprovante-codigo");
 const botaoImprimir = document.getElementById("botao-imprimir");
 const mensagemComprovante = document.getElementById("mensagem-comprovante");
 const tituloComprovante = document.getElementById("comprovante-titulo");
+const linkNovaOperacao = document.getElementById("link-nova-operacao");
+const linkVerExtrato = document.getElementById("link-ver-extrato");
+const linkVoltarPagamentos = document.getElementById("link-voltar-pagamentos");
 
 const labelDestino = document.getElementById("label-destino-comprovante");
 
 const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+const empresaLogada = JSON.parse(localStorage.getItem("empresaLogada"));
 
-if (!usuarioLogado) {
-    window.location.href = "index.html";
+if (!usuarioLogado && !empresaLogada) {
+    window.location.href = "login.html";
 }
 
 const params = new URLSearchParams(window.location.search);
@@ -38,6 +42,8 @@ function formatarDataHora(dataHora) {
 }
 
 function preencherComprovante(comprovante) {
+    const comprovanteEmpresa = comprovante.tipoConta === "PJ" || (!usuarioLogado && empresaLogada);
+
     valor.textContent = formatarMoeda(comprovante.valor);
     DataHora.textContent = formatarDataHora(comprovante.dataHora);
     contaOrigem.textContent = comprovante.contaOrigem?.numero || comprovante.contaOrigem || "-";
@@ -57,10 +63,20 @@ function preencherComprovante(comprovante) {
         labelDestino.textContent = "Conta destino";
     }
 
+    const metodoComprovante = comprovante.metodo || "";
+
     tituloComprovante.textContent =
-        comprovante.metodo === "PIX" ? "Pix realizado" :
-        comprovante.metodo === "BOLETO" ? "Boleto pago" :
+        metodoComprovante.includes("Pix") || metodoComprovante === "PIX" ? "Pix realizado" :
+        metodoComprovante.includes("boleto") || metodoComprovante === "BOLETO" ? "Boleto pago" :
         "Transferencia realizada";
+
+    if (comprovanteEmpresa) {
+        linkNovaOperacao.textContent = "Novo pagamento PJ";
+        linkNovaOperacao.href = "empresa-pagamentos.html";
+        linkVerExtrato.href = "extrato-empresa.html";
+        linkVoltarPagamentos.textContent = "Voltar para dashboard PJ";
+        linkVoltarPagamentos.href = "empresa-dashboard.html";
+    }
 }
 
 async function carregarComprovante() {

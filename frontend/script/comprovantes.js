@@ -1,81 +1,74 @@
-const API_URL = "http://localhost:8080";
-
-const mensagemComprovante = document.getElementById("mensagem-comprovantes");
+const mensagemComprovantes = document.getElementById("mensagem-comprovantes");
 const tabelaComprovantes = document.getElementById("tabela-comprovantes");
 
-const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+const usuarioLogado = pegarUsuarioLogado();
+const empresaLogada = pegarEmpresaLogada();
 
-if (!usuarioLogado) {
-    window.location.href = "index.html";
+if (!usuarioLogado && !empresaLogada) {
+    window.location.href = "login.html";
 }
 
-function formatarMoeda(valor) {
-    return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-    });
+function preencherCabecalhoComprovantes(conta) {
+    const nome = empresaLogada
+        ? empresaLogada.nomeFantasia || empresaLogada.razaoSocial
+        : usuarioLogado.nomeSocial || usuarioLogado.nome;
+
+    mensagemComprovantes.textContent = `Buscando comprovantes da conta ${conta.numero} - ${nome}.`;
 }
 
-function formatarDataHora(dataHora) {
-    if (!dataHora) {
-        return "-";
+async function carregarContaLogada() {
+    try {
+        const conta = empresaLogada
+            ? await buscarContaDaEmpresa(empresaLogada.id)
+            : await buscarContaDoUsuario(usuarioLogado.id);
+
+        preencherCabecalhoComprovantes(conta);
+        await carregarComprovantesDaConta(conta.id);
+    } catch (erro) {
+        mensagemComprovantes.textContent = "Conta nao encontrada para esse login.";
     }
-
-    return new Date(dataHora).toLocaleString("pt-BR");
 }
 
-async function carregarContaUsuario() {
-    const resposta = await fetch(`${API_URL}/usuarios/${usuarioLogado.id}/conta`);
-
-    if (!resposta.ok) {
-        mensagemComprovante.textContent = "Conta não encontrada para esse usuario";
-        return;
-    }
-
-    const conta = await resposta.json();
-    carregarConta(conta.id);
-}
-
-async function carregarConta(contaId) {
+async function carregarComprovantesDaConta(contaId) {
     const resposta = await fetch(`${API_URL}/contas/${contaId}/comprovantes`);
 
     if (!resposta.ok) {
-        mensagemComprovante.textContent = "Erro ao buscar o comprovante";
+        mensagemComprovantes.textContent = "Erro ao buscar os comprovantes.";
         return;
     }
 
-    const comprovante = await resposta.json();
-    carregarComprovantes(comprovante);
+    const comprovantes = await resposta.json();
+    renderizarComprovantes(comprovantes);
 }
 
-async function carregarComprovantes(comprovantes) {
+function renderizarComprovantes(comprovantes) {
     tabelaComprovantes.innerHTML = "";
 
     if (comprovantes.length === 0) {
-        mensagemComprovante.textContent = "Essa conta ainda não possui comprovantes";
-        return
+        mensagemComprovantes.textContent = "Essa conta ainda nao possui comprovantes.";
+        return;
     }
 
-    mensagemComprovante.textContent = `${comprovantes.length} comprovante(s) encontrado(s).`;
+    mensagemComprovantes.textContent = `${comprovantes.length} comprovante(s) encontrado(s).`;
 
-    comprovantes.forEach(comprovante => {
+    comprovantes.forEach((comprovante) => {
         const linha = document.createElement("tr");
 
         linha.innerHTML = `
-        <td>${formatarDataHora(comprovante.dataHora)}</td>
-        <td><span class="selo-tipo">${comprovante.metodo}</span></td>
-        <td>${comprovante.destino}</td>
-        <td>${comprovante.status}</td>
-        <td>${formatarMoeda(comprovante.valor)}</td>
-        <td>
-            <a class="botao-secundario" href="comprovante.html?id=${comprovante.id}">
-                Ver
-            </a>
-        </td>
+            <td>${formatarDataHora(comprovante.dataHora)}</td>
+            <td><span class="selo-tipo">${comprovante.metodo || "-"}</span></td>
+            <td>${comprovante.destino || "-"}</td>
+            <td>${comprovante.status || "-"}</td>
+            <td>${formatarMoeda(comprovante.valor)}</td>
+            <td>
+                <a class="botao-secundario" href="comprovante.html?id=${comprovante.id}">
+                    Ver
+                </a>
+            </td>
         `;
 
         tabelaComprovantes.appendChild(linha);
     });
 }
 
-carregarContaUsuario();
+carregarContaLogada();

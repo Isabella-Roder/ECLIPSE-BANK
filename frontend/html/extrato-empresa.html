@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extrato PJ - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Area empresarial</p>
+                <h2 id="titulo-extrato-empresa">Extrato PJ</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal empresa-hero">
+            <div>
+                <span>Conta empresarial</span>
+                <strong id="saldo-extrato-empresa">R$ 0,00</strong>
+                <p id="mensagem-extrato-empresa">Carregando extrato empresarial...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="empresa-dashboard.html">Dashboard PJ</a>
+                <a href="empresa-conta.html">Conta PJ</a>
+                <a href="empresa-pagamentos.html">Pagamentos</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Empresa</span>
+                <strong id="nome-extrato-empresa">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Numero da conta</span>
+                <strong id="numero-extrato-empresa">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Chave Pix</span>
+                <strong id="pix-extrato-empresa">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Movimentacoes</span>
+                <strong id="total-extrato-empresa">0</strong>
+            </div>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Filtros</h3>
+                    <p>Refine as movimentacoes da conta PJ por tipo, categoria ou periodo.</p>
+                </div>
+            </div>
+
+            <form class="form-filtros-extrato" id="form-filtros-extrato-empresa">
+                <select id="filtro-tipo-empresa">
+                    <option value="">Todos os tipos</option>
+                </select>
+
+                <select id="filtro-categoria-empresa">
+                    <option value="">Todas as categorias</option>
+                </select>
+
+                <input type="date" id="filtro-data-inicio-empresa">
+
+                <input type="date" id="filtro-data-fim-empresa">
+
+                <button type="button" id="limpar-filtros-empresa">Limpar filtros</button>
+            </form>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Movimentacoes empresariais</h3>
+                    <p>Historico financeiro da conta PJ logada.</p>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descricao</th>
+                        <th>Categoria</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-extrato-empresa"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/extrato-empresa.js"></script>
+</body>
+</html>

@@ -388,10 +388,31 @@ O sistema deve permitir futuramente a criacao de contas para empresas, usando CN
 
 Status atual:
 
-- [ ] Conta empresa ainda nao implementada.
-- [ ] Cadastro de empresa ainda nao implementado.
-- [ ] CNPJ ainda nao implementado.
-- [ ] Separacao entre conta pessoa fisica e conta empresa ainda nao implementada.
+- [x] Entidade `Empresa` implementada.
+- [x] Repository de empresas implementado.
+- [x] Service de empresas implementado.
+- [x] Controller de empresas implementado.
+- [x] Cadastro de empresa implementado.
+- [x] Listagem de empresas implementada.
+- [x] Busca de empresa por ID implementada.
+- [x] CNPJ implementado como campo da empresa.
+- [x] Validacao de CNPJ unico implementada.
+- [x] Validacao de email unico para empresa implementada.
+- [x] Conta empresa implementada.
+- [x] Criacao automatica de conta empresarial ao cadastrar empresa.
+- [x] Busca de conta por empresa implementada.
+- [x] Separacao entre conta pessoa fisica e conta empresa implementada com `TipoConta`.
+- [x] Validacao para impedir conta com usuario e empresa ao mesmo tempo.
+- [x] Login empresarial com email e senha implementado.
+- [x] Tela `empresas.html` implementada para cadastro/listagem de empresas.
+- [x] Dashboard PJ `empresa-dashboard.html` implementado.
+- [x] Tela `empresa-conta.html` implementada para dados da conta empresarial.
+- [x] Tela `empresa-pagamentos.html` implementada para pagamentos PJ.
+- [x] Tela `extrato-empresa.html` implementada para extrato PJ.
+- [x] Tela `empresa-cartoes.html` implementada para cartao PJ.
+- [x] Comprovantes PJ integrados ao historico real de comprovantes.
+- [x] Menu lateral separado para area PJ implementado.
+- [~] Protecao da area PJ por `empresaLogada` implementada parcialmente.
 
 Requisitos:
 
@@ -404,6 +425,9 @@ Requisitos:
 - Diferenciar conta pessoa fisica e conta empresa.
 - Permitir chave Pix para empresa.
 - Permitir telefone como chave Pix da empresa futuramente.
+- Permitir login de empresa.
+- Exibir dashboard da empresa logada.
+- Exibir dados da conta empresarial da empresa logada.
 
 ## 4. Divisão Entre Java e Python
 
@@ -567,11 +591,16 @@ Entidades sugeridas para o sistema:
 
 ## 10. Perfis do Sistema
 
-O sistema deve considerar dois tipos principais de uso: cliente e administracao.
+O sistema deve considerar tres tipos principais de uso: cliente pessoa fisica, empresa e administracao.
 
 Status atual:
 
 - [~] Telas de cliente começaram a ser separadas.
+- [x] Login empresarial implementado.
+- [x] Empresa logada salva no `localStorage` como `empresaLogada`.
+- [x] Menu lateral separado para pessoa fisica, empresa e administracao/desenvolvimento.
+- [x] Dashboard PJ criado.
+- [x] Tela de conta empresarial criada.
 - [x] Tela `dados.html` criada para dados pessoais.
 - [x] Tela `minha-conta.html` criada para dados da conta.
 - [x] `minha-conta.html` reorganizada como painel bancario do cliente.
@@ -580,9 +609,10 @@ Status atual:
 - [~] Telas administrativas existem, mas ainda sem controle de permissão.
 - [x] Login simples implementado.
 - [~] Login controla acesso de algumas telas do cliente.
+- [~] Login controla acesso inicial de algumas telas da area PJ.
 - [x] Logout implementado no menu lateral.
 - [ ] Login com conta Google ainda não implementado.
-- [ ] Separação real entre cliente e administração ainda não implementada.
+- [~] Separação real entre cliente, empresa e administração implementada parcialmente.
 
 ### 10.1 Cliente
 
@@ -615,6 +645,33 @@ Requisitos:
 - Acompanhar transacoes.
 - Gerar relatorios administrativos.
 
+### 10.3 Empresa
+
+A empresa deve conseguir acessar e acompanhar sua propria conta empresarial.
+
+Status atual:
+
+- [x] Login de empresa implementado.
+- [x] Dashboard PJ implementado.
+- [x] Tela de conta empresarial implementada.
+- [x] Dados de empresa exibidos na area PJ.
+- [x] Dados da conta empresarial exibidos na area PJ.
+- [x] Pagamentos PJ implementados.
+- [x] Extrato PJ implementado.
+- [x] Comprovantes PJ implementados.
+- [x] Cartoes PJ implementados.
+- [x] Compras no cartao PJ implementadas.
+- [~] Area PJ ainda pode evoluir com relatorios, investimentos e permissoes.
+
+Requisitos:
+
+- Visualizar razao social, nome fantasia, CNPJ, email e telefone.
+- Consultar conta empresarial vinculada.
+- Consultar saldo, limite, numero da conta e chave Pix da empresa.
+- Acessar pagamentos PJ.
+- Acessar extrato PJ.
+- Acessar cartoes PJ.
+
 ## 11. Organizacao de Telas
 
 O frontend deve ser dividido em telas especificas para evitar paginas muito grandes e facilitar a separacao entre visao do cliente e visao administrativa.
@@ -633,11 +690,13 @@ Status atual:
 - [x] Logout implementado no `layout.js`.
 - [x] `pagamentos.html` implementado.
 - [x] `cartoes.html` implementado.
-- [ ] Tela de empresas ainda não implementada.
+- [x] `empresas.html` implementado.
+- [x] `empresa-dashboard.html` implementado.
+- [x] `empresa-conta.html` implementado.
 - [x] Tela `comprovante.html` implementada para ultima operacao.
 - [x] Tela `comprovantes.html` implementada para historico real de comprovantes.
 - [ ] Tela de relatórios ainda não implementada.
-- [ ] Tela de investimentos ainda não implementada.
+- [x] Tela de investimentos implementada.
 
 Telas sugeridas:
 
@@ -651,7 +710,12 @@ Telas sugeridas:
 - `login.html`: login simples com email e senha.
 - `pagamentos.html`: pagamentos por transferencia, Pix e boleto.
 - `cartoes.html`: cartao do cliente, criacao de cartao e compras no cartao.
-- `empresas.html`: cadastro e gestao de empresas futuramente.
+- `empresas.html`: cadastro, listagem e gestao inicial de empresas.
+- `empresa-dashboard.html`: dashboard da empresa logada.
+- `empresa-conta.html`: dados da conta empresarial da empresa logada.
+- `empresa-pagamentos.html`: pagamentos por conta PJ.
+- `extrato-empresa.html`: extrato da conta PJ.
+- `empresa-cartoes.html`: cartao PJ, criacao de cartao e compras empresariais.
 - `comprovantes.html`: consulta de comprovantes futuramente.
 - `comprovante.html`: visualizacao do comprovante gerado apos uma operacao.
 
@@ -744,6 +808,22 @@ Requisitos:
 
 ### 11.7 Empresas
 
+Status atual:
+
+- [x] Cadastrar empresa.
+- [x] Listar empresas.
+- [x] Criar conta automaticamente para empresa.
+- [x] Exibir CNPJ, razao social e nome fantasia.
+- [x] Separar conta empresa de conta pessoa fisica.
+- [x] Exibir dashboard PJ para empresa logada.
+- [x] Exibir dados da conta empresarial da empresa logada.
+- [x] Menu lateral da area PJ.
+- [x] Pagamentos PJ em tela propria implementado.
+- [x] Extrato PJ em tela propria implementado.
+- [x] Cartoes PJ em tela propria implementado.
+- [x] Compras no cartao PJ implementadas.
+- [x] Comprovantes PJ no historico real implementados.
+
 Requisitos:
 
 - Cadastrar empresa.
@@ -751,6 +831,9 @@ Requisitos:
 - Criar conta para empresa.
 - Exibir CNPJ, razao social e nome fantasia.
 - Separar conta empresa de conta pessoa fisica.
+- Permitir login empresarial.
+- Exibir dashboard da empresa logada.
+- Exibir dados da conta empresarial.
 
 ## 12. Investimentos
 
@@ -758,9 +841,20 @@ O sistema deve possuir uma area de investimentos ficticios para complementar o c
 
 Status atual:
 
-- [ ] Módulo de investimentos ainda não implementado.
-- [ ] Tela de investimentos ainda não implementada.
-- [ ] Simulador de investimentos ainda não implementado.
+- [x] Módulo inicial de investimentos implementado.
+- [x] Tela de investimentos implementada.
+- [x] Simulador inicial de investimentos implementado.
+- [x] Entidade `Investimento` implementada.
+- [x] Enums `TipoInvestimento`, `ProdutoInvestimento` e `PerfilInvestidor` implementados.
+- [x] Repository de investimentos implementado.
+- [x] Service de investimentos implementado com aplicacao, validacao de saldo e rendimento estimado.
+- [x] Controller de investimentos implementado.
+- [x] Rota `POST /contas/{contaId}/investimentos` implementada.
+- [x] Rota `GET /contas/{contaId}/investimentos` implementada.
+- [x] Aplicacao de investimento desconta saldo da conta.
+- [x] Tela `investimentos.html` implementada.
+- [x] `investimentos.js` integrado com a conta do usuario logado.
+- [x] Listagem de investimentos da conta implementada.
 - [ ] Integração com API da B3 ainda não implementada.
 - [ ] Relatórios de investimentos com Python ainda não implementados.
 
@@ -833,9 +927,13 @@ Legenda:
 - [x] Validacao de email unico.
 - [x] Validacao de campos obrigatorios do usuario.
 - [x] Telefone implementado no usuario.
-- [ ] Empresa ainda nao implementada.
-- [ ] CNPJ ainda nao implementado.
-- [ ] Conta empresa ainda nao implementada.
+- [x] Empresa implementada.
+- [x] CNPJ implementado.
+- [x] Conta empresa implementada.
+- [x] Cadastro de empresa implementado.
+- [x] Login empresarial implementado.
+- [x] Conta empresarial criada automaticamente ao cadastrar empresa.
+- [x] Separacao entre conta pessoa fisica e conta empresa com `TipoConta`.
 - [x] Mascara de CPF implementada no cadastro de usuario.
 - [x] Mascara de telefone implementada no cadastro de usuario.
 - [x] Confirmacao de senha implementada.
@@ -934,7 +1032,16 @@ Legenda:
 - [ ] Resumo da conta no canto direito superior ainda nao implementado.
 - [x] Tela minha conta ajustada.
 - [x] Tela meus dados ajustada.
-- [ ] Tela de empresas.
+- [x] Tela de empresas.
+- [x] Tela de dashboard PJ.
+- [x] Tela de conta empresarial.
+- [x] Tela de pagamentos PJ.
+- [x] Tela de extrato PJ.
+- [x] Tela de cartoes PJ.
+- [x] Historico de comprovantes PJ.
+- [x] Login empresarial pelo frontend.
+- [x] Empresa logada salva no `localStorage`.
+- [x] Sidebar separada para area PJ.
 - [x] Tela de comprovante da ultima operacao.
 - [x] Tela de historico de comprovantes.
 - [x] Comprovante exibindo pagador.
@@ -949,7 +1056,7 @@ Legenda:
 - [x] Consulta de cartao pelo frontend.
 - [x] Registro de compras no cartao pelo frontend.
 - [x] Listagem de compras do cartao pelo frontend.
-- [ ] Tela de investimentos.
+- [x] Tela de investimentos.
 
 ### 13.3 Funcionalidades Pendentes
 
@@ -971,9 +1078,16 @@ Legenda:
 - [x] Botao para ver comprovante no historico de pagamentos.
 - [x] Botao para imprimir comprovante.
 - [ ] Botao para baixar comprovante em PDF.
-- [ ] Conta de empresa com CNPJ.
-- [ ] Cadastro de empresa.
-- [ ] Diferenciar conta pessoa fisica e conta empresa.
+- [x] Conta de empresa com CNPJ.
+- [x] Cadastro de empresa.
+- [x] Diferenciar conta pessoa fisica e conta empresa.
+- [x] Login empresarial.
+- [x] Dashboard PJ.
+- [x] Tela de conta empresarial.
+- [x] Pagamentos PJ.
+- [x] Extrato PJ.
+- [x] Cartoes PJ.
+- [x] Comprovantes PJ.
 - [x] Arrumar tela minha conta.
 - [x] Arrumar tela meus dados.
 - [x] Pix por chave Pix.
@@ -996,7 +1110,8 @@ Legenda:
 - [ ] Metas financeiras.
 - [ ] Relatorios com Python.
 - [ ] Graficos.
-- [ ] Investimentos ficticios.
+- [x] Investimentos ficticios iniciais.
+- [ ] Resgate de investimentos.
 - [ ] Integracao futura com API da B3 para modulo de investimentos.
 - [ ] Exportacao de relatorios.
 - [x] Filtros no extrato por data, tipo e categoria implementados no frontend.

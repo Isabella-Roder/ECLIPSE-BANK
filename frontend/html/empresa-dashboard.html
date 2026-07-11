@@ -24,7 +24,7 @@
 
             <div class="resumo-acoes">
                 <a href="empresa-pagamentos.html">Pagar</a>
-                <a href="empresa-extrato.html">Extrato PJ</a>
+                <a href="extrato-empresa.html">Extrato PJ</a>
                 <a href="comprovantes.html">Comprovantes</a>
             </div>
         </section>
@@ -48,6 +48,28 @@
             <div class="card">
                 <span>Status</span>
                 <strong>Ativa</strong>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Movimentacoes</span>
+                <strong id="total-movimentacoes-empresa">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Ultimo pagamento</span>
+                <strong id="ultimo-pagamento-empresa">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Cartao PJ</span>
+                <strong id="status-cartao-dashboard-empresa">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Fatura PJ</span>
+                <strong id="fatura-cartao-dashboard-empresa">R$ 0,00</strong>
             </div>
         </section>
 
@@ -104,15 +126,48 @@
 
             <div class="grade-atalhos">
                 <a href="empresa-pagamentos.html">Pagar boleto ou Pix</a>
-                <a href="empresa-extrato.html">Consultar extrato PJ</a>
+                <a href="extrato-empresa.html">Consultar extrato PJ</a>
                 <a href="empresa-cartoes.html">Cartoes PJ</a>
                 <a href="comprovantes.html">Comprovantes</a>
                 <a href="empresa-dados.html">Dados da empresa</a>
             </div>
         </section>
+
+        <section class="painel-duplo-cliente">
+            <section class="painel">
+                <div class="cabecalho-painel">
+                    <div>
+                        <h3>Ultimas movimentacoes PJ</h3>
+                        <p>Saidas e entradas recentes da conta empresarial.</p>
+                    </div>
+
+                    <a class="botao-secundario" href="extrato-empresa.html">Ver extrato</a>
+                </div>
+
+                <div class="lista-pagamentos" id="ultimas-movimentacoes-empresa">
+                    <p class="texto-vazio">Nenhuma movimentacao encontrada.</p>
+                </div>
+            </section>
+
+            <section class="painel">
+                <div class="cabecalho-painel">
+                    <div>
+                        <h3>Ultimos comprovantes PJ</h3>
+                        <p>Comprovantes recentes da conta empresarial.</p>
+                    </div>
+
+                    <a class="botao-secundario" href="comprovantes.html">Ver todos</a>
+                </div>
+
+                <div class="lista-pagamentos" id="ultimos-comprovantes-empresa">
+                    <p class="texto-vazio">Nenhum comprovante encontrado.</p>
+                </div>
+            </section>
+        </section>
     </main>
 
     <script src="../script/layout.js"></script>
-    <script src="../script/empresa-dashboard.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/empresa-dashboard.js?v=2"></script>
 </body>
 </html>

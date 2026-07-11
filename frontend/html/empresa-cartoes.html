@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartoes PJ - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Area empresarial</p>
+                <h2>Cartoes PJ</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal empresa-hero">
+            <div>
+                <span>Cartao empresarial Eclipse</span>
+                <strong id="numero-cartao-empresa">**** **** **** ****</strong>
+                <p id="mensagem-cartao-empresa">Carregando cartao empresarial...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="empresa-dashboard.html">Dashboard PJ</a>
+                <a href="empresa-pagamentos.html">Pagamentos PJ</a>
+                <a href="extrato-empresa.html">Extrato PJ</a>
+            </div>
+        </section>
+
+        <section class="cartao-visual">
+            <div class="cartao-visual-topo">
+                <div class="cartao-visual-marca">
+                    <strong>ECLIPSE</strong>
+                    <span>BUSINESS</span>
+                </div>
+
+                <span class="cartao-contato">)))</span>
+            </div>
+
+            <div class="cartao-eclipse"></div>
+            <div class="chip-cartao"></div>
+
+            <strong class="numero-cartao-visual" id="numero-cartao-visual-empresa">**** **** **** ****</strong>
+
+            <div class="cartao-visual-rodape">
+                <span id="nome-cartao-visual-empresa">EMPRESA</span>
+                <span id="validade-cartao-visual-empresa">--/--</span>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Nome impresso</span>
+                <strong id="nome-impresso-cartao-empresa">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Limite total</span>
+                <strong id="limite-total-cartao-empresa">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Limite disponivel</span>
+                <strong id="limite-disponivel-cartao-empresa">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Status</span>
+                <strong id="status-cartao-empresa">-</strong>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Fatura PJ atual</span>
+                <strong id="total-fatura-cartao-empresa">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Compras</span>
+                <strong id="quantidade-compras-cartao-empresa">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Limite usado</span>
+                <strong id="limite-usado-cartao-empresa">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Uso do limite</span>
+                <strong id="percentual-limite-cartao-empresa">0%</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco" id="area-criar-cartao-empresa">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Criar cartao empresarial</h3>
+                    <p>Crie um cartao ficticio vinculado a conta PJ.</p>
+                </div>
+            </div>
+
+            <form id="form-cartao-empresa" class="formulario">
+                <label>
+                    Nome impresso
+                    <input type="text" id="nomeImpressoCartaoEmpresa" placeholder="Ex: Eclipse Tecnologia LTDA" required>
+                </label>
+
+                <label>
+                    Limite total
+                    <input type="text" id="limiteTotalCartaoEmpresa" placeholder="R$ 5.000,00" required>
+                </label>
+
+                <label>
+                    Data de validade
+                    <input type="date" id="dataValidadeCartaoEmpresa" required>
+                </label>
+
+                <button type="submit">Criar cartao PJ</button>
+            </form>
+        </section>
+
+        <section class="painel info-bloco" id="area-compras-cartao-empresa">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Nova compra PJ</h3>
+                    <p>Simule uma compra empresarial e acompanhe o limite disponivel.</p>
+                </div>
+            </div>
+
+            <form id="form-compra-cartao-empresa" class="formulario">
+                <label>
+                    Descricao
+                    <input type="text" id="descricaoCompraCartaoEmpresa" placeholder="Ex: Software mensal" required>
+                </label>
+
+                <label>
+                    Categoria
+                    <input type="text" id="categoriaCompraCartaoEmpresa" placeholder="Ex: Servicos" required>
+                </label>
+
+                <label>
+                    Valor
+                    <input type="text" id="valorCompraCartaoEmpresa" placeholder="R$ 0,00" required>
+                </label>
+
+                <button type="submit">Registrar compra PJ</button>
+            </form>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Compras recentes PJ</h3>
+                    <p>Historico de compras feitas com o cartao empresarial.</p>
+                </div>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Descricao</th>
+                            <th>Categoria</th>
+                            <th>Status</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-compras-cartao-empresa">
+                        <tr>
+                            <td colspan="5">Carregando compras do cartao PJ...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/empresa-cartoes.js"></script>
+</body>
+</html>

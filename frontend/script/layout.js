@@ -46,7 +46,7 @@ function criarSidebarEmpresa() {
             <a href="empresa-dashboard.html">Dashboard PJ</a>
             <a href="empresa-conta.html">Conta empresarial</a>
             <a href="empresa-pagamentos.html">Pagamentos PJ</a>
-            <a href="empresa-extrato.html">Extrato PJ</a>
+            <a href="extrato-empresa.html">Extrato PJ</a>
             <a href="empresa-cartoes.html">Cartões PJ</a>
             <a href="empresa-dados.html">Dados da empresa</a>
             <a href="comprovantes.html">Comprovantes</a>

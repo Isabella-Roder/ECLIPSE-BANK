@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamentos PJ - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Area empresarial</p>
+                <h2>Pagamentos PJ</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal empresa-hero">
+            <div>
+                <span>Conta empresarial</span>
+                <strong id="saldo-pagamento-empresa">R$ 0,00</strong>
+                <p id="mensagem-pagamento-empresa">Carregando conta empresarial...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="empresa-dashboard.html">Dashboard PJ</a>
+                <a href="extrato-empresa.html">Extrato PJ</a>
+                <a href="comprovantes.html">Comprovantes</a>
+            </div>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Novo pagamento empresarial</h3>
+                    <p>Use a conta PJ para pagar boleto, fazer Pix ou transferir por numero da conta.</p>
+                </div>
+            </div>
+
+            <form id="form-pagamento-empresa">
+                <select id="metodo-pagamento-empresa" required>
+                    <option value="TRANSFERENCIA">Transferencia por numero da conta</option>
+                    <option value="PIX">Pix por chave Pix</option>
+                    <option value="BOLETO">Boleto ficticio</option>
+                </select>
+
+                <input
+                    type="text"
+                    id="destino-pagamento-empresa"
+                    placeholder="Conta, chave Pix ou codigo do boleto"
+                    required
+                >
+
+                <p class="ajuda-campo-pagamento" id="ajuda-destino-pagamento-empresa">
+                    Escolha o metodo para ver o que informar neste campo.
+                </p>
+
+                <input
+                    type="text"
+                    id="valor-pagamento-empresa"
+                    placeholder="Valor"
+                    required
+                >
+
+                <button type="submit">Pagar com conta PJ</button>
+            </form>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Historico de pagamentos PJ</h3>
+                    <p>Pagamentos realizados pela conta empresarial logada.</p>
+                </div>
+            </div>
+
+            <div class="lista-pagamentos" id="lista-pagamentos-empresa">
+                <p class="texto-vazio">Nenhum pagamento empresarial encontrado.</p>
+            </div>
+        </section>
+
+        <section class="painel">
+            <h3>Dados da conta usada</h3>
+
+            <div class="info-grid">
+                <div>
+                    <span>Empresa</span>
+                    <strong id="empresa-pagadora">-</strong>
+                </div>
+
+                <div>
+                    <span>Numero da conta</span>
+                    <strong id="numero-conta-pagamento-empresa">-</strong>
+                </div>
+
+                <div>
+                    <span>Chave Pix</span>
+                    <strong id="pix-pagamento-empresa">-</strong>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/empresa-pagamentos.js?v=2"></script>
+</body>
+</html>

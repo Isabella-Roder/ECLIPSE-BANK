@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investimentos - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Carteira do cliente</p>
+                <h2>Investimentos</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero">
+            <div>
+                <span>Saldo disponivel para investir</span>
+                <strong id="saldo-investimentos">R$ 0,00</strong>
+                <p id="mensagem-investimentos">Carregando carteira de investimentos...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="minha-conta.html">Minha conta</a>
+                <a href="extrato.html">Extrato</a>
+                <a href="comprovantes.html">Comprovantes</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Total investido</span>
+                <strong id="total-investido">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Rendimento estimado</span>
+                <strong id="rendimento-estimado">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Aplicacoes</span>
+                <strong id="quantidade-investimentos">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Perfil escolhido</span>
+                <strong id="perfil-investidor-resumo">-</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Nova aplicacao</h3>
+                    <p>Escolha um produto ficticio do Eclipse Bank e simule uma aplicacao.</p>
+                </div>
+
+                <span class="selo-status">Simulacao</span>
+            </div>
+
+            <form id="form-investimento" class="formulario">
+                <label>
+                    Produto
+                    <select id="produtoInvestimento" required>
+                        <option value="">Selecione um produto</option>
+                        <option value="CDB_PREFIXADO">CDB Prefixado</option>
+                        <option value="CDB_POS_FIXADO">CDB Pos-fixado</option>
+                        <option value="CDB_LIQUIDEZ_DIARIA">CDB Liquidez diaria</option>
+                        <option value="TESOURO_PREFIXADO">Tesouro Prefixado</option>
+                        <option value="TESOURO_IPCA">Tesouro IPCA+</option>
+                        <option value="TESOURO_SELIC">Tesouro Selic</option>
+                        <option value="FUNDO_RENDA_FIXA">Fundo Renda Fixa</option>
+                        <option value="FUNDO_MULTIMERCADO">Fundo Multimercado</option>
+                        <option value="CRIPTO_ECLIPSE">Cripto Eclipse</option>
+                        <option value="ACOES_ECLIPSE">Acoes Eclipse</option>
+                        <option value="ETF_ECLIPSE">ETF Eclipse</option>
+                    </select>
+                </label>
+
+                <label>
+                    Tipo
+                    <select id="tipoInvestimento" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="RENDA_FIXA">Renda fixa</option>
+                        <option value="TESOURO">Tesouro</option>
+                        <option value="FUNDO">Fundo</option>
+                        <option value="CRIPTO">Cripto</option>
+                        <option value="ACOES">Acoes</option>
+                        <option value="ETF">ETF</option>
+                    </select>
+                </label>
+
+                <label>
+                    Perfil do investidor
+                    <select id="perfilInvestidor" required>
+                        <option value="">Selecione o perfil</option>
+                        <option value="CONSERVADOR">Conservador</option>
+                        <option value="MODERADO">Moderado</option>
+                        <option value="ARROJADO">Arrojado</option>
+                    </select>
+                </label>
+
+                <label>
+                    Valor da aplicacao
+                    <input type="text" id="valorAplicado" placeholder="R$ 0,00" required>
+                </label>
+
+                <button type="submit">Aplicar investimento</button>
+            </form>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Minha carteira</h3>
+                    <p>Aplicacoes feitas com a conta logada.</p>
+                </div>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Produto</th>
+                            <th>Tipo</th>
+                            <th>Perfil</th>
+                            <th>Aplicado</th>
+                            <th>Rendimento</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-investimentos">
+                        <tr>
+                            <td colspan="6">Carregando investimentos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/investimentos.js?v=2"></script>
+</body>
+</html>

@@ -69,11 +69,18 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Criacao e consulta de cartao por conta.
 - Modulo inicial de compras no cartao implementado.
 - Compra no cartao valida limite disponivel e diminui o limite apos aprovacao.
+- Modulo inicial de investimentos implementado.
+- Investimentos vinculados a conta, com produto, tipo, perfil, valor aplicado e rendimento estimado.
+- Aplicacao de investimento desconta saldo da conta.
 - Tela de cartoes implementada.
 - Criacao de cartao pelo frontend.
 - Registro de compras no cartao pelo frontend.
 - Listagem de compras do cartao pelo frontend.
 - Dashboard com saldo total, total de contas e total de usuarios.
+- Cadastro de empresas com CNPJ.
+- Conta empresarial criada automaticamente.
+- Login empresarial.
+- Pagamentos, extrato, comprovantes e cartoes PJ.
 - Tratamento de erros com `ErroController`.
 - Categorias fixas.
 
@@ -128,6 +135,8 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Comprovante com pagador e destino dinamico conforme o metodo.
 - Metodo do comprovante exibido como selo visual.
 - Botao para imprimir comprovante.
+- Area PJ com dashboard, conta empresarial, pagamentos, extrato, comprovantes e cartoes.
+- Tela de investimentos com aplicacao, resumo da carteira e listagem de investimentos.
 
 ## Telas Atuais
 
@@ -143,6 +152,12 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `dados.html`: perfil cadastral do cliente, com identidade, contato e seguranca/cadastro.
 - `login.html`: entrada do usuario no sistema.
 - `comprovante.html`: comprovante visual da ultima operacao.
+- `empresa-dashboard.html`: dashboard da empresa logada.
+- `empresa-conta.html`: dados da conta empresarial.
+- `empresa-pagamentos.html`: pagamentos por conta PJ.
+- `extrato-empresa.html`: extrato da conta PJ.
+- `empresa-cartoes.html`: cartao PJ e compras empresariais.
+- `investimentos.html`: carteira de investimentos, aplicacao e resumo.
 
 ## Funcionalidades Planejadas
 
@@ -183,7 +198,7 @@ frontend/
 - Metas financeiras.
 - Relatorios com Python.
 - Graficos.
-- Investimentos ficticios.
+- Resgate de investimentos.
 - Integracao futura com API da B3 para modulo de investimentos.
 - Exportacao de relatorios.
 

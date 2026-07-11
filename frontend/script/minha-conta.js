@@ -1,8 +1,5 @@
-const API_URL = "http://localhost:8080";
-
 const mensagemMinhaConta = document.getElementById("mensagem-minha-conta");
 const saudacaoCliente = document.getElementById("saudacao-cliente");
-
 const titularConta = document.getElementById("titular-conta");
 const saldoConta = document.getElementById("saldo-conta");
 const limiteConta = document.getElementById("limite-conta");
@@ -14,26 +11,8 @@ const emailConta = document.getElementById("email-conta");
 const ultimasTransacoes = document.getElementById("ultimas-transacoes");
 const ultimosComprovantes = document.getElementById("ultimos-comprovantes");
 
-const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-if (!usuarioLogado) {
-    window.location.href = "login.html";
-}
-
-function formatarMoeda(valor) {
-    return (valor || 0).toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-    });
-}
-
-function formatarDataHora(dataHora) {
-    if (!dataHora) {
-        return "-";
-    }
-
-    return new Date(dataHora).toLocaleString("pt-BR");
-}
+const usuarioLogado = pegarUsuarioLogado();
+const deveRedirecionar = redirecionarParaLoginSeNaoExistir(usuarioLogado);
 
 function ehEntrada(tipo) {
     return tipo === "RECEITA" || tipo === "DEPOSITO";
@@ -43,30 +22,27 @@ function nomeCliente() {
     return usuarioLogado.nomeSocial || usuarioLogado.nome || "cliente";
 }
 
-async function carregarMinhaConta(usuarioId) {
-    const resposta = await fetch(`${API_URL}/usuarios/${usuarioId}/conta`);
+async function carregarMinhaConta() {
+    try {
+        const minhaConta = await buscarContaDoUsuario(usuarioLogado.id);
 
-    if (!resposta.ok) {
-        mensagemMinhaConta.textContent = "Erro essa conta não existe.";
-        return;
+        saudacaoCliente.textContent = `Ola, ${nomeCliente()}`;
+        mensagemMinhaConta.textContent = "Conta pessoal Eclipse Bank";
+
+        titularConta.textContent = minhaConta.titular || "-";
+        saldoConta.textContent = formatarMoeda(minhaConta.saldo);
+        limiteConta.textContent = formatarMoeda(minhaConta.limite);
+        numeroConta.textContent = minhaConta.numero || "-";
+        chavePix.textContent = minhaConta.chavePix || "-";
+        tipoChavePix.textContent = minhaConta.tipoChavePix || "-";
+        usuarioConta.textContent = minhaConta.usuario ? minhaConta.usuario.nome : "-";
+        emailConta.textContent = minhaConta.usuario ? minhaConta.usuario.email : "-";
+
+        carregarUltimasTransacoes(minhaConta.id);
+        carregarUltimosComprovantes(minhaConta.id);
+    } catch (erro) {
+        mensagemMinhaConta.textContent = "Nao foi possivel carregar a sua conta.";
     }
-
-    const minhaConta = await resposta.json();
-
-    saudacaoCliente.textContent = `Ola, ${nomeCliente()}`;
-    mensagemMinhaConta.textContent = "Conta pessoal Eclipse Bank";
-
-    titularConta.textContent = minhaConta.titular;
-    saldoConta.textContent = formatarMoeda(minhaConta.saldo || 0);
-    limiteConta.textContent = formatarMoeda(minhaConta.limite || 0);
-    numeroConta.textContent = minhaConta.numero;
-    chavePix.textContent = minhaConta.chavePix;
-    tipoChavePix.textContent = minhaConta.tipoChavePix || "-";
-    usuarioConta.textContent = minhaConta.usuario ? minhaConta.usuario.nome : "-";
-    emailConta.textContent = minhaConta.usuario ? minhaConta.usuario.email : "-";
-
-    carregarUltimasTransacoes(minhaConta.id);
-    carregarUltimosComprovantes(minhaConta.id);
 }
 
 async function carregarUltimasTransacoes(contaId) {
@@ -138,4 +114,6 @@ async function carregarUltimosComprovantes(contaId) {
     });
 }
 
-carregarMinhaConta(usuarioLogado.id);
+if (!deveRedirecionar) {
+    carregarMinhaConta();
+}
