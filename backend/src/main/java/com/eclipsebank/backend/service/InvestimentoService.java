@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.eclipsebank.backend.model.Investimento;
 import com.eclipsebank.backend.repository.ContaRepository;
 import com.eclipsebank.backend.repository.InvestimentoRepository;
-
+import com.eclipsebank.backend.dto.ProdutoInvestimentoInfo;
 import com.eclipsebank.backend.enums.StatusInvestimento;
 import com.eclipsebank.backend.model.Conta;
 
@@ -17,10 +17,12 @@ public class InvestimentoService {
     
     private InvestimentoRepository investimentoRepository;
     private ContaRepository contaRepository;
+    private ProdutoInvestimentoService produtoInvestimentoService;
 
-    public InvestimentoService(InvestimentoRepository investimentoRepository, ContaRepository contaRepository) {
+    public InvestimentoService(InvestimentoRepository investimentoRepository, ContaRepository contaRepository, ProdutoInvestimentoService produtoInvestimentoService) {
         this.investimentoRepository = investimentoRepository;
         this.contaRepository = contaRepository;
+        this.produtoInvestimentoService = produtoInvestimentoService;
     }
 
     public List<Investimento> listar() {
@@ -36,21 +38,16 @@ public class InvestimentoService {
             return 0.0;
         }
 
-        double taxa = switch (investimento.getProduto()) {
-            case CDB_PREFIXADO -> 0.09;
-            case CDB_POS_FIXADO -> 0.08;
-            case CDB_LIQUIDEZ_DIARIA -> 0.06;
-            case TESOURO_PREFIXADO -> 0.085;
-            case TESOURO_IPCA -> 0.095;
-            case TESOURO_SELIC -> 0.07;
-            case FUNDO_RENDA_FIXA -> 0.075;
-            case FUNDO_MULTIMERCADO -> 0.11;
-            case CRIPTO_ECLIPSE -> 0.18;
-            case ACOES_ECLIPSE -> 0.13;
-            case ETF_ECLIPSE -> 0.10;
-        };
+        ProdutoInvestimentoInfo produtoInfo = produtoInvestimentoService.listar()
+            .stream().filter(produto -> produto.getProduto() == investimento.getProduto())
+            .findFirst().orElseThrow(() -> new IllegalArgumentException("Produto de investimento não encontrado."));
 
-        return investimento.getValorAplicado() * taxa;
+        int prazoMeses = investimento.getPrazoMeses() == null ? 12 : investimento.getPrazoMeses();
+
+        double taxaAnual = produtoInfo.getTaxaAnual() == null ? 0.0 : produtoInfo.getTaxaAnual();
+        double taxaPeriodo = taxaAnual * (prazoMeses / 12.0);
+
+        return investimento.getValorAplicado() * taxaPeriodo;
     }
 
     public Investimento aplicar(Long contaId, Investimento investimento) {
@@ -78,6 +75,10 @@ public class InvestimentoService {
 
         if (investimento.getPerfilInvestidor() == null) {
             throw new IllegalArgumentException("Perfil do investidor obrigatorio.");
+        }
+
+        if (investimento.getPrazoMeses() == null || investimento.getPrazoMeses() <= 0) {
+            investimento.setPrazoMeses(12);
         }
 
         conta.setSaldo(conta.getSaldo() - investimento.getValorAplicado());

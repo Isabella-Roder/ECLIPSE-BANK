@@ -651,6 +651,33 @@ body::before {
     overflow-wrap: anywhere;
 }
 
+.cards-cliente .card strong {
+    display: block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    line-height: 1.15;
+}
+
+#form-investimento-detalhe .cards-cliente {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#form-investimento-detalhe .card {
+    min-width: 0;
+}
+
+#form-investimento-detalhe .card strong {
+    font-size: clamp(20px, 2.4vw, 26px);
+}
+
+#form-investimento-detalhe button[type="submit"] {
+    width: fit-content;
+    min-width: 220px;
+    padding-inline: 28px;
+    justify-self: start;
+}
+
 .card-destaque {
     border-color: rgba(241, 179, 93, 0.2);
     background:

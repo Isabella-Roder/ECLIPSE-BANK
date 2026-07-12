@@ -33,6 +33,7 @@ public class Investimento {
 
     private Double valorAplicado;
     private Double rendimentoEstimado;
+    private Integer prazoMeses;
     private LocalDateTime dataAplicacao;
 
     @ManyToOne
@@ -42,13 +43,14 @@ public class Investimento {
 
     }
 
-    public Investimento(ProdutoInvestimento produto, TipoInvestimento tipo,  PerfilInvestidor perfilInvestidor, StatusInvestimento status, Double valorAplicado, Double rendimentoEstimado, LocalDateTime dataAplicacao) {
+    public Investimento(ProdutoInvestimento produto, TipoInvestimento tipo,  PerfilInvestidor perfilInvestidor, StatusInvestimento status, Double valorAplicado, Double rendimentoEstimado, Integer prazoMeses, LocalDateTime dataAplicacao) {
         this.produto = produto;
         this.tipo = tipo;
         this.perfilInvestidor = perfilInvestidor;
         this.status = status;
         this.valorAplicado = valorAplicado;
         this.rendimentoEstimado = rendimentoEstimado;
+        this.prazoMeses = prazoMeses;
         this.dataAplicacao = dataAplicacao;
     }
 
@@ -80,6 +82,10 @@ public class Investimento {
         return rendimentoEstimado;
     }
 
+    public Integer getPrazoMeses() {
+        return prazoMeses;
+    }
+    
     public LocalDateTime getDataAplicacao() {
         return dataAplicacao;
     }
@@ -114,6 +120,10 @@ public class Investimento {
 
     public void setRendimentoEstimado(Double rendimentoEstimado) {
         this.rendimentoEstimado = rendimentoEstimado;
+    }
+
+    public void setPrazoMeses(Integer prazoMeses) {
+        this.prazoMeses = prazoMeses;
     }
 
     public void setDataAplicacao(LocalDateTime dataAplicacao) {

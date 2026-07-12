@@ -77,6 +77,10 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Produtos de investimento fornecidos pelo backend e renderizados automaticamente no frontend.
 - Integracao inicial com API do Banco Central para indicadores financeiros.
 - Simulacao de investimento por valor e prazo na tela de detalhe do produto.
+- Prazo da aplicacao salvo no investimento e exibido na carteira.
+- Calculo de rendimento no backend usando taxa do produto e prazo informado.
+- Indicadores Selic, CDI estimado e IPCA exibidos na tela de investimentos.
+- Vitrine de produtos ampliada com CDB, Tesouro, fundos, ETF e cripto ficticia.
 - Tela de cartoes implementada.
 - Criacao de cartao pelo frontend.
 - Registro de compras no cartao pelo frontend.

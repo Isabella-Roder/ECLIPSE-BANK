@@ -54,6 +54,39 @@
         <section class="painel info-bloco">
             <div class="cabecalho-painel">
                 <div>
+                    <h3>Indicadores de mercado</h3>
+                    <p>Referencias reais usadas para simular produtos de renda fixa e tesouro.</p>
+                </div>
+
+                <span class="selo-status">Banco Central</span>
+            </div>
+
+            <div class="cards cards-cliente">
+                <div class="card">
+                    <span>Selic</span>
+                    <strong id="indicador-selic">--</strong>
+                </div>
+
+                <div class="card">
+                    <span>CDI estimado</span>
+                    <strong id="indicador-cdi">--</strong>
+                </div>
+
+                <div class="card">
+                    <span>IPCA</span>
+                    <strong id="indicador-ipca">--</strong>
+                </div>
+
+                <div class="card">
+                    <span>Fonte</span>
+                    <strong>BCB SGS</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
                     <h3>Produtos disponiveis</h3>
                     <p>Escolha uma opcao de investimento do Eclipse Bank para aplicar.</p>
                 </div>
@@ -111,6 +144,7 @@
                             <th>Produto</th>
                             <th>Tipo</th>
                             <th>Perfil</th>
+                            <th>Prazo</th>
                             <th>Aplicado</th>
                             <th>Rendimento</th>
                             <th>Status</th>
@@ -119,7 +153,7 @@
                     </thead>
                     <tbody id="lista-investimentos">
                         <tr>
-                            <td colspan="8">Carregando investimentos...</td>
+                            <td colspan="9">Carregando investimentos...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -129,6 +163,6 @@
 
     <script src="../script/layout.js"></script>
     <script src="../script/app.js"></script>
-    <script src="../script/investimentos.js?v=4"></script>
+    <script src="../script/investimentos.js?v=6"></script>
 </body>
 </html>

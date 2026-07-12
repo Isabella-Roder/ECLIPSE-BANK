@@ -6,6 +6,10 @@ const rendimentoEstimado = document.getElementById("rendimento-estimado");
 const quantidadeInvestimentos = document.getElementById("quantidade-investimentos");
 const perfilInvestidorResumo = document.getElementById("perfil-investidor-resumo");
 
+const indicadorSelic = document.getElementById("indicador-selic");
+const indicadorCdi = document.getElementById("indicador-cdi");
+const indicadorIpca = document.getElementById("indicador-ipca");
+
 const listaInvestimento = document.getElementById("lista-investimentos");
 
 const usuarioLogado = pegarUsuarioLogado();
@@ -28,19 +32,35 @@ function converterDinheiroParaNumero(valor) {
     return Number(somenteNumeros) / 100;
 }
 
-function abrirDetalheInvestimento(botao) {
-    const produtoSelecionado = {
-        produto: botao.dataset.produto,
-        tipo: botao.dataset.tipo,
-        perfilInvestidor: botao.dataset.perfil,
-        nome: botao.dataset.nome,
-        rentabilidade: botao.dataset.rentabilidade,
-        risco: botao.dataset.risco,
-        descricao: botao.dataset.descricao
-    };
+function formatarEnum(texto) {
+    if (!texto) {
+        return "-";
+    }
 
-    localStorage.setItem("produtoInvestimentoSelecionado", JSON.stringify(produtoSelecionado));
-    window.location.href = "investimento-detalhe.html";
+    return texto
+        .toLowerCase()
+        .split("_")
+        .map((palavra) => palavra.charAt(0).toUpperCase() + palavra.slice(1))
+        .join(" ");
+}
+
+function formatarStatus(status) {
+    if (status === "RESGATADO") {
+        return "Resgatado";
+    }
+
+    return "Ativo";
+}
+
+function formatarPercentual(valor) {
+    if (valor === null || valor === undefined) {
+        return "--";
+    }
+
+    return `${Number(valor).toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}%`;
 }
 
 async function carregarConta() {
@@ -56,6 +76,26 @@ async function carregarConta() {
     }
 }
 
+async function carregarIndicadoresFinanceiros() {
+    try {
+        const resposta = await fetch(`${API_URL}/indicadores-financeiros`);
+
+        if (!resposta.ok) {
+            return;
+        }
+
+        const indicadores = await resposta.json();
+
+        indicadorSelic.textContent = formatarPercentual(indicadores.selic);
+        indicadorCdi.textContent = formatarPercentual(indicadores.cdi);
+        indicadorIpca.textContent = formatarPercentual(indicadores.ipca);
+    } catch (erro) {
+        indicadorSelic.textContent = "--";
+        indicadorCdi.textContent = "--";
+        indicadorIpca.textContent = "--";
+    }
+}
+
 async function carregarInvestimentos() {
     try {
         const resposta = await fetch(`${API_URL}/contas/${contaAtual.id}/investimentos`);
@@ -64,7 +104,7 @@ async function carregarInvestimentos() {
             mensagemInvestimentos.textContent = "Nao foi possivel carregar investimentos.";
             listaInvestimento.innerHTML = `
                 <tr>
-                    <td colspan="8">Nao foi possivel carregar investimentos.</td>
+                    <td colspan="9">Nao foi possivel carregar investimentos.</td>
                 </tr>
             `;
             return;
@@ -76,7 +116,7 @@ async function carregarInvestimentos() {
         mensagemInvestimentos.textContent = "Erro ao conectar com o servidor";
         listaInvestimento.innerHTML = `
             <tr>
-                <td colspan="8">Erro ao conectar com o servidor.</td>
+                <td colspan="9">Erro ao conectar com o servidor.</td>
             </tr>
         `;
     }
@@ -131,7 +171,7 @@ function renderizarInvestimentos(investimentos) {
     if (investimentos.length === 0) {
         listaInvestimento.innerHTML = `
             <tr>
-                <td colspan="8">Nenhum investimento encontrado.</td>
+                <td colspan="9">Nenhum investimento encontrado.</td>
             </tr>
         `;
 
@@ -157,12 +197,13 @@ function renderizarInvestimentos(investimentos) {
 
         linha.innerHTML = `
             <td>${formatarDataHora(investimento.dataAplicacao)}</td>
-            <td>${investimento.produto}</td>
-            <td>${investimento.tipo}</td>
-            <td>${investimento.perfilInvestidor}</td>
+            <td>${formatarEnum(investimento.produto)}</td>
+            <td>${formatarEnum(investimento.tipo)}</td>
+            <td>${formatarEnum(investimento.perfilInvestidor)}</td>
+            <td>${investimento.prazoMeses || 12} meses</td>
             <td>${formatarMoeda(investimento.valorAplicado)}</td>
             <td>${formatarMoeda(investimento.rendimentoEstimado)}</td>
-            <td>${investimento.status || "ATIVO"}</td>
+            <td>${formatarStatus(investimento.status)}</td>
             <td>
                 ${
                     investimento.status === "RESGATADO"
@@ -200,13 +241,8 @@ async function resgatarInvestimento(investimentoId) {
     }
 }
 
-document.querySelectorAll(".botao-investir-produto").forEach((botao) => {
-    botao.addEventListener("click", () => {
-        abrirDetalheInvestimento(botao);
-    });
-});
-
 if (!deveRedirecionar) {
     carregarConta();
+    carregarIndicadoresFinanceiros();
     carregarProdutosInvestimento();
 }

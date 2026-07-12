@@ -79,6 +79,7 @@ formInvestimentoDetalhe.addEventListener("submit", async (evento) => {
         produto: produtoSelecionado.produto,
         tipo: produtoSelecionado.tipo,
         perfilInvestidor: produtoSelecionado.perfilInvestidor,
+        prazoMeses: Number(inputPrazoMeses.value),
         valorAplicado: converterDinheiroParaNumero(inputValorAplicadoDetalhe.value)
     };
 
