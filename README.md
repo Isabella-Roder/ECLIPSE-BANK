@@ -72,6 +72,11 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Modulo inicial de investimentos implementado.
 - Investimentos vinculados a conta, com produto, tipo, perfil, valor aplicado e rendimento estimado.
 - Aplicacao de investimento desconta saldo da conta.
+- Resgate de investimento implementado, devolvendo valor aplicado + rendimento estimado ao saldo.
+- Investimentos possuem status `ATIVO` e `RESGATADO`.
+- Produtos de investimento fornecidos pelo backend e renderizados automaticamente no frontend.
+- Integracao inicial com API do Banco Central para indicadores financeiros.
+- Simulacao de investimento por valor e prazo na tela de detalhe do produto.
 - Tela de cartoes implementada.
 - Criacao de cartao pelo frontend.
 - Registro de compras no cartao pelo frontend.
@@ -136,7 +141,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Metodo do comprovante exibido como selo visual.
 - Botao para imprimir comprovante.
 - Area PJ com dashboard, conta empresarial, pagamentos, extrato, comprovantes e cartoes.
-- Tela de investimentos com aplicacao, resumo da carteira e listagem de investimentos.
+- Tela de investimentos com vitrine automatica de produtos, detalhe do produto, simulacao, aplicacao, resgate, resumo da carteira e listagem de investimentos.
 
 ## Telas Atuais
 
@@ -157,7 +162,8 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `empresa-pagamentos.html`: pagamentos por conta PJ.
 - `extrato-empresa.html`: extrato da conta PJ.
 - `empresa-cartoes.html`: cartao PJ e compras empresariais.
-- `investimentos.html`: carteira de investimentos, aplicacao e resumo.
+- `investimentos.html`: carteira de investimentos, vitrine automatica de produtos e resumo.
+- `investimento-detalhe.html`: detalhe do produto, simulacao de rendimento e aplicacao.
 
 ## Funcionalidades Planejadas
 
@@ -198,8 +204,8 @@ frontend/
 - Metas financeiras.
 - Relatorios com Python.
 - Graficos.
-- Resgate de investimentos.
 - Integracao futura com API da B3 para modulo de investimentos.
+- Integracao futura com API de acoes e fundos imobiliarios, incluindo ativos como MXRF11 e BTLG11.
 - Exportacao de relatorios.
 
 ## Observacao

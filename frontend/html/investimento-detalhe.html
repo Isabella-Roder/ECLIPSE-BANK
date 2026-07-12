@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhe do Investimento - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Aplicacao</p>
+                <h2 id="nome-produto-detalhe">Produto de investimento</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero">
+            <div>
+                <span>Saldo disponivel</span>
+                <strong id="saldo-investimento-detalhe">R$ 0,00</strong>
+                <p id="mensagem-investimento-detalhe">Confira os detalhes antes de aplicar.</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="investimentos.html">Voltar para investimentos</a>
+                <a href="minha-conta.html">Minha conta</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Produto</span>
+                <strong id="produto-detalhe">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Risco</span>
+                <strong id="risco-detalhe">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Perfil</span>
+                <strong id="perfil-detalhe">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Rentabilidade</span>
+                <strong id="rentabilidade-detalhe">-</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Sobre este produto</h3>
+                    <p id="descricao-detalhe">Selecione um produto na tela de investimentos para ver os detalhes.</p>
+                </div>
+
+                <span class="selo-status" id="tipo-detalhe">Investimento</span>
+            </div>
+
+            <form id="form-investimento-detalhe" class="formulario">
+                <label>
+                    Valor da aplicacao
+                    <input type="text" id="valorAplicadoDetalhe" placeholder="R$ 0,00" required>
+                </label>
+
+                <label>
+                    Prazo da simulacao em meses
+                    <input type="number" id="prazoMeses" min="1" value="12" required>
+                </label>
+
+                <div class="cards cards-cliente">
+                    <div class="card">
+                        <span>Rendimento estimado</span>
+                        <strong id="simulacao-rendimento">R$ 0,00</strong>
+                    </div>
+
+                    <div class="card card-destaque">
+                        <span>Valor final estimado</span>
+                        <strong id="simulacao-total">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <button type="submit">Confirmar aplicacao</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/investimento-detalhe.js?v=2"></script>
+</body>
+</html>

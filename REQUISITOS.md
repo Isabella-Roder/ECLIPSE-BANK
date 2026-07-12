@@ -845,17 +845,28 @@ Status atual:
 - [x] Tela de investimentos implementada.
 - [x] Simulador inicial de investimentos implementado.
 - [x] Entidade `Investimento` implementada.
-- [x] Enums `TipoInvestimento`, `ProdutoInvestimento` e `PerfilInvestidor` implementados.
+- [x] Enums `TipoInvestimento`, `ProdutoInvestimento`, `PerfilInvestidor` e `StatusInvestimento` implementados.
 - [x] Repository de investimentos implementado.
-- [x] Service de investimentos implementado com aplicacao, validacao de saldo e rendimento estimado.
+- [x] Service de investimentos implementado com aplicacao, resgate, validacao de saldo e rendimento estimado.
 - [x] Controller de investimentos implementado.
 - [x] Rota `POST /contas/{contaId}/investimentos` implementada.
 - [x] Rota `GET /contas/{contaId}/investimentos` implementada.
+- [x] Rota `POST /investimentos/{investimentoId}/resgatar` implementada.
 - [x] Aplicacao de investimento desconta saldo da conta.
+- [x] Resgate de investimento devolve valor aplicado + rendimento estimado para o saldo da conta.
+- [x] Investimentos possuem status `ATIVO` e `RESGATADO`.
 - [x] Tela `investimentos.html` implementada.
 - [x] `investimentos.js` integrado com a conta do usuario logado.
 - [x] Listagem de investimentos da conta implementada.
-- [ ] Integração com API da B3 ainda não implementada.
+- [x] Botao de resgate implementado no frontend.
+- [x] Resumo da carteira considera apenas investimentos ativos.
+- [x] Produtos de investimento passaram a ser fornecidos pelo backend.
+- [x] Tela de detalhe do produto de investimento implementada.
+- [x] Simulacao de rendimento por valor e prazo implementada no frontend.
+- [x] Integracao inicial com API do Banco Central para indicadores financeiros.
+- [x] Produtos de renda fixa/tesouro usam indicadores reais como referencia de taxa.
+- [ ] Integracao com API da B3 ainda não implementada.
+- [ ] Integracao futura com API para acoes e fundos imobiliarios ainda nao implementada.
 - [ ] Relatórios de investimentos com Python ainda não implementados.
 
 ### 12.1 Perfil do Investidor
@@ -880,19 +891,32 @@ Produtos sugeridos:
 - Carteira automatica.
 - Cripto ficticia.
 - Fundo Eclipse.
+- Fundos imobiliarios como MXRF11, BTLG11 e outros, futuramente via API.
+- Acoes listadas, futuramente via API.
+
+Status atual:
+
+- [x] Produtos de investimento expostos pela rota `GET /produtos-investimento`.
+- [x] Frontend renderiza a vitrine de produtos automaticamente com dados do backend.
+- [x] Produtos de renda fixa/tesouro podem usar indicadores reais como referencia.
+- [ ] Produtos de acoes ainda nao implementados.
+- [ ] Produtos de fundos imobiliarios ainda nao implementados.
+- [ ] Cotacoes de FIIs/acoes via API externa ainda nao implementadas.
 
 ### 12.3 Funcionalidades de Investimento
 
 Requisitos:
 
-- Simular investimento.
-- Aplicar valor ficticio.
-- Resgatar valor ficticio.
-- Acompanhar rendimento.
-- Listar historico de aplicacoes.
+- [x] Simular investimento.
+- [x] Aplicar valor ficticio.
+- [x] Resgatar valor ficticio.
+- [x] Acompanhar rendimento.
+- [x] Listar historico de aplicacoes.
+- [x] Simular rendimento com prazo em meses na tela de detalhe.
+- [x] Buscar indicadores financeiros reais via API do Banco Central.
 - Exibir grafico de evolucao.
-- Integrar futuramente com API da B3 para consultar dados de mercado, quando a etapa de investimentos for iniciada.
-- Usar dados da B3 apenas como referencia informativa, mantendo as operacoes do Eclipse Bank como ficticias/simuladas.
+- Integrar futuramente com API da B3 ou outra API de mercado para consultar dados de acoes e FIIs.
+- Usar dados de mercado apenas como referencia informativa, mantendo as operacoes do Eclipse Bank como ficticias/simuladas.
 
 ### 12.4 Dashboard de Investimentos
 
@@ -1111,8 +1135,10 @@ Legenda:
 - [ ] Relatorios com Python.
 - [ ] Graficos.
 - [x] Investimentos ficticios iniciais.
-- [ ] Resgate de investimentos.
+- [x] Resgate de investimentos.
+- [x] Integracao inicial com API do Banco Central para indicadores de investimentos.
 - [ ] Integracao futura com API da B3 para modulo de investimentos.
+- [ ] Integracao futura com API de acoes e fundos imobiliarios.
 - [ ] Exportacao de relatorios.
 - [x] Filtros no extrato por data, tipo e categoria implementados no frontend.
 - [x] Filtros avancados do extrato implementados no backend.

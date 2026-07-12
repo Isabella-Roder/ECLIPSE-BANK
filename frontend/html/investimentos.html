@@ -54,62 +54,45 @@
         <section class="painel info-bloco">
             <div class="cabecalho-painel">
                 <div>
-                    <h3>Nova aplicacao</h3>
-                    <p>Escolha um produto ficticio do Eclipse Bank e simule uma aplicacao.</p>
+                    <h3>Produtos disponiveis</h3>
+                    <p>Escolha uma opcao de investimento do Eclipse Bank para aplicar.</p>
                 </div>
 
-                <span class="selo-status">Simulacao</span>
+                <span class="selo-status">Carteira simulada</span>
             </div>
 
-            <form id="form-investimento" class="formulario">
-                <label>
-                    Produto
-                    <select id="produtoInvestimento" required>
-                        <option value="">Selecione um produto</option>
-                        <option value="CDB_PREFIXADO">CDB Prefixado</option>
-                        <option value="CDB_POS_FIXADO">CDB Pos-fixado</option>
-                        <option value="CDB_LIQUIDEZ_DIARIA">CDB Liquidez diaria</option>
-                        <option value="TESOURO_PREFIXADO">Tesouro Prefixado</option>
-                        <option value="TESOURO_IPCA">Tesouro IPCA+</option>
-                        <option value="TESOURO_SELIC">Tesouro Selic</option>
-                        <option value="FUNDO_RENDA_FIXA">Fundo Renda Fixa</option>
-                        <option value="FUNDO_MULTIMERCADO">Fundo Multimercado</option>
-                        <option value="CRIPTO_ECLIPSE">Cripto Eclipse</option>
-                        <option value="ACOES_ECLIPSE">Acoes Eclipse</option>
-                        <option value="ETF_ECLIPSE">ETF Eclipse</option>
-                    </select>
-                </label>
+            <div id="lista-produtos-investimento" class="grade-produtos-investimento">
+                <p>Carregando produtos de investimento...</p>
+            </div>
+        </section>
 
-                <label>
-                    Tipo
-                    <select id="tipoInvestimento" required>
-                        <option value="">Selecione o tipo</option>
-                        <option value="RENDA_FIXA">Renda fixa</option>
-                        <option value="TESOURO">Tesouro</option>
-                        <option value="FUNDO">Fundo</option>
-                        <option value="CRIPTO">Cripto</option>
-                        <option value="ACOES">Acoes</option>
-                        <option value="ETF">ETF</option>
-                    </select>
-                </label>
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Como funciona</h3>
+                    <p>Ao escolher um produto, voce ve os detalhes antes de confirmar a aplicacao.</p>
+                </div>
+            </div>
 
-                <label>
-                    Perfil do investidor
-                    <select id="perfilInvestidor" required>
-                        <option value="">Selecione o perfil</option>
-                        <option value="CONSERVADOR">Conservador</option>
-                        <option value="MODERADO">Moderado</option>
-                        <option value="ARROJADO">Arrojado</option>
-                    </select>
-                </label>
+            <div class="cards cards-cliente">
+                <div class="card">
+                    <span>1. Escolha</span>
+                    <strong>Produto</strong>
+                    <p>Compare risco, perfil e rendimento estimado.</p>
+                </div>
 
-                <label>
-                    Valor da aplicacao
-                    <input type="text" id="valorAplicado" placeholder="R$ 0,00" required>
-                </label>
+                <div class="card">
+                    <span>2. Informe</span>
+                    <strong>Valor</strong>
+                    <p>Digite quanto deseja aplicar com o saldo da conta.</p>
+                </div>
 
-                <button type="submit">Aplicar investimento</button>
-            </form>
+                <div class="card">
+                    <span>3. Acompanhe</span>
+                    <strong>Carteira</strong>
+                    <p>Veja aplicacoes ativas, rendimento e resgates.</p>
+                </div>
+            </div>
         </section>
 
         <section class="painel">
@@ -130,11 +113,13 @@
                             <th>Perfil</th>
                             <th>Aplicado</th>
                             <th>Rendimento</th>
+                            <th>Status</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody id="lista-investimentos">
                         <tr>
-                            <td colspan="6">Carregando investimentos...</td>
+                            <td colspan="8">Carregando investimentos...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -144,6 +129,6 @@
 
     <script src="../script/layout.js"></script>
     <script src="../script/app.js"></script>
-    <script src="../script/investimentos.js?v=2"></script>
+    <script src="../script/investimentos.js?v=4"></script>
 </body>
 </html>

@@ -9,8 +9,7 @@ import com.eclipsebank.backend.model.Investimento;
 import com.eclipsebank.backend.repository.ContaRepository;
 import com.eclipsebank.backend.repository.InvestimentoRepository;
 
-import jakarta.persistence.criteria.CriteriaBuilder.Case;
-
+import com.eclipsebank.backend.enums.StatusInvestimento;
 import com.eclipsebank.backend.model.Conta;
 
 @Service
@@ -85,7 +84,30 @@ public class InvestimentoService {
         
         investimento.setRendimentoEstimado(calcularRendimentoEstimado(investimento));
         investimento.setDataAplicacao(LocalDateTime.now());
+        investimento.setStatus(StatusInvestimento.ATIVO);
         investimento.setConta(conta);
+
+        contaRepository.save(conta);
+        return investimentoRepository.save(investimento);
+    }
+
+    public Investimento resgatar(Long investimentoId) {
+        Investimento investimento = investimentoRepository.findById(investimentoId).orElseThrow(() -> new IllegalArgumentException("Investimento não encontrado."));
+
+        if (investimento.getStatus() == StatusInvestimento.RESGATADO) {
+            throw new IllegalArgumentException("Investimento ja foi resgatado.");
+        }
+
+        Conta conta = investimento.getConta();
+
+        if (conta.getSaldo() == null) {
+            conta.setSaldo(0.0);
+        }
+
+        Double valorResgate = investimento.getValorAplicado() + investimento.getRendimentoEstimado();
+
+        conta.setSaldo(conta.getSaldo() + valorResgate);
+        investimento.setStatus(StatusInvestimento.RESGATADO);
 
         contaRepository.save(conta);
         return investimentoRepository.save(investimento);

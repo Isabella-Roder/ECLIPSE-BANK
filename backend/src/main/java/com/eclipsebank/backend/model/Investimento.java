@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.eclipsebank.backend.enums.PerfilInvestidor;
 import com.eclipsebank.backend.enums.ProdutoInvestimento;
+import com.eclipsebank.backend.enums.StatusInvestimento;
 import com.eclipsebank.backend.enums.TipoInvestimento;
 
 import jakarta.persistence.Entity;
@@ -27,6 +28,8 @@ public class Investimento {
     private TipoInvestimento tipo;
     @Enumerated(EnumType.STRING)
     private PerfilInvestidor perfilInvestidor;
+    @Enumerated(EnumType.STRING)
+    private StatusInvestimento status;
 
     private Double valorAplicado;
     private Double rendimentoEstimado;
@@ -39,13 +42,18 @@ public class Investimento {
 
     }
 
-    public Investimento(ProdutoInvestimento produto, TipoInvestimento tipo,  PerfilInvestidor perfilInvestidor, Double valorAplicado, Double rendimentoEstimado, LocalDateTime dataAplicacao) {
+    public Investimento(ProdutoInvestimento produto, TipoInvestimento tipo,  PerfilInvestidor perfilInvestidor, StatusInvestimento status, Double valorAplicado, Double rendimentoEstimado, LocalDateTime dataAplicacao) {
         this.produto = produto;
         this.tipo = tipo;
         this.perfilInvestidor = perfilInvestidor;
+        this.status = status;
         this.valorAplicado = valorAplicado;
         this.rendimentoEstimado = rendimentoEstimado;
         this.dataAplicacao = dataAplicacao;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public ProdutoInvestimento getProduto() {
@@ -58,6 +66,10 @@ public class Investimento {
 
     public PerfilInvestidor getPerfilInvestidor() {
         return perfilInvestidor;
+    }
+
+    public StatusInvestimento getStatus() {
+        return status;
     }
 
     public Double getValorAplicado() {
@@ -76,6 +88,10 @@ public class Investimento {
         return conta;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setProduto(ProdutoInvestimento produto) {
         this.produto = produto;
     }
@@ -86,6 +102,10 @@ public class Investimento {
 
     public void setPerfilInvestidor(PerfilInvestidor perfilInvestidor) {
         this.perfilInvestidor = perfilInvestidor;
+    }
+
+    public void setStatus(StatusInvestimento status) {
+        this.status = status;
     }
 
     public void setValorAplicado(Double valorAplicado) {

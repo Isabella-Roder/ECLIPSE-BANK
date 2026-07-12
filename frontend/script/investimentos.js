@@ -6,9 +6,7 @@ const rendimentoEstimado = document.getElementById("rendimento-estimado");
 const quantidadeInvestimentos = document.getElementById("quantidade-investimentos");
 const perfilInvestidorResumo = document.getElementById("perfil-investidor-resumo");
 
-const formInvestimento = document.getElementById("form-investimento");
 const listaInvestimento = document.getElementById("lista-investimentos");
-const inputValorAplicado = document.getElementById("valorAplicado");
 
 const usuarioLogado = pegarUsuarioLogado();
 const deveRedirecionar = redirecionarParaLoginSeNaoExistir(usuarioLogado);
@@ -20,7 +18,7 @@ function mascararDinheiro(valor) {
     const numero = Number(somenteNumeros) / 100;
 
     return numero.toLocaleString("pt-BR", {
-        style: "currency", 
+        style: "currency",
         currency: "BRL"
     });
 }
@@ -28,6 +26,21 @@ function mascararDinheiro(valor) {
 function converterDinheiroParaNumero(valor) {
     const somenteNumeros = valor.replace(/\D/g, "");
     return Number(somenteNumeros) / 100;
+}
+
+function abrirDetalheInvestimento(botao) {
+    const produtoSelecionado = {
+        produto: botao.dataset.produto,
+        tipo: botao.dataset.tipo,
+        perfilInvestidor: botao.dataset.perfil,
+        nome: botao.dataset.nome,
+        rentabilidade: botao.dataset.rentabilidade,
+        risco: botao.dataset.risco,
+        descricao: botao.dataset.descricao
+    };
+
+    localStorage.setItem("produtoInvestimentoSelecionado", JSON.stringify(produtoSelecionado));
+    window.location.href = "investimento-detalhe.html";
 }
 
 async function carregarConta() {
@@ -39,7 +52,7 @@ async function carregarConta() {
 
         await carregarInvestimentos();
     } catch (erro) {
-        mensagemInvestimentos.textContent = "Não foi possivel carregar sua conta.";
+        mensagemInvestimentos.textContent = "Nao foi possivel carregar sua conta.";
     }
 }
 
@@ -48,10 +61,10 @@ async function carregarInvestimentos() {
         const resposta = await fetch(`${API_URL}/contas/${contaAtual.id}/investimentos`);
 
         if (!resposta.ok) {
-            mensagemInvestimentos.textContent = "Não foi possivel carregar investimentos.";
+            mensagemInvestimentos.textContent = "Nao foi possivel carregar investimentos.";
             listaInvestimento.innerHTML = `
                 <tr>
-                    <td colspan="6">Nao foi possivel carregar investimentos.</td>
+                    <td colspan="8">Nao foi possivel carregar investimentos.</td>
                 </tr>
             `;
             return;
@@ -63,10 +76,53 @@ async function carregarInvestimentos() {
         mensagemInvestimentos.textContent = "Erro ao conectar com o servidor";
         listaInvestimento.innerHTML = `
             <tr>
-                <td colspan="6">Erro ao conectar com o servidor.</td>
+                <td colspan="8">Erro ao conectar com o servidor.</td>
             </tr>
         `;
     }
+}
+
+async function carregarProdutosInvestimento() {
+    const resposta = await fetch(`${API_URL}/produtos-investimento`);
+    const produtos = await resposta.json();
+
+    renderizarProdutosInvestimento(produtos);
+}
+
+function renderizarProdutosInvestimento(produtos) {
+    const listaProdutos = document.getElementById("lista-produtos-investimento");
+    listaProdutos.innerHTML = "";
+
+    produtos.forEach((produto) => {
+        const card = document.createElement("article");
+        card.className = "card produto-investimento";
+
+        card.innerHTML = `
+            <div>
+                <span class="selo-status">${produto.risco} risco</span>
+                <h4>${produto.nome}</h4>
+                <p>${produto.descricao}</p>
+            </div>
+
+            <div class="produto-investimento-info">
+                <span>Rendimento estimado</span>
+                <strong>${produto.rentabilidade}</strong>
+            </div>
+
+            <button type="button" class="botao-investir-produto">
+                Investir
+            </button>
+        `;
+
+        const botao = card.querySelector("button");
+
+        botao.addEventListener("click", () => {
+            localStorage.setItem("produtoInvestimentoSelecionado", JSON.stringify(produto));
+            window.location.href = "investimento-detalhe.html";
+        });
+
+        listaProdutos.appendChild(card);
+    })
 }
 
 function renderizarInvestimentos(investimentos) {
@@ -75,7 +131,7 @@ function renderizarInvestimentos(investimentos) {
     if (investimentos.length === 0) {
         listaInvestimento.innerHTML = `
             <tr>
-                <td colspan="6">Nenhum investimento encontrado.</td>
+                <td colspan="8">Nenhum investimento encontrado.</td>
             </tr>
         `;
 
@@ -88,10 +144,14 @@ function renderizarInvestimentos(investimentos) {
 
     let somaInvestido = 0;
     let somaRendimento = 0;
+    let quantidadeAtivos = 0;
 
     investimentos.forEach((investimento) => {
-        somaInvestido += investimento.valorAplicado || 0;
-        somaRendimento += investimento.rendimentoEstimado || 0;
+        if (investimento.status !== "RESGATADO") {
+            somaInvestido += investimento.valorAplicado || 0;
+            somaRendimento += investimento.rendimentoEstimado || 0;
+            quantidadeAtivos++;
+        }
 
         const linha = document.createElement("tr");
 
@@ -102,6 +162,14 @@ function renderizarInvestimentos(investimentos) {
             <td>${investimento.perfilInvestidor}</td>
             <td>${formatarMoeda(investimento.valorAplicado)}</td>
             <td>${formatarMoeda(investimento.rendimentoEstimado)}</td>
+            <td>${investimento.status || "ATIVO"}</td>
+            <td>
+                ${
+                    investimento.status === "RESGATADO"
+                        ? "Ja resgatado"
+                        : `<button type="button" onclick="resgatarInvestimento(${investimento.id})">Resgatar</button>`
+                }
+            </td>
         `;
 
         listaInvestimento.appendChild(linha);
@@ -109,48 +177,36 @@ function renderizarInvestimentos(investimentos) {
 
     totalInvestido.textContent = formatarMoeda(somaInvestido);
     rendimentoEstimado.textContent = formatarMoeda(somaRendimento);
-    quantidadeInvestimentos.textContent = investimentos.length;
+    quantidadeInvestimentos.textContent = quantidadeAtivos;
     perfilInvestidorResumo.textContent = investimentos[0].perfilInvestidor || "-";
 }
 
-inputValorAplicado.addEventListener("input", () => {
-    inputValorAplicado.value = mascararDinheiro(inputValorAplicado.value);
-});
+async function resgatarInvestimento(investimentoId) {
+    try {
+        const resposta = await fetch(`${API_URL}/investimentos/${investimentoId}/resgatar`, {
+            method: "POST"
+        });
 
-formInvestimento.addEventListener("submit", async (evento) => {
-    evento.preventDefault();
+        if (!resposta.ok) {
+            const erro = await resposta.json();
+            mensagemInvestimentos.textContent = erro.erro || "Erro ao resgatar investimento.";
+            return;
+        }
 
-    if (!contaAtual) {
-        mensagemInvestimentos.textContent = "Conta ainda não carregou.";
-        return;
+        mensagemInvestimentos.textContent = "Investimento resgatado com sucesso";
+        await carregarConta();
+    } catch (erro) {
+        mensagemInvestimentos.textContent = "Erro ao conectar com o servidor";
     }
+}
 
-    const investimento = {
-        produto: document.getElementById("produtoInvestimento").value,
-        tipo: document.getElementById("tipoInvestimento").value,
-        perfilInvestidor: document.getElementById("perfilInvestidor").value,
-        valorAplicado: converterDinheiroParaNumero(document.getElementById("valorAplicado").value)
-    };
-
-    const resposta = await fetch(`${API_URL}/contas/${contaAtual.id}/investimentos`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(investimento)
+document.querySelectorAll(".botao-investir-produto").forEach((botao) => {
+    botao.addEventListener("click", () => {
+        abrirDetalheInvestimento(botao);
     });
-
-    if (!resposta.ok) {
-        const erro = await resposta.json();
-        mensagemInvestimentos.textContent = erro.erro || "Erro ao investir";
-        return;
-    }
-
-    mensagemInvestimentos.textContent = "Investimento feito com sucesso";
-    formInvestimento.reset();
-    await carregarConta();
 });
 
 if (!deveRedirecionar) {
     carregarConta();
+    carregarProdutosInvestimento();
 }

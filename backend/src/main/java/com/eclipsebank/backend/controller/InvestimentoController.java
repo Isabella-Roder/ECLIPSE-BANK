@@ -35,4 +35,9 @@ public class InvestimentoController {
         return investimentoService.aplicar(contaId, investimento);
     }
 
+    @PostMapping("/investimentos/{investimentoId}/resgatar")
+    public Investimento resgatar(@PathVariable Long investimentoId) {
+        return investimentoService.resgatar(investimentoId);
+    }
+
 }
