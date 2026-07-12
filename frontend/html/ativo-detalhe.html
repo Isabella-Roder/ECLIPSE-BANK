@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhe do Ativo - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Mercado B3</p>
+                <h2 id="ativo-detalhe-nome">Ativo selecionado</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero mercado-hero">
+            <div>
+                <span>Saldo disponivel</span>
+                <strong id="saldo-ativo-detalhe">R$ 0,00</strong>
+                <p id="mensagem-ativo-detalhe">Confira os dados antes de simular a compra.</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="mercado.html">Voltar ao mercado</a>
+                <a href="investimentos.html">Investimentos</a>
+                <a href="minha-conta.html">Minha conta</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente cards-mercado">
+            <div class="card card-destaque">
+                <span>Ticker</span>
+                <strong id="ativo-detalhe-ticker">--</strong>
+            </div>
+
+            <div class="card">
+                <span>Preco atual</span>
+                <strong id="ativo-detalhe-preco">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Variacao do dia</span>
+                <strong id="ativo-detalhe-variacao">--</strong>
+            </div>
+
+            <div class="card">
+                <span>Tipo</span>
+                <strong id="ativo-detalhe-tipo">--</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Simular compra</h3>
+                    <p>Informe a quantidade de acoes ou cotas para calcular o valor estimado.</p>
+                </div>
+
+                <span class="selo-status">Simulacao</span>
+            </div>
+
+            <form id="form-ativo-detalhe" class="formulario">
+                <label>
+                    Quantidade
+                    <input type="number" id="quantidade-ativo" min="1" value="1" required>
+                </label>
+
+                <label>
+                    Preco unitario da cota/acao
+                    <input type="text" id="preco-ativo-simulacao" disabled>
+                </label>
+
+                <div class="cards cards-cliente">
+                    <div class="card">
+                        <span>Quantidade escolhida</span>
+                        <strong id="quantidade-resumo">1</strong>
+                    </div>
+
+                    <div class="card">
+                        <span>Valor estimado</span>
+                        <strong id="valor-total-ativo">R$ 0,00</strong>
+                    </div>
+
+                    <div class="card card-destaque">
+                        <span>Saldo apos compra</span>
+                        <strong id="saldo-apos-compra">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <button type="submit">Confirmar simulacao</button>
+            </form>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Observacao</h3>
+                    <p>Esta etapa ainda e uma simulacao. A compra real do ativo sera conectada ao backend depois.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/ativo-detalhe.js"></script>
+</body>
+</html>

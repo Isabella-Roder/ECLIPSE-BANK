@@ -81,6 +81,9 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Calculo de rendimento no backend usando taxa do produto e prazo informado.
 - Indicadores Selic, CDI estimado e IPCA exibidos na tela de investimentos.
 - Vitrine de produtos ampliada com CDB, Tesouro, fundos, ETF e cripto ficticia.
+- Modulo inicial de mercado B3 implementado com consulta mockada por ticker.
+- DTO, service e controller para ativos de mercado.
+- Tela `mercado.html` com busca de ativos como MXRF11 e PETR4.
 - Tela de cartoes implementada.
 - Criacao de cartao pelo frontend.
 - Registro de compras no cartao pelo frontend.
@@ -146,6 +149,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Botao para imprimir comprovante.
 - Area PJ com dashboard, conta empresarial, pagamentos, extrato, comprovantes e cartoes.
 - Tela de investimentos com vitrine automatica de produtos, detalhe do produto, simulacao, aplicacao, resgate, resumo da carteira e listagem de investimentos.
+- Tela de mercado B3 com busca de ativo, preco, variacao, tipo e dividend yield.
 
 ## Telas Atuais
 
@@ -168,6 +172,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `empresa-cartoes.html`: cartao PJ e compras empresariais.
 - `investimentos.html`: carteira de investimentos, vitrine automatica de produtos e resumo.
 - `investimento-detalhe.html`: detalhe do produto, simulacao de rendimento e aplicacao.
+- `mercado.html`: consulta inicial de ativos de mercado B3 por ticker.
 
 ## Funcionalidades Planejadas
 
@@ -208,7 +213,7 @@ frontend/
 - Metas financeiras.
 - Relatorios com Python.
 - Graficos.
-- Integracao futura com API da B3 para modulo de investimentos.
+- Trocar a consulta mockada de mercado B3 por API real.
 - Integracao futura com API de acoes e fundos imobiliarios, incluindo ativos como MXRF11 e BTLG11.
 - Exportacao de relatorios.
 

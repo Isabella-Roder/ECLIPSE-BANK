@@ -869,8 +869,11 @@ Status atual:
 - [x] Prazo da aplicacao salvo no investimento.
 - [x] Carteira de investimentos exibe prazo da aplicacao.
 - [x] Backend calcula rendimento usando a taxa do produto de investimento e o prazo informado.
-- [ ] Integracao com API da B3 ainda não implementada.
-- [ ] Integracao futura com API para acoes e fundos imobiliarios ainda nao implementada.
+- [x] Modulo inicial de mercado B3 implementado com consulta mockada por ticker.
+- [x] DTO, service e controller de ativos de mercado implementados.
+- [x] Tela `mercado.html` implementada para buscar ativos como MXRF11 e PETR4.
+- [~] Integracao com API da B3/API de mercado iniciada com estrutura preparada.
+- [ ] Integracao real com API para acoes e fundos imobiliarios ainda nao implementada.
 - [ ] Relatórios de investimentos com Python ainda não implementados.
 
 ### 12.1 Perfil do Investidor
@@ -904,9 +907,9 @@ Status atual:
 - [x] Frontend renderiza a vitrine de produtos automaticamente com dados do backend.
 - [x] Produtos de renda fixa/tesouro podem usar indicadores reais como referencia.
 - [x] Lista de produtos ampliada com CDB, Tesouro, fundos, ETF e cripto ficticia.
-- [ ] Produtos de acoes ainda nao implementados.
-- [ ] Produtos de fundos imobiliarios ainda nao implementados.
-- [ ] Cotacoes de FIIs/acoes via API externa ainda nao implementadas.
+- [~] Produtos de acoes iniciados pela consulta de mercado por ticker.
+- [~] Produtos de fundos imobiliarios iniciados pela consulta de mercado por ticker.
+- [~] Cotacoes de FIIs/acoes estruturadas com dados mockados para futura API externa.
 
 ### 12.3 Funcionalidades de Investimento
 
@@ -921,8 +924,8 @@ Requisitos:
 - [x] Buscar indicadores financeiros reais via API do Banco Central.
 - [x] Aplicar investimento usando no backend a mesma taxa exibida no produto.
 - [x] Exibir indicadores financeiros reais no frontend.
-- Exibir grafico de evolucao.
-- Integrar futuramente com API da B3 ou outra API de mercado para consultar dados de acoes e FIIs.
+- [ ] Exibir grafico de evolucao.
+- [~] Integrar futuramente com API da B3 ou outra API de mercado para consultar dados de acoes e FIIs.
 - Usar dados de mercado apenas como referencia informativa, mantendo as operacoes do Eclipse Bank como ficticias/simuladas.
 
 ### 12.4 Dashboard de Investimentos

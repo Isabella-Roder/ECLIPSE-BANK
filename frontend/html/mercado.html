@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado B3 - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Bolsa de valores</p>
+                <h2>Mercado B3</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero mercado-hero">
+            <div>
+                <span>Consulta de ativos</span>
+                <strong>Acoes, FIIs e ETFs</strong>
+                <p id="mensagem-mercado">Busque um ticker para ver os dados do ativo.</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="investimentos.html">Investimentos</a>
+                <a href="minha-conta.html">Minha conta</a>
+                <a href="extrato.html">Extrato</a>
+            </div>
+        </section>
+
+        <section class="painel info-bloco painel-mercado-busca">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Buscar ativo</h3>
+                    <p>Digite o codigo negociado na bolsa, como MXRF11 ou PETR4.</p>
+                </div>
+
+                <span class="selo-status">B3</span>
+            </div>
+
+            <form id="form-buscar-ativo" class="formulario form-mercado">
+                <div class="campo">
+                    <label for="ticker">Ticker</label>
+                    <input type="text" id="ticker" placeholder="Ex: MXRF11" autocomplete="off">
+                </div>
+
+                <button type="submit">Buscar ativo</button>
+            </form>
+        </section>
+
+        <section class="cards cards-cliente cards-mercado">
+            <div class="card card-destaque">
+                <span>Preco atual</span>
+                <strong id="ativo-preco">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Variacao do dia</span>
+                <strong id="ativo-variacao">--</strong>
+            </div>
+
+            <div class="card">
+                <span>Dividend yield</span>
+                <strong id="ativo-dividend-yield">--</strong>
+            </div>
+
+            <div class="card">
+                <span>Tipo</span>
+                <strong id="ativo-tipo">--</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco resultado-mercado">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Resultado da busca</h3>
+                    <p>Os dados aparecem aqui depois da consulta.</p>
+                </div>
+            </div>
+
+            <div id="resultado-ativo" class="card mercado-ativo-card">
+                <div class="mercado-ativo-marca">
+                    <span>Nenhum ativo selecionado</span>
+                    <strong>Busque um ticker</strong>
+                </div>
+
+                <p>Por enquanto o backend esta usando dados simulados. Depois vamos trocar por uma API real.</p>
+
+                <div class="mercado-tags">
+                    <span>ACAO</span>
+                    <span>FII</span>
+                    <span>ETF</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/mercado.js"></script>
+</body>
+</html>

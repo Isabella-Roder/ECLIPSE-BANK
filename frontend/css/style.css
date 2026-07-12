@@ -678,6 +678,129 @@ body::before {
     justify-self: start;
 }
 
+#form-ativo-detalhe .cards-cliente {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#form-ativo-detalhe .card {
+    min-width: 0;
+}
+
+#form-ativo-detalhe .card strong {
+    font-size: clamp(20px, 2.2vw, 26px);
+}
+
+#form-ativo-detalhe button[type="submit"] {
+    width: fit-content;
+    min-width: 170px;
+    min-height: 40px;
+    padding-inline: 20px;
+    font-size: 13px;
+    justify-self: start;
+}
+
+.mercado-hero {
+    background:
+        linear-gradient(145deg, rgba(25, 27, 42, 0.98), rgba(18, 20, 33, 0.86)),
+        radial-gradient(circle at 82% 18%, rgba(117, 228, 138, 0.15), transparent 16rem),
+        radial-gradient(circle at 96% 12%, rgba(241, 179, 93, 0.18), transparent 18rem);
+}
+
+.painel-mercado-busca {
+    border-color: rgba(117, 228, 138, 0.16);
+}
+
+.form-mercado {
+    grid-template-columns: minmax(0, 1fr) 180px;
+    align-items: end;
+}
+
+.form-mercado .campo {
+    display: grid;
+    gap: 8px;
+}
+
+.form-mercado label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.form-mercado input {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+.cards-mercado .card {
+    position: relative;
+    overflow: hidden;
+}
+
+.cards-mercado .card::after {
+    content: "";
+    position: absolute;
+    right: -34px;
+    bottom: -40px;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    border: 1px solid rgba(241, 179, 93, 0.2);
+    box-shadow: -10px 0 24px rgba(241, 179, 93, 0.08);
+}
+
+.resultado-mercado {
+    border-color: rgba(241, 179, 93, 0.16);
+}
+
+.mercado-ativo-card {
+    display: grid;
+    gap: 18px;
+    min-height: 180px;
+    background:
+        linear-gradient(145deg, rgba(25, 27, 42, 0.98), rgba(18, 20, 33, 0.86)),
+        radial-gradient(circle at 92% 50%, rgba(168, 85, 247, 0.18), transparent 16rem);
+}
+
+.mercado-ativo-marca {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.mercado-ativo-card p {
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.mercado-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.mercado-tags span {
+    margin-bottom: 0;
+    padding: 7px 11px;
+    color: var(--gold-strong);
+    border: 1px solid rgba(241, 179, 93, 0.24);
+    border-radius: 999px;
+    background: rgba(241, 179, 93, 0.08);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.mercado-ativo-acoes {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.botao-investir-ativo {
+    width: fit-content;
+    min-width: 190px;
+    padding-inline: 22px;
+}
+
 .card-destaque {
     border-color: rgba(241, 179, 93, 0.2);
     background:
