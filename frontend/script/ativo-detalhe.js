@@ -1,3 +1,7 @@
+const formAtivoDetalhe = document.getElementById("form-ativo-detalhe");
+const inputQuantidadeAtivo = document.getElementById("quantidade-ativo");
+const mensagemAtivoDetalhe = document.getElementById("mensagem-ativo-detalhe");
+
 const ativoSelecionado = JSON.parse(localStorage.getItem("ativoMercadoSelecionado"));
 const usuarioLogado = pegarUsuarioLogado();
 const deveRedirecionar = redirecionarParaLoginSeNaoExistir(usuarioLogado);
@@ -39,7 +43,41 @@ function simularCompra() {
     document.getElementById("saldo-apos-compra").textContent = formatarMoeda(saldoDepois);
 }
 
-document.getElementById("quantidade-ativo").addEventListener("input", simularCompra);
+inputQuantidadeAtivo.addEventListener("input", simularCompra);
+
+formAtivoDetalhe.addEventListener("submit", async function (evento) {
+    evento.preventDefault();
+
+    if (!contaAtual || !ativoSelecionado) {
+        mensagemAtivoDetalhe.textContent = "Não foi possivel comprar o ativo agora.";
+        return;
+    }
+
+    const compra = {
+        ticker: ativoSelecionado.ticker,
+        quantidade: Number(inputQuantidadeAtivo.value)
+    };
+
+    try {
+        const resposta = await fetch(`${API_URL}/contas/${contaAtual.id}/ativos`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(compra)
+        });
+
+        if (!resposta.ok) {
+            mensagemAtivoDetalhe.textContent = "Erro ao comprar ativo.";
+            return;
+        }
+
+        mensagemAtivoDetalhe.textContent = "Ativo comprado com sucesso.";
+        await carregarConta();
+    } catch (erro) {
+        mensagemAtivoDetalhe.textContent = "Erro ao conectar com o servidor.";
+    }
+})
 
 if (!deveRedirecionar) {
     carregarAtivo();

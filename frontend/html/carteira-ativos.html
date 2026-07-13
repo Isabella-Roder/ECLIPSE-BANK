@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carteira de Ativos - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Renda variavel</p>
+                <h2>Carteira de ativos</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero mercado-hero">
+            <div>
+                <span>Patrimonio em ativos</span>
+                <strong id="total-carteira-ativos">R$ 0,00</strong>
+                <p id="mensagem-carteira-ativos">Carregando ativos da sua carteira...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="mercado.html">Mercado B3</a>
+                <a href="investimentos.html">Investimentos</a>
+                <a href="minha-conta.html">Minha conta</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente cards-mercado">
+            <div class="card card-destaque">
+                <span>Total investido</span>
+                <strong id="ativos-total-investido">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Ativos na carteira</span>
+                <strong id="ativos-quantidade">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Acoes</span>
+                <strong id="ativos-acoes">0</strong>
+            </div>
+
+            <div class="card">
+                <span>FIIs</span>
+                <strong id="ativos-fiis">0</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Minha posicao</h3>
+                    <p>Ativos comprados pela conta logada.</p>
+                </div>
+
+                <span class="selo-status">Carteira B3</span>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Ticker</th>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Quantidade</th>
+                            <th>Preco medio</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-carteira-ativos">
+                        <tr>
+                            <td colspan="7">Carregando carteira de ativos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Proximos passos</h3>
+                    <p>Depois podemos adicionar preco atual, lucro/prejuizo, dividendos e venda de ativos.</p>
+                </div>
+            </div>
+
+            <div class="cards cards-cliente">
+                <div class="card">
+                    <span>Preco atual</span>
+                    <strong>API</strong>
+                    <p>Comparar preco medio com cotacao atual.</p>
+                </div>
+
+                <div class="card">
+                    <span>Resultado</span>
+                    <strong>P/L</strong>
+                    <p>Mostrar lucro ou prejuizo estimado.</p>
+                </div>
+
+                <div class="card">
+                    <span>Proventos</span>
+                    <strong>Dividendos</strong>
+                    <p>Registrar dividendos e rendimentos de FIIs.</p>
+                </div>
+
+                <div class="card">
+                    <span>Operacao</span>
+                    <strong>Venda</strong>
+                    <p>Permitir vender ativos futuramente.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/carteira-ativos.js"></script>
+</body>
+</html>

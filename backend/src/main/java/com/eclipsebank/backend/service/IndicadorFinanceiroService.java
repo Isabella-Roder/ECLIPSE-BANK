@@ -14,12 +14,15 @@ public class IndicadorFinanceiroService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public IndicadoresFinanceiros buscarIndicadores() {
-        Double selic = buscarUltimoValor("432");
-        Double ipca = buscarUltimoValor("433");
+        try {
+            Double selic = buscarUltimoValor("432");
+            Double ipca = buscarUltimoValor("433");
+            Double cdi = selic - 0.10;
 
-        Double cdi = selic - 0.10;
-
-        return new IndicadoresFinanceiros(selic, ipca, cdi);
+            return new IndicadoresFinanceiros(selic, ipca, cdi);
+        } catch (Exception erro) {
+            return new IndicadoresFinanceiros(10.50, 4.50, 10.40);
+        }
     }
 
     private Double buscarUltimoValor(String codigoSerie) {

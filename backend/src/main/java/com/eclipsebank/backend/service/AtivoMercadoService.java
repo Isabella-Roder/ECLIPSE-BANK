@@ -16,52 +16,47 @@ public class AtivoMercadoService {
     public AtivoMercadoInfo buscarPorTicker(String ticker) {
         String tickerFormatado = ticker.toUpperCase();
 
-        if (tickerFormatado.equals("MXRF11")) {
-            return new AtivoMercadoInfo(
-                "MXRF11",
-                "Maxi renda",
-                "FII",
-                10.15,
-                0.42,
-                12.30
-            );
-        }
+        AtivoMercadoInfo ativoFallback = buscarAtivoFallback(tickerFormatado);
 
-        if (tickerFormatado.equals("BTLG11")) {
-            return new AtivoMercadoInfo(
-                "BTLG11",
-                "BTG Pactual Logistica",
-                "FII",
-                103.50,
-                -0.18,
-                8.90
-            );
+        if (ativoFallback != null && tickerFormatado.endsWith("11")) {
+            return ativoFallback;
         }
 
         String url = "https://brapi.dev/api/quote/" + tickerFormatado;
 
-        Map resposta = restTemplate.getForObject(url, Map.class);
+        try {
 
-        List results = (List) resposta.get("results");
+        
 
-        if (results == null || results.isEmpty()) {
-            throw new IllegalArgumentException("Ativo não encontrado.");
+            Map resposta = restTemplate.getForObject(url, Map.class);
+
+            List results = (List) resposta.get("results");
+
+            if (results == null || results.isEmpty()) {
+                throw new IllegalArgumentException("Ativo não encontrado.");
+            }
+
+            Map ativo = (Map) results.get(0);
+
+            String nome = (String) ativo.get("longName");
+            Double precoAtual = converterParaDouble(ativo.get("regularMarketPrice"));
+            Double variacaoDia = converterParaDouble(ativo.get("regularMarketChangePercent"));
+
+            return new AtivoMercadoInfo(
+                tickerFormatado,
+                nome,
+                descobrirTipo(tickerFormatado),
+                precoAtual,
+                variacaoDia,
+                0.0
+            );
+        } catch (Exception erro) {
+            if (ativoFallback != null) {
+                return ativoFallback;
+            }
+
+            throw new IllegalArgumentException("Nao foi possivel buscar o ativo agora.");
         }
-
-        Map ativo = (Map) results.get(0);
-
-        String nome = (String) ativo.get("longName");
-        Double precoAtual = converterParaDouble(ativo.get("regularMarketPrice"));
-        Double variacaoDia = converterParaDouble(ativo.get("regularMarketChangePercent"));
-
-        return new AtivoMercadoInfo(
-            tickerFormatado,
-            nome,
-            descobrirTipo(tickerFormatado),
-            precoAtual,
-            variacaoDia,
-            0.0
-        );
     }
 
     private Double converterParaDouble(Object valor) {
@@ -82,6 +77,76 @@ public class AtivoMercadoService {
         }
 
         return "ACAO";
+    }
+
+    private AtivoMercadoInfo buscarAtivoFallback(String ticker) {
+        if (ticker.equals("MXRF11")) {
+            return new AtivoMercadoInfo(
+                "MXRF11",
+                "Maxi renda",
+                "FII",
+                10.15,
+                0.42,
+                12.30
+            );
+        }
+
+        if (ticker.equals("BTLG11")) {
+            return new AtivoMercadoInfo(
+                "BTLG11",
+                "BTG Pactual Logistica",
+                "FII",
+                103.50,
+                -0.18,
+                8.90
+            );
+        }
+
+        if (ticker.equals("PETR4")) {
+            return new AtivoMercadoInfo(
+                "PETR4",
+                "Petrobras PN",
+                "ACAO",
+                38.70,
+                -0.85,
+                7.20
+            );
+        }
+
+        if (ticker.equals("VALE3")) {
+            return new AtivoMercadoInfo(
+                "VALE3",
+                "Vale ON",
+                "ACAO",
+                62.40,
+                0.35,
+                8.10
+            );
+        }
+
+        if (ticker.equals("ITUB4")) {
+            return new AtivoMercadoInfo(
+                "ITUB4",
+                "Itau Unibanco PN",
+                "ACAO",
+                33.20,
+                0.18,
+                6.40
+            );
+        }
+
+        if (ticker.equals("BBDC4")) {
+            return new AtivoMercadoInfo(
+                "BBDC4",
+                "Bradesco PN",
+                "ACAO",
+                14.80,
+                -0.22,
+                5.90
+            );
+        }
+
+        return null;
     }
 
 }

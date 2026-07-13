@@ -872,6 +872,15 @@ Status atual:
 - [x] Modulo inicial de mercado B3 implementado com consulta mockada por ticker.
 - [x] DTO, service e controller de ativos de mercado implementados.
 - [x] Tela `mercado.html` implementada para buscar ativos como MXRF11 e PETR4.
+- [x] Entidade `AtivoCarteira` implementada.
+- [x] Repository de ativos da carteira implementado.
+- [x] Service de ativos da carteira implementado com compra, validacao de saldo e desconto da conta.
+- [x] Controller de ativos da carteira implementado.
+- [x] Rota `POST /contas/{contaId}/ativos` implementada.
+- [x] Rota `GET /contas/{contaId}/ativos` implementada.
+- [x] Tela `ativo-detalhe.html` implementada para simular e comprar ativo.
+- [x] Tela `carteira-ativos.html` implementada para listar ativos comprados.
+- [x] `carteira-ativos.js` integrado com a conta do usuario logado.
 - [~] Integracao com API da B3/API de mercado iniciada com estrutura preparada.
 - [ ] Integracao real com API para acoes e fundos imobiliarios ainda nao implementada.
 - [ ] Relatórios de investimentos com Python ainda não implementados.
@@ -910,6 +919,8 @@ Status atual:
 - [~] Produtos de acoes iniciados pela consulta de mercado por ticker.
 - [~] Produtos de fundos imobiliarios iniciados pela consulta de mercado por ticker.
 - [~] Cotacoes de FIIs/acoes estruturadas com dados mockados para futura API externa.
+- [x] Compra simulada de acoes/FIIs salva em carteira de renda variavel.
+- [x] Listagem da carteira de renda variavel no frontend.
 
 ### 12.3 Funcionalidades de Investimento
 
@@ -924,6 +935,8 @@ Requisitos:
 - [x] Buscar indicadores financeiros reais via API do Banco Central.
 - [x] Aplicar investimento usando no backend a mesma taxa exibida no produto.
 - [x] Exibir indicadores financeiros reais no frontend.
+- [x] Comprar ativo de renda variavel usando saldo da conta.
+- [x] Listar ativos comprados por conta.
 - [ ] Exibir grafico de evolucao.
 - [~] Integrar futuramente com API da B3 ou outra API de mercado para consultar dados de acoes e FIIs.
 - Usar dados de mercado apenas como referencia informativa, mantendo as operacoes do Eclipse Bank como ficticias/simuladas.
