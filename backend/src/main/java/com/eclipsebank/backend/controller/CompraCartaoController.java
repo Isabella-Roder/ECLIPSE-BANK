@@ -35,4 +35,14 @@ public class CompraCartaoController {
         return compraCartaoService.comprar(cartaoId, compra);
     }
 
+    @GetMapping("/cartoes/{cartaoId}/fatura")
+    public Double calcularFatura(@PathVariable Long cartaoId) {
+        return compraCartaoService.calcularFatura(cartaoId);
+    }
+
+    @PostMapping("/cartoes/{cartaoId}/pagar-fatura")
+    public Double pagarFatura(@PathVariable Long cartaoId) {
+        return compraCartaoService.pagarFatura(cartaoId);
+    }
+
 }

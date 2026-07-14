@@ -27,6 +27,10 @@ function criarSidebarUsuario() {
             <a href="pagamentos.html">Pagamentos</a>
             <a href="extrato.html">Extrato</a>
             <a href="comprovantes.html">Comprovantes</a>
+            <a href="investimentos-dashboard.html">Dashboard investimentos</a>
+            <a href="investimentos.html">Investimentos</a>
+            <a href="mercado.html">Mercado B3</a>
+            <a href="carteira-ativos.html">Carteira de ativos</a>
             <a href="#">Relatorios</a>
             <button id="btn-logout" type="button">Sair</button>
         </nav>
@@ -86,6 +90,10 @@ function criarSidebarAdmin() {
             <a href="pagamentos.html">Pagamentos</a>
             <a href="extrato.html">Extrato</a>
             <a href="comprovantes.html">Comprovantes</a>
+            <a href="investimentos-dashboard.html">Dashboard investimentos</a>
+            <a href="investimentos.html">Investimentos</a>
+            <a href="mercado.html">Mercado B3</a>
+            <a href="carteira-ativos.html">Carteira de ativos</a>
             <a href="#">Relatorios</a>
             <a href="login.html">Login</a>
         </nav>

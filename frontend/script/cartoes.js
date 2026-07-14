@@ -10,6 +10,7 @@ const totalFaturaCartao = document.getElementById("total-fatura-cartao");
 const quantidadeComprasCartao = document.getElementById("quantidade-compras-cartao");
 const limiteUsadoCartao = document.getElementById("limite-usado-cartao");
 const percentualLimiteCartao = document.getElementById("percentual-limite-cartao");
+const botaoPagarFatura = document.getElementById("btn-pagar-fatura");
 const numeroCartaoVisual = document.getElementById("numero-cartao-visual");
 const nomeCartaoVisual = document.getElementById("nome-cartao-visual");
 const validadeCartaoVisual = document.getElementById("validade-cartao-visual");
@@ -85,14 +86,16 @@ function formatarValidade(dataValidade) {
 }
 
 function atualizarResumoFatura(compras) {
-    const totalFatura = compras.reduce((soma, compra) => soma + (compra.valor || 0), 0);
+    const comprasEmAberto = compras.filter((compra) => compra.status === "APROVADA");
+    const totalFatura = comprasEmAberto.reduce((soma, compra) => soma + (compra.valor || 0), 0);
     const limiteTotal = cartaoAtual ? cartaoAtual.limiteTotal || 0 : 0;
     const percentualUso = limiteTotal > 0 ? (totalFatura / limiteTotal) * 100 : 0;
 
     totalFaturaCartao.textContent = formatarMoeda(totalFatura);
-    quantidadeComprasCartao.textContent = compras.length;
+    quantidadeComprasCartao.textContent = comprasEmAberto.length;
     limiteUsadoCartao.textContent = formatarMoeda(totalFatura);
     percentualLimiteCartao.textContent = `${percentualUso.toFixed(1)}%`;
+    botaoPagarFatura.disabled = totalFatura <= 0;
 }
 
 async function carregarConta(usuarioId) {
@@ -133,6 +136,7 @@ async function carregarCartao(contaId) {
     areaCriarCartao.style.display = "none";
     areaComprasCartao.style.display = "block";
 
+    carregarFatura(cartaoAtual.id);
     carregarComprasCartao(cartaoAtual.id);
 }
 
@@ -245,6 +249,50 @@ formCompraCartao.addEventListener("submit", async (evento) => {
     mensagemCartao.textContent = "Compra registrada com sucesso.";
     formCompraCartao.reset();
     carregarCartao(contaAtual.id);
+});
+
+async function carregarFatura(cartaoId) {
+    try {
+        const resposta = await fetch(`${API_URL}/cartoes/${cartaoId}/fatura`);
+
+        if (!resposta.ok) {
+            totalFaturaCartao.textContent = formatarMoeda(0);
+            botaoPagarFatura.disabled = true;
+            return;
+        }
+
+        const valor = await resposta.json();
+
+        totalFaturaCartao.textContent = formatarMoeda(valor);
+        botaoPagarFatura.disabled = valor <= 0;
+    } catch (erro) {
+        totalFaturaCartao.textContent = formatarMoeda(0);
+        botaoPagarFatura.disabled = true;
+    }
+}
+
+async function pagarFatura(cartaoId) {
+    const resposta = await fetch(`${API_URL}/cartoes/${cartaoId}/pagar-fatura`, {
+        method: "POST"
+    });
+
+    if (!resposta.ok) {
+        const erro = await resposta.json();
+        mensagemCartao.textContent = erro.erro || "Não foi possivel pagar a fatura.";
+        return;
+    }
+
+    mensagemCartao.textContent = "Fatura paga com sucesso.";
+    await carregarCartao(contaAtual.id);
+}
+
+botaoPagarFatura.addEventListener("click", () => {
+    if (!cartaoAtual) {
+        mensagemCartao.textContent = "Cartão ainda não carregou.";
+        return;
+    }
+
+    pagarFatura(cartaoAtual.id);
 });
 
 carregarConta(usuarioLogado.id);

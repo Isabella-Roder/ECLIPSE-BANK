@@ -36,6 +36,11 @@
             </div>
 
             <div class="card">
+                <span>Resultado total</span>
+                <strong id="ativos-resultado-total">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
                 <span>Ativos na carteira</span>
                 <strong id="ativos-quantidade">0</strong>
             </div>
@@ -72,11 +77,14 @@
                             <th>Quantidade</th>
                             <th>Preco medio</th>
                             <th>Total</th>
+                            <th>Preco atual</th>
+                            <th>Resultado</th>
+                            <th>Acao</th>
                         </tr>
                     </thead>
                     <tbody id="lista-carteira-ativos">
                         <tr>
-                            <td colspan="7">Carregando carteira de ativos...</td>
+                            <td colspan="10">Carregando carteira de ativos...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -113,12 +121,12 @@
                 <div class="card">
                     <span>Operacao</span>
                     <strong>Venda</strong>
-                    <p>Permitir vender ativos futuramente.</p>
+                    <p>Use a acao da tabela para vender uma quantidade do ativo.</p>
                 </div>
             </div>
         </section>
     </main>
-
+    
     <script src="../script/layout.js"></script>
     <script src="../script/app.js"></script>
     <script src="../script/carteira-ativos.js"></script>

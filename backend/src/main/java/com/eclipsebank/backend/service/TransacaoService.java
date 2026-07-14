@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.eclipsebank.backend.enums.TipoTransacao;
 import com.eclipsebank.backend.model.Transacao;
 import com.eclipsebank.backend.repository.TransacaoRepository;
+import com.eclipsebank.backend.model.Conta;
 //guarda as regras
 @Service
 public class TransacaoService {
@@ -75,8 +76,21 @@ public class TransacaoService {
         return transacaoRepository.save(transacao);
     }
 
+    public Transacao registrar(Conta conta, TipoTransacao tipo, double valor, String descricao, String categoria) {
+        Transacao transacao = new Transacao();
+
+        transacao.setConta(conta);
+        transacao.setTipo(tipo);
+        transacao.setValor(valor);
+        transacao.setDescricao(descricao);
+        transacao.setCategoria(categoria);
+        transacao.setDataHora(LocalDateTime.now());
+
+        return transacaoRepository.save(transacao);
+    }
+
     public double calcularEntradas() {
-        return listar().stream().filter(transacao -> transacao.getTipo() == TipoTransacao.RECEITA || transacao.getTipo() == TipoTransacao.DEPOSITO).mapToDouble(
+        return listar().stream().filter(transacao -> transacao.getTipo() == TipoTransacao.RECEITA || transacao.getTipo() == TipoTransacao.DEPOSITO || transacao.getTipo() == TipoTransacao.VENDA_ATIVO || transacao.getTipo() == TipoTransacao.RESGATE_INVESTIMENTO).mapToDouble(
             Transacao::getValor).sum();
     }
 
@@ -85,7 +99,9 @@ public class TransacaoService {
             || transacao.getTipo() == TipoTransacao.SAQUE
             || transacao.getTipo() == TipoTransacao.PAGAMENTO
             || transacao.getTipo() == TipoTransacao.PIX
-            || transacao.getTipo() == TipoTransacao.TRANSFERENCIA).mapToDouble(Transacao::getValor).sum();
+            || transacao.getTipo() == TipoTransacao.TRANSFERENCIA
+            || transacao.getTipo() == TipoTransacao.COMPRA_ATIVO
+            || transacao.getTipo() == TipoTransacao.APLICACAO_INVESTIMENTO).mapToDouble(Transacao::getValor).sum();
     }
 
     public double calcularSaldo() {
@@ -97,7 +113,9 @@ public class TransacaoService {
             || tipo == TipoTransacao.SAQUE
             || tipo == TipoTransacao.PAGAMENTO
             || tipo == TipoTransacao.PIX
-            || tipo == TipoTransacao.TRANSFERENCIA;
+            || tipo == TipoTransacao.TRANSFERENCIA
+            || tipo == TipoTransacao.COMPRA_ATIVO
+            || tipo == TipoTransacao.APLICACAO_INVESTIMENTO;
     }
 
 }

@@ -260,8 +260,12 @@ Status atual:
 - [x] Criacao de cartao pelo frontend implementada.
 - [x] Registro de compras no cartao pelo frontend implementado.
 - [x] Listagem de compras do cartao pelo frontend implementada.
-- [ ] Controle de fatura ainda nao implementado.
-- [ ] Pagamento de fatura ainda nao implementado.
+- [x] Calculo de fatura atual implementado no backend.
+- [x] Pagamento de fatura implementado no backend.
+- [x] Pagamento de fatura desconta saldo da conta.
+- [x] Pagamento de fatura restaura limite disponivel do cartao.
+- [x] Pagamento de fatura registra transacao no extrato.
+- [x] Botao de pagar fatura implementado no frontend.
 
 Funcionalidades:
 
@@ -854,6 +858,8 @@ Status atual:
 - [x] Rota `POST /investimentos/{investimentoId}/resgatar` implementada.
 - [x] Aplicacao de investimento desconta saldo da conta.
 - [x] Resgate de investimento devolve valor aplicado + rendimento estimado para o saldo da conta.
+- [x] Aplicacao de investimento gera transacao `APLICACAO_INVESTIMENTO` no extrato.
+- [x] Resgate de investimento gera transacao `RESGATE_INVESTIMENTO` no extrato.
 - [x] Investimentos possuem status `ATIVO` e `RESGATADO`.
 - [x] Tela `investimentos.html` implementada.
 - [x] `investimentos.js` integrado com a conta do usuario logado.
@@ -878,9 +884,16 @@ Status atual:
 - [x] Controller de ativos da carteira implementado.
 - [x] Rota `POST /contas/{contaId}/ativos` implementada.
 - [x] Rota `GET /contas/{contaId}/ativos` implementada.
+- [x] Rota `POST /ativos/{ativoId}/vender` implementada.
 - [x] Tela `ativo-detalhe.html` implementada para simular e comprar ativo.
 - [x] Tela `carteira-ativos.html` implementada para listar ativos comprados.
 - [x] `carteira-ativos.js` integrado com a conta do usuario logado.
+- [x] Carteira de ativos exibe preco medio, preco atual e resultado por ativo.
+- [x] Resultado positivo/negativo da carteira destacado visualmente.
+- [x] Resultado total da carteira de renda variavel implementado no frontend.
+- [x] Compra de ativo gera transacao `COMPRA_ATIVO` no extrato.
+- [x] Venda de ativo gera transacao `VENDA_ATIVO` no extrato.
+- [x] Venda de ativo devolve o valor para o saldo da conta.
 - [~] Integracao com API da B3/API de mercado iniciada com estrutura preparada.
 - [ ] Integracao real com API para acoes e fundos imobiliarios ainda nao implementada.
 - [ ] Relatórios de investimentos com Python ainda não implementados.
@@ -921,6 +934,8 @@ Status atual:
 - [~] Cotacoes de FIIs/acoes estruturadas com dados mockados para futura API externa.
 - [x] Compra simulada de acoes/FIIs salva em carteira de renda variavel.
 - [x] Listagem da carteira de renda variavel no frontend.
+- [x] Comparacao entre preco medio e cotacao atual na carteira.
+- [x] Lucro/prejuizo estimado exibido na carteira.
 
 ### 12.3 Funcionalidades de Investimento
 
@@ -936,7 +951,11 @@ Requisitos:
 - [x] Aplicar investimento usando no backend a mesma taxa exibida no produto.
 - [x] Exibir indicadores financeiros reais no frontend.
 - [x] Comprar ativo de renda variavel usando saldo da conta.
+- [x] Vender ativo de renda variavel devolvendo saldo para a conta.
 - [x] Listar ativos comprados por conta.
+- [x] Calcular resultado estimado de ativos usando preco medio e preco atual.
+- [x] Registrar compra e venda de ativos no extrato.
+- [x] Registrar aplicacao e resgate de investimentos no extrato.
 - [ ] Exibir grafico de evolucao.
 - [~] Integrar futuramente com API da B3 ou outra API de mercado para consultar dados de acoes e FIIs.
 - Usar dados de mercado apenas como referencia informativa, mantendo as operacoes do Eclipse Bank como ficticias/simuladas.
@@ -945,12 +964,19 @@ Requisitos:
 
 Requisitos:
 
-- Exibir total investido.
-- Exibir rendimento total.
-- Exibir rendimento do mes.
-- Exibir investimentos por tipo.
-- Exibir cotacoes ou indicadores obtidos via API da B3 futuramente.
-- Integrar dados com relatorios em Python futuramente.
+- [x] Tela `investimentos-dashboard.html` implementada.
+- [x] `investimentos-dashboard.js` implementado.
+- [x] Exibir patrimonio total investido.
+- [x] Exibir total em renda fixa.
+- [x] Exibir total em renda variavel.
+- [x] Exibir rendimento estimado.
+- [x] Exibir distribuicao percentual entre renda fixa e renda variavel.
+- [x] Exibir resumo de aplicacoes de renda fixa.
+- [x] Exibir resumo de ativos de renda variavel.
+- [x] Exibir resultado dos ativos usando cotacao atual.
+- [x] Exibir leitura de saude da carteira de investimentos.
+- [ ] Exibir rendimento do mes ainda nao implementado.
+- [ ] Integrar dados com relatorios em Python futuramente.
 
 ## 13. Status Atual do Projeto
 
@@ -1148,12 +1174,12 @@ Legenda:
 - [ ] Mostrar resumo da conta no canto direito superior.
 - [ ] Login com conta Google.
 - [ ] Separacao real entre cliente e administracao.
-- [~] Cartoes implementado parcialmente.
+- [x] Cartoes implementado com criacao, compras, fatura e pagamento.
 - [x] Tela de cartoes implementada.
 - [x] Criacao e consulta de cartao pelo frontend.
 - [x] Compras no cartao implementadas.
 - [x] Listagem de compras do cartao pelo frontend.
-- [ ] Fatura.
+- [x] Fatura.
 - [ ] Metas financeiras.
 - [ ] Relatorios com Python.
 - [ ] Graficos.

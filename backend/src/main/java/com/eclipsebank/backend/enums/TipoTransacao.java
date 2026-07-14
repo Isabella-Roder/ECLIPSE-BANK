@@ -7,5 +7,9 @@ public enum TipoTransacao {
     SAQUE,
     PAGAMENTO,
     TRANSFERENCIA,
-    PIX
+    PIX,
+    COMPRA_ATIVO,
+    VENDA_ATIVO,
+    APLICACAO_INVESTIMENTO,
+    RESGATE_INVESTIMENTO
 }

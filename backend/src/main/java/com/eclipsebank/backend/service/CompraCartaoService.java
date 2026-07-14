@@ -8,17 +8,24 @@ import org.springframework.stereotype.Service;
 import com.eclipsebank.backend.model.CompraCartao;
 import com.eclipsebank.backend.repository.CartaoRepository;
 import com.eclipsebank.backend.repository.CompraCartaoRepository;
+import com.eclipsebank.backend.repository.ContaRepository;
+import com.eclipsebank.backend.enums.TipoTransacao;
 import com.eclipsebank.backend.model.Cartao;
+import com.eclipsebank.backend.model.Conta;
 
 @Service
 public class CompraCartaoService {
     
     private CompraCartaoRepository compraCartaoRepository;
     private CartaoRepository cartaoRepository;
+    private TransacaoService transacaoService;
+    private ContaRepository contaRepository;
 
-    public CompraCartaoService(CompraCartaoRepository compraCartaoRepository, CartaoRepository cartaoRepository) {
+    public CompraCartaoService(CompraCartaoRepository compraCartaoRepository, CartaoRepository cartaoRepository, ContaRepository contaRepository, TransacaoService transacaoService) {
         this.compraCartaoRepository = compraCartaoRepository;
         this.cartaoRepository = cartaoRepository;
+        this.transacaoService = transacaoService;
+        this.contaRepository = contaRepository;
     }
 
     public List<CompraCartao> listar() {
@@ -61,6 +68,62 @@ public class CompraCartaoService {
         compra.setCartao(cartao);
         cartaoRepository.save(cartao);
         return compraCartaoRepository.save(compra);
+    }
+
+    public Double calcularFatura(Long cartaoId) {
+        List<CompraCartao> compras = compraCartaoRepository.findByCartaoId(cartaoId);
+
+        return compras.stream().filter(compra -> "APROVADA".equalsIgnoreCase(compra.getStatus()))
+            .mapToDouble(CompraCartao::getValor).sum();
+    }
+
+    public Double pagarFatura(Long cartaoId) {
+        Cartao cartao = cartaoRepository.findById(cartaoId).orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado"));
+
+        Double valorFatura = calcularFatura(cartaoId);
+
+        if (valorFatura <= 0) {
+            throw new IllegalArgumentException("Não ha fatura em aberto.");
+        }
+
+        Conta conta = cartao.getConta();
+
+        if (conta.getSaldo() == null) {
+            conta.setSaldo(0.0);
+        }
+
+        if (conta.getSaldo() < valorFatura) {
+            throw new IllegalArgumentException("Saldo insuficienta para pagar fatura.");
+        }
+
+        if (cartao.getLimiteDisponivel() == null) {
+            cartao.setLimiteDisponivel(0.0);
+        }
+
+        conta.setSaldo(conta.getSaldo() - valorFatura);
+        cartao.setLimiteDisponivel(cartao.getLimiteDisponivel() + valorFatura);
+
+        List<CompraCartao> compras = compraCartaoRepository.findByCartaoId(cartaoId);
+
+        compras.forEach((compra) -> {
+            if ("APROVADA".equalsIgnoreCase(compra.getStatus())) {
+                compra.setStatus("PAGA");
+            }
+        });
+
+        transacaoService.registrar(
+            conta, 
+            TipoTransacao.PAGAMENTO,
+            valorFatura,
+            "Pagamento de fatura do cartão",
+            "Cartão"
+        );
+
+        contaRepository.save(conta);
+        cartaoRepository.save(cartao);
+        compraCartaoRepository.saveAll(compras);
+
+        return valorFatura;
     }
 
 }

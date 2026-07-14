@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Investimentos - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Visao consolidada</p>
+                <h2>Dashboard de investimentos</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero mercado-hero">
+            <div>
+                <span>Patrimonio investido</span>
+                <strong id="patrimonio-investimentos">R$ 0,00</strong>
+                <p id="mensagem-dashboard-investimentos">Carregando resumo dos investimentos...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="investimentos.html">Renda fixa</a>
+                <a href="mercado.html">Mercado B3</a>
+                <a href="carteira-ativos.html">Carteira de ativos</a>
+                <a href="extrato.html">Extrato</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente cards-mercado">
+            <div class="card card-destaque">
+                <span>Total em renda fixa</span>
+                <strong id="total-renda-fixa">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Total em renda variavel</span>
+                <strong id="total-renda-variavel">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Rendimento estimado</span>
+                <strong id="rendimento-estimado-dashboard">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Resultado dos ativos</span>
+                <strong id="resultado-ativos-dashboard">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Produtos ativos</span>
+                <strong id="quantidade-produtos-dashboard">0</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Distribuicao da carteira</h3>
+                    <p>Separacao entre aplicacoes de renda fixa e ativos de mercado.</p>
+                </div>
+
+                <span class="selo-status">Carteira consolidada</span>
+            </div>
+
+            <div class="cards cards-cliente">
+                <div class="card">
+                    <span>Renda fixa</span>
+                    <strong id="percentual-renda-fixa">0%</strong>
+                    <p>Aplicacoes como CDB, Tesouro e produtos simulados.</p>
+                </div>
+
+                <div class="card">
+                    <span>Renda variavel</span>
+                    <strong id="percentual-renda-variavel">0%</strong>
+                    <p>Acoes, FIIs e outros ativos consultados pelo mercado.</p>
+                </div>
+
+                <div class="card">
+                    <span>Saldo disponivel</span>
+                    <strong id="saldo-disponivel-investimentos">R$ 0,00</strong>
+                    <p>Valor livre na conta para novas operacoes.</p>
+                </div>
+
+                <div class="card">
+                    <span>Saude da carteira</span>
+                    <strong id="saude-carteira-investimentos">-</strong>
+                    <p id="descricao-saude-carteira">Aguardando dados consolidados.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Resumo por categoria</h3>
+                    <p>Uma leitura rapida do que esta aplicado e do que esta em mercado.</p>
+                </div>
+            </div>
+
+            <div class="grade-dupla">
+                <div class="card">
+                    <span>Renda fixa e Tesouro</span>
+                    <strong id="titulo-renda-fixa">Aplicacoes ativas</strong>
+                    <div id="lista-resumo-renda-fixa" class="lista-resumo">
+                        <p>Nenhuma aplicacao carregada.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <span>Acoes e FIIs</span>
+                    <strong id="titulo-renda-variavel">Ativos na carteira</strong>
+                    <div id="lista-resumo-renda-variavel" class="lista-resumo">
+                        <p>Nenhum ativo carregado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Movimentacoes de investimento</h3>
+                    <p>Aplicacoes, resgates, compras e vendas aparecem no extrato da conta.</p>
+                </div>
+
+                <a href="extrato.html" class="selo-status">Ver extrato</a>
+            </div>
+
+            <div class="cards cards-cliente">
+                <div class="card">
+                    <span>Aplicacoes</span>
+                    <strong>APLICACAO_INVESTIMENTO</strong>
+                    <p>Saida de saldo para renda fixa ou Tesouro.</p>
+                </div>
+
+                <div class="card">
+                    <span>Resgates</span>
+                    <strong>RESGATE_INVESTIMENTO</strong>
+                    <p>Entrada de saldo com valor aplicado e rendimento estimado.</p>
+                </div>
+
+                <div class="card">
+                    <span>Compras</span>
+                    <strong>COMPRA_ATIVO</strong>
+                    <p>Saida de saldo para compra de acoes ou FIIs.</p>
+                </div>
+
+                <div class="card">
+                    <span>Vendas</span>
+                    <strong>VENDA_ATIVO</strong>
+                    <p>Entrada de saldo ao vender ativos da carteira.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/investimentos-dashboard.js"></script>
+</body>
+</html>

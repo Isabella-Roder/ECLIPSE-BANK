@@ -69,10 +69,13 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Criacao e consulta de cartao por conta.
 - Modulo inicial de compras no cartao implementado.
 - Compra no cartao valida limite disponivel e diminui o limite apos aprovacao.
+- Fatura atual do cartao calculada a partir das compras aprovadas.
+- Pagamento de fatura implementado, com desconto do saldo, restauracao de limite e registro no extrato.
 - Modulo inicial de investimentos implementado.
 - Investimentos vinculados a conta, com produto, tipo, perfil, valor aplicado e rendimento estimado.
 - Aplicacao de investimento desconta saldo da conta.
 - Resgate de investimento implementado, devolvendo valor aplicado + rendimento estimado ao saldo.
+- Aplicacao e resgate de investimento registrados no extrato como `APLICACAO_INVESTIMENTO` e `RESGATE_INVESTIMENTO`.
 - Investimentos possuem status `ATIVO` e `RESGATADO`.
 - Produtos de investimento fornecidos pelo backend e renderizados automaticamente no frontend.
 - Integracao inicial com API do Banco Central para indicadores financeiros.
@@ -86,11 +89,15 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Tela `mercado.html` com busca de ativos como MXRF11 e PETR4.
 - Carteira de renda variavel implementada com entidade, repository, service e controller.
 - Compra de ativo por conta, com validacao de saldo e desconto da conta.
-- Rotas `POST /contas/{contaId}/ativos` e `GET /contas/{contaId}/ativos`.
+- Venda de ativo por conta, com devolucao do valor para o saldo.
+- Rotas `POST /contas/{contaId}/ativos`, `GET /contas/{contaId}/ativos` e `POST /ativos/{ativoId}/vender`.
+- Compra e venda de ativos registradas no extrato como `COMPRA_ATIVO` e `VENDA_ATIVO`.
+- Carteira de ativos compara preco medio com preco atual e exibe lucro/prejuizo estimado.
 - Tela de cartoes implementada.
 - Criacao de cartao pelo frontend.
 - Registro de compras no cartao pelo frontend.
 - Listagem de compras do cartao pelo frontend.
+- Fatura e pagamento de fatura pelo frontend.
 - Dashboard com saldo total, total de contas e total de usuarios.
 - Cadastro de empresas com CNPJ.
 - Conta empresarial criada automaticamente.
@@ -152,9 +159,10 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - Botao para imprimir comprovante.
 - Area PJ com dashboard, conta empresarial, pagamentos, extrato, comprovantes e cartoes.
 - Tela de investimentos com vitrine automatica de produtos, detalhe do produto, simulacao, aplicacao, resgate, resumo da carteira e listagem de investimentos.
+- Tela de dashboard de investimentos implementada para consolidar renda fixa, renda variavel, rendimento e resultado.
 - Tela de mercado B3 com busca de ativo, preco, variacao, tipo e dividend yield.
 - Tela de detalhe do ativo com simulacao por quantidade e compra.
-- Tela de carteira de ativos com resumo e listagem de acoes/FIIs comprados.
+- Tela de carteira de ativos com resumo, listagem de acoes/FIIs comprados, resultado estimado e venda de ativos.
 
 ## Telas Atuais
 
@@ -163,7 +171,7 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `contas.html`: cadastro, listagem, deposito e saque de contas.
 - `transferencias.html`: transferencia entre contas.
 - `pagamentos.html`: central de pagamentos.
-- `cartoes.html`: consulta do cartao, criacao de cartao e registro de compras.
+- `cartoes.html`: consulta do cartao, criacao de cartao, registro de compras, fatura e pagamento.
 - `comprovantes.html`: historico real de comprovantes.
 - `extrato.html`: consulta de extrato por conta.
 - `minha-conta.html`: painel bancario do cliente, com saldo, dados da conta, ultimas movimentacoes e comprovantes.
@@ -176,10 +184,11 @@ O projeto esta sendo desenvolvido como uma aplicacao web, usando Java Spring Boo
 - `extrato-empresa.html`: extrato da conta PJ.
 - `empresa-cartoes.html`: cartao PJ e compras empresariais.
 - `investimentos.html`: carteira de investimentos, vitrine automatica de produtos e resumo.
+- `investimentos-dashboard.html`: dashboard consolidado de investimentos.
 - `investimento-detalhe.html`: detalhe do produto, simulacao de rendimento e aplicacao.
 - `mercado.html`: consulta inicial de ativos de mercado B3 por ticker.
 - `ativo-detalhe.html`: detalhe do ativo, simulacao por quantidade e compra.
-- `carteira-ativos.html`: carteira de renda variavel com ativos comprados.
+- `carteira-ativos.html`: carteira de renda variavel com ativos comprados, resultado estimado e venda de ativos.
 
 ## Funcionalidades Planejadas
 
@@ -215,15 +224,11 @@ frontend/
 - Baixar comprovante em PDF.
 - Login com conta Google futuramente.
 - Separacao real entre cliente e administracao.
-- Cartoes com tela e compras implementados parcialmente.
-- Faturas.
 - Metas financeiras.
 - Relatorios com Python.
 - Graficos.
 - Trocar a consulta mockada de mercado B3 por API real.
 - Evoluir integracao com API de acoes e fundos imobiliarios, incluindo ativos como MXRF11 e BTLG11.
-- Calcular lucro/prejuizo da carteira de ativos comparando preco medio com cotacao atual.
-- Venda de ativos da carteira.
 - Exportacao de relatorios.
 
 ## Observacao

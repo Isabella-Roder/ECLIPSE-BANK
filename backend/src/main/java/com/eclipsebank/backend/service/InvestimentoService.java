@@ -10,19 +10,23 @@ import com.eclipsebank.backend.repository.ContaRepository;
 import com.eclipsebank.backend.repository.InvestimentoRepository;
 import com.eclipsebank.backend.dto.ProdutoInvestimentoInfo;
 import com.eclipsebank.backend.enums.StatusInvestimento;
+import com.eclipsebank.backend.enums.TipoTransacao;
 import com.eclipsebank.backend.model.Conta;
+import com.eclipsebank.backend.service.TransacaoService;
 
 @Service
 public class InvestimentoService {
     
     private InvestimentoRepository investimentoRepository;
     private ContaRepository contaRepository;
+    private TransacaoService transacaoService;
     private ProdutoInvestimentoService produtoInvestimentoService;
 
-    public InvestimentoService(InvestimentoRepository investimentoRepository, ContaRepository contaRepository, ProdutoInvestimentoService produtoInvestimentoService) {
+    public InvestimentoService(InvestimentoRepository investimentoRepository, ContaRepository contaRepository, ProdutoInvestimentoService produtoInvestimentoService, TransacaoService transacaoService) {
         this.investimentoRepository = investimentoRepository;
         this.contaRepository = contaRepository;
         this.produtoInvestimentoService = produtoInvestimentoService;
+        this.transacaoService = transacaoService;
     }
 
     public List<Investimento> listar() {
@@ -82,6 +86,14 @@ public class InvestimentoService {
         }
 
         conta.setSaldo(conta.getSaldo() - investimento.getValorAplicado());
+
+        transacaoService.registrar(
+            conta,
+            TipoTransacao.APLICACAO_INVESTIMENTO,
+            investimento.getValorAplicado(),
+            "Aplicacao em " + investimento.getProduto(),
+            "Investimentos"
+        );
         
         investimento.setRendimentoEstimado(calcularRendimentoEstimado(investimento));
         investimento.setDataAplicacao(LocalDateTime.now());
@@ -108,6 +120,15 @@ public class InvestimentoService {
         Double valorResgate = investimento.getValorAplicado() + investimento.getRendimentoEstimado();
 
         conta.setSaldo(conta.getSaldo() + valorResgate);
+
+        transacaoService.registrar(
+            conta,
+            TipoTransacao.RESGATE_INVESTIMENTO,
+            valorResgate,
+            "Resgate de " + investimento.getProduto(),
+            "Investimentos"
+        );
+
         investimento.setStatus(StatusInvestimento.RESGATADO);
 
         contaRepository.save(conta);

@@ -88,7 +88,10 @@ async function filtrarExtrato() {
 }
 
 function ehEntrada(tipo) {
-    return tipo === "RECEITA" || tipo === "DEPOSITO";
+    return tipo === "RECEITA"
+        || tipo === "DEPOSITO"
+        || tipo === "VENDA_ATIVO"
+        || tipo === "RESGATE_INVESTIMENTO";
 }
 
 function classeValor(tipo) {
