@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metas Financeiras - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Planejamento financeiro</p>
+                <h2>Metas financeiras</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero">
+            <div>
+                <span>Total guardado nas metas</span>
+                <strong id="total-metas-guardado">R$ 0,00</strong>
+                <p id="mensagem-metas">Carregando metas financeiras...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="minha-conta.html">Minha conta</a>
+                <a href="extrato.html">Extrato</a>
+                <a href="investimentos-dashboard.html">Investimentos</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Valor alvo total</span>
+                <strong id="total-metas-alvo">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Progresso geral</span>
+                <strong id="progresso-metas-geral">0%</strong>
+            </div>
+
+            <div class="card">
+                <span>Metas ativas</span>
+                <strong id="quantidade-metas-ativas">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Metas concluídas</span>
+                <strong id="quantidade-metas-concluidas">0</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Nova meta</h3>
+                    <p>Crie objetivos como reserva de emergência, viagem ou compra planejada.</p>
+                </div>
+            </div>
+
+            <form id="form-meta" class="formulario">
+                <label>
+                    Nome da meta
+                    <input type="text" id="nomeMeta" placeholder="Ex: Reserva de emergência" required>
+                </label>
+
+                <label>
+                    Descrição
+                    <input type="text" id="descricaoMeta" placeholder="Ex: Guardar dinheiro para segurança">
+                </label>
+
+                <label>
+                    Valor alvo
+                    <input type="text" id="valorAlvoMeta" placeholder="R$ 5.000,00" required>
+                </label>
+
+                <label>
+                    Valor atual
+                    <input type="text" id="valorAtualMeta" placeholder="R$ 0,00">
+                </label>
+
+                <label>
+                    Data limite
+                    <input type="date" id="dataLimiteMeta">
+                </label>
+
+                <button type="submit">Criar meta</button>
+            </form>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Minhas metas</h3>
+                    <p>Acompanhe o progresso das metas da conta logada.</p>
+                </div>
+
+                <span class="selo-status">Planejamento</span>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Meta</th>
+                            <th>Descrição</th>
+                            <th>Valor atual</th>
+                            <th>Valor alvo</th>
+                            <th>Progresso</th>
+                            <th>Data limite</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-metas">
+                        <tr>
+                            <td colspan="8">Carregando metas...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/metas.js"></script>
+</body>
+</html>

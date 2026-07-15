@@ -287,6 +287,32 @@ Requisitos:
 
 O usuário deve poder cadastrar metas financeiras.
 
+Status atual:
+
+- [x] Entidade `MetaFinanceira` implementada.
+- [x] Enum `StatusMeta` implementado.
+- [x] Repository de metas financeiras implementado.
+- [x] Service de metas financeiras implementado.
+- [x] Controller de metas financeiras implementado.
+- [x] Rota para criar meta por conta implementada.
+- [x] Rota para listar metas por conta implementada.
+- [x] Rota para adicionar valor em meta implementada.
+- [x] Rota para cancelar meta implementada.
+- [x] Tela `metas.html` implementada.
+- [x] `metas.js` integrado com a conta do usuario logado.
+- [x] Criacao de meta pelo frontend implementada.
+- [x] Listagem de metas pelo frontend implementada.
+- [x] Cards de resumo e progresso das metas implementados.
+- [x] Adicao de valor em meta pelo frontend implementada.
+- [x] Cancelamento de meta pelo frontend implementado.
+- [x] Conclusao automatica ao atingir o valor alvo implementada.
+- [x] Aporte inicial em meta desconta saldo da conta.
+- [x] Adicao de valor em meta desconta saldo da conta.
+- [x] Cancelamento de meta devolve valor guardado para o saldo da conta.
+- [x] Aporte em meta gera transacao `APORTE_META` no extrato.
+- [x] Resgate de meta cancelada gera transacao `RESGATE_META` no extrato.
+- [x] Operacoes de metas protegidas com transacao para evitar saldo inconsistente.
+
 Metas iniciais sugeridas:
 
 - Guardar R$ 1.000.
@@ -1180,7 +1206,7 @@ Legenda:
 - [x] Compras no cartao implementadas.
 - [x] Listagem de compras do cartao pelo frontend.
 - [x] Fatura.
-- [ ] Metas financeiras.
+- [x] Metas financeiras.
 - [ ] Relatorios com Python.
 - [ ] Graficos.
 - [x] Investimentos ficticios iniciais.

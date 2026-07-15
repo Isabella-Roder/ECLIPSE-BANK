@@ -31,6 +31,7 @@ function criarSidebarUsuario() {
             <a href="investimentos.html">Investimentos</a>
             <a href="mercado.html">Mercado B3</a>
             <a href="carteira-ativos.html">Carteira de ativos</a>
+            <a href="metas.html">Metas financeiras</a>
             <a href="#">Relatorios</a>
             <button id="btn-logout" type="button">Sair</button>
         </nav>
@@ -94,6 +95,7 @@ function criarSidebarAdmin() {
             <a href="investimentos.html">Investimentos</a>
             <a href="mercado.html">Mercado B3</a>
             <a href="carteira-ativos.html">Carteira de ativos</a>
+            <a href="metas.html">Metas financeiras</a>
             <a href="#">Relatorios</a>
             <a href="login.html">Login</a>
         </nav>
