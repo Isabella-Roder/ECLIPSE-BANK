@@ -1,0 +1,54 @@
+{
+    "entradas": 650,
+    "saidas": 405,
+    "resultado": 245,
+    "categoriaPrincipal": "Receita",
+    "categorias": [
+        {
+            "nome": "Receita",
+            "quantidade": 1,
+            "entradas": 500,
+            "saidas": 0,
+            "total": 500
+        },
+        {
+            "nome": "Transferencia",
+            "quantidade": 1,
+            "entradas": 0,
+            "saidas": 200,
+            "total": 200
+        },
+        {
+            "nome": "Metas",
+            "quantidade": 1,
+            "entradas": 150,
+            "saidas": 0,
+            "total": 150
+        },
+        {
+            "nome": "Contas",
+            "quantidade": 1,
+            "entradas": 0,
+            "saidas": 120,
+            "total": 120
+        },
+        {
+            "nome": "Alimentacao",
+            "quantidade": 1,
+            "entradas": 0,
+            "saidas": 85,
+            "total": 85
+        }
+    ],
+    "resumoMensal": {
+        "2026-07": {
+            "entradas": 650,
+            "saidas": 405,
+            "resultado": 245,
+            "quantidade": 5
+        }
+    },
+    "totalMetas": 4350,
+    "metasAtivas": 1,
+    "insight": "Suas entradas superaram suas saidas em R$ 245.00."
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatorios - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Analise financeira</p>
+                <h2>Relatorios</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero">
+            <div>
+                <span>Resultado do periodo</span>
+                <strong id="relatorio-resultado">R$ 0,00</strong>
+                <p id="mensagem-relatorios">Carregando relatorios...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="extrato.html">Extrato</a>
+                <a href="metas.html">Metas</a>
+                <a href="investimentos-dashboard.html">Investimentos</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Entradas</span>
+                <strong id="relatorio-entradas">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Saidas</span>
+                <strong id="relatorio-saidas">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Saldo atual</span>
+                <strong id="relatorio-saldo-atual">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Guardado em metas</span>
+                <strong id="relatorio-total-metas">R$ 0,00</strong>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card">
+                <span>Maior movimentacao</span>
+                <strong id="relatorio-maior-movimentacao">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Categoria principal</span>
+                <strong id="relatorio-categoria-principal">-</strong>
+            </div>
+
+            <div class="card">
+                <span>Transacoes</span>
+                <strong id="relatorio-total-transacoes">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Metas ativas</span>
+                <strong id="relatorio-metas-ativas">0</strong>
+            </div>
+        </section>
+
+        <section class="painel painel-graficos-relatorio">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Graficos financeiros</h3>
+                    <p>Visualize entradas, saidas e categorias com base no periodo selecionado.</p>
+                </div>
+
+                <span class="selo-status">Graficos</span>
+            </div>
+
+            <div class="grade-graficos-relatorio">
+                <div class="grafico-card">
+                    <div>
+                        <span>Entradas x saidas</span>
+                        <strong>Fluxo do periodo</strong>
+                    </div>
+                    <canvas id="grafico-fluxo-relatorio" height="220"></canvas>
+                </div>
+
+                <div class="grafico-card">
+                    <div>
+                        <span>Categorias</span>
+                        <strong>Distribuicao por valor</strong>
+                    </div>
+                    <canvas id="grafico-categorias-relatorio" height="220"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Filtros</h3>
+                    <p>Analise as movimentacoes por periodo para entender entradas, saidas e categorias.</p>
+                </div>
+            </div>
+
+            <form id="form-filtros-relatorio" class="formulario">
+                <label>
+                    Data inicial
+                    <input type="date" id="relatorio-data-inicio">
+                </label>
+
+                <label>
+                    Data final
+                    <input type="date" id="relatorio-data-fim">
+                </label>
+
+                <label>
+                    Tipo
+                    <select id="relatorio-filtro-tipo">
+                        <option value="">Todos os tipos</option>
+                    </select>
+                </label>
+
+                <button type="submit">Aplicar filtros</button>
+                <button type="button" id="limpar-filtros-relatorio">Limpar</button>
+            </form>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Resumo por categoria</h3>
+                    <p>Veja onde o dinheiro esta entrando ou saindo com mais frequencia.</p>
+                </div>
+
+                <span class="selo-status">Categorias</span>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                            <th>Tipo dominante</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-resumo-categorias">
+                        <tr>
+                            <td colspan="4">Carregando categorias...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Ultimas movimentacoes</h3>
+                    <p>Movimentacoes recentes consideradas no relatorio.</p>
+                </div>
+
+                <span class="selo-status">Extrato</span>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Descricao</th>
+                            <th>Categoria</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-relatorio-transacoes">
+                        <tr>
+                            <td colspan="5">Carregando movimentacoes...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Leitura rapida</h3>
+                    <p id="relatorio-insight">Aguardando dados para gerar uma leitura financeira.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/relatorios.js"></script>
+</body>
+</html>

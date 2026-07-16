@@ -32,7 +32,7 @@ function criarSidebarUsuario() {
             <a href="mercado.html">Mercado B3</a>
             <a href="carteira-ativos.html">Carteira de ativos</a>
             <a href="metas.html">Metas financeiras</a>
-            <a href="#">Relatorios</a>
+            <a href="relatorios.html">Relatorios</a>
             <button id="btn-logout" type="button">Sair</button>
         </nav>
     `;
@@ -53,7 +53,6 @@ function criarSidebarEmpresa() {
             <a href="empresa-pagamentos.html">Pagamentos PJ</a>
             <a href="extrato-empresa.html">Extrato PJ</a>
             <a href="empresa-cartoes.html">Cartões PJ</a>
-            <a href="empresa-dados.html">Dados da empresa</a>
             <a href="comprovantes.html">Comprovantes</a>
             <button id="btn-logout" type="button">Sair</button>
         </nav>
@@ -96,7 +95,7 @@ function criarSidebarAdmin() {
             <a href="mercado.html">Mercado B3</a>
             <a href="carteira-ativos.html">Carteira de ativos</a>
             <a href="metas.html">Metas financeiras</a>
-            <a href="#">Relatorios</a>
+            <a href="relatorios.html">Relatorios</a>
             <a href="login.html">Login</a>
         </nav>
     `;

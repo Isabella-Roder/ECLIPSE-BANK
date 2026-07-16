@@ -333,6 +333,23 @@ Requisitos:
 
 O sistema deve gerar relatórios financeiros para ajudar o usuário a entender seus gastos.
 
+Status atual:
+
+- [x] Tela `relatorios.html` implementada.
+- [x] `relatorios.js` implementado.
+- [x] Relatorio integrado com conta do usuario logado.
+- [x] Relatorio busca transacoes da conta.
+- [x] Relatorio busca metas financeiras da conta.
+- [x] Cards de entradas, saidas, resultado, saldo e metas implementados.
+- [x] Resumo por categoria implementado.
+- [x] Categoria principal implementada.
+- [x] Ultimas movimentacoes implementadas.
+- [x] Insight financeiro automatico inicial implementado.
+- [x] Filtros por periodo e tipo implementados no frontend.
+- [x] Graficos implementados no frontend com canvas.
+- [~] Relatorios com Python iniciados com leitura de JSON, resumo por categoria, resumo mensal, metas e insight automatico.
+- [ ] Exportacao de relatorios ainda nao implementada.
+
 Relatórios:
 
 - Gastos por categoria.
@@ -725,7 +742,7 @@ Status atual:
 - [x] `empresa-conta.html` implementado.
 - [x] Tela `comprovante.html` implementada para ultima operacao.
 - [x] Tela `comprovantes.html` implementada para historico real de comprovantes.
-- [ ] Tela de relatórios ainda não implementada.
+- [x] Tela de relatórios implementada.
 - [x] Tela de investimentos implementada.
 
 Telas sugeridas:
@@ -1207,8 +1224,8 @@ Legenda:
 - [x] Listagem de compras do cartao pelo frontend.
 - [x] Fatura.
 - [x] Metas financeiras.
-- [ ] Relatorios com Python.
-- [ ] Graficos.
+- [~] Relatorios com Python.
+- [x] Graficos.
 - [x] Investimentos ficticios iniciais.
 - [x] Resgate de investimentos.
 - [x] Integracao inicial com API do Banco Central para indicadores de investimentos.

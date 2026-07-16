@@ -1,0 +1,48 @@
+{
+    "transacoes": [
+        {
+            "tipo": "DEPOSITO",
+            "categoria": "Receita",
+            "valor": 500,
+            "dataHora": "2026-07-16T10:30:00"
+        },
+        {
+            "tipo": "PAGAMENTO",
+            "categoria": "Contas",
+            "valor": 120,
+            "dataHora": "2026-07-16T14:00:00"
+        },
+        {
+            "tipo": "PAGAMENTO",
+            "categoria": "Alimentacao",
+            "valor": 85,
+            "dataHora": "2026-07-17T12:15:00"
+        },
+        {
+            "tipo": "TRANSFERENCIA_ENVIADA",
+            "categoria": "Transferencia",
+            "valor": 200,
+            "dataHora": "2026-07-18T09:20:00"
+        },
+        {
+            "tipo": "RESGATE_META",
+            "categoria": "Metas",
+            "valor": 150,
+            "dataHora": "2026-07-19T16:40:00"
+        }
+    ],
+    "metas": [
+        {
+            "nome": "Reserva de emergencia",
+            "valorAlvo": 1000,
+            "valorAtual": 350,
+            "status": "EM_ANDAMENTO"
+        },
+        {
+            "nome": "Notebook",
+            "valorAlvo": 4000,
+            "valorAtual": 4000,
+            "status": "CONCLUIDA"
+        }
+    ]
+}

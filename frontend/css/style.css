@@ -1203,6 +1203,87 @@ tr:hover td {
     font-weight: 650;
 }
 
+#form-filtros-relatorio {
+    align-items: end;
+}
+
+#limpar-filtros-relatorio {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: var(--border);
+}
+
+#limpar-filtros-relatorio:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+}
+
+.painel-graficos-relatorio {
+    overflow: hidden;
+}
+
+.grade-graficos-relatorio {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.grafico-card {
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.grafico-card span {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.grafico-card strong {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.grafico-card canvas {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+#relatorio-resultado,
+#relatorio-entradas,
+#relatorio-saidas,
+#relatorio-saldo-atual,
+#relatorio-total-metas,
+#relatorio-maior-movimentacao {
+    overflow-wrap: anywhere;
+}
+
+#lista-resumo-categorias td:nth-child(2),
+#lista-resumo-categorias td:nth-child(3),
+#lista-relatorio-transacoes td:last-child {
+    text-align: right;
+    white-space: nowrap;
+}
+
+#lista-resumo-categorias td:first-child,
+#lista-relatorio-transacoes td:nth-child(2) {
+    font-weight: 650;
+}
+
+#relatorio-insight {
+    max-width: 780px;
+    color: #e8e2d8;
+    line-height: 1.65;
+}
+
 @media (max-width: 1100px) {
     .cards {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1232,6 +1313,7 @@ tr:hover td {
     form,
     .info-grid,
     .resumo-acoes,
+    .grade-graficos-relatorio,
     .grade-atalhos,
     .grade-contas-empresas,
     .painel-empresa-cadastro form,
