@@ -16,9 +16,9 @@ Este arquivo guarda as ideias que ficaram para uma futura versao do Eclipse Bank
 
 ## V2 - Frontend
 
-- Responsividade completa para celular.
-- Menu mobile.
-- Melhorar sidebar.
+- [~] Responsividade completa para celular.
+- [x] Menu mobile.
+- [~] Melhorar sidebar.
 - Mostrar resumo da conta no topo.
 - Revisar textos e mensagens de erro.
 - Adicionar estados vazios mais bonitos nas tabelas.

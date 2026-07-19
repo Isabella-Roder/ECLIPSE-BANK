@@ -103,4 +103,35 @@ function criarSidebarAdmin() {
     document.body.prepend(sidebar);
 }
 
+function criarBotaoMenuMobile() {
+    const botao = document.createElement("button");
+    botao.className = "menu-mobile";
+    botao.type = "button";
+    botao.textContent = "Menu";
+
+    const overlay = document.createElement("div");
+    overlay.className = "menu-overlay";
+
+    document.body.prepend(overlay);
+    document.body.prepend(botao);
+
+    botao.addEventListener("click", () => {
+        document.body.classList.toggle("menu-aberto");
+    });
+
+    overlay.addEventListener("click", () => {
+        document.body.classList.remove("menu-aberto");
+    });
+
+    const linksSidebar = document.querySelectorAll(".sidebar a");
+
+    linksSidebar.forEach((link) => {
+        link.addEventListener("click", () => {
+            document.body.classList.remove("menu-aberto");
+        });
+    });
+}
+
 verificarLogin();
+criarBotaoMenuMobile();
+

@@ -1138,13 +1138,13 @@ Legenda:
 - [x] Mascara de telefone implementada.
 - [x] Mascara de dinheiro/valor implementada em conta, deposito, saque, transferencia e transacao.
 - [ ] Mascara de data ainda nao implementada.
-- [~] Responsividade basica iniciada.
-- [ ] Responsividade completa para celular ainda nao implementada.
-- [ ] Menu mobile ainda nao implementado.
+- [x] Responsividade basica implementada.
+- [~] Responsividade completa para celular em aprimoramento.
+- [x] Menu mobile implementado com botao, overlay e fechamento ao clicar nos links.
 - [ ] Leitura por camera de QR Code ainda nao implementada.
 - [ ] Leitura por camera de codigo de barras ainda nao implementada.
 - [x] Botao mostrar/ocultar senha.
-- [ ] Sidebar ainda precisa ser aprimorada visualmente.
+- [~] Sidebar aprimorada parcialmente com comportamento mobile.
 - [ ] Resumo da conta no canto direito superior ainda nao implementado.
 - [x] Tela minha conta ajustada.
 - [x] Tela meus dados ajustada.
@@ -1185,7 +1185,7 @@ Legenda:
 - [ ] Pix por QR Code.
 - [ ] Camera no celular para ler QR Code.
 - [ ] Camera no celular para ler codigo de barras.
-- [ ] Responsividade completa para celular.
+- [~] Responsividade completa para celular.
 - [x] Gerar comprovante de pagamento por transferencia, Pix e boleto.
 - [x] Gerar comprovante visual de transferencia.
 - [x] Salvar comprovantes de pagamentos no banco.
@@ -1213,7 +1213,7 @@ Legenda:
 - [~] Aprimorar criacao de usuario.
 - [~] Aprimorar criacao de conta.
 - [ ] Melhorar estilo visual geral.
-- [ ] Melhorar sidebar.
+- [~] Melhorar sidebar.
 - [ ] Mostrar resumo da conta no canto direito superior.
 - [ ] Login com conta Google.
 - [ ] Separacao real entre cliente e administracao.
