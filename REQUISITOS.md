@@ -1145,7 +1145,7 @@ Legenda:
 - [ ] Leitura por camera de codigo de barras ainda nao implementada.
 - [x] Botao mostrar/ocultar senha.
 - [~] Sidebar aprimorada parcialmente com comportamento mobile.
-- [ ] Resumo da conta no canto direito superior ainda nao implementado.
+- [x] Resumo da conta no topo implementado.
 - [x] Tela minha conta ajustada.
 - [x] Tela meus dados ajustada.
 - [x] Tela de empresas.
@@ -1214,7 +1214,7 @@ Legenda:
 - [~] Aprimorar criacao de conta.
 - [ ] Melhorar estilo visual geral.
 - [~] Melhorar sidebar.
-- [ ] Mostrar resumo da conta no canto direito superior.
+- [x] Mostrar resumo da conta no topo.
 - [ ] Login com conta Google.
 - [ ] Separacao real entre cliente e administracao.
 - [x] Cartoes implementado com criacao, compras, fatura e pagamento.

@@ -19,7 +19,7 @@ Este arquivo guarda as ideias que ficaram para uma futura versao do Eclipse Bank
 - [~] Responsividade completa para celular.
 - [x] Menu mobile.
 - [~] Melhorar sidebar.
-- Mostrar resumo da conta no topo.
+- [x] Mostrar resumo da conta no topo.
 - Revisar textos e mensagens de erro.
 - Adicionar estados vazios mais bonitos nas tabelas.
 - Adicionar telas de ajuda/onboarding.

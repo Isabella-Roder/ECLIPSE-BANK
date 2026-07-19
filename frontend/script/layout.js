@@ -1,5 +1,6 @@
 const usuarioLayout = JSON.parse(localStorage.getItem("usuarioLogado"));
 const empresaLayout = JSON.parse(localStorage.getItem("empresaLogada"));
+const API_URL_LAYOUT = "http://localhost:8080";
 
 function verificarLogin() {
     if (usuarioLayout) {
@@ -132,6 +133,70 @@ function criarBotaoMenuMobile() {
     });
 }
 
+async function criarResumoContaTopo() {
+    const conteudo = document.querySelector(".conteudo");
+
+    if (!conteudo || (!usuarioLayout && !empresaLayout)) {
+        return;
+    }
+
+    const dadosLogin = usuarioLayout || empresaLayout;
+    const tipoConta = usuarioLayout ? "Conta PF" : "Conta PJ";
+    const nome = usuarioLayout
+        ? usuarioLayout.nomeSocial || usuarioLayout.nome || "Cliente"
+        : empresaLayout.nomeFantasia || empresaLayout.razaoSocial || "Empresa";
+
+    const endpoint = usuarioLayout
+        ? `${API_URL_LAYOUT}/usuarios/${dadosLogin.id}/conta`
+        : `${API_URL_LAYOUT}/empresas/${dadosLogin.id}/conta`;
+
+    try {
+        const resposta = await fetch(endpoint);
+
+        if (!resposta.ok) {
+            return;
+        }
+
+        const conta = await resposta.json();
+        const saldo = Number(conta.saldo || 0).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        });
+
+        const resumo = document.createElement("section");
+        resumo.className = "resumo-conta-topo";
+        resumo.setAttribute("aria-label", "Resumo da conta");
+
+        const identidade = document.createElement("div");
+        identidade.className = "resumo-conta-identidade";
+
+        const tipo = document.createElement("span");
+        tipo.textContent = tipoConta;
+
+        const saudacao = document.createElement("strong");
+        saudacao.textContent = `Olá, ${nome}`;
+
+        identidade.append(tipo, saudacao);
+
+        const dados = document.createElement("div");
+        dados.className = "resumo-conta-dados";
+
+        const numeroConta = document.createElement("span");
+        numeroConta.textContent = `Conta ${conta.numero || "-"}`;
+
+        const saldoConta = document.createElement("strong");
+        saldoConta.className = "resumo-conta-saldo";
+        saldoConta.textContent = saldo;
+
+        dados.append(numeroConta, saldoConta);
+        resumo.append(identidade, dados);
+        conteudo.prepend(resumo);
+    } catch (erro) {
+        console.warn("Nao foi possivel carregar o resumo da conta.", erro);
+    }
+}
+
 verificarLogin();
 criarBotaoMenuMobile();
+criarResumoContaTopo();
 
