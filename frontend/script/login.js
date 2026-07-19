@@ -13,7 +13,7 @@ if (localStorage.getItem("usuarioLogado")) {
 }
 
 if (localStorage.getItem("empresaLogada")) {
-    window.location.href = "empresas.html";
+    window.location.href = "empresa-dashboard.html";
 }
 
 formLogin.addEventListener("submit", async function (event) {
@@ -56,7 +56,7 @@ formLogin.addEventListener("submit", async function (event) {
         if (tipoLogin === "empresa") {
             localStorage.removeItem("usuarioLogado");
             localStorage.setItem("empresaLogada", JSON.stringify(dadosLogin));
-            window.location.href = "empresas.html";
+            window.location.href = "empresa-dashboard.html";
         } else {
             localStorage.removeItem("empresaLogada");
             localStorage.setItem("usuarioLogado", JSON.stringify(dadosLogin));
@@ -217,4 +217,3 @@ botaoMostrarSenhas.addEventListener("click", () => {
         botaoMostrarSenhas.textContent = "Mostrar senhas";
     }
 });
-

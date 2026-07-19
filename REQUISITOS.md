@@ -646,6 +646,7 @@ Status atual:
 - [x] Login empresarial implementado.
 - [x] Empresa logada salva no `localStorage` como `empresaLogada`.
 - [x] Menu lateral separado para pessoa fisica, empresa e administracao/desenvolvimento.
+- [x] Protecao basica de telas por tipo de login no frontend.
 - [x] Dashboard PJ criado.
 - [x] Tela de conta empresarial criada.
 - [x] Tela `dados.html` criada para dados pessoais.
@@ -1216,7 +1217,7 @@ Legenda:
 - [~] Melhorar sidebar.
 - [x] Mostrar resumo da conta no topo.
 - [ ] Login com conta Google.
-- [ ] Separacao real entre cliente e administracao.
+- [x] Separacao basica entre cliente, empresa e administracao no frontend.
 - [x] Cartoes implementado com criacao, compras, fatura e pagamento.
 - [x] Tela de cartoes implementada.
 - [x] Criacao e consulta de cartao pelo frontend.

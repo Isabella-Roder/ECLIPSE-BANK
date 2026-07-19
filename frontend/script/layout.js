@@ -1,6 +1,80 @@
 const usuarioLayout = JSON.parse(localStorage.getItem("usuarioLogado"));
 const empresaLayout = JSON.parse(localStorage.getItem("empresaLogada"));
 const API_URL_LAYOUT = "http://localhost:8080";
+const paginaAtual = window.location.pathname.split("/").pop();
+
+const paginasPessoaFisica = [
+    "cartoes.html",
+    "dados.html",
+    "extrato.html",
+    "minha-conta.html",
+    "pagamentos.html",
+    "transferencias.html",
+    "investimentos-dashboard.html",
+    "investimentos.html",
+    "investimento-detalhe.html",
+    "mercado.html",
+    "ativo-detalhe.html",
+    "carteira-ativos.html",
+    "metas.html",
+    "relatorios.html",
+];
+
+const paginasEmpresa = [
+    "empresa-dashboard.html",
+    "empresa-conta.html",
+    "empresa-pagamentos.html",
+    "empresa-cartoes.html",
+    "extrato-empresa.html",
+];
+
+const paginasAdmin = [
+    "index.html",
+    "usuarios.html",
+    "contas.html",
+    "empresas.html",
+];
+
+const paginasCompartilhadasComLogin = [
+    "comprovante.html",
+    "comprovantes.html",
+];
+
+const paginasPublicas = [
+    "login.html",
+];
+
+function verificarAcessoDaPagina() {
+    if (paginasPublicas.includes(paginaAtual)) {
+        return true;
+    }
+
+    if (usuarioLayout && paginasEmpresa.includes(paginaAtual)) {
+        window.location.href = "index.html";
+        return false;
+    }
+
+    if (usuarioLayout && paginasAdmin.includes(paginaAtual) && paginaAtual !== "index.html") {
+        window.location.href = "index.html";
+        return false;
+    }
+
+    if (empresaLayout && !paginasEmpresa.includes(paginaAtual) && !paginasCompartilhadasComLogin.includes(paginaAtual)) {
+        window.location.href = "empresa-dashboard.html";
+        return false;
+    }
+
+    const paginaPrecisaLogin = paginasPessoaFisica.includes(paginaAtual)
+        || paginasEmpresa.includes(paginaAtual)
+        || paginasCompartilhadasComLogin.includes(paginaAtual);
+
+    if (!usuarioLayout && !empresaLayout && paginaPrecisaLogin) {
+        window.location.href = "login.html";
+        return false;
+    }
+
+    return true;
+}
 
 function verificarLogin() {
     if (usuarioLayout) {
@@ -84,19 +158,6 @@ function criarSidebarAdmin() {
             <a href="usuarios.html">Usuarios</a>
             <a href="contas.html">Contas</a>
             <a href="empresas.html">Empresas</a>
-            <a href="dados.html">Meus dados</a>
-            <a href="minha-conta.html">Minha conta</a>
-            <a href="cartoes.html">Cartões</a>
-            <a href="transferencias.html">Transferencias</a>
-            <a href="pagamentos.html">Pagamentos</a>
-            <a href="extrato.html">Extrato</a>
-            <a href="comprovantes.html">Comprovantes</a>
-            <a href="investimentos-dashboard.html">Dashboard investimentos</a>
-            <a href="investimentos.html">Investimentos</a>
-            <a href="mercado.html">Mercado B3</a>
-            <a href="carteira-ativos.html">Carteira de ativos</a>
-            <a href="metas.html">Metas financeiras</a>
-            <a href="relatorios.html">Relatorios</a>
             <a href="login.html">Login</a>
         </nav>
     `;
@@ -196,7 +257,9 @@ async function criarResumoContaTopo() {
     }
 }
 
-verificarLogin();
-criarBotaoMenuMobile();
-criarResumoContaTopo();
+if (verificarAcessoDaPagina()) {
+    verificarLogin();
+    criarBotaoMenuMobile();
+    criarResumoContaTopo();
+}
 

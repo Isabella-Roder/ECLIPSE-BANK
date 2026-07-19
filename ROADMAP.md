@@ -11,7 +11,7 @@ Este arquivo guarda as ideias que ficaram para uma futura versao do Eclipse Bank
 - Leitura de codigo de barras de boleto pela camera.
 - Categorias editaveis pelo usuario.
 - Edicao e exclusao de lancamentos.
-- Separacao mais forte entre area de cliente e area administrativa.
+- [x] Separacao basica entre cliente, empresa e administracao no frontend.
 - Login com Google.
 
 ## V2 - Frontend
