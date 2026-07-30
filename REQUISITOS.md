@@ -353,7 +353,8 @@ Status atual:
 - [x] Filtros por periodo e tipo implementados no frontend.
 - [x] Graficos implementados no frontend com canvas.
 - [~] Relatorios com Python iniciados com leitura de JSON, resumo por categoria, resumo mensal, metas e insight automatico.
-- [ ] Exportacao de relatorios ainda nao implementada.
+- [x] Exportacao de relatorios em CSV implementada.
+- [ ] Exportacao de relatorios em PDF ainda nao implementada.
 
 Relatórios:
 
@@ -1241,7 +1242,8 @@ Legenda:
 - [x] Integracao inicial com API do Banco Central para indicadores de investimentos.
 - [ ] Integracao futura com API da B3 para modulo de investimentos.
 - [ ] Integracao futura com API de acoes e fundos imobiliarios.
-- [ ] Exportacao de relatorios.
+- [x] Exportacao de relatorios em CSV.
+- [ ] Exportacao de relatorios em PDF.
 - [x] Filtros no extrato por data, tipo e categoria implementados no frontend.
 - [x] Categorias ativas integradas ao filtro do extrato PF.
 - [x] Categorias ativas integradas ao filtro do extrato PJ.

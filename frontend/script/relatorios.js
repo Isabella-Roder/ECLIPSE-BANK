@@ -22,12 +22,15 @@ const listaRelatorioTransacoes = document.getElementById("lista-relatorio-transa
 const graficoFluxoRelatorio = document.getElementById("grafico-fluxo-relatorio");
 const graficoCategoriasRelatorio = document.getElementById("grafico-categorias-relatorio");
 
+const botaoExportarRelatorioCsv = document.getElementById("exportar-relatorio-csv");
+
 const usuarioLogado = pegarUsuarioLogado();
 const deveRedirecionar = redirecionarParaLoginSeNaoExistir(usuarioLogado);
 
 let contaAtual = null;
 let transacoesAtuais = [];
 let metasAtuais = [];
+let transacoesFiltradasRelatorio = [];
 
 async function carregarRelatorios() {
     try {
@@ -43,6 +46,8 @@ async function carregarRelatorios() {
 
         transacoesAtuais = await respostaTransacoes.json();
         metasAtuais = await respostaMetas.json();
+
+        transacoesFiltradasRelatorio = transacoesAtuais;
 
         preencherFiltrosTipos(transacoesAtuais);
         await carregarCategoriasAtivasRelatorio();
@@ -381,6 +386,8 @@ function filtrarTransacoesRelatorio() {
         return passaInicio && passaFim && passaTipo && passaCategoria;
     });
 
+    transacoesFiltradasRelatorio = filtradas;
+
     calcularResumo(filtradas, metasAtuais);
     mensagemRelatorios.textContent = `${filtradas.length} movimentacao(oes) no filtro.`;
 }
@@ -395,10 +402,49 @@ limparFiltrosRelatorio.addEventListener("click", function () {
     relatorioDataFim.value = "";
     relatorioFiltroTipo.value = "";
     relatorioFiltroCategoria.value = "";
+    transacoesFiltradasRelatorio = transacoesAtuais;
 
     calcularResumo(transacoesAtuais, metasAtuais);
     mensagemRelatorios.textContent = "Filtros limpos.";
 });
+
+function exportarRelatorioCsv() {
+    if (transacoesFiltradasRelatorio.length === 0) {
+        mensagemRelatorios.textContent = "Nao existem movimentacoes para exportar.";
+        return;
+    }
+
+    const cabecalho = ["Data", "Descricao", "Categoria", "Tipo", "Valor"];
+
+    const linhas = transacoesFiltradasRelatorio.map((transacao) => {
+        return [
+            formatarDataHora(transacao.dataHora),
+            transacao.descricao || "-",
+            transacao.categoria || "-",
+            transacao.tipo || "-",
+            transacao.valor || 0
+        ];
+    });
+
+    const conteudoCsv = [cabecalho, ...linhas].map((linha) => linha.map((campo) => `"${campo}"`).join(";")).join("\n");
+
+    const blob = new Blob([conteudoCsv], {
+        type: "text/csv;charset=utf-8;"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "relatorio-eclipse-bank.csv";
+    link.click();
+
+    URL.revokeObjectURL(url);
+
+    mensagemRelatorios.textContent = "Relatorio CSV exportado com sucesso.";
+}
+
+botaoExportarRelatorioCsv.addEventListener("click", exportarRelatorioCsv);
 
 if (!deveRedirecionar) {
     carregarRelatorios();
