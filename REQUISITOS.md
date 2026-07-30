@@ -146,11 +146,14 @@ Categorias iniciais:
 
 Requisitos:
 
-- Listar categorias.
-- Criar nova categoria.
-- Editar categoria.
-- Excluir categoria.
-- Usar categorias nos filtros do extrato e relatórios.
+- [x] Listar categorias.
+- [x] Criar nova categoria.
+- [x] Editar categoria.
+- [x] Desativar categoria.
+- [x] Excluir categoria.
+- [x] Usar categorias ativas no cadastro de transacoes.
+- [x] Usar categorias ativas no filtro do dashboard.
+- [~] Usar categorias nos filtros do extrato e relatórios.
 
 ### 3.5 Sistema Bancário
 
@@ -562,7 +565,8 @@ Status atual do MVP:
 - [x] Transferência entre contas.
 - [x] Transferência por numero da conta.
 - [x] Extrato.
-- [~] Categorias fixas.
+- [x] CRUD de categorias financeiras.
+- [x] Categorias ativas integradas ao cadastro de transacoes e filtro do dashboard.
 - [x] Dashboard com saldo e dados gerais.
 - [~] Dashboard ainda pode evoluir para entradas, saídas, economia, maior gasto e categorias mais usadas.
 
@@ -729,6 +733,7 @@ Status atual:
 - [x] `index.html` implementado.
 - [x] `usuarios.html` implementado.
 - [x] `contas.html` implementado.
+- [x] `categorias.html` implementado.
 - [x] `transferencias.html` implementado.
 - [x] `extrato.html` implementado.
 - [x] `dados.html` implementado.
@@ -1092,7 +1097,7 @@ Legenda:
 - [x] Limite disponivel do cartao diminui apos compra aprovada.
 - [x] Dashboard com saldo total, total de contas e total de usuarios.
 - [x] Tratamento de erro com `ErroController`.
-- [~] Categorias fixas.
+- [x] CRUD de categorias financeiras.
 
 ### 13.2 Frontend HTML, CSS e JavaScript
 
@@ -1174,6 +1179,8 @@ Legenda:
 - [x] Registro de compras no cartao pelo frontend.
 - [x] Listagem de compras do cartao pelo frontend.
 - [x] Tela de investimentos.
+- [x] Tela administrativa de categorias financeiras.
+- [x] CRUD de categorias integrado ao frontend.
 
 ### 13.3 Funcionalidades Pendentes
 

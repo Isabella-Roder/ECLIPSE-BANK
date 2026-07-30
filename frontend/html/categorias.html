@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Organizacao financeira</p>
+                <h2>Categorias</h2>
+            </div>
+        </header>
+
+        <section class="cards">
+            <div class="card">
+                <span>Total</span>
+                <strong id="total-categorias">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Ativas</span>
+                <strong id="categorias-ativas">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Desativadas</span>
+                <strong id="categorias-inativas">0</strong>
+            </div>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3 id="titulo-form-categoria">Nova categoria</h3>
+                    <p>Crie categorias para organizar extrato, pagamentos e relatorios.</p>
+                </div>
+            </div>
+
+            <form id="form-categoria">
+                <input type="hidden" id="categoriaId">
+
+                <input type="text" id="nomeCategoria" placeholder="Nome da categoria" required>
+
+                <select id="tipoCategoria" required>
+                    <option value="">Tipo</option>
+                    <option value="RECEITA">Receita</option>
+                    <option value="DESPESA">Despesa</option>
+                    <option value="PAGAMENTO">Pagamento</option>
+                    <option value="INVESTIMENTO">Investimento</option>
+                    <option value="META">Meta financeira</option>
+                </select>
+
+                <input type="color" id="corCategoria" value="#d4af37" title="Cor da categoria">
+
+                <select id="iconeCategoria" required>
+                    <option value="">Icone</option>
+                    <option value="wallet">Carteira</option>
+                    <option value="card">Cartao</option>
+                    <option value="home">Casa</option>
+                    <option value="food">Alimentacao</option>
+                    <option value="car">Transporte</option>
+                    <option value="health">Saude</option>
+                    <option value="book">Estudos</option>
+                    <option value="chart">Investimentos</option>
+                </select>
+
+                <select id="ativaCategoria">
+                    <option value="true">Ativa</option>
+                    <option value="false">Desativada</option>
+                </select>
+
+                <button type="submit" id="botao-salvar-categoria">Cadastrar categoria</button>
+                <button type="button" id="botao-cancelar-edicao-categoria">Cancelar edicao</button>
+            </form>
+
+            <p id="mensagem-categoria"></p>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Filtros</h3>
+                    <p>Encontre rapidamente as categorias cadastradas.</p>
+                </div>
+            </div>
+
+            <form id="form-filtro-categoria">
+                <select id="filtroTipoCategoria">
+                    <option value="TODAS">Todos os tipos</option>
+                    <option value="RECEITA">Receita</option>
+                    <option value="DESPESA">Despesa</option>
+                    <option value="PAGAMENTO">Pagamento</option>
+                    <option value="INVESTIMENTO">Investimento</option>
+                    <option value="META">Meta financeira</option>
+                </select>
+
+                <select id="filtroStatusCategoria">
+                    <option value="TODAS">Todos os status</option>
+                    <option value="ATIVAS">Ativas</option>
+                    <option value="INATIVAS">Desativadas</option>
+                </select>
+
+                <button type="button" id="botao-limpar-filtros-categoria">Limpar filtros</button>
+            </form>
+        </section>
+
+        <section class="painel painel-tabela">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Categorias cadastradas</h3>
+                    <p>Edite, desative ou remova categorias financeiras.</p>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Categoria</th>
+                        <th>Tipo</th>
+                        <th>Cor</th>
+                        <th>Icone</th>
+                        <th>Status</th>
+                        <th>Acoes</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-categorias"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../script/layout.js"></script>
+    <script src="../script/categorias.js"></script>
+</body>
+</html>

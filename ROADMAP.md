@@ -9,7 +9,7 @@ Este arquivo guarda as ideias que ficaram para uma futura versao do Eclipse Bank
 - Pix por QR Code ficticio.
 - Leitura de QR Code pela camera no celular.
 - Leitura de codigo de barras de boleto pela camera.
-- Categorias editaveis pelo usuario.
+- [x] Categorias editaveis pelo usuario.
 - Edicao e exclusao de lancamentos.
 - [x] Separacao basica entre cliente, empresa e administracao no frontend.
 - Login com Google.

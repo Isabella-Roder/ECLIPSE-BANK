@@ -89,20 +89,34 @@ async function carregarTransacoes() {
 }
 
 async function carregarCategorias() {
-    const resposta = await fetch(`${API_URL}/categorias`);
-    const categorias = await resposta.json();
+    try {
+        const resposta = await fetch(`${API_URL}/categorias/ativas`);
 
-    categorias.forEach((categoria) => {
-        const option = document.createElement("option");
-        option.value = categoria;
-        option.textContent = categoria;
-        categoriaSelect.appendChild(option);
-        
-        const optionFiltro = document.createElement("option");
-        optionFiltro.value = categoria;
-        optionFiltro.textContent = categoria;
-        filtroCategoria.appendChild(optionFiltro);
-    });
+        if (!resposta.ok) {
+            return;
+        }
+
+        const categorias = await resposta.json();
+
+        categoriaSelect.innerHTML = `<option value="">Selecione uma categoria</option>`;
+        filtroCategoria.innerHTML = `<option value="TODAS">Todas</option>`;
+
+        categorias.forEach((categoria) => {
+            const option = document.createElement("option");
+            option.value = categoria.nome;
+            option.textContent = categoria.nome;
+
+            categoriaSelect.appendChild(option);
+
+            const optionFiltro = document.createElement("option");
+            optionFiltro.value = categoria.nome;
+            optionFiltro.textContent = categoria.nome;
+
+            filtroCategoria.appendChild(optionFiltro);
+        });
+    } catch (erro) {
+        console.error("Erro ao carregar categorias", erro);
+    }
 }
 
 formTransacao.addEventListener("submit", async (evento) => {
@@ -139,6 +153,10 @@ formTransacao.addEventListener("submit", async (evento) => {
 filtroTipo.addEventListener("change", carregarTransacoes);
 filtroCategoria.addEventListener("change", carregarTransacoes);
 
-carregarDashboard();
-carregarTransacoes();
-carregarCategorias();
+function iniciarPagina() {
+    carregarDashboard();
+    carregarCategorias();
+    carregarTransacoes();
+}
+
+iniciarPagina();

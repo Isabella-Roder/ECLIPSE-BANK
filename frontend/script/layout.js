@@ -32,6 +32,7 @@ const paginasAdmin = [
     "index.html",
     "usuarios.html",
     "contas.html",
+    "categorias.html",
     "empresas.html",
 ];
 
@@ -112,7 +113,7 @@ function criarSidebarUsuario() {
         </nav>
     `;
     document.body.prepend(sidebar);
-    configurarLogout("usuarioLogado");
+    configurarLogout();
 }
 
 function criarSidebarEmpresa() {
@@ -134,14 +135,15 @@ function criarSidebarEmpresa() {
     `;
 
     document.body.prepend(sidebar);
-    configurarLogout("empresaLogada");
+    configurarLogout();
 }
 
-function configurarLogout(chaveLocalStorage) {
+function configurarLogout() {
     const botaoLogout = document.getElementById("btn-logout");
 
     botaoLogout.addEventListener("click", () => {
-        localStorage.removeItem(chaveLocalStorage);
+        localStorage.removeItem("usuarioLogado");
+        localStorage.removeItem("empresaLogada");
         window.location.href = "login.html";
     });
 }
@@ -157,6 +159,7 @@ function criarSidebarAdmin() {
             <a href="index.html">Dashboard</a>
             <a href="usuarios.html">Usuarios</a>
             <a href="contas.html">Contas</a>
+            <a href="categorias.html">Categorias</a>
             <a href="empresas.html">Empresas</a>
             <a href="login.html">Login</a>
         </nav>
