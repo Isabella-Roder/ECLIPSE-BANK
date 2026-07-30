@@ -14,7 +14,6 @@ const filtroDataFimEmpresa = document.getElementById("filtro-data-fim-empresa");
 const botaoLimparFiltrosEmpresa = document.getElementById("limpar-filtros-empresa");
 
 const empresaLogada = pegarEmpresaLogada();
-const deveRedirecionar = redirecionarParaLoginSeNaoExistir(empresaLogada);
 
 let contaEmpresaAtual = null;
 let transacoesEmpresa = [];
@@ -40,10 +39,8 @@ function preencherFiltro(select, valores, textoPadrao) {
 
 function preencherFiltros(transacoes) {
     const tipos = [...new Set(transacoes.map((transacao) => transacao.tipo).filter(Boolean))];
-    const categorias = [...new Set(transacoes.map((transacao) => transacao.categoria).filter(Boolean))];
 
     preencherFiltro(filtroTipoEmpresa, tipos, "Todos os tipos");
-    preencherFiltro(filtroCategoriaEmpresa, categorias, "Todas as categorias");
 }
 
 function renderizarExtratoEmpresa(transacoesFiltradas) {
@@ -148,6 +145,29 @@ async function filtrarExtratoEmpresa() {
     renderizarExtratoEmpresa(transacoesFiltradas);
 }
 
+async function carregarCategoriasAtivasEmpresa() {
+    try {
+        const resposta = await fetch(`${API_URL}/categorias/ativas`);
+
+        if (!resposta.ok) {
+            return;
+        }
+
+        const categorias = await resposta.json();
+
+        filtroCategoriaEmpresa.innerHTML = `<option value="">Todas as categorias</option>`;
+
+        categorias.forEach((categoria) => {
+            const option = document.createElement("option");
+            option.value = categoria.nome;
+            option.textContent = categoria.nome;
+            filtroCategoriaEmpresa.appendChild(option);
+        });
+    } catch (erro) {
+        console.error("Erro ao carregar categorias ativas:", erro);
+    }
+}
+
 filtroTipoEmpresa.addEventListener("change", filtrarExtratoEmpresa);
 filtroCategoriaEmpresa.addEventListener("change", filtrarExtratoEmpresa);
 filtroDataInicioEmpresa.addEventListener("change", filtrarExtratoEmpresa);
@@ -162,6 +182,16 @@ botaoLimparFiltrosEmpresa.addEventListener("click", () => {
     renderizarExtratoEmpresa(transacoesEmpresa);
 });
 
-if (!deveRedirecionar) {
-    carregarContaEmpresaParaExtrato();
+async function iniciarExtratoEmpresa() {
+    if (!empresaLogada) {
+        mensagemExtratoEmpresa.textContent = "Entre como empresa para acessar o extrato PJ.";
+        tabelaExtratoEmpresa.innerHTML = "";
+        totalExtratoEmpresa.textContent = "0";
+        return;
+    }
+
+    await carregarCategoriasAtivasEmpresa();
+    await carregarContaEmpresaParaExtrato();
 }
+
+iniciarExtratoEmpresa();

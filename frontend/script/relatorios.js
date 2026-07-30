@@ -14,6 +14,7 @@ const formFiltrosRelatorio = document.getElementById("form-filtros-relatorio");
 const relatorioDataInicio = document.getElementById("relatorio-data-inicio");
 const relatorioDataFim = document.getElementById("relatorio-data-fim");
 const relatorioFiltroTipo = document.getElementById("relatorio-filtro-tipo");
+const relatorioFiltroCategoria = document.getElementById("relatorio-filtro-categoria");
 const limparFiltrosRelatorio = document.getElementById("limpar-filtros-relatorio");
 
 const listaResumoCategorias = document.getElementById("lista-resumo-categorias");
@@ -44,6 +45,7 @@ async function carregarRelatorios() {
         metasAtuais = await respostaMetas.json();
 
         preencherFiltrosTipos(transacoesAtuais);
+        await carregarCategoriasAtivasRelatorio();
         calcularResumo(transacoesAtuais, metasAtuais);
         mensagemRelatorios.textContent = "Relatorio carregado.";
     } catch (erro) {
@@ -340,10 +342,33 @@ function preencherFiltrosTipos(transacoes) {
     });
 }
 
+async function carregarCategoriasAtivasRelatorio() {
+    try {
+        const resposta = await fetch(`${API_URL}/categorias/ativas`);
+
+        if (!resposta.ok) {
+            return;
+        }
+
+        const categorias = await resposta.json();
+        relatorioFiltroCategoria.innerHTML = `<option value="">Todas as categorias</option>`;
+
+        categorias.forEach((categoria) => {
+            const option = document.createElement("option");
+            option.value = categoria.nome;
+            option.textContent = categoria.nome;
+            relatorioFiltroCategoria.appendChild(option);
+        });
+    } catch (erro) {
+        console.error("Erro ao carregar categorias ativas:", erro);
+    }
+}
+
 function filtrarTransacoesRelatorio() {
     const inicio = relatorioDataInicio.value;
     const fim = relatorioDataFim.value;
     const tipo = relatorioFiltroTipo.value;
+    const categoria = relatorioFiltroCategoria.value;
 
     const filtradas = transacoesAtuais.filter((transacao) => {
         const data = transacao.dataHora ? transacao.dataHora.split("T")[0] : "";
@@ -351,8 +376,9 @@ function filtrarTransacoesRelatorio() {
         const passaInicio = !inicio || data >= inicio;
         const passaFim = !fim || data <= fim;
         const passaTipo = !tipo || transacao.tipo === tipo;
+        const passaCategoria = !categoria || transacao.categoria === categoria;
 
-        return passaInicio && passaFim && passaTipo;
+        return passaInicio && passaFim && passaTipo && passaCategoria;
     });
 
     calcularResumo(filtradas, metasAtuais);
@@ -368,6 +394,7 @@ limparFiltrosRelatorio.addEventListener("click", function () {
     relatorioDataInicio.value = "";
     relatorioDataFim.value = "";
     relatorioFiltroTipo.value = "";
+    relatorioFiltroCategoria.value = "";
 
     calcularResumo(transacoesAtuais, metasAtuais);
     mensagemRelatorios.textContent = "Filtros limpos.";

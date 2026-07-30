@@ -8,12 +8,12 @@ const botaoMostrarSenhas = document.getElementById("mostrar-senhas");
 const mensagemLogin = document.getElementById("mensagem-login");
 const tipoLoginInput = document.getElementById("tipoLogin");
 
-if (localStorage.getItem("usuarioLogado")) {
-    window.location.href = "index.html";
-}
-
 if (localStorage.getItem("empresaLogada")) {
     window.location.href = "empresa-dashboard.html";
+}
+
+if (localStorage.getItem("usuarioLogado")) {
+    window.location.href = "index.html";
 }
 
 formLogin.addEventListener("submit", async function (event) {

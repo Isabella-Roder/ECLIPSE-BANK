@@ -153,7 +153,9 @@ Requisitos:
 - [x] Excluir categoria.
 - [x] Usar categorias ativas no cadastro de transacoes.
 - [x] Usar categorias ativas no filtro do dashboard.
-- [~] Usar categorias nos filtros do extrato e relatórios.
+- [x] Usar categorias ativas no filtro do extrato PF.
+- [x] Usar categorias ativas no filtro do extrato PJ.
+- [x] Usar categorias ativas nos filtros de relatorios.
 
 ### 3.5 Sistema Bancário
 
@@ -1241,4 +1243,7 @@ Legenda:
 - [ ] Integracao futura com API de acoes e fundos imobiliarios.
 - [ ] Exportacao de relatorios.
 - [x] Filtros no extrato por data, tipo e categoria implementados no frontend.
+- [x] Categorias ativas integradas ao filtro do extrato PF.
+- [x] Categorias ativas integradas ao filtro do extrato PJ.
+- [x] Categorias ativas integradas aos filtros de relatorios.
 - [x] Filtros avancados do extrato implementados no backend.

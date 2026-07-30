@@ -50,7 +50,7 @@ function verificarAcessoDaPagina() {
         return true;
     }
 
-    if (usuarioLayout && paginasEmpresa.includes(paginaAtual)) {
+    if (usuarioLayout && !empresaLayout && paginasEmpresa.includes(paginaAtual)) {
         window.location.href = "index.html";
         return false;
     }
@@ -66,7 +66,6 @@ function verificarAcessoDaPagina() {
     }
 
     const paginaPrecisaLogin = paginasPessoaFisica.includes(paginaAtual)
-        || paginasEmpresa.includes(paginaAtual)
         || paginasCompartilhadasComLogin.includes(paginaAtual);
 
     if (!usuarioLayout && !empresaLayout && paginaPrecisaLogin) {
