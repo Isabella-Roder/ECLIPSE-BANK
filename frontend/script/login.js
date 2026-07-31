@@ -8,11 +8,13 @@ const botaoMostrarSenhas = document.getElementById("mostrar-senhas");
 const mensagemLogin = document.getElementById("mensagem-login");
 const tipoLoginInput = document.getElementById("tipoLogin");
 
-if (localStorage.getItem("empresaLogada")) {
+const sessaoAtual = JSON.parse(localStorage.getItem("sessao"));
+
+if (sessaoAtual && sessaoAtual.tipo === "EMPRESA") {
     window.location.href = "empresa-dashboard.html";
 }
 
-if (localStorage.getItem("usuarioLogado")) {
+if (sessaoAtual && sessaoAtual.tipo === "USUARIO") {
     window.location.href = "index.html";
 }
 
@@ -53,13 +55,27 @@ formLogin.addEventListener("submit", async function (event) {
 
         const dadosLogin = await resposta.json();
 
+        localStorage.setItem("sessao", JSON.stringify(dadosLogin));
+
         if (tipoLogin === "empresa") {
             localStorage.removeItem("usuarioLogado");
-            localStorage.setItem("empresaLogada", JSON.stringify(dadosLogin));
+            localStorage.setItem("empresaLogada", JSON.stringify({
+                id: dadosLogin.id,
+                nomeFantasia: dadosLogin.nome,
+                razaoSocial: dadosLogin.nome,
+                email: dadosLogin.email,
+                tipo: dadosLogin.tipo
+            }));
             window.location.href = "empresa-dashboard.html";
         } else {
             localStorage.removeItem("empresaLogada");
-            localStorage.setItem("usuarioLogado", JSON.stringify(dadosLogin));
+            localStorage.setItem("usuarioLogado", JSON.stringify({
+                id: dadosLogin.id,
+                nome: dadosLogin.nome,
+                nomeSocial: dadosLogin.nome,
+                email: dadosLogin.email,
+                tipo: dadosLogin.tipo
+            }));
             window.location.href = "index.html";
         }
     } catch (erro) {

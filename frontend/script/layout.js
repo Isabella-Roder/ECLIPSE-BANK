@@ -1,5 +1,22 @@
-const usuarioLayout = JSON.parse(localStorage.getItem("usuarioLogado"));
-const empresaLayout = JSON.parse(localStorage.getItem("empresaLogada"));
+const sessaoLayout = JSON.parse(localStorage.getItem("sessao"));
+const usuarioLayout = sessaoLayout && sessaoLayout.tipo === "USUARIO"
+    ? {
+        id: sessaoLayout.id,
+        nome: sessaoLayout.nome,
+        nomeSocial: sessaoLayout.nome,
+        email: sessaoLayout.email,
+        tipo: sessaoLayout.tipo
+    }
+    : JSON.parse(localStorage.getItem("usuarioLogado"));
+const empresaLayout = sessaoLayout && sessaoLayout.tipo === "EMPRESA"
+    ? {
+        id: sessaoLayout.id,
+        nomeFantasia: sessaoLayout.nome,
+        razaoSocial: sessaoLayout.nome,
+        email: sessaoLayout.email,
+        tipo: sessaoLayout.tipo
+    }
+    : JSON.parse(localStorage.getItem("empresaLogada"));
 const API_URL_LAYOUT = "http://localhost:8080";
 const paginaAtual = window.location.pathname.split("/").pop();
 
@@ -143,6 +160,7 @@ function configurarLogout() {
     botaoLogout.addEventListener("click", () => {
         localStorage.removeItem("usuarioLogado");
         localStorage.removeItem("empresaLogada");
+        localStorage.removeItem("sessao");
         window.location.href = "login.html";
     });
 }

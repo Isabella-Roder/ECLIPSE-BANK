@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.eclipsebank.backend.model.Empresa;
 import com.eclipsebank.backend.service.EmpresaService;
 import com.eclipsebank.backend.dto.LoginRequest;
+import com.eclipsebank.backend.dto.LoginResponse;
 
 @RestController
 public class EmpresaController {
@@ -37,7 +38,7 @@ public class EmpresaController {
     }
 
     @PostMapping("/login/empresa")
-    public Empresa login(@RequestBody LoginRequest request) {
+    public LoginResponse login(@RequestBody LoginRequest request) {
         return empresaService.login(request);
     }
 

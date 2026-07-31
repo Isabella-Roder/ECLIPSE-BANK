@@ -45,6 +45,9 @@ Status atual:
 - [x] Login simples com email e senha implementado.
 - [x] Tela de login implementada.
 - [x] Logout pelo menu lateral implementado.
+- [x] Login retorna DTO padronizado com tipo de perfil.
+- [x] Sessao unica iniciada no frontend.
+- [~] Migracao das telas antigas para sessao unica em andamento.
 - [x] Confirmacao de senha na criacao de conta implementada.
 - [x] Botao mostrar/ocultar senha implementado.
 - [x] Criacao de usuario e conta pela tela de login implementada.
@@ -665,6 +668,10 @@ Status atual:
 - [x] Login simples implementado.
 - [~] Login controla acesso de algumas telas do cliente.
 - [~] Login controla acesso inicial de algumas telas da area PJ.
+- [x] Enum de perfil de acesso implementado.
+- [x] Login PF e PJ retornam resposta padronizada com perfil.
+- [x] Sessao unica criada no frontend com ponte para telas antigas.
+- [~] Remocao de `usuarioLogado` e `empresaLogada` antigos ainda em andamento.
 - [x] Logout implementado no menu lateral.
 - [ ] Login com conta Google ainda não implementado.
 - [~] Separação real entre cliente, empresa e administração implementada parcialmente.

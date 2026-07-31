@@ -8,7 +8,16 @@ const filtroDataInicio = document.getElementById("filtro-data-inicio");
 const filtroDataFim = document.getElementById("filtro-data-fim");
 const botaoLimparFiltros = document.getElementById("limpar-filtros");
 
-const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+const sessaoUsuario = JSON.parse(localStorage.getItem("sessao"));
+const usuarioLogado = sessaoUsuario && sessaoUsuario.tipo === "USUARIO"
+    ? {
+        id: sessaoUsuario.id,
+        nome: sessaoUsuario.nome,
+        nomeSocial: sessaoUsuario.nome,
+        email: sessaoUsuario.email,
+        tipo: sessaoUsuario.tipo
+    }
+    : JSON.parse(localStorage.getItem("usuarioLogado"));
 let transacoesExtrato = [];
 
 let contaIdAtual = null;
@@ -53,10 +62,8 @@ function preencherFiltro(select, valores, textoPadrao) {
 
 function preencherFiltros(transacoes) {
     const tipos = [...new Set(transacoes.map((transacao) => transacao.tipo).filter(Boolean))];
-    const categorias = [...new Set(transacoes.map((transacao) => transacao.categoria).filter(Boolean))];
 
     preencherFiltro(filtroTipo, tipos, "Todos os tipos");
-    preencherFiltro(filtroCategoria, categorias, "Todas as categorias");
 }
 
 async function filtrarExtrato() {
@@ -159,6 +166,30 @@ async function carregarExtrato(contaId) {
     renderizarExtrato(transacoesExtrato);
 }
 
+async function carregarCategoriasAtivas() {
+    try {
+        const resposta = await fetch(`${API_URL}/categorias/ativas`);
+
+        if (!resposta.ok) {
+            return;
+        }
+
+        const categorias = await resposta.json();
+
+        filtroCategoria.innerHTML = `<option value="">Todas as categorias</option>`;
+
+        categorias.forEach((categoria) => {
+            const option = document.createElement("option");
+            option.value = categoria.nome;
+            option.textContent = categoria.nome;
+
+            filtroCategoria.appendChild(option);
+        });
+    } catch (erro) {
+        console.error("Erro ao carregar categorias", erro);
+    }
+}
+
 filtroTipo.addEventListener("change", filtrarExtrato);
 filtroCategoria.addEventListener("change", filtrarExtrato);
 filtroDataInicio.addEventListener("change", filtrarExtrato);
@@ -172,4 +203,9 @@ botaoLimparFiltros.addEventListener("click", () => {
     filtrarExtrato();
 });
 
-carregarContaUsuario();
+async function iniciarPagina() {
+    await carregarContaUsuario();
+    await carregarCategoriasAtivas();
+}
+
+iniciarPagina();

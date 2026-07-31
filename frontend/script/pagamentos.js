@@ -10,10 +10,19 @@ const mensagemPagamento = document.getElementById("mensagem-pagamento");
 
 const listaPagamentos = document.getElementById("lista-pagamentos");
 
-const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+const sessaoUsuario = JSON.parse(localStorage.getItem("sessao"));
+const usuarioLogado = sessaoUsuario && sessaoUsuario.tipo === "USUARIO"
+    ? {
+        id: sessaoUsuario.id,
+        nome: sessaoUsuario.nome,
+        nomeSocial: sessaoUsuario.nome,
+        email: sessaoUsuario.email,
+        tipo: sessaoUsuario.tipo
+    }
+    : JSON.parse(localStorage.getItem("usuarioLogado"));
 
 if (!usuarioLogado) {
-    window.location.href = "index.html";
+    window.location.href = "login.html";
 }
 
 function mascararDinheiro(valor) {

@@ -24,7 +24,16 @@ const inputValorCompra = document.getElementById("valorCompra");
 const areaCriarCartao = document.getElementById("area-criar-cartao");
 const areaComprasCartao = document.getElementById("area-compras-cartao");
 
-const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+const sessaoUsuario = JSON.parse(localStorage.getItem("sessao"));
+const usuarioLogado = sessaoUsuario && sessaoUsuario.tipo === "USUARIO"
+    ? {
+        id: sessaoUsuario.id,
+        nome: sessaoUsuario.nome,
+        nomeSocial: sessaoUsuario.nome,
+        email: sessaoUsuario.email,
+        tipo: sessaoUsuario.tipo
+    }
+    : JSON.parse(localStorage.getItem("usuarioLogado"));
 
 if (!usuarioLogado) {
     window.location.href = "login.html"

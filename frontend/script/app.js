@@ -16,10 +16,34 @@ function formatarDataHora(dataHora) {
 }
 
 function pegarUsuarioLogado() {
+    const sessao = JSON.parse(localStorage.getItem("sessao"));
+
+    if (sessao && sessao.tipo === "USUARIO") {
+        return {
+            id: sessao.id,
+            nome: sessao.nome,
+            nomeSocial: sessao.nome,
+            email: sessao.email,
+            tipo: sessao.tipo
+        };
+    }
+
     return JSON.parse(localStorage.getItem("usuarioLogado"));
 }
 
 function pegarEmpresaLogada() {
+    const sessao = JSON.parse(localStorage.getItem("sessao"));
+
+    if (sessao && sessao.tipo === "EMPRESA") {
+        return {
+            id: sessao.id,
+            nomeFantasia: sessao.nome,
+            razaoSocial: sessao.nome,
+            email: sessao.email,
+            tipo: sessao.tipo
+        };
+    }
+
     return JSON.parse(localStorage.getItem("empresaLogada"));
 }
 

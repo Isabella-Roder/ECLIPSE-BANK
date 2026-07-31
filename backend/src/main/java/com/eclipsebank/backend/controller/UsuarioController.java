@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eclipsebank.backend.dto.LoginRequest;
+import com.eclipsebank.backend.dto.LoginResponse;
 import com.eclipsebank.backend.model.Usuario;
 import com.eclipsebank.backend.service.UsuarioService;
 
@@ -37,7 +38,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public Usuario login(@RequestBody LoginRequest request) {
+    public LoginResponse login(@RequestBody LoginRequest request) {
         return usuarioService.buscarPorEmail(request);
     }
     

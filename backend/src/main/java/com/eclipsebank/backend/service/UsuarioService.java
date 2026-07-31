@@ -5,17 +5,15 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.eclipsebank.backend.dto.LoginRequest;
+import com.eclipsebank.backend.dto.LoginResponse;
+import com.eclipsebank.backend.enums.PerfilTipo;
 import com.eclipsebank.backend.model.Usuario;
 import com.eclipsebank.backend.repository.UsuarioRepository;
-import com.eclipsebank.backend.model.Conta;
-import com.eclipsebank.backend.dto.AberturaContaRequest;
-import com.eclipsebank.backend.service.ContaService;
 
 @Service
 public class UsuarioService {
     
     private UsuarioRepository usuarioRepository;
-    private ContaService contaService;
 
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
@@ -25,7 +23,7 @@ public class UsuarioService {
         return usuarioRepository.findById(usuarioId).orElseThrow(() -> new IllegalArgumentException("Usuario não encontrado"));
     }
 
-    public Usuario buscarPorEmail(LoginRequest request) {
+    public LoginResponse buscarPorEmail(LoginRequest request) {
         Usuario usuario = usuarioRepository.findByEmail(request.getEmail())
             .orElseThrow(() -> new IllegalArgumentException("Email ou senha invalidos."));
 
@@ -33,7 +31,14 @@ public class UsuarioService {
             throw new IllegalArgumentException("Email ou senha invalido.");
         }
 
-        return usuario;
+        return new LoginResponse(
+            usuario.getId(),
+            usuario.getNomeSocial() != null && !usuario.getNomeSocial().isBlank()
+                ? usuario.getNomeSocial()
+                : usuario.getNome(),
+            usuario.getEmail(),
+            PerfilTipo.USUARIO
+        );
     }
 
     private void validarUsuario(Usuario usuario) {

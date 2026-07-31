@@ -6,10 +6,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eclipsebank.backend.enums.TipoChavePix;
+import com.eclipsebank.backend.enums.PerfilTipo;
 import com.eclipsebank.backend.model.Conta;
 import com.eclipsebank.backend.model.Empresa;
 import com.eclipsebank.backend.repository.EmpresaRepository;
 import com.eclipsebank.backend.dto.LoginRequest;
+import com.eclipsebank.backend.dto.LoginResponse;
 
 @Service
 public class EmpresaService {
@@ -71,14 +73,19 @@ public class EmpresaService {
         return empresaSalva;
     }
 
-    public Empresa login(LoginRequest request) {
+    public LoginResponse login(LoginRequest request) {
         Empresa empresa = empresaRepository.findByEmail(request.getEmail()).orElseThrow(() -> new IllegalArgumentException("Email ou senha invalidos."));
 
         if (!empresa.getSenha().equals(request.getSenha())) {
             throw new IllegalArgumentException("Email ou senha invalidos.");
         }
 
-        return empresa;
+        return new LoginResponse(
+            empresa.getId(),
+            empresa.getNomeFantasia(),
+            empresa.getEmail(),
+            PerfilTipo.EMPRESA
+        );
     }
 
 }

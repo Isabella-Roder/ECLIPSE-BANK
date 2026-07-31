@@ -17,8 +17,25 @@ const linkVoltarPagamentos = document.getElementById("link-voltar-pagamentos");
 
 const labelDestino = document.getElementById("label-destino-comprovante");
 
-const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-const empresaLogada = JSON.parse(localStorage.getItem("empresaLogada"));
+const sessaoComprovante = JSON.parse(localStorage.getItem("sessao"));
+const usuarioLogado = sessaoComprovante && sessaoComprovante.tipo === "USUARIO"
+    ? {
+        id: sessaoComprovante.id,
+        nome: sessaoComprovante.nome,
+        nomeSocial: sessaoComprovante.nome,
+        email: sessaoComprovante.email,
+        tipo: sessaoComprovante.tipo
+    }
+    : JSON.parse(localStorage.getItem("usuarioLogado"));
+const empresaLogada = sessaoComprovante && sessaoComprovante.tipo === "EMPRESA"
+    ? {
+        id: sessaoComprovante.id,
+        nomeFantasia: sessaoComprovante.nome,
+        razaoSocial: sessaoComprovante.nome,
+        email: sessaoComprovante.email,
+        tipo: sessaoComprovante.tipo
+    }
+    : JSON.parse(localStorage.getItem("empresaLogada"));
 
 if (!usuarioLogado && !empresaLogada) {
     window.location.href = "login.html";
