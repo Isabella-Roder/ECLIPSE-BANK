@@ -99,7 +99,8 @@ function ehEntrada(tipo) {
         || tipo === "DEPOSITO"
         || tipo === "VENDA_ATIVO"
         || tipo === "RESGATE_INVESTIMENTO"
-        || tipo === "RESGATE_META";
+        || tipo === "RESGATE_META"
+        || tipo === "VENDA_CAMBIO";
 }
 
 function classeValor(tipo) {

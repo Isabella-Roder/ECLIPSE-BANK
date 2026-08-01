@@ -4,3 +4,4 @@ backend/data/
 *.class
 *.log
 .DS_Store
+backend/data/eclipsebank.mv.db
