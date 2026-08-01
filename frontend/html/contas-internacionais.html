@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conta internacional - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Area do cliente</p>
+                <h2>Conta internacional</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero">
+            <div>
+                <span>Saldo internacional</span>
+                <strong id="saldo-internacional-total">R$ 0,00</strong>
+                <p id="mensagem-conta-internacional">Carregando contas internacionais...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="minha-conta.html">Minha conta</a>
+                <a href="transferencias.html">Transferir</a>
+                <a href="extrato.html">Extrato</a>
+                <a href="investimentos-dashboard.html">Investimentos</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Contas abertas</span>
+                <strong id="quantidade-contas-internacionais">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Saldo conta BRL</span>
+                <strong id="saldo-conta-nacional-cambio">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Dolar</span>
+                <strong id="saldo-usd">US$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Euro</span>
+                <strong id="saldo-eur">EUR 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Libra</span>
+                <strong id="saldo-gbp">GBP 0,00</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Abrir nova conta</h3>
+                    <p>Escolha a moeda desejada para criar uma conta internacional vinculada ao seu usuario.</p>
+                </div>
+
+                <span class="selo-status">Moedas disponiveis</span>
+            </div>
+
+            <form id="form-conta-internacional" class="formulario">
+                <label>
+                    Moeda
+                    <select id="moeda-conta-internacional" required>
+                        <option value="">Selecione uma moeda</option>
+                        <option value="USD">Dolar americano - USD</option>
+                        <option value="EUR">Euro - EUR</option>
+                        <option value="GBP">Libra esterlina - GBP</option>
+                    </select>
+                </label>
+
+                <button type="submit">Abrir conta internacional</button>
+            </form>
+        </section>
+
+        <section class="painel painel-duplo-cliente">
+            <div>
+                <div class="cabecalho-painel">
+                    <div>
+                        <h3>Comprar moeda</h3>
+                        <p>Use o saldo da conta em reais para comprar moeda estrangeira.</p>
+                    </div>
+                </div>
+
+                <form id="form-comprar-moeda" class="formulario">
+                    <label>
+                        Moeda
+                        <select id="moeda-compra" required>
+                            <option value="">Selecione uma moeda</option>
+                            <option value="USD">Dolar americano - USD</option>
+                            <option value="EUR">Euro - EUR</option>
+                            <option value="GBP">Libra esterlina - GBP</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Valor em moeda estrangeira
+                        <input type="text" id="valor-compra-moeda" placeholder="Ex: 100,00" required>
+                    </label>
+
+                    <button type="submit">Comprar moeda</button>
+                </form>
+            </div>
+
+            <div>
+                <div class="cabecalho-painel">
+                    <div>
+                        <h3>Vender moeda</h3>
+                        <p>Venda o saldo internacional e receba o valor convertido em reais.</p>
+                    </div>
+                </div>
+
+                <form id="form-vender-moeda" class="formulario">
+                    <label>
+                        Moeda
+                        <select id="moeda-venda" required>
+                            <option value="">Selecione uma moeda</option>
+                            <option value="USD">Dolar americano - USD</option>
+                            <option value="EUR">Euro - EUR</option>
+                            <option value="GBP">Libra esterlina - GBP</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Valor em moeda estrangeira
+                        <input type="text" id="valor-venda-moeda" placeholder="Ex: 50,00" required>
+                    </label>
+
+                    <button type="submit">Vender moeda</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Minhas contas internacionais</h3>
+                    <p>Contas em moeda estrangeira criadas para a conta logada.</p>
+                </div>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Numero</th>
+                            <th>Moeda</th>
+                            <th>Saldo</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-contas-internacionais">
+                        <tr>
+                            <td colspan="4">Carregando contas internacionais...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js?v=5"></script>
+    <script src="../script/app.js?v=5"></script>
+    <script src="../script/contas-internacionais.js?v=2"></script>
+</body>
+</html>

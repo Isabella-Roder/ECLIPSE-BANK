@@ -185,6 +185,9 @@ Status atual:
 - [x] Opcao para gerar chave Pix aleatoria na criacao da conta implementada.
 - [x] Numero da conta gerado automaticamente pelo backend.
 - [x] Pagamento de boleto ficticio implementado.
+- [x] Conta internacional por moeda implementada.
+- [x] Compra e venda de moeda estrangeira implementadas.
+- [x] Saldo da conta BRL atualizado nas operacoes de cambio.
 
 Funcionalidades:
 
@@ -198,6 +201,8 @@ Funcionalidades:
 - Saque.
 - Pagamento.
 - Pagamento de boleto ficticio.
+- Conta internacional.
+- Compra e venda de moeda estrangeira.
 - Validação de saldo.
 - Limite da conta.
 
@@ -210,6 +215,8 @@ Requisitos:
 - Permitir pagamento por Pix, boleto ficticio e transferencia.
 - Permitir telefone como uma chave Pix valida.
 - Permitir geracao automatica de chave Pix aleatoria.
+- Permitir abertura de conta internacional por moeda.
+- Permitir compra e venda de moeda estrangeira com saldo da conta nacional.
 
 ### 3.6 Extrato
 
@@ -232,6 +239,7 @@ Status atual:
 - [x] Integracao do `extrato.js` com endpoint de filtros do backend implementada.
 - [x] Destaque visual de entrada e saida no extrato implementado.
 - [x] Selo visual para tipo de movimentacao no extrato implementado.
+- [x] Compra e venda de cambio registradas no extrato.
 
 Requisitos:
 
