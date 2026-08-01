@@ -21,6 +21,34 @@ function converterValor(valor) {
     return Number(valor.replace(/\./g, "").replace(",", ".").trim()) || 0;
 }
 
+function formatarStatusEmprestimo(status) {
+    const textos = {
+        SIMULADO: "Simulado",
+        CONTRATADO: "Contratado",
+        QUITADO: "Quitado",
+        CANCELADO: "Cancelado",
+        APROVADO: "Aprovado"
+    };
+
+    return textos[status] || status || "-";
+}
+
+function montarSeloStatus(status) {
+    return `<span class="selo-emprestimo status-${(status || "").toLowerCase()}">${formatarStatusEmprestimo(status)}</span>`;
+}
+
+function montarBotaoAcao(emprestimo) {
+    if (emprestimo.status === "SIMULADO") {
+        return `<button class="botao-tabela" type="button" onclick="contratarEmprestimo(${emprestimo.id})">Contratar</button>`;
+    }
+
+    if (emprestimo.status === "CONTRATADO") {
+        return `<button class="botao-tabela" type="button" onclick="pagarParcela(${emprestimo.id})">Pagar parcela</button>`;
+    }
+
+    return `<span class="texto-vazio">Sem acao</span>`;
+}
+
 async function lerMensagemErro(resposta, mensagemPadrao) {
     try {
         const texto = await resposta.text();
@@ -69,7 +97,7 @@ function renderizarEmprestimos(emprestimos) {
     if (!emprestimos || emprestimos.length === 0) {
         listaEmprestimos.innerHTML = `
             <tr>
-                <td colspan="9">Nenhuma simulacao feita ainda.</td>
+                <td colspan="11">Nenhuma simulacao feita ainda.</td>
             </tr>
         `;
 
@@ -85,17 +113,12 @@ function renderizarEmprestimos(emprestimos) {
                 <td>${formatarMoeda(emprestimo.valorSolicitado)}</td>
                 <td>${((emprestimo.taxaJurosMensal || 0) * 100).toFixed(2)}%</td>
                 <td>${emprestimo.quantidadeParcelas}</td>
+                <td>${emprestimo.parcelasPagas || 0}</td>
                 <td>${formatarMoeda(emprestimo.valorParcela)}</td>
+                <td>${formatarMoeda(emprestimo.saldoDevedor || 0)}</td>
                 <td>${formatarMoeda(emprestimo.valorTotal)}</td>
-                <td>${emprestimo.status}</td>
-                <td>
-                    ${emprestimo.status === "SIMULADO"
-                        ? `<button type="button" onclick="contratarEmprestimo(${emprestimo.id})">Contratar</button>`
-                        : emprestimo.status === "CONTRATADO"
-                            ? `<button type="button" onclick="pagarParcela(${emprestimo.id})">Pagar parcela</button>`
-                            : "Quitado"
-                    }
-                </td>   
+                <td>${montarSeloStatus(emprestimo.status)}</td>
+                <td>${montarBotaoAcao(emprestimo)}</td>   
             </tr>
         `;
     });
@@ -113,17 +136,23 @@ function atualizarResumo(emprestimos) {
         return;
     }
 
-    const totalSolicitado = emprestimos.reduce((total, emprestimo) => {
+    const emprestimosAtivos = emprestimos.filter((emprestimo) => emprestimo.status === "CONTRATADO");
+
+    const totalContratadoAtivo = emprestimosAtivos.reduce((total, emprestimo) => {
         return total + (emprestimo.valorSolicitado || 0);
     }, 0);
 
-    const parcelas = emprestimos.map((emprestimo) => emprestimo.valorParcela || 0).filter((valor) => valor > 0);
+    const parcelas = emprestimosAtivos.map((emprestimo) => emprestimo.valorParcela || 0).filter((valor) => valor > 0);
 
     const menorParcela = parcelas.length > 0 ? Math.min(...parcelas) : 0;
 
-    totalSolicitadoEmprestimos.textContent = formatarMoeda(totalSolicitado);
+    const saldoDevedor = emprestimosAtivos.reduce((total, emprestimo) => {
+        return total + (emprestimo.saldoDevedor || 0);
+    }, 0);
+
+    totalSolicitadoEmprestimos.textContent = formatarMoeda(totalContratadoAtivo);
     menorParcelaEmprestimos.textContent = formatarMoeda(menorParcela);
-    statusEmprestimos.textContent = "Simulacoes ativas";
+    statusEmprestimos.textContent = formatarMoeda(saldoDevedor);
 }
 
 formEmprestimo.addEventListener("submit", async function (evento) {

@@ -21,6 +21,7 @@ const API_URL_LAYOUT = "http://localhost:8080";
 const paginaAtual = window.location.pathname.split("/").pop();
 
 const paginasPessoaFisica = [
+    "index.html",
     "cartoes.html",
     "contas-internacionais.html",
     "dados.html",
@@ -48,7 +49,6 @@ const paginasEmpresa = [
 ];
 
 const paginasAdmin = [
-    "index.html",
     "usuarios.html",
     "contas.html",
     "categorias.html",
@@ -113,7 +113,7 @@ function criarSidebarUsuario() {
         <h1>Eclipse</h1>
 
         <nav>
-            <a href="index.html">Dashboard</a>
+            <a href="index.html">Inicio</a>
             <a href="minha-conta.html">Minha conta</a>
             <a href="cartoes.html">Cartões</a>
             <a href="contas-internacionais.html">Conta internacional</a>
@@ -177,7 +177,7 @@ function criarSidebarAdmin() {
         <h1>Eclipse</h1>
 
         <nav>
-            <a href="index.html">Dashboard</a>
+            <a href="index.html">Inicio</a>
             <a href="usuarios.html">Usuarios</a>
             <a href="contas.html">Contas</a>
             <a href="categorias.html">Categorias</a>

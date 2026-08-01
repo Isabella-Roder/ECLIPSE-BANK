@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eclipse Bank</title>
+    <title>Inicio - Eclipse Bank</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -11,99 +11,179 @@
         <header class="topo">
             <div>
                 <p>Bem-vinda de volta</p>
-                <h2>Dashboard financeiro</h2>
+                <h2>Inicio</h2>
             </div>
         </header>
 
-        <section class="cards">
-            <div class="card">
-                <span>Saldo atual</span>
-                <strong id="saldo-atual">R$ 0,00</strong>
+        <section class="resumo-principal cliente-hero inicio-hero">
+            <div>
+                <span id="inicio-saudacao">Ola</span>
+                <strong id="inicio-saldo">R$ 0,00</strong>
+                <p id="inicio-mensagem">Resumo rapido da sua conta Eclipse.</p>
             </div>
 
-            <div class="card">
-                <span>Economia</span>
-                <strong id="economia">R$ 0,00</strong>
-            </div>
-
-            <div class="card">
-                <span>Contas cadastradas</span>
-                <strong id="total-contas">0</strong>
-            </div>
-
-            <div class="card">
-                <span>Usuarios cadastrados</span>
-                <strong id="total-usuarios">0</strong>
+            <div class="resumo-acoes">
+                <a href="transferencias.html">Transferir</a>
+                <a href="pagamentos.html">Pagar</a>
+                <a href="extrato.html">Extrato</a>
             </div>
         </section>
 
-        <section class="painel">
-            <h3>Ultimas transacoes</h3>
-
-            <div>
-                <label for="filtro-tipo">Filtrar por tipo</label>
-
-                <select id="filtro-tipo">
-                    <option value="TODOS">Todos</option>
-                    <option value="RECEITA">Receita</option>
-                    <option value="DESPESA">Despesa</option>
-                    <option value="DEPOSITO">Deposito</option>
-                    <option value="SAQUE">Saque</option>
-                    <option value="PAGAMENTO">Pagamento</option>
-                    <option value="TRANSFERENCIA">Transferencia</option>
-                </select>
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Conta</span>
+                <strong id="inicio-numero-conta">-</strong>
             </div>
 
-            <div>
-                <label for="filtro-categoria">Filtrar por categoria</label>
-
-                <select id="filtro-categoria">
-                    <option value="TODAS">Todas</option>
-                </select>
+            <div class="card">
+                <span>Chave Pix</span>
+                <strong id="inicio-chave-pix">-</strong>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Descricao</th>
-                        <th>Categoria</th>
-                        <th>Tipo</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody id="tabela-transacoes"></tbody>
-            </table>
+            <div class="card">
+                <span>Limite</span>
+                <strong id="inicio-limite">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Resultado do periodo</span>
+                <strong id="inicio-resultado">R$ 0,00</strong>
+            </div>
         </section>
 
-        <section class="painel">
-            <h3>Nova transacao</h3>
+        <section class="painel atalhos-cliente">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Acesso rapido</h3>
+                    <p>Escolha uma area para continuar.</p>
+                </div>
+            </div>
 
-            <form id="form-transacao">
-                <input type="text" id="descricao" placeholder="Descricao" required>
-                <input type="text" id="valor" placeholder="Valor" required>
+            <div class="grade-atalhos grade-atalhos-inicio">
+                <a href="transferencias.html">
+                    <span>Transferir</span>
+                    <strong>Enviar dinheiro</strong>
+                </a>
 
-                <select id="tipo" required>
-                    <option value="RECEITA">Receita</option>
-                    <option value="DESPESA">Despesa</option>
-                    <option value="DEPOSITO">Deposito</option>
-                    <option value="SAQUE">Saque</option>
-                    <option value="PAGAMENTO">Pagamento</option>
-                    <option value="TRANSFERENCIA">Transferencia</option>
-                </select>
+                <a href="pagamentos.html">
+                    <span>Pagar</span>
+                    <strong>Pix, boleto e transferencia</strong>
+                </a>
 
-                <select id="categoria" required>
-                    <option value="">Selecione uma categoria</option>
-                </select>
+                <a href="extrato.html">
+                    <span>Extrato</span>
+                    <strong>Ver movimentacoes</strong>
+                </a>
 
+                <a href="cartoes.html">
+                    <span>Cartoes</span>
+                    <strong>Compras e fatura</strong>
+                </a>
 
-                <button type="submit">Cadastrar</button>
-            </form>
+                <a href="investimentos-dashboard.html">
+                    <span>Investir</span>
+                    <strong>Carteira e produtos</strong>
+                </a>
 
-            <p id="mensagem"></p>
+                <a href="emprestimos.html">
+                    <span>Emprestimos</span>
+                    <strong>Simular e pagar parcelas</strong>
+                </a>
+
+                <a href="metas.html">
+                    <span>Metas</span>
+                    <strong>Acompanhar objetivos</strong>
+                </a>
+
+                <a href="contas-internacionais.html">
+                    <span>Internacional</span>
+                    <strong>Comprar e vender moeda</strong>
+                </a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card">
+                <span>Entradas</span>
+                <strong id="inicio-entradas">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Saidas</span>
+                <strong id="inicio-saidas">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Investimentos</span>
+                <strong id="inicio-investimentos">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Metas guardadas</span>
+                <strong id="inicio-metas">R$ 0,00</strong>
+            </div>
+        </section>
+
+        <section class="painel-duplo-cliente inicio-grid">
+            <section class="painel">
+                <div class="cabecalho-painel">
+                    <div>
+                        <h3>Ultimas movimentacoes</h3>
+                        <p>As transacoes mais recentes da sua conta.</p>
+                    </div>
+
+                    <a class="link-painel" href="extrato.html">Ver extrato</a>
+                </div>
+
+                <div id="inicio-transacoes" class="lista-resumo">
+                    <p class="texto-vazio">Carregando movimentacoes...</p>
+                </div>
+            </section>
+
+            <section class="painel">
+                <div class="cabecalho-painel">
+                    <div>
+                        <h3>Sua vida financeira</h3>
+                        <p>Resumo das areas principais.</p>
+                    </div>
+                </div>
+
+                <div class="lista-resumo">
+                    <a class="item-resumo item-resumo-link" href="emprestimos.html">
+                        <div>
+                            <strong>Emprestimos ativos</strong>
+                            <span id="inicio-emprestimos">Nenhum contrato ativo</span>
+                            <span id="inicio-emprestimos-saldo">Saldo devedor: R$ 0,00</span>
+                        </div>
+                    </a>
+
+                    <a class="item-resumo item-resumo-link" href="metas.html">
+                        <div>
+                            <strong>Metas em andamento</strong>
+                            <span id="inicio-metas-status">Nenhuma meta carregada</span>
+                        </div>
+                    </a>
+
+                    <a class="item-resumo item-resumo-link" href="investimentos-dashboard.html">
+                        <div>
+                            <strong>Carteira de investimentos</strong>
+                            <span id="inicio-investimentos-status">Resumo indisponivel</span>
+                        </div>
+                    </a>
+
+                    <a class="item-resumo item-resumo-link" href="cartoes.html">
+                        <div>
+                            <strong>Cartoes</strong>
+                            <span id="inicio-cartoes-status">Consultar fatura e compras</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
         </section>
     </main>
 
-    <script src="../script/layout.js"></script>
-    <script src="../script/script.js"></script>
+    <script src="../script/layout.js?v=6"></script>
+    <script src="../script/app.js?v=5"></script>
+    <script src="../script/inicio.js?v=1"></script>
 </body>
 </html>

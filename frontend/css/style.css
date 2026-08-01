@@ -876,6 +876,41 @@ body::before {
     transform: translateY(-2px);
 }
 
+.inicio-hero strong {
+    overflow-wrap: anywhere;
+}
+
+.grade-atalhos-inicio {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grade-atalhos-inicio a {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 92px;
+}
+
+.grade-atalhos-inicio span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.grade-atalhos-inicio strong {
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.35;
+}
+
+.grade-atalhos-inicio a:hover strong {
+    color: var(--gold-strong);
+}
+
+.inicio-grid .item-resumo {
+    align-items: flex-start;
+}
+
 .painel-duplo-cliente {
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
@@ -1216,6 +1251,59 @@ tr:hover td {
     border: 1px solid rgba(241, 179, 93, 0.24);
     border-radius: 999px;
     background: rgba(241, 179, 93, 0.08);
+    white-space: nowrap;
+}
+
+.selo-emprestimo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    padding: 0 10px;
+    font-size: 12px;
+    font-weight: 800;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.status-simulado {
+    color: #f7c778;
+    border: 1px solid rgba(247, 199, 120, 0.28);
+    background: rgba(247, 199, 120, 0.08);
+}
+
+.status-contratado {
+    color: #75e48a;
+    border: 1px solid rgba(117, 228, 138, 0.28);
+    background: rgba(117, 228, 138, 0.08);
+}
+
+.status-quitado {
+    color: #9fb0c7;
+    border: 1px solid rgba(159, 176, 199, 0.26);
+    background: rgba(159, 176, 199, 0.08);
+}
+
+.status-cancelado {
+    color: #ff8b8b;
+    border: 1px solid rgba(255, 139, 139, 0.28);
+    background: rgba(255, 139, 139, 0.08);
+}
+
+.botao-tabela {
+    width: auto;
+    min-width: 112px;
+    min-height: 34px;
+    padding: 7px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+#lista-emprestimos td:nth-child(3),
+#lista-emprestimos td:nth-child(6),
+#lista-emprestimos td:nth-child(7),
+#lista-emprestimos td:nth-child(8) {
+    font-weight: 700;
     white-space: nowrap;
 }
 
