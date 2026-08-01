@@ -49,6 +49,7 @@ const paginasEmpresa = [
 ];
 
 const paginasAdmin = [
+    "admin-dashboard.html",
     "usuarios.html",
     "contas.html",
     "categorias.html",
@@ -177,7 +178,7 @@ function criarSidebarAdmin() {
         <h1>Eclipse</h1>
 
         <nav>
-            <a href="index.html">Inicio</a>
+            <a href="admin-dashboard.html">Dashboard</a>
             <a href="usuarios.html">Usuarios</a>
             <a href="contas.html">Contas</a>
             <a href="categorias.html">Categorias</a>

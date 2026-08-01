@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Administracao</p>
+                <h2>Dashboard admin</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero">
+            <div>
+                <span>Visao geral do sistema</span>
+                <strong id="admin-saldo-total">R$ 0,00</strong>
+                <p id="admin-mensagem">Carregando indicadores administrativos...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="usuarios.html">Usuarios</a>
+                <a href="contas.html">Contas</a>
+                <a href="empresas.html">Empresas</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Contas cadastradas</span>
+                <strong id="admin-total-contas">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Usuarios</span>
+                <strong id="admin-total-usuarios">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Entradas</span>
+                <strong id="admin-entradas">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Saidas</span>
+                <strong id="admin-saidas">R$ 0,00</strong>
+            </div>
+        </section>
+
+        <section class="painel atalhos-cliente">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Gerenciamento rapido</h3>
+                    <p>Acesse as principais areas administrativas.</p>
+                </div>
+            </div>
+
+            <div class="grade-atalhos grade-atalhos-inicio">
+                <a href="usuarios.html">
+                    <span>Usuarios</span>
+                    <strong>Cadastrar e listar clientes</strong>
+                </a>
+
+                <a href="contas.html">
+                    <span>Contas</span>
+                    <strong>Gerenciar contas bancarias</strong>
+                </a>
+
+                <a href="empresas.html">
+                    <span>Empresas</span>
+                    <strong>Cadastrar contas PJ</strong>
+                </a>
+
+                <a href="categorias.html">
+                    <span>Categorias</span>
+                    <strong>Organizar tipos financeiros</strong>
+                </a>
+            </div>
+        </section>
+
+        <section class="painel-duplo-cliente inicio-grid">
+            <section class="painel">
+                <div class="cabecalho-painel">
+                    <div>
+                        <h3>Ultimas transacoes</h3>
+                        <p>Movimentacoes recentes registradas no sistema.</p>
+                    </div>
+                </div>
+
+                <div id="admin-transacoes" class="lista-resumo">
+                    <p class="texto-vazio">Carregando transacoes...</p>
+                </div>
+            </section>
+
+            <section class="painel">
+                <div class="cabecalho-painel">
+                    <div>
+                        <h3>Resumo operacional</h3>
+                        <p>Pontos importantes para acompanhar depois.</p>
+                    </div>
+                </div>
+
+                <div class="lista-resumo">
+                    <a class="item-resumo item-resumo-link" href="usuarios.html">
+                        <div>
+                            <strong>Base de clientes</strong>
+                            <span id="admin-resumo-usuarios">Nenhum dado carregado</span>
+                        </div>
+                    </a>
+
+                    <a class="item-resumo item-resumo-link" href="contas.html">
+                        <div>
+                            <strong>Contas bancarias</strong>
+                            <span id="admin-resumo-contas">Nenhum dado carregado</span>
+                        </div>
+                    </a>
+
+                    <a class="item-resumo item-resumo-link" href="empresas.html">
+                        <div>
+                            <strong>Empresas</strong>
+                            <span id="admin-resumo-empresas">Acompanhar contas PJ</span>
+                        </div>
+                    </a>
+
+                    <a class="item-resumo item-resumo-link" href="categorias.html">
+                        <div>
+                            <strong>Categorias</strong>
+                            <span id="admin-resumo-categorias">Manter filtros organizados</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="../script/layout.js?v=7"></script>
+    <script src="../script/app.js?v=5"></script>
+    <script src="../script/admin-dashboard.js?v=1"></script>
+</body>
+</html>
