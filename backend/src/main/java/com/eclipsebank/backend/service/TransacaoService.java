@@ -90,7 +90,7 @@ public class TransacaoService {
     }
 
     public double calcularEntradas() {
-        return listar().stream().filter(transacao -> transacao.getTipo() == TipoTransacao.RECEITA || transacao.getTipo() == TipoTransacao.DEPOSITO || transacao.getTipo() == TipoTransacao.VENDA_ATIVO || transacao.getTipo() == TipoTransacao.RESGATE_INVESTIMENTO || transacao.getTipo() == TipoTransacao.RESGATE_META || transacao.getTipo() == TipoTransacao.VENDA_CAMBIO).mapToDouble(
+        return listar().stream().filter(transacao -> transacao.getTipo() == TipoTransacao.RECEITA || transacao.getTipo() == TipoTransacao.DEPOSITO || transacao.getTipo() == TipoTransacao.VENDA_ATIVO || transacao.getTipo() == TipoTransacao.RESGATE_INVESTIMENTO || transacao.getTipo() == TipoTransacao.RESGATE_META || transacao.getTipo() == TipoTransacao.VENDA_CAMBIO || transacao.getTipo() == TipoTransacao.EMPRESTIMO_CONTRATADO).mapToDouble(
             Transacao::getValor).sum();
     }
 
@@ -103,7 +103,8 @@ public class TransacaoService {
             || transacao.getTipo() == TipoTransacao.COMPRA_ATIVO
             || transacao.getTipo() == TipoTransacao.APLICACAO_INVESTIMENTO
             || transacao.getTipo() == TipoTransacao.APORTE_META
-            || transacao.getTipo() == TipoTransacao.COMPRA_CAMBIO).mapToDouble(Transacao::getValor).sum();
+            || transacao.getTipo() == TipoTransacao.COMPRA_CAMBIO
+            || transacao.getTipo() == TipoTransacao.PAGAMENTO_PARCELA_EMPRESTIMO).mapToDouble(Transacao::getValor).sum();
     }
 
     public double calcularSaldo() {
@@ -119,7 +120,8 @@ public class TransacaoService {
             || tipo == TipoTransacao.COMPRA_ATIVO
             || tipo == TipoTransacao.APLICACAO_INVESTIMENTO
             || tipo == TipoTransacao.APORTE_META
-            || tipo == TipoTransacao.COMPRA_CAMBIO;
+            || tipo == TipoTransacao.COMPRA_CAMBIO
+            || tipo == TipoTransacao.PAGAMENTO_PARCELA_EMPRESTIMO;
     }
 
 }

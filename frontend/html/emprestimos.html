@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emprestimos - Eclipse Bank</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="conteudo">
+        <header class="topo">
+            <div>
+                <p>Credito</p>
+                <h2>Emprestimos</h2>
+            </div>
+        </header>
+
+        <section class="resumo-principal cliente-hero">
+            <div>
+                <span>Credito disponivel</span>
+                <strong id="credito-disponivel">R$ 0,00</strong>
+                <p id="mensagem-emprestimos">Carregando simulacoes...</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="minha-conta.html">Minha conta</a>
+                <a href="extrato.html">Extrato</a>
+                <a href="cartoes.html">Cartoes</a>
+            </div>
+        </section>
+
+        <section class="cards cards-cliente">
+            <div class="card card-destaque">
+                <span>Simulacoes</span>
+                <strong id="quantidade-emprestimos">0</strong>
+            </div>
+
+            <div class="card">
+                <span>Total solicitado</span>
+                <strong id="total-solicitado-emprestimos">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Menor parcela</span>
+                <strong id="menor-parcela-emprestimos">R$ 0,00</strong>
+            </div>
+
+            <div class="card">
+                <span>Status</span>
+                <strong id="status-emprestimos">-</strong>
+            </div>
+        </section>
+
+        <section class="painel info-bloco">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Simular emprestimo</h3>
+                    <p>Informe o valor e escolha as parcelas para calcular uma proposta.</p>
+                </div>
+
+                <span class="selo-status">Simulacao</span>
+            </div>
+
+            <form id="form-emprestimo" class="formulario">
+                <label>
+                    Tipo de emprestimo
+                    <select id="tipoEmprestimo" required>
+                        <option value="">Selecione</option>
+                        <option value="PESSOAL">Pessoal</option>
+                        <option value="CONSIGNADO">Consignado</option>
+                        <option value="EMPRESARIAL">Empresarial</option>
+                    </select>
+                </label>
+
+                <label>
+                    Valor solicitado
+                    <input type="text" id="valorSolicitadoEmprestimo" placeholder="R$ 1.000,00" required>
+                </label>
+
+                <label>
+                    Quantidade de parcelas
+                    <input type="number" id="quantidadeParcelasEmprestimo" min="1" max="60" placeholder="Ex: 12" required>
+                </label>
+
+                <button type="submit">Simular emprestimo</button>
+            </form>
+        </section>
+
+        <section class="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Minhas simulacoes</h3>
+                    <p>Historico de simulacoes feitas para sua conta.</p>
+                </div>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                            <th>Taxa</th>
+                            <th>Parcelas</th>
+                            <th>Valor parcela</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Acao</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-emprestimos">
+                        <tr>
+                            <td colspan="9">Carregando simulacoes...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/layout.js?v=5"></script>
+    <script src="../script/app.js?v=5"></script>
+    <script src="../script/emprestimos.js?v=1"></script>
+</body>
+</html>

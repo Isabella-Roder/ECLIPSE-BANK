@@ -1045,7 +1045,42 @@ Requisitos:
 - [ ] Exibir rendimento do mes ainda nao implementado.
 - [ ] Integrar dados com relatorios em Python futuramente.
 
-## 13. Status Atual do Projeto
+## 13. Emprestimos
+
+O sistema deve permitir que o cliente simule, contrate e pague emprestimos ficticios usando o saldo da conta.
+
+Status atual:
+
+- [x] Entidade `Emprestimo` implementada.
+- [x] Enums `TipoEmprestimo` e `StatusEmprestimo` implementados.
+- [x] Repository de emprestimos implementado.
+- [x] Service de emprestimos implementado com simulacao, contratacao e pagamento de parcelas.
+- [x] Controller de emprestimos implementado.
+- [x] Rota para simular emprestimo por conta implementada.
+- [x] Rota para listar emprestimos por conta implementada.
+- [x] Rota para contratar emprestimo implementada.
+- [x] Rota para pagar parcela de emprestimo implementada.
+- [x] Contratacao de emprestimo adiciona o valor solicitado ao saldo da conta.
+- [x] Pagamento de parcela desconta o valor do saldo da conta.
+- [x] Pagamento de parcela atualiza parcelas pagas e saldo devedor.
+- [x] Emprestimo muda para quitado ao finalizar as parcelas.
+- [x] Contratacao gera transacao `EMPRESTIMO_CONTRATADO` no extrato.
+- [x] Pagamento de parcela gera transacao `PAGAMENTO_PARCELA_EMPRESTIMO` no extrato.
+- [x] Tela `emprestimos.html` implementada.
+- [x] `emprestimos.js` integrado com a conta do usuario logado.
+- [x] Simulacao, contratacao e pagamento de parcela pelo frontend implementados.
+
+Requisitos:
+
+- Simular emprestimo por tipo, valor e quantidade de parcelas.
+- Calcular taxa, valor total e valor da parcela.
+- Contratar emprestimo simulado.
+- Creditar valor contratado na conta.
+- Pagar parcelas usando saldo da conta.
+- Registrar contratacao e pagamento no extrato.
+- Validar saldo antes de pagar parcela.
+
+## 14. Status Atual do Projeto
 
 Legenda:
 
@@ -1053,7 +1088,7 @@ Legenda:
 - `[~]` Implementado parcialmente.
 - `[ ]` Ainda nao implementado.
 
-### 13.1 Backend Java Spring Boot
+### 14.1 Backend Java Spring Boot
 
 - [x] Projeto Spring Boot criado.
 - [x] API REST funcionando.
@@ -1116,8 +1151,11 @@ Legenda:
 - [x] Dashboard com saldo total, total de contas e total de usuarios.
 - [x] Tratamento de erro com `ErroController`.
 - [x] CRUD de categorias financeiras.
+- [x] Modulo de emprestimos implementado.
+- [x] Simulacao, contratacao e pagamento de parcelas de emprestimos implementados.
+- [x] Contratacao e pagamento de parcelas registrados no extrato.
 
-### 13.2 Frontend HTML, CSS e JavaScript
+### 14.2 Frontend HTML, CSS e JavaScript
 
 - [x] Layout visual escuro inspirado no Eclipse Bank.
 - [x] Sidebar reutilizavel com `layout.js`.
@@ -1199,8 +1237,10 @@ Legenda:
 - [x] Tela de investimentos.
 - [x] Tela administrativa de categorias financeiras.
 - [x] CRUD de categorias integrado ao frontend.
+- [x] Tela de emprestimos.
+- [x] Simulacao, contratacao e pagamento de parcelas pelo frontend.
 
-### 13.3 Funcionalidades Pendentes
+### 14.3 Funcionalidades Pendentes
 
 - [~] Proteger telas usando usuario logado.
 - [~] Usar usuario logado para preencher telas sem digitar ID.
@@ -1264,3 +1304,4 @@ Legenda:
 - [x] Categorias ativas integradas ao filtro do extrato PJ.
 - [x] Categorias ativas integradas aos filtros de relatorios.
 - [x] Filtros avancados do extrato implementados no backend.
+- [x] Emprestimos com simulacao, contratacao e pagamento de parcelas.

@@ -24,6 +24,7 @@ const paginasPessoaFisica = [
     "cartoes.html",
     "contas-internacionais.html",
     "dados.html",
+    "emprestimos.html",
     "extrato.html",
     "minha-conta.html",
     "pagamentos.html",
@@ -116,6 +117,7 @@ function criarSidebarUsuario() {
             <a href="minha-conta.html">Minha conta</a>
             <a href="cartoes.html">Cartões</a>
             <a href="contas-internacionais.html">Conta internacional</a>
+            <a href="emprestimos.html">Emprestimos</a>
             <a href="dados.html">Meus dados</a>
             <a href="transferencias.html">Transferencias</a>
             <a href="pagamentos.html">Pagamentos</a>
