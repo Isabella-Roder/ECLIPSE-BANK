@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,6 +41,16 @@ public class UsuarioController {
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest request) {
         return usuarioService.buscarPorEmail(request);
+    }
+
+    @PutMapping("/usuarios/{usuarioId}")
+    public Usuario atualizar(@PathVariable Long usuarioId, @RequestBody Usuario usuario) {
+        return usuarioService.atualizar(usuarioId, usuario);
+    }
+
+    @PutMapping("/usuarios/{usuarioId}/status")
+    public Usuario alterarStatus(@PathVariable Long usuarioId) {
+        return usuarioService.alterarStatus(usuarioId);
     }
     
 }

@@ -51,6 +51,12 @@ async function carregarConta() {
             <td>R$ ${conta.saldo || 0}</td>
             <td>R$ ${conta.limite || 0}</td>
             <td>${conta.usuario ? conta.usuario.nome : "-"}</td>
+            <td>${conta.bloqueada ? "Bloqueada" : "Ativa"}</td>
+            <td>
+                <button type="button" onclick="alterarBloqueioConta(${conta.id})">
+                    ${conta.bloqueada ? "Desbloquear" : "Bloquear"}
+                </button>
+            </td>
         `;
 
         tabelaContas.appendChild(linha);
@@ -87,6 +93,21 @@ formConta.addEventListener("submit", async (evento) => {
     formConta.reset();
     await carregarConta();
 });
+
+async function alterarBloqueioConta(contaId) {
+    const resposta = await fetch(`${API_URL}/contas/${contaId}/bloqueio`, {
+        method: "PUT"
+    });
+
+    if (!resposta.ok) {
+        const erro = await resposta.json();
+        mensagemConta.textContent = erro.erro || "Erro ao alterar bloqueio da conta.";
+        return;
+    }
+
+    mensagemConta.textContent = "Status da conta alterado com sucesso.";
+    await carregarConta();
+}
 
 botaoDepositar.addEventListener("click", async () => {
     const contaId = document.getElementById("contaIdOperacao").value;

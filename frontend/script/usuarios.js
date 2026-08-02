@@ -6,6 +6,10 @@ const mensagemUsuario = document.getElementById("mensagem-usuario");
 const inputCpf = document.getElementById("cpf");
 const inputTelefone = document.getElementById("telefone");
 
+const inputUsuarioId = document.getElementById("usuarioId");
+const botaoSalvarUsuario = document.getElementById("botao-salvar-usuario");
+const botaoCancelarEdicaoUsuario = document.getElementById("botao-cancelar-edicao-usuario");
+
 function mascararCpf(valor) {
     valor = valor.replace(/\D/g, "");
     valor = valor.slice(0, 11);
@@ -50,6 +54,16 @@ async function carregarUsuarios() {
             <td>${usuario.telefone}</td>
             <td>${usuario.email}</td>
             <td>${usuario.dataNascimento}</td>
+            <td>${usuario.ativo === false ? "Desativado" : "Ativo"}</td>
+            <td>
+                <button type="button" onclick='prepararEdicaoUsuario(${JSON.stringify(usuario)})'>
+                    Editar
+                </button>
+
+                <button type="button" onclick="alterarStatusUsuario(${usuario.id})">
+                    ${usuario.ativo === false ? "Reativar" : "Desativar"}
+                </button>
+            </td>
         `;
 
         tabelaUsuarios.appendChild(linha);
@@ -69,8 +83,16 @@ formUsuario.addEventListener("submit", async (evento) => {
         dataNascimento: document.getElementById("dataNascimento").value
     };
 
-    const resposta = await fetch(`${API_URL}/usuarios`, {
-        method: "POST",
+    const usuarioId = inputUsuarioId.value;
+
+    const url = usuarioId
+        ? `${API_URL}/usuarios/${usuarioId}`
+        : `${API_URL}/usuarios`;
+
+    const metodo = usuarioId ? "PUT" : "POST";
+
+    const resposta = await fetch(url, {
+        method: metodo,
         headers: {
             "Content-Type": "application/json"
         },
@@ -83,10 +105,51 @@ formUsuario.addEventListener("submit", async (evento) => {
         return;
     }
 
-    mensagemUsuario.textContent = "Usuário cadastrado com sucesso.";
-    formUsuario.reset();
+    mensagemUsuario.textContent = usuarioId
+        ? "Usuario atualizado com sucesso."
+        : "Usuario cadastrado com sucesso.";
 
+    limparFormularioUsuario();
     await carregarUsuarios();
+});
+
+function prepararEdicaoUsuario(usuario) {
+    inputUsuarioId.value = usuario.id;
+    document.getElementById("nome").value = usuario.nome || "";
+    document.getElementById("nomeSocial").value = usuario.nomeSocial || "";
+    document.getElementById("cpf").value = usuario.cpf || "";
+    document.getElementById("telefone").value = usuario.telefone || "";
+    document.getElementById("email").value = usuario.email || "";
+    document.getElementById("senha").value = usuario.senha || "";
+    document.getElementById("dataNascimento").value = usuario.dataNascimento || "";
+
+    botaoSalvarUsuario.textContent = "Salvar alteracoes";
+}
+
+async function alterarStatusUsuario(usuarioId) {
+    const resposta = await fetch(`${API_URL}/usuarios/${usuarioId}/status`, {
+        method: "PUT"
+    });
+
+    if (!resposta.ok) {
+        const erro = await resposta.json();
+        mensagemUsuario.textContent = erro.erro || "Erro ao alterar status do usuario.";
+        return;
+    }
+
+    mensagemUsuario.textContent = "Status do usuario alterado com sucesso.";
+    await carregarUsuarios();
+}
+
+function limparFormularioUsuario() {
+    formUsuario.reset();
+    inputUsuarioId.value = "";
+    botaoSalvarUsuario.textContent = "Cadastrar usuario";
+}
+
+botaoCancelarEdicaoUsuario.addEventListener("click", () => {
+    limparFormularioUsuario();
+    mensagemUsuario.textContent = "";
 });
 
 carregarUsuarios();

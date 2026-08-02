@@ -37,6 +37,8 @@ Status atual:
 - [x] Cadastro de usuário implementado.
 - [x] Listagem de usuários implementada.
 - [x] Busca de usuário por ID implementada.
+- [x] Edicao de usuario pela area administrativa implementada.
+- [x] Ativacao e desativacao de usuario pela area administrativa implementada.
 - [x] Nome social implementado.
 - [x] CPF como texto implementado.
 - [x] Validação de CPF único implementada.
@@ -188,6 +190,7 @@ Status atual:
 - [x] Conta internacional por moeda implementada.
 - [x] Compra e venda de moeda estrangeira implementadas.
 - [x] Saldo da conta BRL atualizado nas operacoes de cambio.
+- [x] Bloqueio e desbloqueio de conta pela area administrativa implementado.
 
 Funcionalidades:
 
@@ -709,6 +712,9 @@ Requisitos:
 - Cadastrar contas para usuarios.
 - Listar todos os usuarios.
 - Listar todas as contas.
+- Editar usuarios.
+- Ativar e desativar usuarios.
+- Bloquear e desbloquear contas.
 - Visualizar total de usuarios cadastrados.
 - Visualizar total de contas cadastradas.
 - Visualizar saldo total do sistema.

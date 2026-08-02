@@ -25,6 +25,7 @@ public class Conta {
     private String chavePix;
     private Double limite;
     private Double saldo;
+    private Boolean bloqueada = false;
 
     @Enumerated(EnumType.STRING)
     private TipoChavePix tipoChavePix;
@@ -52,12 +53,13 @@ public class Conta {
 
     }
 
-    public Conta(String titular, Integer numero, String chavePix, Double limite, Double saldo, TipoChavePix tipoChavePix, TipoConta tipoConta) {
+    public Conta(String titular, Integer numero, String chavePix, Double limite, Double saldo, Boolean bloqueada, TipoChavePix tipoChavePix, TipoConta tipoConta) {
         this.titular = titular;
         this.numero = numero;
         this.chavePix = chavePix;
         this.limite = limite;
         this.saldo = saldo;
+        this.bloqueada = bloqueada;
         this.tipoChavePix = tipoChavePix;
         this.tipoConta = tipoConta;
     }
@@ -84,6 +86,10 @@ public class Conta {
 
     public Double getSaldo() {
         return saldo;
+    }
+
+    public Boolean getBloqueada() {
+        return bloqueada;
     }
 
     public TipoChavePix getTipoChavePix() {
@@ -120,6 +126,10 @@ public class Conta {
 
     public void setSaldo(Double saldo){
         this.saldo = saldo; 
+    }
+
+    public void setBloqueada(Boolean bloqueada) {
+        this.bloqueada = bloqueada;
     }
 
     public void setTipoChavePix(TipoChavePix tipoChavePix) {

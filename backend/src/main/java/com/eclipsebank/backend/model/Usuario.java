@@ -21,12 +21,13 @@ public class Usuario {
     private String email;
     private String senha;
     private LocalDate dataNascimento;
+    private Boolean ativo = true;
 
     public Usuario() {
 
     }
 
-    public Usuario(String nome, String nomeSocial, String cpf, String telefone, String email, String senha, LocalDate dataNascimento) {
+    public Usuario(String nome, String nomeSocial, String cpf, String telefone, String email, String senha, LocalDate dataNascimento, Boolean ativo) {
         this.nome = nome;
         this.nomeSocial = nomeSocial;
         this.cpf = cpf;
@@ -34,6 +35,7 @@ public class Usuario {
         this.email = email;
         this.senha = senha;
         this.dataNascimento = dataNascimento;
+        this.ativo = ativo;
     }
 
     public Long getId() {
@@ -68,6 +70,10 @@ public class Usuario {
         return dataNascimento;
     }
 
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -94,6 +100,10 @@ public class Usuario {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
 }

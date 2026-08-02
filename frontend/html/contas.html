@@ -15,8 +15,27 @@
             </div>
         </header>
 
+        <section class="resumo-principal cliente-hero">
+            <div>
+                <span>Controle operacional</span>
+                <strong>Contas</strong>
+                <p>Crie contas, consulte saldos e faca operacoes administrativas.</p>
+            </div>
+
+            <div class="resumo-acoes">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="usuarios.html">Usuarios</a>
+                <a href="empresas.html">Empresas</a>
+            </div>
+        </section>
+
         <section class="painel">
-            <h3>Nova conta</h3>
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Nova conta</h3>
+                    <p>Vincule uma nova conta a um usuario pessoa fisica pelo ID.</p>
+                </div>
+            </div>
 
             <form id="form-conta">
                 <input type="number" id="usuarioId" placeholder="ID do usuario" required>
@@ -32,7 +51,12 @@
         </section>
 
         <section class="painel">
-            <h3>Operacoes</h3>
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Operacoes</h3>
+                    <p>Use com cuidado: depositos e saques alteram o saldo imediatamente.</p>
+                </div>
+            </div>
 
             <form id="form-operacao">
                 <input type="number" id="contaIdOperacao" placeholder="ID da conta" required>
@@ -45,8 +69,13 @@
             <p id="mensagem-operacao"></p>
         </section>
 
-        <section class="painel">
-            <h3>Contas cadastradas</h3>
+        <section class="painel painel-tabela">
+            <div class="cabecalho-painel">
+                <div>
+                    <h3>Contas cadastradas</h3>
+                    <p>Acompanhe titular, numero, chave Pix, saldo e limite das contas.</p>
+                </div>
+            </div>
 
             <table>
                 <thead>
@@ -58,6 +87,8 @@
                         <th>Saldo</th>
                         <th>Limite</th>
                         <th>Usuario</th>
+                        <th>Status</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody id="tabela-contas"></tbody>

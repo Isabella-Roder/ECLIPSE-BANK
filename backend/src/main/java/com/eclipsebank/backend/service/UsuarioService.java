@@ -72,4 +72,32 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    public Usuario atualizar(Long id, Usuario dadosAtualizados) {
+        Usuario usuario = buscarPorId(id);
+
+        usuario.setNome(dadosAtualizados.getNome());
+        usuario.setNomeSocial(dadosAtualizados.getNomeSocial());
+        usuario.setCpf(dadosAtualizados.getCpf());
+        usuario.setTelefone(dadosAtualizados.getTelefone());
+        usuario.setEmail(dadosAtualizados.getEmail());
+        usuario.setDataNascimento(dadosAtualizados.getDataNascimento());
+        usuario.setSenha(dadosAtualizados.getSenha());
+
+        return usuarioRepository.save(usuario);
+    }
+
+    public Usuario alterarStatus(Long id) {
+        Usuario usuario = buscarPorId(id);
+
+        Boolean ativoAtual = usuario.getAtivo();
+
+        if (ativoAtual == null) {
+            ativoAtual = true;
+        }
+
+        usuario.setAtivo(!ativoAtual);
+
+        return usuarioRepository.save(usuario);
+    }
+
 }

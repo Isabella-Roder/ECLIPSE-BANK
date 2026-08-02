@@ -397,6 +397,8 @@ public class ContaService {
         Conta conta = contaRepository.findById(contaId)
             .orElseThrow(() -> new IllegalArgumentException("Conta não encontrada."));
 
+        validarContaNaoBloqueada(conta);
+
         if (conta.getSaldo() == null) {
             conta.setSaldo(0.0);
         }
@@ -428,6 +430,23 @@ public class ContaService {
         return conta;
     }
 
+    public Conta alterarBloqueio(Long id) {
+        Conta conta = buscarPorId(id);
 
+        Boolean bloqueadaAtual = conta.getBloqueada();
 
+        if (bloqueadaAtual == null) {
+            bloqueadaAtual = false;
+        }
+
+        conta.setBloqueada(!bloqueadaAtual);
+
+        return contaRepository.save(conta);
+    }
+
+    private void validarContaNaoBloqueada(Conta conta) {
+        if (Boolean.TRUE.equals(conta.getBloqueada())) {
+            throw new IllegalArgumentException("Conta bloqueada.");
+        }
+    }
 }
