@@ -18,18 +18,20 @@ public class Empresa {
     private String telefone;
     private String email;
     private String senha;
+    private Boolean ativada = true;
 
     public Empresa() {
 
     }
 
-    public Empresa(String razaoSocial, String nomeFantasia, String cnpj, String telefone, String email, String senha) {
+    public Empresa(String razaoSocial, String nomeFantasia, String cnpj, String telefone, String email, String senha, Boolean ativada) {
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
         this.telefone = telefone;
         this.email = email;
         this.senha = senha;
+        this.ativada = ativada;
     }
 
     public Long getId() {
@@ -60,6 +62,10 @@ public class Empresa {
         return senha;
     }
 
+    public Boolean getAtivada() {
+        return ativada;
+    }
+
     public void setRazaoSocial(String razaoSocial) {
         this.razaoSocial = razaoSocial;
     }
@@ -82,6 +88,10 @@ public class Empresa {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void setAtivada(Boolean ativada) {
+        this.ativada = ativada;
     }
 
 }

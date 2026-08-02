@@ -10,6 +10,10 @@ const mensagemOperacao = document.getElementById("mensagem-operacao");
 const inputLimite = document.getElementById("limite");
 const inputValorOperacao = document.getElementById("valorOperacao");
 
+const inputContaId = document.getElementById("contaId");
+const botaoSalvarConta = document.getElementById("botao-salvar-conta");
+const botaoCancelarEdicaoConta = document.getElementById("botao-cancelar-edicao-conta");
+
 function mascararDinheiro(valor) {
     valor = valor.replace(/\D/g, "");
 
@@ -56,6 +60,10 @@ async function carregarConta() {
                 <button type="button" onclick="alterarBloqueioConta(${conta.id})">
                     ${conta.bloqueada ? "Desbloquear" : "Bloquear"}
                 </button>
+
+                <button type="button" onclick='prepararEdicaoConta(${JSON.stringify(conta)})'>
+                    Editar
+                </button>
             </td>
         `;
 
@@ -66,8 +74,6 @@ async function carregarConta() {
 formConta.addEventListener("submit", async (evento) => {
     evento.preventDefault();
 
-    const usuarioId = document.getElementById("usuarioId").value;
-
     const conta = {
         titular: document.getElementById("titular").value,
         numero: Number(document.getElementById("numero").value),
@@ -75,8 +81,17 @@ formConta.addEventListener("submit", async (evento) => {
         limite: converterDinheiroParaNumero(document.getElementById("limite").value)
     };
 
-    const resposta = await fetch(`${API_URL}/contas/usuario/${usuarioId}`, {
-        method: "POST",
+    const contaId = inputContaId.value;
+    const usuarioId = document.getElementById("usuarioId").value;
+
+    const url = contaId
+        ? `${API_URL}/contas/${contaId}`
+        : `${API_URL}/contas/usuario/${usuarioId}`;
+
+    const metodo = contaId ? "PUT" : "POST";
+
+    const resposta = await fetch(url, {
+        method: metodo,
         headers: {
             "Content-Type": "application/json"
         },
@@ -90,7 +105,7 @@ formConta.addEventListener("submit", async (evento) => {
     }
 
     mensagemConta.textContent = "Conta criada com sucesso.";
-    formConta.reset();
+    limparFormularioConta();
     await carregarConta();
 });
 
@@ -108,6 +123,28 @@ async function alterarBloqueioConta(contaId) {
     mensagemConta.textContent = "Status da conta alterado com sucesso.";
     await carregarConta();
 }
+
+function prepararEdicaoConta(conta) {
+    inputContaId.value = conta.id;
+    document.getElementById("usuarioId").value = conta.usuario ? conta.usuario.id : "";
+    document.getElementById("titular").value = conta.titular || "";
+    document.getElementById("numero").value = conta.numero || "";
+    document.getElementById("chavePix").value = conta.chavePix || "";
+    inputLimite.value = mascararDinheiro(String((conta.limite || 0) * 100));
+
+    botaoSalvarConta.textContent = "Salvar alteracoes";
+}
+
+function limparFormularioConta() {
+    formConta.reset();
+    inputContaId.value = "";
+    botaoSalvarConta.textContent = "Criar conta";
+}
+
+botaoCancelarEdicaoConta.addEventListener("click", () => {
+    limparFormularioConta();
+    mensagemConta.textContent = "";
+});
 
 botaoDepositar.addEventListener("click", async () => {
     const contaId = document.getElementById("contaIdOperacao").value;

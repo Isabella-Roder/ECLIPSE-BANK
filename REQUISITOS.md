@@ -191,6 +191,7 @@ Status atual:
 - [x] Compra e venda de moeda estrangeira implementadas.
 - [x] Saldo da conta BRL atualizado nas operacoes de cambio.
 - [x] Bloqueio e desbloqueio de conta pela area administrativa implementado.
+- [x] Edicao de dados da conta pela area administrativa implementada.
 
 Funcionalidades:
 
@@ -1122,6 +1123,7 @@ Legenda:
 - [x] Cadastro de contas para usuarios.
 - [x] Listagem de contas.
 - [x] Saldo, limite, numero e chave Pix na conta.
+- [x] Edicao administrativa de titular, chave Pix e limite da conta.
 - [x] Telefone como chave Pix implementado.
 - [x] Geracao de chave Pix aleatoria implementada.
 - [x] Numero da conta automatico implementado no backend.
@@ -1173,6 +1175,8 @@ Legenda:
 - [x] Tela de contas.
 - [x] Cadastro de conta pelo HTML.
 - [x] Listagem de contas pelo HTML.
+- [x] Edicao de conta pelo HTML.
+- [x] Bloqueio e desbloqueio de conta pelo HTML.
 - [x] Deposito pelo HTML.
 - [x] Saque pelo HTML.
 - [x] Tela de extrato.

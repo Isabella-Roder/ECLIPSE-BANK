@@ -7,7 +7,7 @@ const usuarioLayout = sessaoLayout && sessaoLayout.tipo === "USUARIO"
         email: sessaoLayout.email,
         tipo: sessaoLayout.tipo
     }
-    : JSON.parse(localStorage.getItem("usuarioLogado"));
+    : !sessaoLayout ? JSON.parse(localStorage.getItem("usuarioLogado")) : null;
 const empresaLayout = sessaoLayout && sessaoLayout.tipo === "EMPRESA"
     ? {
         id: sessaoLayout.id,
@@ -16,7 +16,15 @@ const empresaLayout = sessaoLayout && sessaoLayout.tipo === "EMPRESA"
         email: sessaoLayout.email,
         tipo: sessaoLayout.tipo
     }
-    : JSON.parse(localStorage.getItem("empresaLogada"));
+    : !sessaoLayout ? JSON.parse(localStorage.getItem("empresaLogada")) : null;
+const adminLayout = sessaoLayout && sessaoLayout.tipo === "ADMIN"
+    ? {
+        id: sessaoLayout.id,
+        nome: sessaoLayout.nome,
+        email: sessaoLayout.email,
+        tipo: sessaoLayout.tipo
+    }
+    : null;
 const API_URL_LAYOUT = "http://localhost:8080";
 const paginaAtual = window.location.pathname.split("/").pop();
 
@@ -70,25 +78,49 @@ function verificarAcessoDaPagina() {
         return true;
     }
 
-    if (usuarioLayout && !empresaLayout && paginasEmpresa.includes(paginaAtual)) {
+    if (usuarioLayout && paginasEmpresa.includes(paginaAtual)) {
         window.location.href = "index.html";
         return false;
     }
 
-    if (usuarioLayout && paginasAdmin.includes(paginaAtual) && paginaAtual !== "index.html") {
+    if (usuarioLayout && paginasAdmin.includes(paginaAtual)) {
         window.location.href = "index.html";
         return false;
     }
 
-    if (empresaLayout && !paginasEmpresa.includes(paginaAtual) && !paginasCompartilhadasComLogin.includes(paginaAtual)) {
+    if (empresaLayout && paginasPessoaFisica.includes(paginaAtual)) {
         window.location.href = "empresa-dashboard.html";
         return false;
     }
 
-    const paginaPrecisaLogin = paginasPessoaFisica.includes(paginaAtual)
-        || paginasCompartilhadasComLogin.includes(paginaAtual);
+    if (empresaLayout && paginasAdmin.includes(paginaAtual)) {
+        window.location.href = "empresa-dashboard.html";
+        return false;
+    }
 
-    if (!usuarioLayout && !empresaLayout && paginaPrecisaLogin) {
+    if (adminLayout && !paginasAdmin.includes(paginaAtual)) {
+        window.location.href = "admin-dashboard.html";
+        return false;
+    }
+
+    if (paginasPessoaFisica.includes(paginaAtual) && !usuarioLayout) {
+        window.location.href = "login.html";
+        return false;
+    }
+
+    if (paginasEmpresa.includes(paginaAtual) && !empresaLayout) {
+        window.location.href = "login.html";
+        return false;
+    }
+
+    if (paginasAdmin.includes(paginaAtual) && !adminLayout) {
+        window.location.href = "login.html";
+        return false;
+    }
+
+    const paginaPrecisaLogin = paginasCompartilhadasComLogin.includes(paginaAtual);
+
+    if (!usuarioLayout && !empresaLayout && !adminLayout && paginaPrecisaLogin) {
         window.location.href = "login.html";
         return false;
     }
@@ -101,7 +133,7 @@ function verificarLogin() {
         criarSidebarUsuario();
     } else if (empresaLayout) {
         criarSidebarEmpresa();
-    } else {
+    } else if (adminLayout) {
         criarSidebarAdmin();
     }
 }
@@ -183,11 +215,12 @@ function criarSidebarAdmin() {
             <a href="contas.html">Contas</a>
             <a href="categorias.html">Categorias</a>
             <a href="empresas.html">Empresas</a>
-            <a href="login.html">Login</a>
+            <button id="btn-logout" type="button">Sair</button>
         </nav>
     `;
 
     document.body.prepend(sidebar);
+    configurarLogout();
 }
 
 function criarBotaoMenuMobile() {

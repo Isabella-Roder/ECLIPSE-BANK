@@ -34,9 +34,13 @@ formLogin.addEventListener("submit", async function (event) {
 
     const tipoLogin = tipoLoginInput.value;
 
-    const urlLogin = tipoLogin === "empresa"
-        ? `${API_URL}/login/empresa`
-        : `${API_URL}/login`;
+    let urlLogin = `${API_URL}/login`;
+
+    if (tipoLogin === "empresa") {
+        urlLogin = `${API_URL}/login/empresa`;
+    } else if (tipoLogin === "admin") {
+        urlLogin = `${API_URL}/login/admin`;
+    }
 
     try {
         const resposta = await fetch(urlLogin, {
@@ -56,6 +60,13 @@ formLogin.addEventListener("submit", async function (event) {
         const dadosLogin = await resposta.json();
 
         localStorage.setItem("sessao", JSON.stringify(dadosLogin));
+
+        if (tipoLogin === "admin") {
+            localStorage.removeItem("usuarioLogado");
+            localStorage.removeItem("empresaLogada");
+            window.location.href = "admin-dashboard.html";
+            return;
+        }
 
         if (tipoLogin === "empresa") {
             localStorage.removeItem("usuarioLogado");

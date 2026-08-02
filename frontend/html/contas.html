@@ -38,13 +38,16 @@
             </div>
 
             <form id="form-conta">
+                <input type="hidden" id="contaId">
+
                 <input type="number" id="usuarioId" placeholder="ID do usuario" required>
                 <input type="text" id="titular" placeholder="Titular" required>
                 <input type="number" id="numero" placeholder="Numero da conta" required>
                 <input type="text" id="chavePix" placeholder="Chave Pix" required>
                 <input type="text" id="limite" placeholder="Limite" required>
 
-                <button type="submit">Criar conta</button>
+                <button type="submit" id="botao-salvar-conta">Criar conta</button>
+                <button type="button" id="botao-cancelar-edicao-conta">Cancelar</button>
             </form>
 
             <p id="mensagem-conta"></p>

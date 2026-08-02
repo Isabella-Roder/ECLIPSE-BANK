@@ -1,12 +1,41 @@
 const adminSaldoTotal = document.getElementById("admin-saldo-total");
 const adminMensagem = document.getElementById("admin-mensagem");
 const adminTotalContas = document.getElementById("admin-total-contas");
-const adminTotalUsuario = document.getElementById("admin-total-usuario");
+const adminTotalUsuarios = document.getElementById("admin-total-usuarios");
+const adminTotalEmpresas = document.getElementById("admin-total-empresas");
+const adminTotalCategorias = document.getElementById("admin-total-categorias");
 const adminEntradas = document.getElementById("admin-entradas");
 const adminSaidas = document.getElementById("admin-saidas");
+const adminTransacoes = document.getElementById("admin-transacoes");
 
-const adminResumoUsuarios = document.getElementById("admin-resumo-usuario");
+const adminResumoUsuarios = document.getElementById("admin-resumo-usuarios");
 const adminResumoContas = document.getElementById("admin-resumo-contas");
+const adminResumoEmpresas = document.getElementById("admin-resumo-empresas");
+const adminResumoCategorias = document.getElementById("admin-resumo-categorias");
+
+function ehEntradaAdmin(tipo) {
+    return tipo === "RECEITA"
+        || tipo === "DEPOSITO"
+        || tipo === "VENDA_ATIVO"
+        || tipo === "RESGATE_INVESTIMENTO"
+        || tipo === "RESGATE_META"
+        || tipo === "VENDA_CAMBIO"
+        || tipo === "EMPRESTIMO_CONTRATADO";
+}
+
+function classeValorAdmin(tipo) {
+    return ehEntradaAdmin(tipo) ? "valor-entrada" : "valor-saida";
+}
+
+async function buscarListaAdmin(endpoint) {
+    const resposta = await fetch(`${API_URL}${endpoint}`);
+
+    if (!resposta.ok) {
+        return [];
+    }
+
+    return await resposta.json();
+}
 
 async function carregarResumoAdmin() {
     const resposta = await fetch(`${API_URL}/dashboard`);
@@ -18,16 +47,77 @@ async function carregarResumoAdmin() {
 
     const dados = await resposta.json();
 
-    adminSaldoTotal.textContent = formatarMoeda(dados.saldoAtual);
-    adminTotalContas.textContent = dados.totalContas;
-    adminTotalUsuario.textContent = dados.totalUsuarios;
-    adminEntradas.textContent = formatarMoeda(dados.entradasMes);
-    adminSaidas.textContent = formatarMoeda(dados.saidasMes);
+    adminSaldoTotal.textContent = formatarMoeda(dados.saldoAtual || 0);
+    adminTotalContas.textContent = dados.totalContas || 0;
+    adminTotalUsuarios.textContent = dados.totalUsuarios || 0;
+    adminEntradas.textContent = formatarMoeda(dados.entradasMes || 0);
+    adminSaidas.textContent = formatarMoeda(dados.saidasMes || 0);
 
-    adminResumoUsuarios.textContent = `${dados.totalUsuarios} usuario(s) cadastrados`;
-    adminResumoContas.textContent = `${dados.totalContas} conta(s) no sistema`;
-
-    adminMensagem.textContent = "Dashboard admin carregado.";
+    adminResumoUsuarios.textContent = `${dados.totalUsuarios || 0} usuario(s) cadastrados`;
+    adminResumoContas.textContent = `${dados.totalContas || 0} conta(s) no sistema`;
 }
 
-carregarResumoAdmin();
+async function carregarIndicadoresExtrasAdmin() {
+    const empresas = await buscarListaAdmin("/empresas");
+    const categorias = await buscarListaAdmin("/categorias");
+
+    adminTotalEmpresas.textContent = empresas.length;
+    adminTotalCategorias.textContent = categorias.length;
+
+    adminResumoEmpresas.textContent = empresas.length > 0
+        ? `${empresas.length} empresa(s) cadastrada(s)`
+        : "Nenhuma empresa cadastrada";
+
+    adminResumoCategorias.textContent = categorias.length > 0
+        ? `${categorias.length} categoria(s) cadastrada(s)`
+        : "Nenhuma categoria cadastrada";
+}
+
+async function carregarTransacoesAdmin() {
+    const transacoes = await buscarListaAdmin("/transacoes");
+
+    renderizarTransacoesAdmin(transacoes);
+}
+
+function renderizarTransacoesAdmin(transacoes) {
+    adminTransacoes.innerHTML = "";
+
+    if (!transacoes || transacoes.length === 0) {
+        adminTransacoes.innerHTML = `<p class="texto-vazio">Nenhuma transacao registrada.</p>`;
+        return;
+    }
+
+    const ultimas = transacoes
+        .sort((a, b) => new Date(b.dataHora) - new Date(a.dataHora))
+        .slice(0, 6);
+
+    ultimas.forEach((transacao) => {
+        adminTransacoes.innerHTML += `
+            <div class="item-resumo">
+                <div>
+                    <strong>${transacao.descricao || transacao.tipo}</strong>
+                    <span>${formatarDataHora(transacao.dataHora)} - ${transacao.categoria || "-"}</span>
+                </div>
+
+                <strong class="${classeValorAdmin(transacao.tipo)}">
+                    ${formatarMoeda(transacao.valor || 0)}
+                </strong>
+            </div>
+        `;
+    });
+}
+
+async function iniciarAdminDashboard() {
+    try {
+        await carregarResumoAdmin();
+        await carregarIndicadoresExtrasAdmin();
+        await carregarTransacoesAdmin();
+
+        adminMensagem.textContent = "Dashboard admin carregado.";
+    } catch (erro) {
+        console.error(erro);
+        adminMensagem.textContent = "Erro ao carregar dashboard admin.";
+    }
+}
+
+iniciarAdminDashboard();

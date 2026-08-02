@@ -83,4 +83,9 @@ public class ContaController {
     public Conta alternarBloqueio(@PathVariable Long contaId) {
         return contaService.alterarBloqueio(contaId);
     }
+
+    @PutMapping("/contas/{contaId}")
+    public Conta atualizar(@PathVariable Long contaId, @RequestBody Conta conta) {
+        return contaService.atualizar(contaId, conta);
+    }
 }

@@ -430,6 +430,16 @@ public class ContaService {
         return conta;
     }
 
+    public Conta atualizar(Long id, Conta dadosAtualizados) {
+        Conta conta = buscarPorId(id);
+
+        conta.setTitular(dadosAtualizados.getTitular());
+        conta.setChavePix(dadosAtualizados.getChavePix());
+        conta.setLimite(dadosAtualizados.getLimite());
+
+        return contaRepository.save(conta);
+    }
+
     public Conta alterarBloqueio(Long id) {
         Conta conta = buscarPorId(id);
 
