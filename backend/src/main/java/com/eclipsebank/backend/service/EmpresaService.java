@@ -88,6 +88,34 @@ public class EmpresaService {
         );
     }
 
-    
+    public Empresa atualizar(Long id, Empresa dadosAtualizados) {
+        Empresa empresa = buscarPorId(id);
+
+        empresa.setRazaoSocial(dadosAtualizados.getRazaoSocial());
+        empresa.setNomeFantasia(dadosAtualizados.getNomeFantasia());
+        empresa.setCnpj(dadosAtualizados.getCnpj());
+        empresa.setTelefone(dadosAtualizados.getTelefone());
+        empresa.setEmail(dadosAtualizados.getEmail());
+
+        if (dadosAtualizados.getSenha() != null && !dadosAtualizados.getSenha().isBlank()) {
+            empresa.setSenha(dadosAtualizados.getSenha());
+        }
+
+        return empresaRepository.save(empresa);
+    }
+
+    public Empresa alterarStatus(Long id) {
+        Empresa empresa = buscarPorId(id);
+
+        Boolean ativaAtual = empresa.getAtivada();
+
+        if (ativaAtual == null) {
+            ativaAtual = true;
+        }
+
+        empresa.setAtivada(!ativaAtual);
+
+        return empresaRepository.save(empresa);
+    }
 
 }

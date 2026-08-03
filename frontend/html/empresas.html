@@ -37,6 +37,8 @@
             </div>
 
             <form id="form-empresa">
+                <input type="hidden" id="empresaId">
+
                 <input type="text" id="razaoSocial" placeholder="Razao social" required>
                 <input type="text" id="nomeFantasia" placeholder="Nome fantasia" required>
                 <input type="text" id="cnpj" placeholder="CNPJ" required>
@@ -44,7 +46,8 @@
                 <input type="email" id="emailEmpresa" placeholder="Email" required>
                 <input type="password" id="senhaEmpresa" placeholder="Senha" required>
 
-                <button type="submit">Cadastrar empresa</button>
+                <button type="submit" id="botao-salvar-empresa">Cadastrar empresa</button>
+                <button type="button" id="botao-cancelar-edicao-empresa">Cancelar edicao</button>
             </form>
 
             <p id="mensagem-empresa"></p>
@@ -78,6 +81,8 @@
                         <th>CNPJ</th>
                         <th>Telefone</th>
                         <th>Email</th>
+                        <th>Status</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody id="tabela-empresas"></tbody>

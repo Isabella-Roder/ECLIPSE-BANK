@@ -10,6 +10,10 @@ const totalEmpresas = document.getElementById("total-empresas");
 const totalContasEmpresas = document.getElementById("total-contas-empresas");
 const saldoEmpresas = document.getElementById("saldo-empresas");
 
+const inputEmpresaId = document.getElementById("empresaId");
+const botaoSalvarEmpresa = document.getElementById("botao-salvar-empresa");
+const botaoCancelarEdicaoEmpresa = document.getElementById("botao-cancelar-edicao-empresa");
+
 function mascararCnpj(valor) {
     valor = valor.replace(/\D/g, "");
     valor = valor.slice(0, 14);
@@ -55,7 +59,7 @@ async function carregarEmpresas() {
     if (!resposta.ok) {
         tabelaEmpresas.innerHTML = `
             <tr>
-                <td colspan="6">Nao foi possivel carregar as empresas.</td>
+                <td colspan="8">Nao foi possivel carregar as empresas.</td>
             </tr>
         `;
         return;
@@ -72,7 +76,7 @@ async function carregarEmpresas() {
     if (empresas.length === 0) {
         tabelaEmpresas.innerHTML = `
             <tr>
-                <td colspan="6">Nenhuma empresa cadastrada ainda.</td>
+                <td colspan="8">Nenhuma empresa cadastrada ainda.</td>
             </tr>
         `;
         cardsContasEmpresas.innerHTML = `<p class="texto-vazio">Nenhuma conta empresarial cadastrada ainda.</p>`;
@@ -91,6 +95,16 @@ async function carregarEmpresas() {
             <td>${empresa.cnpj}</td>
             <td>${empresa.telefone}</td>
             <td>${empresa.email}</td>
+            <td>${empresa.ativada === false ? "Desativada" : "Ativa"}</td>
+            <td>
+                <button type="button" onclick='prepararEdicaoEmpresa(${JSON.stringify(empresa)})'>
+                    Editar
+                </button>
+
+                <button type="button" onclick="alterarStatusEmpresa(${empresa.id})">
+                    ${empresa.ativada === false ? "Reativar" : "Desativar"}
+                </button>
+            </td>
         `;
 
         tabelaEmpresas.appendChild(linha);
@@ -111,6 +125,86 @@ async function carregarEmpresas() {
     if (contas.length === 0) {
         cardsContasEmpresas.innerHTML = `<p class="texto-vazio">Nenhuma conta empresarial encontrada.</p>`;
     }
+}
+
+formEmpresa.addEventListener("submit", async (evento) => {
+    evento.preventDefault();
+
+    const empresaId = inputEmpresaId.value;
+
+    const empresa = {
+        razaoSocial: document.getElementById("razaoSocial").value,
+        nomeFantasia: document.getElementById("nomeFantasia").value,
+        cnpj: document.getElementById("cnpj").value,
+        telefone: document.getElementById("telefoneEmpresa").value,
+        email: document.getElementById("emailEmpresa").value,
+        senha: document.getElementById("senhaEmpresa").value
+    };
+
+    const url = empresaId
+        ? `${API_URL}/empresas/${empresaId}`
+        : `${API_URL}/empresas`;
+
+    const metodo = empresaId ? "PUT" : "POST";
+
+    const resposta = await fetch(url, {
+        method: metodo,
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(empresa)
+    });
+
+    if (!resposta.ok) {
+        const erro = await resposta.json();
+        mensagemEmpresa.textContent = erro.erro || "Erro ao salvar empresa.";
+        return;
+    }
+
+    mensagemEmpresa.textContent = empresaId
+        ? "Empresa atualizada com sucesso."
+        : "Empresa e conta empresarial cadastradas com sucesso.";
+
+    limparFormularioEmpresa();
+    await carregarEmpresas();
+});
+
+function prepararEdicaoEmpresa(empresa) {
+    inputEmpresaId.value = empresa.id;
+    document.getElementById("razaoSocial").value = empresa.razaoSocial || "";
+    document.getElementById("nomeFantasia").value = empresa.nomeFantasia || "";
+    document.getElementById("cnpj").value = empresa.cnpj || "";
+    document.getElementById("telefoneEmpresa").value = empresa.telefone || "";
+    document.getElementById("emailEmpresa").value = empresa.email || "";
+    document.getElementById("senhaEmpresa").value = "";
+
+    botaoSalvarEmpresa.textContent = "Salvar alteracoes";
+}
+
+function limparFormularioEmpresa() {
+    formEmpresa.reset();
+    inputEmpresaId.value = "";
+    botaoSalvarEmpresa.textContent = "Cadastrar empresa";
+}
+
+botaoCancelarEdicaoEmpresa.addEventListener("click", () => {
+    limparFormularioEmpresa();
+    mensagemEmpresa.textContent = "";
+});
+
+async function alterarStatusEmpresa(empresaId) {
+    const resposta = await fetch(`${API_URL}/empresas/${empresaId}/status`, {
+        method: "PUT"
+    });
+
+    if (!resposta.ok) {
+        const erro = await resposta.json();
+        mensagemEmpresa.textContent = erro.erro || "Erro ao alterar status da empresa.";
+        return;
+    }
+
+    mensagemEmpresa.textContent = "Status da empresa alterado com sucesso.";
+    await carregarEmpresas();
 }
 
 async function buscarContaEmpresa(empresaId) {
@@ -140,13 +234,13 @@ function renderizarContaEmpresa(conta) {
         </div>
 
         <div class="empresa-conta-saldo">
-            <span>Saldo disponível</span>
+            <span>Saldo disponivel</span>
             <strong>${formatarMoeda(conta.saldo)}</strong>
         </div>
 
         <div class="empresa-conta-info">
             <div>
-                <span>Número</span>
+                <span>Numero</span>
                 <strong>${conta.numero}</strong>
             </div>
             <div>
@@ -166,36 +260,5 @@ function renderizarContaEmpresa(conta) {
 
     cardsContasEmpresas.appendChild(card);
 }
-
-formEmpresa.addEventListener("submit", async (evento) => {
-    evento.preventDefault();
-
-    const empresa = {
-        razaoSocial: document.getElementById("razaoSocial").value,
-        nomeFantasia: document.getElementById("nomeFantasia").value,
-        cnpj: document.getElementById("cnpj").value,
-        telefone: document.getElementById("telefoneEmpresa").value,
-        email: document.getElementById("emailEmpresa").value,
-        senha: document.getElementById("senhaEmpresa").value
-    };
-
-    const resposta = await fetch(`${API_URL}/empresas`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(empresa)
-    });
-
-    if (!resposta.ok) {
-        const erro = await resposta.json();
-        mensagemEmpresa.textContent = erro.erro || "Erro ao cadastrar empresa.";
-        return;
-    }
-
-    mensagemEmpresa.textContent = "Empresa e conta empresarial cadastradas com sucesso.";
-    formEmpresa.reset();
-    await carregarEmpresas();
-});
 
 carregarEmpresas();

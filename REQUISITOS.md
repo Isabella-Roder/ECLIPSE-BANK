@@ -463,6 +463,8 @@ Status atual:
 - [x] Cadastro de empresa implementado.
 - [x] Listagem de empresas implementada.
 - [x] Busca de empresa por ID implementada.
+- [x] Edicao de empresa pela area administrativa implementada.
+- [x] Ativacao e desativacao de empresa pela area administrativa implementada.
 - [x] CNPJ implementado como campo da empresa.
 - [x] Validacao de CNPJ unico implementada.
 - [x] Validacao de email unico para empresa implementada.
@@ -890,6 +892,8 @@ Status atual:
 
 - [x] Cadastrar empresa.
 - [x] Listar empresas.
+- [x] Editar empresa.
+- [x] Ativar e desativar empresa.
 - [x] Criar conta automaticamente para empresa.
 - [x] Exibir CNPJ, razao social e nome fantasia.
 - [x] Separar conta empresa de conta pessoa fisica.
