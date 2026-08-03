@@ -12,6 +12,10 @@ const adminResumoUsuarios = document.getElementById("admin-resumo-usuarios");
 const adminResumoContas = document.getElementById("admin-resumo-contas");
 const adminResumoEmpresas = document.getElementById("admin-resumo-empresas");
 const adminResumoCategorias = document.getElementById("admin-resumo-categorias");
+const adminContasBloqueadas = document.getElementById("admin-contas-bloqueadas");
+const adminUsuariosInativos = document.getElementById("admin-usuarios-inativos");
+const adminEmpresasInativas = document.getElementById("admin-empresas-inativas");
+const adminTotalTransacoes = document.getElementById("admin-total-transacoes");
 
 function ehEntradaAdmin(tipo) {
     return tipo === "RECEITA"
@@ -76,6 +80,7 @@ async function carregarIndicadoresExtrasAdmin() {
 async function carregarTransacoesAdmin() {
     const transacoes = await buscarListaAdmin("/transacoes");
 
+    adminTotalTransacoes.textContent = transacoes.length;
     renderizarTransacoesAdmin(transacoes);
 }
 
@@ -107,10 +112,31 @@ function renderizarTransacoesAdmin(transacoes) {
     });
 }
 
+function atualizarAlertasAdmin(contas, usuarios, empresas, transacoes) {
+    const contasBloqueadas = contas.filter((conta) => conta.bloqueada === true);
+    const usuariosInativos = usuarios.filter((usuario) => usuario.ativo === false);
+    const empresasInativas = empresas.filter((empresa) => empresa.ativada === false);
+
+    adminContasBloqueadas.textContent = contasBloqueadas.length;
+    adminUsuariosInativos.textContent = usuariosInativos.length;
+    adminEmpresasInativas.textContent = empresasInativas.length;
+    adminTotalTransacoes.textContent = transacoes.length;
+}
+
+async function carregarAlertasAdmin() {
+    const contas = await buscarListaAdmin("/contas");
+    const usuarios = await buscarListaAdmin("/usuarios");
+    const empresas = await buscarListaAdmin("/empresas");
+    const transacoes = await buscarListaAdmin("/transacoes");
+
+    atualizarAlertasAdmin(contas, usuarios, empresas, transacoes);
+}
+
 async function iniciarAdminDashboard() {
     try {
         await carregarResumoAdmin();
         await carregarIndicadoresExtrasAdmin();
+        await carregarAlertasAdmin();
         await carregarTransacoesAdmin();
 
         adminMensagem.textContent = "Dashboard admin carregado.";
