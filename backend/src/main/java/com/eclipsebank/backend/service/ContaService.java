@@ -197,6 +197,9 @@ public class ContaService {
         Conta contaOrigem = contaRepository.findById(request.getContaOrigemId()).orElseThrow(() -> new IllegalArgumentException("Conta de origem não encontrada."));
         Conta contaDestino = contaRepository.findById(request.getContaDestinoId()).orElseThrow(() -> new IllegalArgumentException("Conta de destino não encontrada."));
 
+        validarContaNaoBloqueada(contaOrigem);
+        validarContaNaoBloqueada(contaDestino);
+
         if (contaOrigem.getSaldo() == null) {
             contaOrigem.setSaldo(0.0);
         }
@@ -244,8 +247,8 @@ public class ContaService {
     public Conta TransferirPorNumero(TransferenciaPorNumeroRequest requestNum) {
         Double valor = requestNum.getValor();
 
-        if (valor < 0) {
-            throw new IllegalArgumentException("valor da transferencia deve ser maior que zero.");
+        if (valor == null || valor <= 0) {
+            throw new IllegalArgumentException("Valor da transferencia deve ser maior que zero.");
         }
 
         Conta contaOrigem = contaRepository.findById(requestNum.getContaOrigem()).orElseThrow(() -> new IllegalArgumentException("Conta origem não encontrada."));
@@ -254,6 +257,9 @@ public class ContaService {
         if (contaOrigem.getId().equals(contaDestino.getId())) {
             throw new IllegalArgumentException("A conta de origem e destino devem ser diferentes.");
         }
+
+        validarContaNaoBloqueada(contaOrigem);
+        validarContaNaoBloqueada(contaDestino);
 
         if (contaOrigem.getSaldo() == null) {
             contaOrigem.setSaldo(0.0);
@@ -310,6 +316,9 @@ public class ContaService {
             throw new IllegalArgumentException("A conta de origem e destino devem ser diferentes.");
         }
 
+        validarContaNaoBloqueada(contaOrigem);
+        validarContaNaoBloqueada(contaDestino);
+
         if (contaOrigem.getSaldo() == null) {
             contaOrigem.setSaldo(0.0);
         }
@@ -363,6 +372,8 @@ public class ContaService {
         }
 
         Conta conta = contaRepository.findById(contaId).orElseThrow(() -> new IllegalArgumentException("Conta não encontrada."));
+
+        validarContaNaoBloqueada(conta);
 
         if (conta.getSaldo() == null) {
             conta.setSaldo(0.0);

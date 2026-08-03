@@ -12,7 +12,7 @@ import com.eclipsebank.backend.dto.ProdutoInvestimentoInfo;
 import com.eclipsebank.backend.enums.StatusInvestimento;
 import com.eclipsebank.backend.enums.TipoTransacao;
 import com.eclipsebank.backend.model.Conta;
-import com.eclipsebank.backend.service.TransacaoService;
+
 
 @Service
 public class InvestimentoService {
@@ -56,6 +56,8 @@ public class InvestimentoService {
 
     public Investimento aplicar(Long contaId, Investimento investimento) {
         Conta conta = contaRepository.findById(contaId).orElseThrow(() -> new IllegalArgumentException("Conta não encontrada."));
+
+        validarContaNaoBloqueada(conta);
 
         if (investimento.getValorAplicado() == null || investimento.getValorAplicado() <= 0) {
             throw new IllegalArgumentException("Valor aplicado deve ser maior que zero.");
@@ -133,6 +135,12 @@ public class InvestimentoService {
 
         contaRepository.save(conta);
         return investimentoRepository.save(investimento);
+    }
+
+    private void validarContaNaoBloqueada(Conta conta) {
+        if (Boolean.TRUE.equals(conta.getBloqueada())) {
+            throw new IllegalArgumentException("Conta bloqueada.");
+        }
     }
 
 }

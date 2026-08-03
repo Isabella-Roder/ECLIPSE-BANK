@@ -94,6 +94,8 @@ public class PagamentoService {
 
         Conta contaOrigem = contaRepository.findById(request.getContaOrigem()).orElseThrow(() -> new IllegalArgumentException("Conta de origem não encontrada"));
 
+        validarContaNaoBloqueada(contaOrigem);
+
         if (contaOrigem.getSaldo() == null) {
             contaOrigem.setSaldo(0.0);
         }
@@ -134,6 +136,12 @@ public class PagamentoService {
             throw new IllegalArgumentException("Metodo de pagamento ainda não implementado.");
         }
 
+    }
+
+    private void validarContaNaoBloqueada(Conta conta) {
+        if (Boolean.TRUE.equals(conta.getBloqueada())) {
+            throw new IllegalArgumentException("Conta bloqueada.");
+        }
     }
 
 }

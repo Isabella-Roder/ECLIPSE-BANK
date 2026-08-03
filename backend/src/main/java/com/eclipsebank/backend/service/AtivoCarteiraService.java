@@ -35,6 +35,8 @@ public class AtivoCarteiraService {
     public AtivoCarteira comprar(Long contaId, AtivoCarteira ativoCarteira) {
         Conta conta = contaRepository.findById(contaId).orElseThrow(() -> new IllegalArgumentException("Conta não encontrada."));
 
+        validarContaNaoBloqueada(conta);
+
         if (ativoCarteira.getQuantidade() == null || ativoCarteira.getQuantidade() <= 0) {
             throw new IllegalArgumentException("A quantidade deve ser maior que zero.");
         }
@@ -131,5 +133,10 @@ public class AtivoCarteiraService {
         ativo.setValorTotal(ativo.getPrecoMedio() * novaQuantidade);
 
         return ativoCarteiraRepository.save(ativo);
+    }
+    private void validarContaNaoBloqueada(Conta conta) {
+        if (Boolean.TRUE.equals(conta.getBloqueada())) {
+            throw new IllegalArgumentException("Conta bloqueada.");
+        }
     }
 }

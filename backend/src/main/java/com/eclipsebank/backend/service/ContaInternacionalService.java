@@ -110,6 +110,8 @@ public class ContaInternacionalService {
         Conta contaNacional = contaRepository.findByUsuarioId(usuarioId)
             .orElseThrow(() -> new IllegalArgumentException("Conta nacional nao encontrada."));
 
+        validarContaNaoBloqueada(contaNacional);
+
         ContaInternacional contaInternacional = contaInternacionalRepository.findByUsuarioIdAndMoeda(usuarioId, moeda)
             .orElseThrow(() -> new IllegalArgumentException("Conta internacional nao encontrada."));
 
@@ -175,6 +177,12 @@ public class ContaInternacionalService {
 
         contaRepository.save(contaNacional);
         return contaInternacionalRepository.save(contaInternacional);
+    }
+
+    private void validarContaNaoBloqueada(Conta conta) {
+        if (Boolean.TRUE.equals(conta.getBloqueada())) {
+            throw new IllegalArgumentException("Conta bloqueada.");
+        }
     }
 
 }

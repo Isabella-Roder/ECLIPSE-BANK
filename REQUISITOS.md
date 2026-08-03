@@ -192,6 +192,9 @@ Status atual:
 - [x] Saldo da conta BRL atualizado nas operacoes de cambio.
 - [x] Bloqueio e desbloqueio de conta pela area administrativa implementado.
 - [x] Edicao de dados da conta pela area administrativa implementada.
+- [x] Conta bloqueada impede saque, transferencias, Pix e pagamento de boleto.
+- [x] Conta bloqueada impede pagamento, aplicacao de investimento, compra de ativo e compra de moeda estrangeira.
+- [x] Entradas/devolucoes como venda de ativo, venda de moeda e resgate de investimento continuam permitidas.
 
 Funcionalidades:
 
@@ -1138,6 +1141,7 @@ Legenda:
 - [x] Deposito em conta.
 - [x] Saque em conta.
 - [x] Validacao de saldo para saque.
+- [x] Validacao de conta bloqueada em operacoes de saida.
 - [x] Transferencia entre contas.
 - [x] Transferencia por numero da conta.
 - [x] Validacao para nao transferir para a mesma conta.
